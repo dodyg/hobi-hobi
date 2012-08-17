@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using HobiHobi.Core.Feeds;
 
 namespace HobiHobi.Web.Controllers
 {
@@ -10,7 +11,21 @@ namespace HobiHobi.Web.Controllers
     {
         public ActionResult Index()
         {
-            return new ContentResult { Content = "Hello World ", ContentType = "text/html", ContentEncoding = System.Text.UTF8Encoding.UTF8 };
+            var fetch = new Fetcher();
+            var output = fetch.Download(null);
+
+            try
+            {
+                var feeds = fetch.Serialize(output);
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Error = ex.Message;
+            }
+
+            ViewBag.Output = new HtmlString(output);
+            
+            return View();
         }
     }
 }

@@ -44,14 +44,10 @@ namespace HobiHobi.Core.Framework
             private set;
         }
 
-        bool _isFound;
-
         public void NotFound()
         {
             Type = QuerySetType.None;
-            _isFound = false;
         }
-
 
         T _single;
 
