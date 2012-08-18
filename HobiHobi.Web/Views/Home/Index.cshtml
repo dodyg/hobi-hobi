@@ -3,13 +3,70 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<p style="background-color:#808080;color:white;padding:15px;">
-    @ViewBag.Error
-</p>
+<a href="https://github.com/dodyg/hobi-hobi"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_left_darkblue_121621.png" alt="Fork me on GitHub"></a>
 
-@foreach (var x in Model.UpdatedFeeds.UpdatedFeed)
-{
-    @x.FeedTitle
-}
+<div style="font-size:16px;">
+Source : <a href="@ViewBag.FeedUrl">@ViewBag.FeedUrl</a> | @ViewBag.CacheStatus
+</div>
+
+<div id="river">
+    @foreach (var x in Model.UpdatedFeeds.UpdatedFeed)
+    {
+        <div class="feed">
+            <h2>@x.FeedTitle</h2>
+            <div class="lastUpdated">@x.WhenLastUpdate</div>
+            @foreach (var i in x.Item)
+            {
+                <div class="feed_item" data-id="@i.Id">
+                    <h3>@Server.HtmlDecode(i.Title) <a href="@i.Link">#</a></h3>
+                    @i.Body
+                    <p class="feed_date">@i.PubDate</p>
+                </div>
+            }
+        </div>
+    }
+</div>
 <br /><br />
-@ViewBag.Output
+
+@section JsInline{
+    <script type="text/ecmascript">
+        $(function(){
+            $('#river').isotope({
+                itemSelector : ".feed",
+                layoutMode : 'masonry'
+            });
+        });
+
+    </script>
+}
+
+@section CssInline{
+    <style type="text/css">
+        .feed {
+            width: 300px;
+            border:1px solid grey;
+            padding:5px;
+            margin:5px;
+        }
+
+            .feed h2 {
+                font-size: 16px;
+                line-height:18px;
+                color:#808080;
+            }
+
+            .feed h3 {
+                font-size: 14px;
+                line-height: 16px;
+            }
+
+        .feed_item {
+            padding:5px;
+            margin-bottom:5px;
+        }
+
+        .feed_date {
+            font-size:10px;
+        }
+    </style>
+}
