@@ -17,7 +17,7 @@ Source : <a href="@ViewBag.FeedUrl">@ViewBag.FeedUrl</a> | @ViewBag.CacheStatus
     {
         <div class="feed">
             <h2>@x.FeedTitle</h2>
-            <div class="lastUpdated">@x.WhenLastUpdate</div>
+            <div class="last_updated">@x.WhenLastUpdate</div>
             @foreach (var i in x.Item)
             {
                 <div class="feed_item" data-id="@i.Id">
@@ -74,7 +74,7 @@ Source : <a href="@ViewBag.FeedUrl">@ViewBag.FeedUrl</a> | @ViewBag.CacheStatus
             background-color:#f7f1f1;
         }
 
-        .feed_date {
+        .feed_date, .last_updated {
             font-size:10px;
         }
     </style>
