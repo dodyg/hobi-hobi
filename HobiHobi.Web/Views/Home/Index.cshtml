@@ -1,7 +1,15 @@
-﻿@{
+﻿@model HobiHobi.Core.Feeds.FeedsRiver
+@{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@ViewBag.Error
+<p style="background-color:#808080;color:white;padding:15px;">
+    @ViewBag.Error
+</p>
 
+@foreach (var x in Model.UpdatedFeeds.UpdatedFeed)
+{
+    @x.FeedTitle
+}
+<br /><br />
 @ViewBag.Output

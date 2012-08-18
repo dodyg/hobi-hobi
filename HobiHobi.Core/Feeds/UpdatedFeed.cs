@@ -7,15 +7,15 @@ namespace HobiHobi.Core.Feeds
 {
     public class FeedsRiver
     {
-        public UpdatedFeeds UpdatedFeeds { get; set; }
+        public FeedsCollection UpdatedFeeds { get; set; }
     }
-
-    public class UpdatedFeeds
+   
+    public class FeedsCollection
     {
-        public UpdatedFeed[] Feeds { get; set; }
+        public FeedSite[] UpdatedFeed { get; set; }
     }
 
-    public class UpdatedFeed
+    public class FeedSite
     {
         public string FeedUrl { get; set; }
         public string WebsiteUrl { get; set; }

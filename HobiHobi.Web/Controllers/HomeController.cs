@@ -12,20 +12,13 @@ namespace HobiHobi.Web.Controllers
         public ActionResult Index()
         {
             var fetch = new Fetcher();
-            var output = fetch.Download(null);
+            var hostTarget = "http://static.scripting.com";
+            var pathTarget = "/houston/rivers/apple/River3.js";
 
-            try
-            {
-                var feeds = fetch.Serialize(output);
-            }
-            catch (Exception ex)
-            {
-                ViewBag.Error = ex.Message;
-            }
+            var output = fetch.Download(hostTarget, pathTarget);
 
-            ViewBag.Output = new HtmlString(output);
-            
-            return View();
+            var river = fetch.Serialize(output);
+            return View(river);
         }
     }
 }

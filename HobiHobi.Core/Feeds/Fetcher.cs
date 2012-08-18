@@ -10,15 +10,13 @@ namespace HobiHobi.Core.Feeds
 {
     public class Fetcher
     {
-        public string Download(Uri link){
-//            JsonConvert.SerializeObject(obj, Formatting.None,
-//new JsonSerializerSettings
-//{ContractResolver = new CamelCasePropertyNamesContractResolver()})
-
-            var target = "http://static.scripting.com";
+        public string Download(string host, string path){
+            var target = host;
             var client = new RestClient(target);
 
-            var request = new RestRequest("houston/rivers/apple/River3.js", method: Method.GET);
+            var request = new RestRequest(path, method: Method.GET);
+            request.AddHeader("Accept", "*/*");
+            request.RequestFormat = DataFormat.Json;
 
             var response = client.Execute(request);
 
