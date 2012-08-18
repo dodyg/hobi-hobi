@@ -22,7 +22,7 @@ Source : <a href="@ViewBag.FeedUrl">@ViewBag.FeedUrl</a> | @ViewBag.CacheStatus
             {
                 <div class="feed_item" data-id="@i.Id">
                     <h3>@Server.HtmlDecode(i.Title) <a href="@i.Link">#</a></h3>
-                    @i.Body
+                    @Server.HtmlDecode(i.Body)
                     <p class="feed_date">@i.PubDate</p>
                 </div>
             }
