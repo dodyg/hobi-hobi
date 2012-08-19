@@ -28,8 +28,19 @@ namespace HobiHobi.Web.Controllers
 ";
         public ActionResult Index()
         {
+            this.Compress();
+            return View();
+        }
+
+        public ActionResult Feed(string feedName)
+        {
+            var feedTarget = GetFeed(feedName);
+
+            if (!feedTarget.IsFound)
+                return HttpNotFound();
+
             var hostTarget = "http://static.scripting.com";
-            var pathTarget = "/houston/rivers/apple/apple.json";
+            var pathTarget = feedTarget.Item;
 
             ViewBag.FeedUrl = hostTarget + pathTarget;
 
@@ -46,11 +57,10 @@ namespace HobiHobi.Web.Controllers
                     HttpContext.Cache.Add(ViewBag.FeedUrl, river, null, Cache.NoAbsoluteExpiration, new TimeSpan(0, 10, 0), CacheItemPriority.Default, null);
 
                     ViewBag.CacheStatus = "No Cache";
-                    
+
                     var renderer = new FeedTemplateRenderer(river, _template);
-                    ViewBag.Output = renderer.Render();
                     this.Compress();
-                    return View(river);
+                    return Content(renderer.Render().ToString(), "text/html");
                 }
                 catch (Exception ex)
                 {
@@ -61,9 +71,19 @@ namespace HobiHobi.Web.Controllers
             {
                 ViewBag.CacheStatus = "Cached for 10 minutes";
                 var renderer = new FeedTemplateRenderer(cache as FeedsRiver, _template);
-                ViewBag.Output = renderer.Render();
-                this.Compress();                    
-                return View(cache);
+                this.Compress();
+                return Content(renderer.Render().ToString(), "text/html");
+            }
+        }
+
+        IQuerySetOne<string> GetFeed(string feedName)
+        {
+            switch (feedName)
+            {
+                case "apple": return new QuerySetOne<string>("/houston/rivers/apple/apple.json");
+                case "dave": return new QuerySetOne<string>("/houston/rivers/dave/dave.json");
+                case "nyt": return new QuerySetOne<string>("/houston/rivers/nyt/nyt.json");
+                default: return new QuerySetOne<string>(null);
             }
         }
     }
