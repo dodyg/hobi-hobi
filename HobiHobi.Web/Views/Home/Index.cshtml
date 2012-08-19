@@ -5,11 +5,20 @@
 <a href="https://github.com/dodyg/hobi-hobi"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png" alt="Fork me on GitHub"></a>
 <br />
 <br />
-<h1>Apple River</h1>
+
+<div class="tabbable">
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="#apple" data-id="apple" data-toggle="tab" data-origin-feed="static.scripting.com/houston/rivers/apple/apple.json">apple</a></li>
+        <li><a href="#dave" data-id="dave" data-toggle="tab" data-origin-feed="static.scripting.com/houston/rivers/dave/dave.json">dave</a></li>
+        <li><a href="#nyt" data-id="nyt" data-toggle="tab" data-origin-feed="static.scripting.com/houston/rivers/nyt/nyt.json">nyt</a></li>
+    </ul>
+</div>
+
+<h1 id="river_title">Apple River</h1>
 <br />
 
 <div style="font-size:16px;">
-Source : <a href="@ViewBag.FeedUrl">@ViewBag.FeedUrl</a> | @ViewBag.CacheStatus
+Source : <a href="#" id="river_origin_feed"></a>
 </div>
 
 
@@ -32,11 +41,32 @@ Source : <a href="@ViewBag.FeedUrl">@ViewBag.FeedUrl</a> | @ViewBag.CacheStatus
                 .ajaxStop(function () {
                 $(this).hide();});
             
-            $.get('/home/feed?feedname=apple', function (data) {
-                $('#river').html(data);
-                arrange();
-            });
+            load('apple', true, 'static.scripting.com/houston/rivers/apple/apple.json');
+
+            $('a[data-toggle="tab"]').on('shown', function (e) {
+                var feedName = $(e.target).data('id'); 
+                var feedOrigin = $(e.target).data('origin-feed');
+                load(feedName, false, feedOrigin);
+            })
         });
+
+        function load(feedName, isInitial, feedOrigin) {
+            $('#river_title').html(feedName + " river");
+            if (feedOrigin !== undefined) {
+                $('#river_origin_feed')
+                    .attr('href', 'http://' + feedOrigin)
+                    .html(feedOrigin);
+            }
+            $.get('/home/feed?feedname=' + feedName, function (data) {
+                $('#river').html(data);
+                if (isInitial)
+                    arrange();
+                else {
+                    $('#river').isotope('destroy');
+                    arrange()
+                }
+            });
+        }
 
         function arrange() {
             $('#river').isotope({
@@ -86,13 +116,13 @@ Source : <a href="@ViewBag.FeedUrl">@ViewBag.FeedUrl</a> | @ViewBag.CacheStatus
             height: 400px;
             position: relative;
         }
-        #loading_div img{
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            margin-left: -32px; /* -1 * image width / 2 */
-            margin-top: -32px;  /* -1 * image height / 2 */
-            display: block;     
-        }
+            #loading_div img{
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                margin-left: -32px; /* -1 * image width / 2 */
+                margin-top: -32px;  /* -1 * image height / 2 */
+                display: block;     
+            }
     </style>
 }
