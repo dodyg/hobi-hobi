@@ -71,7 +71,14 @@ Source : <a href="#" id="river_origin_feed"></a>
         function arrange() {
             $('#river').isotope({
                 itemSelector: ".feed_item",
-                layoutMode: 'masonry'
+                layoutMode: 'masonry',
+                getSortData: {
+                    feed_id: function ($elem) {
+                        return parseInt($elem.data('id'));
+                    }
+                },
+                sortBy: 'feed_id',
+                sortAscending: false
             });
         }
     </script>
@@ -83,6 +90,7 @@ Source : <a href="#" id="river_origin_feed"></a>
             background-image: url('/images/retina_wood.png');
             background-repeat: repeat;
         }
+        
         .feed_item {
             width: 300px;
             border:1px solid grey;
