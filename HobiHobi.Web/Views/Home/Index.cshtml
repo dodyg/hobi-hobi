@@ -12,22 +12,9 @@
 Source : <a href="@ViewBag.FeedUrl">@ViewBag.FeedUrl</a> | @ViewBag.CacheStatus
 </div>
 
+
 <div id="river">
-    @foreach (var x in Model.UpdatedFeeds.UpdatedFeed)
-    {
-        <div class="feed">
-            <h2>@x.FeedTitle</h2>
-            <div class="last_updated">@x.WhenLastUpdate</div>
-            @foreach (var i in x.Item)
-            {
-                <div class="feed_item" data-id="@i.Id">
-                    <h3>@Server.HtmlDecode(i.Title) <a href="@i.Link">#</a></h3>
-                    @Server.HtmlDecode(i.Body)
-                    <p class="feed_date">@i.PubDate</p>
-                </div>
-            }
-        </div>
-    }
+    @ViewBag.Output
 </div>
 <br /><br />
 

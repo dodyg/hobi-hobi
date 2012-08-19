@@ -68,6 +68,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Drops\FeedItemDrop.cs" />
+    <Compile Include="Drops\FeedSiteDrop.cs" />
+    <Compile Include="Feeds\FeedTemplateRenderer.cs" />
     <Compile Include="Feeds\Fetcher.cs" />
     <Compile Include="Feeds\UpdatedFeed.cs" />
     <Compile Include="Framework\BootStrapType.cs" />
