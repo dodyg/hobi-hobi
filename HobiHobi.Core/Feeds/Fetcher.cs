@@ -20,10 +20,7 @@ namespace HobiHobi.Core.Feeds
 
             var response = client.Execute(request);
 
-            var scrub = response.Content.Replace("onGetRiverStream (", "")
-                .Replace(")", "");
-
-            return scrub;
+            return response.Content;
         }
 
         public FeedsRiver Serialize(string json)

@@ -13,7 +13,7 @@ namespace HobiHobi.Web.Controllers
         public ActionResult Index()
         {
             var hostTarget = "http://static.scripting.com";
-            var pathTarget = "/houston/rivers/apple/River3.js";
+            var pathTarget = "/houston/rivers/apple/apple.json";
 
             ViewBag.FeedUrl = hostTarget + pathTarget;
 
