@@ -17,6 +17,7 @@ namespace HobiHobi.Core.Drops
             Link = item.Link;
             PermaLink = item.PermaLink;
             PubDate = item.PubDate;
+            CommentsLink = item.Comments;
         }
 
         public string Id { get; set; }
@@ -25,5 +26,6 @@ namespace HobiHobi.Core.Drops
         public string Link { get; set; }
         public string PermaLink { get; set; }
         public string PubDate { get; set; }
+        public string CommentsLink { get; set; }
     }
 }

@@ -17,8 +17,11 @@ namespace HobiHobi.Web.Controllers
             <div class=""feed_item"" data-id=""{{ item.id }}"">
                 <h2>{{ item.title }} <a href=""{{ item.link }}"">#</a></h2>
                 {{ item.body }}
-                <p class=""feed_date"">{{ item.pub_date }}</p>
+                <p class=""feed_item_date"">{{ item.pub_date }}</p>
                 <div class=""feed_origin_website"">From: <a href=""{{ feed.website_url }}"">{{ feed.Title }}</a></div>
+                {% if item.comments_link -%}
+                <div class=""feed_item_comments""><a href=""{{ item.comments_link }}"">Comments</a></div> 
+                {% endif %}
             </div><!-- feed_item -->
         {% endfor -%}
 {% endfor -%}
