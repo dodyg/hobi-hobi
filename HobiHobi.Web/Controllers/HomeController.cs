@@ -17,12 +17,19 @@ namespace HobiHobi.Web.Controllers
         {% for item in feed.items -%}
             <div class=""feed_item"" data-id=""{{ item.id }}"">
                 <h2>{{ item.title }} <a href=""{{ item.link }}"">#</a></h2>
+                {% if item.thumbnails -%}
+                <div class=""feed_item_thumbnail"">
+                    {% for thumb in item.thumbnails -%}
+                        <img src=""{{ thumb.url }}"" width=""{{ thumb.width }}"" height=""{{ thumb.height }}"" />
+                    {% endfor -%}
+                </div><!-- end of feed_item_thumbnail -->
+                {% endif -%}
                 {{ item.body }}
                 <p class=""feed_item_date"">{{ item.pub_date }}</p>
                 <div class=""feed_origin_website"">From: <a href=""{{ feed.website_url }}"">{{ feed.Title }}</a></div>
                 {% if item.comments_link -%}
                 <div class=""feed_item_comments""><a href=""{{ item.comments_link }}"">Comments</a></div> 
-                {% endif %}
+                {% endif -%}
             </div><!-- feed_item -->
         {% endfor -%}
 {% endfor -%}

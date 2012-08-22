@@ -14,5 +14,6 @@ namespace HobiHobi.Core.Feeds
         public string Link { get; set; }
         public string Comments { get; set; }
         public string Id { get; set; }
+        public FeedImage[] Thumbnail { get; set; }
     }
 }

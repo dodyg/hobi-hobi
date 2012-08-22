@@ -18,6 +18,11 @@ namespace HobiHobi.Core.Drops
             PermaLink = item.PermaLink;
             PubDate = item.PubDate;
             CommentsLink = item.Comments;
+
+            if (item.Thumbnail != null && item.Thumbnail.Length > 0)
+            {
+                Thumbnails = item.Thumbnail.Select(x => new FeedImageDrop(x)).ToArray();
+            }
         }
 
         public string Id { get; set; }
@@ -27,5 +32,6 @@ namespace HobiHobi.Core.Drops
         public string PermaLink { get; set; }
         public string PubDate { get; set; }
         public string CommentsLink { get; set; }
+        public FeedImageDrop[] Thumbnails { get; set; }
     }
 }

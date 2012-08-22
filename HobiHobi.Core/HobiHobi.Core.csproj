@@ -68,8 +68,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Drops\FeedImageDrop.cs" />
     <Compile Include="Drops\FeedItemDrop.cs" />
     <Compile Include="Drops\FeedSiteDrop.cs" />
+    <Compile Include="Feeds\FeedImage.cs" />
     <Compile Include="Feeds\FeedItem.cs" />
     <Compile Include="Feeds\FeedsCollection.cs" />
     <Compile Include="Feeds\FeedSite.cs" />
