@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HobiHobi.Web", "HobiHobi.We
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HobiHobi.Core", "HobiHobi.Core\HobiHobi.Core.csproj", "{ABB6B669-C018-4D4D-AA64-5464F90FD8FF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HobiHobi.Tests", "HobiHobi.Tests\HobiHobi.Tests.csproj", "{E30809AF-1F08-481A-8E82-5159A526DFCB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,6 +27,10 @@ Global
 		{ABB6B669-C018-4D4D-AA64-5464F90FD8FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ABB6B669-C018-4D4D-AA64-5464F90FD8FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ABB6B669-C018-4D4D-AA64-5464F90FD8FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E30809AF-1F08-481A-8E82-5159A526DFCB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E30809AF-1F08-481A-8E82-5159A526DFCB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E30809AF-1F08-481A-8E82-5159A526DFCB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E30809AF-1F08-481A-8E82-5159A526DFCB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
