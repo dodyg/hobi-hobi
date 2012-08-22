@@ -26,7 +26,11 @@ namespace HobiHobi.Web.Controllers
                 {% endif -%}
                 {{ item.body }}
                 <p class=""feed_item_date"">{{ item.pub_date }}</p>
-                <div class=""feed_origin_website"">From: <a href=""{{ feed.website_url }}"">{{ feed.Title }}</a></div>
+                {% if feed.title != """" -%}
+                <div class=""feed_origin_website"">Source: <a href=""{{ feed.website_url }}"">{{ feed.title }}</a></div>
+                {% else %}
+                <div class=""feed_origin_website""><a href=""{{ feed.website_url }}"">Source</a></div>
+                {% endif -%}
                 {% if item.comments_link -%}
                 <div class=""feed_item_comments""><a href=""{{ item.comments_link }}"">Comments</a></div> 
                 {% endif -%}
