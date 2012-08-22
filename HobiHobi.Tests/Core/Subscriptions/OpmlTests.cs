@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,10 +17,17 @@ namespace HobiHobi.Tests.Core.Subscriptions
         {
             var opml = new Opml();
             opml.LoadFromXML(_sampleOPML);
-            Console.Out.WriteLine("Hello " + opml.Title);
+            Trace.WriteLine("Hello " + opml.Title);
             Assert.IsNotNull(opml.Title);
             Assert.IsTrue(opml.Title == "mySubscriptions.opml");
             Assert.IsTrue(opml.OwnerEmail == "dave@scripting.com");
+            Assert.IsTrue(opml.Outlines.Count > 0, "Outlines must be greater than zero");
+        }
+
+        [Test]
+        public void WriteToConsole()
+        {
+            Trace.WriteLine("Hello World");
         }
 
         string _sampleOPML = 

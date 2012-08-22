@@ -67,6 +67,18 @@ namespace HobiHobi.Core.Subscriptions
             WindowLeft = selectInt("windowLeft");
             WindowBottom = selectInt("windowBottom");
             WindowRight = selectInt("windowRight");
+
+            var bodies = elements.Element("body").Descendants();
+            //todo: make it recursive
+            foreach (var b in bodies)
+            {
+                var o = new Outline();
+                foreach (var att in b.Attributes())
+                {
+                    o.Attributes[att.Name.ToString()] = att.Value;
+                }
+                Outlines.Add(o);
+            }
         }
     }
 }

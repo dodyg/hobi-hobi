@@ -112,6 +112,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Subscriptions\Opml.cs" />
     <Compile Include="Subscriptions\Outline.cs" />
+    <Compile Include="Subscriptions\RssSubscription.cs" />
+    <Compile Include="Subscriptions\RssSubscriptionItem.cs" />
     <Compile Include="Utils\JsonSerializer.cs" />
   </ItemGroup>
   <ItemGroup>
