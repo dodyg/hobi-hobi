@@ -19,8 +19,9 @@ namespace HobiHobi.Core.Feeds
             request.RequestFormat = DataFormat.Json;
 
             var response = client.Execute(request);
-
-            return response.Content;
+            //This is a hack to clean up JSONP feed
+            var scrub = response.Content.Replace("onGetRiverStream (", "").Replace(")","");
+            return scrub;
         }
 
         public FeedsRiver Serialize(string json)

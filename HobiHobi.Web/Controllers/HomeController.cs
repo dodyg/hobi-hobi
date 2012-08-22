@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Caching;
 using System.Web.Mvc;
+using HobiHobi.Core;
 using HobiHobi.Core.Feeds;
 using HobiHobi.Core.Framework;
 
@@ -39,8 +40,8 @@ namespace HobiHobi.Web.Controllers
             if (!feedTarget.IsFound)
                 return HttpNotFound();
 
-            var hostTarget = "http://static.scripting.com";
-            var pathTarget = feedTarget.Item;
+            var hostTarget = feedTarget.Item.Host;
+            var pathTarget = feedTarget.Item.Path;
 
             ViewBag.FeedUrl = hostTarget + pathTarget;
 
@@ -76,14 +77,15 @@ namespace HobiHobi.Web.Controllers
             }
         }
 
-        IQuerySetOne<string> GetFeed(string feedName)
+        IQuerySetOne<HostAndPath> GetFeed(string feedName)
         {
             switch (feedName)
             {
-                case "apple": return new QuerySetOne<string>("/houston/rivers/apple/apple.json");
-                case "dave": return new QuerySetOne<string>("/houston/rivers/dave/dave.json");
-                case "nyt": return new QuerySetOne<string>("/houston/rivers/nyt/nyt.json");
-                default: return new QuerySetOne<string>(null);
+                case "apple": return new QuerySetOne<HostAndPath>(new HostAndPath("http://static.scripting.com","/houston/rivers/apple/apple.json"));
+                case "dave": return new QuerySetOne<HostAndPath>(new HostAndPath("http://static.scripting.com","/houston/rivers/dave/dave.json"));
+                case "nyt": return new QuerySetOne<HostAndPath>(new HostAndPath("http://static.scripting.com","/houston/rivers/nyt/nyt.json"));
+                case "noAgenda": return new QuerySetOne<HostAndPath>(new HostAndPath("http://s3.amazonaws.com", "/river.curry.com/rivers/radio2/River3.js"));   
+                default: return new QuerySetOne<HostAndPath>(null);
             }
         }
     }
