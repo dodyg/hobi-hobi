@@ -79,6 +79,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BootStrap.cs" />
     <Compile Include="Drops\FeedImageDrop.cs" />
     <Compile Include="Drops\FeedItemDrop.cs" />
     <Compile Include="Drops\FeedSiteDrop.cs" />
