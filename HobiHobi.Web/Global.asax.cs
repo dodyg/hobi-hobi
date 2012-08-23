@@ -38,7 +38,7 @@ namespace HobiHobi.Web
         void InitializeRavenDB()
         {
 
-            Store = new DocumentStore { ConnectionStringName = "RAVENHQ_CONNECTION_STRING" };
+            Store = new DocumentStore { ConnectionStringName = "RavenDB" };
             Store.Initialize();
 
             IndexCreation.CreateIndexes(Assembly.GetCallingAssembly(), Store);
