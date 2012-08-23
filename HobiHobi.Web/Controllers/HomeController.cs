@@ -10,7 +10,7 @@ using HobiHobi.Core.Framework;
 
 namespace HobiHobi.Web.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : RavenController
     {
         string _template = @"
 {% for feed in feeds -%}
@@ -40,8 +40,26 @@ namespace HobiHobi.Web.Controllers
 ";
         public ActionResult Index()
         {
+            this.RavenSession.Store(
+                new
+                {
+                    Id = "user/dody",
+                    Message = "Hello World"
+                }
+            );
+
             this.Compress();
             return View();
+        }
+
+        public ActionResult Hello()
+        {
+            var val = this.RavenSession.Load<dynamic>("user/dody");
+
+            if (val != null)
+                return Content("Hello " + val.Message);
+            else
+                return Content("No such key");
         }
 
         public ActionResult Feed(string feedName)
