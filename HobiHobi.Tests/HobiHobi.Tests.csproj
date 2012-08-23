@@ -55,6 +55,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Core\Identity\UserTests.cs" />
     <Compile Include="Core\Subscriptions\OpmlTests.cs" />
     <Compile Include="Core\Subscriptions\RssSubscriptionTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
