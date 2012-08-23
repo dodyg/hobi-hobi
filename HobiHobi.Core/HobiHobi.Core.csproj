@@ -127,6 +127,9 @@
     <Compile Include="Framework\ValidationMessageExtension.cs" />
     <Compile Include="Framework\ValidatorFactory.cs" />
     <Compile Include="HostAndPath.cs" />
+    <Compile Include="Identity\AccountStatus.cs" />
+    <Compile Include="Identity\Authentication.cs" />
+    <Compile Include="Identity\AuthenticationResult.cs" />
     <Compile Include="Identity\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Subscriptions\Opml.cs" />
@@ -134,6 +137,8 @@
     <Compile Include="Subscriptions\RssSubscription.cs" />
     <Compile Include="Subscriptions\RssSubscriptionItem.cs" />
     <Compile Include="Utils\JsonSerializer.cs" />
+    <Compile Include="Validators\UserViewModelValidator.cs" />
+    <Compile Include="ViewModels\UserViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

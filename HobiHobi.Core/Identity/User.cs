@@ -19,6 +19,7 @@ namespace HobiHobi.Core.Identity
         public string LastName { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
+        public AccountStatus Status { get; set; }
         public DateTime DateCreated { get; set; }
 
         public static string HashPassword(string password)
