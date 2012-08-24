@@ -1,6 +1,36 @@
-﻿@{
-    ViewBag.Title = "Register";
+﻿@model HobiHobi.Core.ViewModels.UserViewModel
+@{
+    ViewBag.Title = this.Local("Title");
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Register</h2>
+<h2>@this.Local("Title")</h2>
+
+<form class="form-horizontal" action="/identity/register" method="post">
+  <div class="control-group">
+    <label class="control-label" for="Email">Email</label>
+    <div class="controls">
+      @Html.TextBoxFor(m => m.Email, new { placehoder = "email"})
+      @Html.ValidationMessageFor(m=>m.Email)
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label" for="Password">Password</label>
+    <div class="controls">
+      @Html.TextBoxFor(m => m.Password, new { placehoder = "password"})
+      @Html.ValidationMessageFor(m=>m.Password)
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label" for="RepeatPassword">Repeat Password</label>
+    <div class="controls">
+      @Html.TextBoxFor(m => m.RepeatPassword, new { placehoder = "repeat password"})
+      @Html.ValidationMessageFor(m=>m.RepeatPassword)
+    </div>
+  </div>
+    <div class="control-group">
+    <div class="controls">
+      <button type="submit" class="btn">@this.Local("btnSubmit")</button>
+    </div>
+  </div>
+</form>

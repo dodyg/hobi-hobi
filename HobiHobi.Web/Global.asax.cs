@@ -7,6 +7,8 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using Autofac;
 using Autofac.Integration.Mvc;
+using FluentValidation;
+using FluentValidation.Mvc;
 using HobiHobi.Web.IoC;
 using Raven.Client.Document;
 using Raven.Client.Extensions;
@@ -57,13 +59,19 @@ namespace HobiHobi.Web
 
             //wire up all the necessary objects used in this web application
             ContainerBuilder builder = BootStrap.RegisterAll();
-            DependencyResolver.SetResolver(new AutofacDependencyResolver(builder.Build()));
+            var container = builder.Build();
+            DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
 
 
             AreaRegistration.RegisterAllAreas();
 
             RegisterGlobalFilters(GlobalFilters.Filters);
             RegisterRoutes(RouteTable.Routes);
+
+            FluentValidationModelValidatorProvider.Configure(provider =>
+            {
+                provider.ValidatorFactory = container.Resolve<IValidatorFactory>();
+            });
         }
     }
 }

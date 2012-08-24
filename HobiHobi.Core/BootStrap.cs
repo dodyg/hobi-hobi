@@ -14,7 +14,6 @@ namespace HobiHobi.Core
     {
         public static void Register(ContainerBuilder builder, BootStrapType type = BootStrapType.Assembly)
         {
-
             //validators
             builder.RegisterType<UserViewModelValidator>().Keyed<IValidator>(typeof(UserViewModel));
         }
