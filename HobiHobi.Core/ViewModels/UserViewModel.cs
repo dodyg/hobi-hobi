@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using HobiHobi.Core.Framework;
 using HobiHobi.Core.Identity;
 
 namespace HobiHobi.Core.ViewModels
@@ -29,6 +30,22 @@ namespace HobiHobi.Core.ViewModels
             Password = usr.Password;
             RepeatPassword = usr.Password;
             Status = usr.Status;
+        }
+
+        public User GetUserForCreation()
+        {
+            var usr = new User
+            {
+                Id = User.NewKey(Key.GenerateGuid()).Full(),
+                FirstName = FirstName,
+                LastName = LastName,
+                Email = Email,
+                Password = Password,
+                Status = AccountStatus.Enabled,
+                Level = AccountLevel.Participant,
+                DateCreated = Stamp.Time()
+            };
+            return usr;
         }
     }
 }

@@ -128,6 +128,7 @@
     <Compile Include="Framework\ValidationMessageExtension.cs" />
     <Compile Include="Framework\ValidatorFactory.cs" />
     <Compile Include="HostAndPath.cs" />
+    <Compile Include="Identity\AccountLevel.cs" />
     <Compile Include="Identity\AccountStatus.cs" />
     <Compile Include="Identity\Authentication.cs" />
     <Compile Include="Identity\AuthenticationResult.cs" />
@@ -154,7 +155,7 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Validators\Resources\UserViewModelValidator.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>UserViewModelValidator.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>

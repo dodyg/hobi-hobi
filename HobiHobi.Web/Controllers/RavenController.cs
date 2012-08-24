@@ -20,6 +20,17 @@ namespace HobiHobi.Web.Controllers
 #endif
         }
 
+        protected void SaveChangesAndTerminate()
+        {
+            using (RavenSession)
+            {
+                if (RavenSession != null)
+                    RavenSession.SaveChanges();
+
+                RavenSession = null;
+            }
+        }
+
         protected override void OnActionExecuted(ActionExecutedContext filterContext)
         {
             if (filterContext.IsChildAction)

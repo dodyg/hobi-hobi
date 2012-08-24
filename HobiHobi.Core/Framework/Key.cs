@@ -92,6 +92,11 @@ namespace HobiHobi.Core.Framework
             var now = DateTime.UtcNow;
             return "{0}-{1}-{2}-{3}".F(now.Year, now.Month, now.Day, now.TimeOfDay.Ticks);
         }
+
+        public static string GenerateGuid()
+        {
+            return Guid.NewGuid().ToString();
+        }
     }
 
 }

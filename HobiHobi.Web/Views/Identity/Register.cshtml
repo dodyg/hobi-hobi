@@ -5,32 +5,37 @@
 }
 
 <h2>@this.Local("Title")</h2>
-
+@this.Flash()
+<div class="alert alert-info">
+<p>@Html.Raw(this.Global("Messages","RegistrationInfo"))</p>
+</div>
 <form class="form-horizontal" action="/identity/register" method="post">
+    @Html.HiddenFor(m => m.Id)
+    @Html.ValidationSummary(true)
   <div class="control-group">
-    <label class="control-label" for="Email">Email</label>
+    <label class="control-label" for="Email">@this.Local("lblEmail")</label>
     <div class="controls">
       @Html.TextBoxFor(m => m.Email, new { placehoder = "email"})
       @Html.ValidationMessageFor(m=>m.Email)
     </div>
   </div>
   <div class="control-group">
-    <label class="control-label" for="Password">Password</label>
+    <label class="control-label" for="Password">@this.Local("lblPassword")</label>
     <div class="controls">
-      @Html.TextBoxFor(m => m.Password, new { placehoder = "password"})
+      @Html.PasswordFor(m => m.Password, new { placehoder = "password"})
       @Html.ValidationMessageFor(m=>m.Password)
     </div>
   </div>
   <div class="control-group">
-    <label class="control-label" for="RepeatPassword">Repeat Password</label>
+    <label class="control-label" for="RepeatPassword">@this.Local("lblRepeatPassword")</label>
     <div class="controls">
-      @Html.TextBoxFor(m => m.RepeatPassword, new { placehoder = "repeat password"})
+      @Html.PasswordFor(m => m.RepeatPassword, new { placehoder = "repeat password"})
       @Html.ValidationMessageFor(m=>m.RepeatPassword)
     </div>
   </div>
     <div class="control-group">
     <div class="controls">
-      <button type="submit" class="btn">@this.Local("btnSubmit")</button>
+      <button type="submit" class="btn btn-primary">@this.Local("btnSubmit")</button>
     </div>
   </div>
 </form>

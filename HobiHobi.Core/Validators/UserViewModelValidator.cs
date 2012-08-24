@@ -11,15 +11,16 @@ namespace HobiHobi.Core.Validators
     {
         public UserViewModelValidator()
         {
-            RuleFor(m => m.FirstName).NotEmpty().WithMessage(Resources.UserViewModelValidator.ReqFirstName);
-            RuleFor(m => m.LastName).NotEmpty().WithMessage(Resources.UserViewModelValidator.ReqLastName);
+            //RuleFor(m => m.FirstName).NotEmpty().WithMessage(Resources.UserViewModelValidator.ReqFirstName);
+            //RuleFor(m => m.LastName).NotEmpty().WithMessage(Resources.UserViewModelValidator.ReqLastName);
             RuleFor(m => m.Email).NotEmpty().WithMessage(Resources.UserViewModelValidator.ReqEmail);
-
+            RuleFor(m => m.Email).EmailAddress().WithMessage(Resources.UserViewModelValidator.CorrectEmailFormat);
             When((m => string.IsNullOrWhiteSpace(m.Id)), () =>
             {
                 RuleFor(m => m.Password).NotEmpty().WithMessage(Resources.UserViewModelValidator.ReqPassword);
                 RuleFor(m => m.RepeatPassword).NotEmpty().WithMessage(Resources.UserViewModelValidator.ReqRepeatPassword);
                 RuleFor(m => m.Password).Must((m, password) => password == m.RepeatPassword).WithMessage(Resources.UserViewModelValidator.MatchPassword);
+                RuleFor(m => m.Password).Length(10, 20).WithMessage(Resources.UserViewModelValidator.RangePassword);
             });
         }
     }

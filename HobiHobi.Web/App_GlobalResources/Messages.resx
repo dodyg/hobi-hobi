@@ -117,31 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="CorrectEmailFormat" xml:space="preserve">
-    <value>Please enter a proper email</value>
+  <data name="RegistrationInfo" xml:space="preserve">
+    <value>You only need to register if you want to create feed walls. There is no need for this pesky registration if you just want to enjoy river of feeds that people have created. Your password here is encrypted with &lt;a href="http://en.wikipedia.org/wiki/Bcrypt"&gt;Bcrypt&lt;/a&gt; algorithm so it's damn secure. Please make sure you use a long password. </value>
   </data>
-  <data name="MatchPassword" xml:space="preserve">
-    <value>Your passwords do not match</value>
-  </data>
-  <data name="RangePassword" xml:space="preserve">
-    <value>Please make sure your password is between 10 and 20 characters long</value>
-  </data>
-  <data name="RepeatEmail" xml:space="preserve">
-    <value>This email has been used. Did you forget your account? Please use another email account for registration</value>
-  </data>
-  <data name="ReqEmail" xml:space="preserve">
-    <value>Email is required</value>
-  </data>
-  <data name="ReqFirstName" xml:space="preserve">
-    <value>First Name is required</value>
-  </data>
-  <data name="ReqLastName" xml:space="preserve">
-    <value>Last Name is required</value>
-  </data>
-  <data name="ReqPassword" xml:space="preserve">
-    <value>Password is required</value>
-  </data>
-  <data name="ReqRepeatPassword" xml:space="preserve">
-    <value>Please repeat your password</value>
+  <data name="RegistrationSuccessful" xml:space="preserve">
+    <value>Your registration is successful. Now you can login. Enjoy!</value>
   </data>
 </root>

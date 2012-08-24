@@ -22,7 +22,7 @@ namespace HobiHobi.Core.Validators.Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class UserViewModelValidator {
+    public class UserViewModelValidator {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace HobiHobi.Core.Validators.Resources {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("HobiHobi.Core.Validators.Resources.UserViewModelValidator", typeof(UserViewModelValidator).Assembly);
@@ -51,7 +51,7 @@ namespace HobiHobi.Core.Validators.Resources {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -61,9 +61,18 @@ namespace HobiHobi.Core.Validators.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please enter a proper email.
+        /// </summary>
+        public static string CorrectEmailFormat {
+            get {
+                return ResourceManager.GetString("CorrectEmailFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Your passwords do not match.
         /// </summary>
-        internal static string MatchPassword {
+        public static string MatchPassword {
             get {
                 return ResourceManager.GetString("MatchPassword", resourceCulture);
             }
@@ -72,7 +81,7 @@ namespace HobiHobi.Core.Validators.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Please make sure your password is between 10 and 20 characters long.
         /// </summary>
-        internal static string RangePassword {
+        public static string RangePassword {
             get {
                 return ResourceManager.GetString("RangePassword", resourceCulture);
             }
@@ -81,7 +90,7 @@ namespace HobiHobi.Core.Validators.Resources {
         /// <summary>
         ///   Looks up a localized string similar to This email has been used. Did you forget your account? Please use another email account for registration.
         /// </summary>
-        internal static string RepeatEmail {
+        public static string RepeatEmail {
             get {
                 return ResourceManager.GetString("RepeatEmail", resourceCulture);
             }
@@ -90,7 +99,7 @@ namespace HobiHobi.Core.Validators.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Email is required.
         /// </summary>
-        internal static string ReqEmail {
+        public static string ReqEmail {
             get {
                 return ResourceManager.GetString("ReqEmail", resourceCulture);
             }
@@ -99,7 +108,7 @@ namespace HobiHobi.Core.Validators.Resources {
         /// <summary>
         ///   Looks up a localized string similar to First Name is required.
         /// </summary>
-        internal static string ReqFirstName {
+        public static string ReqFirstName {
             get {
                 return ResourceManager.GetString("ReqFirstName", resourceCulture);
             }
@@ -108,7 +117,7 @@ namespace HobiHobi.Core.Validators.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Last Name is required.
         /// </summary>
-        internal static string ReqLastName {
+        public static string ReqLastName {
             get {
                 return ResourceManager.GetString("ReqLastName", resourceCulture);
             }
@@ -117,7 +126,7 @@ namespace HobiHobi.Core.Validators.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Password is required.
         /// </summary>
-        internal static string ReqPassword {
+        public static string ReqPassword {
             get {
                 return ResourceManager.GetString("ReqPassword", resourceCulture);
             }
@@ -126,7 +135,7 @@ namespace HobiHobi.Core.Validators.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Please repeat your password.
         /// </summary>
-        internal static string ReqRepeatPassword {
+        public static string ReqRepeatPassword {
             get {
                 return ResourceManager.GetString("ReqRepeatPassword", resourceCulture);
             }
