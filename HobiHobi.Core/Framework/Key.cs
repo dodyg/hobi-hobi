@@ -37,7 +37,7 @@ namespace HobiHobi.Core.Framework
             protected set;
         }
 
-        public string NoNamespace()
+        public string Partial()
         {
             if (Value.IsNullOrWhiteSpace())
                 return string.Empty;
@@ -45,7 +45,7 @@ namespace HobiHobi.Core.Framework
             return Value.Replace(_namespace, "");
         }
 
-        public string WithNamespace()
+        public string Full()
         {
             if (Value.IsNullOrWhiteSpace())
                 return _namespace;

@@ -138,6 +138,11 @@
     <Compile Include="Subscriptions\RssSubscription.cs" />
     <Compile Include="Subscriptions\RssSubscriptionItem.cs" />
     <Compile Include="Utils\JsonSerializer.cs" />
+    <Compile Include="Validators\Resources\UserViewModelValidator.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UserViewModelValidator.resx</DependentUpon>
+    </Compile>
     <Compile Include="Validators\UserViewModelValidator.cs" />
     <Compile Include="ViewModels\UserViewModel.cs" />
   </ItemGroup>
@@ -146,6 +151,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="LICENSE.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Validators\Resources\UserViewModelValidator.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>UserViewModelValidator.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
