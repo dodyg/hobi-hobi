@@ -7,7 +7,7 @@
 <h2>@this.Local("Title")</h2>
 @this.Flash()
 <div class="alert alert-info">
-<p>@Html.Raw(this.Global("Messages","RegistrationInfo"))</p>
+<p>@Html.Raw(Global.Messages.RegistrationInfo)</p>
 </div>
 <form class="form-horizontal" action="/identity/register" method="post">
     @Html.HiddenFor(m => m.Id)

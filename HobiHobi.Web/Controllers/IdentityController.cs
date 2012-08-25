@@ -41,7 +41,7 @@ namespace HobiHobi.Web.Controllers
 
             RavenSession.Store(u);
             SaveChangesAndTerminate();
-            this.FlashInfo(Resources.Messages.RegistrationSuccessful);
+            this.FlashInfo(Global.Messages.RegistrationSuccessful);
             return RedirectToAction("Index", "Home");
         }
     }
