@@ -163,10 +163,15 @@
       <Project>{abb6b669-c018-4d4d-aa64-5464f90fd8ff}</Project>
       <Name>HobiHobi.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\HobiHobi.Resources\HobiHobi.Resources.csproj">
+      <Project>{23b5c5e9-8dc9-4cb3-b1c7-dd310f4fb450}</Project>
+      <Name>HobiHobi.Resources</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Identity\App_LocalResources\Register.cshtml.resx" />
+    <Content Include="Views\Identity\_Login.cshtml" />
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

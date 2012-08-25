@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Global {
+namespace Local.Identity {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace Global {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class Messages {
+    public class Register {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Messages() {
+        internal Register() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace Global {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("HobiHobi.Core.Resources.Messages", typeof(Messages).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("HobiHobi.Resources.Identity.Register", typeof(Register).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,20 +61,47 @@ namespace Global {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You only need to register if you want to create feed walls. There is no need for this pesky registration if you just want to enjoy river of feeds that people have created. Your password here is encrypted with &lt;a href=&quot;http://en.wikipedia.org/wiki/Bcrypt&quot;&gt;Bcrypt&lt;/a&gt; algorithm so it&apos;s damn secure. Please make sure you use a long password. .
+        ///   Looks up a localized string similar to Register.
         /// </summary>
-        public static string RegistrationInfo {
+        public static string btnSubmit {
             get {
-                return ResourceManager.GetString("RegistrationInfo", resourceCulture);
+                return ResourceManager.GetString("btnSubmit", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Your registration is successful. Now you can login. Enjoy!.
+        ///   Looks up a localized string similar to Email.
         /// </summary>
-        public static string RegistrationSuccessful {
+        public static string lblEmail {
             get {
-                return ResourceManager.GetString("RegistrationSuccessful", resourceCulture);
+                return ResourceManager.GetString("lblEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Password.
+        /// </summary>
+        public static string lblPassword {
+            get {
+                return ResourceManager.GetString("lblPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Repeat Password.
+        /// </summary>
+        public static string lblRepeatPassword {
+            get {
+                return ResourceManager.GetString("lblRepeatPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Register.
+        /// </summary>
+        public static string Title {
+            get {
+                return ResourceManager.GetString("Title", resourceCulture);
             }
         }
     }

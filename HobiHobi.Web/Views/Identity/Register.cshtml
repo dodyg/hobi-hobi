@@ -1,10 +1,10 @@
 ﻿@model HobiHobi.Core.ViewModels.UserViewModel
 @{
-    ViewBag.Title = this.Local("Title");
+    ViewBag.Title = @Local.Identity.Register.Title;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <!-- trigger another deployment -->
-<h2>@this.Local("Title")</h2>
+<h2>@Local.Identity.Register.Title</h2>
 @this.Flash()
 <div class="alert alert-info">
 <p>@Html.Raw(Global.Messages.RegistrationInfo)</p>
@@ -13,21 +13,22 @@
     @Html.HiddenFor(m => m.Id)
     @Html.ValidationSummary(true)
   <div class="control-group">
-    <label class="control-label" for="Email">@this.Local("lblEmail")</label>
+    <label class="control-label" for="Email">@Local.Identity.Register.lblEmail</label>
     <div class="controls">
       @Html.TextBoxFor(m => m.Email, new { placehoder = "email"})
       @Html.ValidationMessageFor(m=>m.Email)
     </div>
   </div>
   <div class="control-group">
-    <label class="control-label" for="Password">@this.Local("lblPassword")</label>
+    <label class="control-label" for="Password">@Local.Identity.Register.lblPassword</label>
     <div class="controls">
       @Html.PasswordFor(m => m.Password, new { placehoder = "password"})
       @Html.ValidationMessageFor(m=>m.Password)
     </div>
   </div>
   <div class="control-group">
-    <label class="control-label" for="RepeatPassword">@this.Local("lblRepeatPassword")</label>
+    <label class="control-label" for="RepeatPassword">@Local.Identity.Register.lblRepeatPassword
+    </label>
     <div class="controls">
       @Html.PasswordFor(m => m.RepeatPassword, new { placehoder = "repeat password"})
       @Html.ValidationMessageFor(m=>m.RepeatPassword)
@@ -35,7 +36,7 @@
   </div>
     <div class="control-group">
     <div class="controls">
-      <button type="submit" class="btn btn-primary">@this.Local("btnSubmit")</button>
+      <button type="submit" class="btn btn-primary">@Local.Identity.Register.btnSubmit</button>
     </div>
   </div>
 </form>

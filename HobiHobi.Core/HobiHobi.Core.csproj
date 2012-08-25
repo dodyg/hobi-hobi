@@ -137,11 +137,6 @@
     <Compile Include="Identity\AuthenticationResult.cs" />
     <Compile Include="Identity\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Resources\Messages.Designer.cs">
-      <DependentUpon>Messages.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <Compile Include="Subscriptions\Opml.cs" />
     <Compile Include="Subscriptions\Outline.cs" />
     <Compile Include="Subscriptions\RssSubscription.cs" />
@@ -162,15 +157,16 @@
     <Content Include="LICENSE.txt" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Resources\Messages.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Messages.Designer.cs</LastGenOutput>
-      <CustomToolNamespace>Global</CustomToolNamespace>
-    </Content>
     <EmbeddedResource Include="Validators\Resources\UserViewModelValidator.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>UserViewModelValidator.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\HobiHobi.Resources\HobiHobi.Resources.csproj">
+      <Project>{23b5c5e9-8dc9-4cb3-b1c7-dd310f4fb450}</Project>
+      <Name>HobiHobi.Resources</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
