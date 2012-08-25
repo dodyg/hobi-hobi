@@ -1,0 +1,35 @@
+﻿<form class="form-inline">
+  <input type="text" class="input-small" placeholder="Email" name="Email" id="LoginEmail">
+  <input type="password" class="input-small" placeholder="Password" name="Password" id="LoginPassword">
+  <label class="checkbox">
+    <input type="checkbox" id="LoginRemember"> Remember me
+  </label>
+  <button type="submit" class="btn" id="LoginSubmit">Sign in</button>
+  <div id="LoginMessage"></div>
+</form>
+
+<script type="text/javascript">
+    $(function () {
+        $('#LoginSubmit').click(function () {
+            var email = $('#LoginEmail').val();
+            var password = $('#LoginPassword').val();
+
+            if ($('#LoginRemember').is(':checked'))
+                var remember = true;
+            else
+                var remember = false;
+
+            if (email == "") {
+                $('#LoginMessage').html("Email is required");
+                return false;
+            }
+
+            if (password == "") {
+                $('#LoginPassword').html("Password is required");
+                return false;
+            }
+
+            return false;
+        });
+    });
+</script>
