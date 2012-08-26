@@ -128,8 +128,11 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Images\ajax_spinner.gif" />
+    <Content Include="Images\dark_wood.png" />
+    <Content Include="Images\dust.png" />
     <Content Include="Images\glyphicons-halflings-white.png" />
     <Content Include="Images\glyphicons-halflings.png" />
+    <Content Include="Images\paper.png" />
     <Content Include="Images\retina_wood.png" />
     <Content Include="Images\subtle_surface.png" />
     <Content Include="Scripts\bootstrap.min.js" />

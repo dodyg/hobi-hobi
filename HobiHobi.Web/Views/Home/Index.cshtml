@@ -89,33 +89,67 @@ Source : <a href="#" id="river_origin_feed"></a>
     </script>
 }
 
+@section HeadInline{
+<link href='http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:700' rel='stylesheet' type='text/css'>
+}
+
 @section CssInline{
     <style type="text/css">
         body {
-            background-image: url('/images/retina_wood.png');
+            background-image: url('/images/dark_wood.png');
             background-repeat: repeat;
+                
+            /*background-color:#4d6a80;*/
+        }
+
+        h1, h2 {
+            color: lightgray;
+            font-family: 'Yanone Kaffeesatz', sans-serif;
+        }
+        h1 {
+            font-size:48px;
+        }
+
+        h2 {
+            font-size:26px;
+            line-height:28px;
+        }
+
+        a:link, a:visited{
+            color:lightgray;
         }
         
         .feed_item {
             width: 300px;
-            border:1px solid grey;
-            padding:5px;
-            margin-right:5px;
+            
+            margin-right:25px;
             margin-top:5px;
-            margin-bottom:5px;
-            background-color:#f7f1f1;
+            margin-bottom:25px;
         }
 
-            .feed_item h2 {
-                font-size: 16px;
-                line-height:18px;
-            }
-
+            
             .feed_item h3 {
                 font-size: 14px;
                 line-height: 16px;
             }
 
+            a.item_link {
+                color:deeppink;
+            }
+
+        .feed_item_body {
+            background-image: url('/images/paper.png');
+            background-repeat: repeat;
+            background-color:#f7f1f1;
+            padding:5px;
+            border-bottom-right-radius: 12px;
+            border-top-right-radius: 12px; 
+            font-family:'Courier New';
+        }
+
+        .feed_item_body a:link, .feed_item_body a:visited{
+            color:deeppink;
+        }
 
         .feed_item_thumbnail {
             margin:5px;
