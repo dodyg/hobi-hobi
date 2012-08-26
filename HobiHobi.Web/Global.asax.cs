@@ -18,6 +18,8 @@ namespace HobiHobi.Web
     public class MvcApplication : System.Web.HttpApplication
     {
         public static DocumentStore Store;
+        public static string CommonJsTag;
+        public static string CommonCssTag;
 
 #if DEBUG
         public const string DATABASE_NAME = "hobihobi";
@@ -56,6 +58,8 @@ namespace HobiHobi.Web
         protected void Application_Start()
         {
             InitializeRavenDB();
+            CommonCssTag = System.Configuration.ConfigurationManager.AppSettings["Site.CssTag"];
+            CommonJsTag = System.Configuration.ConfigurationManager.AppSettings["Site.JsTag"];
 
             //wire up all the necessary objects used in this web application
             ContainerBuilder builder = BootStrap.RegisterAll();
