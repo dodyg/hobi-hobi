@@ -59,6 +59,7 @@
     <Compile Include="Core\Subscriptions\OpmlTests.cs" />
     <Compile Include="Core\Subscriptions\RssSubscriptionTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SymmCryptoTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
