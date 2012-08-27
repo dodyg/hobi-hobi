@@ -120,5 +120,12 @@ namespace HobiHobi.Web.Controllers
             this.FlashSuccess(Local.Identity.Logout.MsgLogout);
             return RedirectToAction("Index", "Home");
         }
+
+        [HttpGet]
+        public ActionResult SaltGenerator()
+        {
+            var salt = HobiHobi.Core.SymmCrypto.GenerateSalt();
+            return Content(salt);
+        }
     }
 }
