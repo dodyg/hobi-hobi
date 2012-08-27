@@ -1,16 +1,16 @@
 ﻿<form class="form-inline" action="/identity/authenticate" method="post">
-  <input type="text" class="input-small" placeholder="Email" name="Email" id="login_email">
-  <input type="password" class="input-small" placeholder="Password" name="Password" id="login_password">
+  <input type="text" class="input-medium" placeholder="Email" name="Email" id="login_email">
+  <input type="password" class="input-medium" placeholder="Password" name="Password" id="login_password">
   <label class="checkbox">
     <input type="checkbox" id="login_remember" name="RememberMe"> Remember me
   </label>
-  <button type="submit" class="btn" id="LoginSubmit">Sign in</button>
+  <button type="submit" class="btn" id="login_submit">Sign in</button>
   <div id="login_message"></div>
 </form>
 
 <script type="text/javascript">
     $(function () {
-        $('#LoginSubmit').click(function () {
+        $('#login_submit').click(function () {
             var email = $('#login_email').val();
             var password = $('#login_password').val();
 

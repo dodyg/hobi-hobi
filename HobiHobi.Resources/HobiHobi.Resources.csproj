@@ -60,6 +60,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Register.resx</DependentUpon>
     </Compile>
+    <Compile Include="Manage\Home\Index.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Index.resx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -67,6 +72,11 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Messages.Designer.cs</LastGenOutput>
       <CustomToolNamespace>Global</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Manage\Home\Index.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Index.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>Local.Manage.Home</CustomToolNamespace>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
