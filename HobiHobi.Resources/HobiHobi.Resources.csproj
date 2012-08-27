@@ -50,6 +50,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Login.resx</DependentUpon>
     </Compile>
+    <Compile Include="Identity\Logout.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Logout.resx</DependentUpon>
+    </Compile>
     <Compile Include="Identity\Register.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -68,6 +73,11 @@
     <EmbeddedResource Include="Identity\Login.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Login.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>Local.Identity</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Identity\Logout.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Logout.Designer.cs</LastGenOutput>
       <CustomToolNamespace>Local.Identity</CustomToolNamespace>
     </EmbeddedResource>
     <EmbeddedResource Include="Identity\Register.resx">

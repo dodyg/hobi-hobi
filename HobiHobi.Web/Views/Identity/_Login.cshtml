@@ -1,31 +1,31 @@
 ﻿<form class="form-inline" action="/identity/authenticate" method="post">
-  <input type="text" class="input-small" placeholder="Email" name="Email" id="LoginEmail">
-  <input type="password" class="input-small" placeholder="Password" name="Password" id="LoginPassword">
+  <input type="text" class="input-small" placeholder="Email" name="Email" id="login_email">
+  <input type="password" class="input-small" placeholder="Password" name="Password" id="login_password">
   <label class="checkbox">
-    <input type="checkbox" id="LoginRemember" name="RememberMe"> Remember me
+    <input type="checkbox" id="login_remember" name="RememberMe"> Remember me
   </label>
   <button type="submit" class="btn" id="LoginSubmit">Sign in</button>
-  <div id="LoginMessage"></div>
+  <div id="login_message"></div>
 </form>
 
 <script type="text/javascript">
     $(function () {
         $('#LoginSubmit').click(function () {
-            var email = $('#LoginEmail').val();
-            var password = $('#LoginPassword').val();
+            var email = $('#login_email').val();
+            var password = $('#login_password').val();
 
-            if ($('#LoginRemember').is(':checked'))
+            if ($('#login_remember').is(':checked'))
                 var remember = true;
             else
                 var remember = false;
 
             if (email == "") {
-                $('#LoginMessage').html("Email is required");
+                $('#login_message').html("Email is required");
                 return false;
             }
 
             if (password == "") {
-                $('#LoginPassword').html("Password is required");
+                $('#login_message').html("Password is required");
                 return false;
             }
 

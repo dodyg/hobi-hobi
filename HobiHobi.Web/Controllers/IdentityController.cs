@@ -42,7 +42,7 @@ namespace HobiHobi.Web.Controllers
 
             RavenSession.Store(u);
             SaveChangesAndTerminate();
-            this.FlashInfo(Global.Messages.RegistrationSuccessful);
+            this.FlashSuccess(Global.Messages.RegistrationSuccessful);
             return RedirectToAction("Index", "Home");
         }
 
@@ -107,6 +107,14 @@ namespace HobiHobi.Web.Controllers
                 this.FlashError(res.Message);
                 return RedirectToAction("Index", "Home");
             }
+        }
+
+        [HttpGet]
+        public ActionResult Logout()
+        {
+            FormsAuthentication.SignOut();
+            this.FlashSuccess(Local.Identity.Logout.MsgLogout);
+            return RedirectToAction("Index", "Home");
         }
     }
 }
