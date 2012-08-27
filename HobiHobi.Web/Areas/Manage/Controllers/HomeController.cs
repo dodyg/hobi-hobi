@@ -9,6 +9,10 @@ using HobiHobi.Core.Framework;
 
 namespace HobiHobi.Web.Areas.Manage.Controllers
 {
+
+#if !DEBUG 
+    [RequireHttps]
+#endif
     [Authorize(Roles = "Participant")]
     public class HomeController : RavenController
     {

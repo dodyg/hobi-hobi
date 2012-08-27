@@ -10,6 +10,10 @@ using HobiHobi.Core.Framework;
 
 namespace HobiHobi.Web.Controllers
 {
+
+#if !DEBUG 
+    [RequireHttps]
+#endif
     public class HomeController : RavenController
     {
         string _template = @"

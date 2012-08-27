@@ -10,6 +10,10 @@ using System.Web.Security;
 
 namespace HobiHobi.Web.Controllers
 {
+
+#if !DEBUG 
+    [RequireHttps]
+#endif
     public class IdentityController : RavenController
     {
         public ActionResult Index()

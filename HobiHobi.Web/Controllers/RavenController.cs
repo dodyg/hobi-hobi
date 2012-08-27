@@ -7,9 +7,6 @@ using Raven.Client;
 
 namespace HobiHobi.Web.Controllers
 {
-#if !DEBUG 
-    [RequireHttps]
-#endif
     public class RavenController : Controller
     {
         public IDocumentSession RavenSession { get; protected set; }
