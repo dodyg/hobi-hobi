@@ -22,14 +22,14 @@ namespace Local.Identity {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class Register {
+    public class Login {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Register() {
+        internal Login() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace Local.Identity {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("HobiHobi.Resources.Identity.Register", typeof(Register).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("HobiHobi.Resources.Identity.Login", typeof(Login).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,47 +61,38 @@ namespace Local.Identity {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Register.
+        ///   Looks up a localized string similar to Sorry, your account is disabled.
         /// </summary>
-        public static string BtnSubmit {
+        public static string MsgAccountDisabled {
             get {
-                return ResourceManager.GetString("BtnSubmit", resourceCulture);
+                return ResourceManager.GetString("MsgAccountDisabled", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Email.
+        ///   Looks up a localized string similar to Sorry, we cannot find your account.
         /// </summary>
-        public static string LblEmail {
+        public static string MsgAccountNotExist {
             get {
-                return ResourceManager.GetString("LblEmail", resourceCulture);
+                return ResourceManager.GetString("MsgAccountNotExist", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Password.
+        ///   Looks up a localized string similar to Sorry, your password is incorrect.
         /// </summary>
-        public static string LblPassword {
+        public static string MsgPasswordDoNotMatch {
             get {
-                return ResourceManager.GetString("LblPassword", resourceCulture);
+                return ResourceManager.GetString("MsgPasswordDoNotMatch", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Repeat Password.
+        ///   Looks up a localized string similar to Sorry I cannot log you in but I don&apos;t know why.
         /// </summary>
-        public static string LblRepeatPassword {
+        public static string MsgUnknownError {
             get {
-                return ResourceManager.GetString("LblRepeatPassword", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Register.
-        /// </summary>
-        public static string Title {
-            get {
-                return ResourceManager.GetString("Title", resourceCulture);
+                return ResourceManager.GetString("MsgUnknownError", resourceCulture);
             }
         }
     }

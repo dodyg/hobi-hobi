@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using HobiHobi.Core.Framework;
 using HobiHobi.Core.Identity;
 using HobiHobi.Core.ViewModels;
+using System.Web.Security;
 
 namespace HobiHobi.Web.Controllers
 {
@@ -43,6 +44,69 @@ namespace HobiHobi.Web.Controllers
             SaveChangesAndTerminate();
             this.FlashInfo(Global.Messages.RegistrationSuccessful);
             return RedirectToAction("Index", "Home");
+        }
+
+        [HttpPost]
+        public ActionResult Authenticate(string email, string password, bool rememberMe = false)
+        {
+            if (!ModelState.IsValid)
+            {
+                RedirectToAction("Index", "Home");
+            }
+        
+            var auth = new Authentication(this.RavenSession);
+            var res = auth.Authenticate(email, password);
+
+            if (res.IsTrue)
+            {
+                var status = res.Status;
+
+                if (status == AuthenticationResult.OK)
+                {
+                    var usr = res.Value;
+                    var roles = usr.Level.ToString();
+                    var expiration = rememberMe ? DateTime.Now.AddDays(10) : DateTime.Now.AddMinutes(30);
+
+                    var authTicket = new FormsAuthenticationTicket(
+                      1,
+                      usr.FirstName + " " + usr.LastName,  //user id
+                      DateTime.Now,
+                      expiration,  // expiry
+                      rememberMe,  //do not remember
+                      roles,
+                      "/");
+
+                    var cookie = new HttpCookie(FormsAuthentication.FormsCookieName, FormsAuthentication.Encrypt(authTicket));
+                    Response.Cookies.Add(cookie);
+
+                    return Redirect("/Manage");
+                }
+                else if (status == AuthenticationResult.PasswordDoNotMatch)
+                {
+                    this.FlashError(Local.Identity.Login.MsgPasswordDoNotMatch);
+                    return RedirectToAction("Index", "Home");
+                }
+                else if (status == AuthenticationResult.UsernameNotFound)
+                {
+                    this.FlashError(Local.Identity.Login.MsgAccountNotExist);
+                    return RedirectToAction("Index", "Home");
+                }
+                else if (status == AuthenticationResult.AccountDisabled)
+                {
+                    this.FlashError(Local.Identity.Login.MsgAccountDisabled);
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    this.FlashError(Local.Identity.Login.MsgUnknownError);
+                    return RedirectToAction("Index", "Home");
+                }
+            }
+            else
+            {
+                this.FlashError(res.Message);
+                return RedirectToAction("Index", "Home");
+            }
         }
     }
 }
