@@ -4,6 +4,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using HobiHobi.Core.Framework;
+using System.Web;
 
 namespace HobiHobi.Core.Identity
 {
@@ -32,6 +33,37 @@ namespace HobiHobi.Core.Identity
         public static bool VerifyPassword(string password, string hash)
         {
             return BCrypt.Net.BCrypt.Verify(password, hash);
+
+        }
+
+        public const string USER_COOKIE_NAME = "UserInformation";
+
+        /// <summary>
+        /// Write basic information to cookie
+        /// </summary>
+        /// <param name="usr"></param>
+        /// <returns></returns>
+        public static HttpCookie WriteCookie(User usr)
+        {
+            var ck = new HttpCookie(USER_COOKIE_NAME);
+            ck.Values.Add("UserId", usr.Id);
+            ck.Values.Add("FirstName", usr.FirstName);
+            ck.Values.Add("LastName", usr.LastName);
+            ck.Values.Add("Email", usr.Email);
+            ck.Expires = DateTime.Now.AddDays(1);
+            
+            return ck;
+        }
+
+        /// <summary>
+        /// Expire the user info cookie
+        /// </summary>
+        /// <returns></returns>
+        public static HttpCookie ExpireCookie()
+        {
+            var ck = new HttpCookie(USER_COOKIE_NAME);
+            ck.Expires = DateTime.Now.AddDays(-1);
+            return ck;
         }
     }
 }

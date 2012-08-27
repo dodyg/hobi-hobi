@@ -79,6 +79,9 @@ namespace HobiHobi.Web.Controllers
                     var cookie = new HttpCookie(FormsAuthentication.FormsCookieName, FormsAuthentication.Encrypt(authTicket));
                     Response.Cookies.Add(cookie);
 
+                    var userCookie = HobiHobi.Core.Identity.User.WriteCookie(usr);
+                    Response.Cookies.Add(userCookie);
+
                     return Redirect("/Manage");
                 }
                 else if (status == AuthenticationResult.PasswordDoNotMatch)
@@ -113,6 +116,7 @@ namespace HobiHobi.Web.Controllers
         public ActionResult Logout()
         {
             FormsAuthentication.SignOut();
+            Response.Cookies.Add(HobiHobi.Core.Identity.User.ExpireCookie());
             this.FlashSuccess(Local.Identity.Logout.MsgLogout);
             return RedirectToAction("Index", "Home");
         }
