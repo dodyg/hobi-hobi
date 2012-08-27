@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Web.Mvc;
 using System.IO.Compression;
+using System.Web;
+using HobiHobi.Core.Identity;
 
 namespace HobiHobi.Core.Framework
 {
@@ -24,6 +26,12 @@ namespace HobiHobi.Core.Framework
                 self.Response.Filter = new DeflateStream(self.Response.Filter, CompressionMode.Compress);
                 self.Response.AppendHeader("Content-Encoding", "deflate");
             }
+        }
+
+        public static IQuerySetOne<UserInfo> GetCurrentUser(this Controller self)
+        {
+            var cookie = self.Request.Cookies[HobiHobi.Core.Identity.User.USER_COOKIE_NAME];
+            return User.GetFromCookie(cookie);
         }
     }
 }

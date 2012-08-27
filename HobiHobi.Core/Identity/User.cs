@@ -45,14 +45,50 @@ namespace HobiHobi.Core.Identity
         /// <returns></returns>
         public static HttpCookie WriteCookie(User usr)
         {
+            var crypto = SymmCrypto.CreateFromConfig();
+            var encrypted = crypto.GetEncryptedValue(usr.Id + "|" + usr.Level.ToString());
+     
             var ck = new HttpCookie(USER_COOKIE_NAME);
-            ck.Values.Add("UserId", usr.Id);
+            ck.Values.Add("UserId", encrypted);
             ck.Values.Add("FirstName", usr.FirstName);
             ck.Values.Add("LastName", usr.LastName);
             ck.Values.Add("Email", usr.Email);
             ck.Expires = DateTime.Now.AddDays(1);
             
             return ck;
+        }
+
+        /// <summary>
+        /// Get user info from stored cookie
+        /// </summary>
+        /// <param name="cookie"></param>
+        /// <returns></returns>
+        public static IQuerySetOne<UserInfo> GetFromCookie(HttpCookie cookie)
+        {
+            if (cookie == null)
+                new QuerySetOne<UserInfo>(null);
+
+            try
+            {
+                var crypto = SymmCrypto.CreateFromConfig();
+                var decrypted = crypto.GetDecryptedValue(cookie.Values["UserId"]);
+                var idSplits = decrypted.Split(new char[] { '|' });
+                
+                var info = new UserInfo
+                {
+                    Id = idSplits[0],
+                    FirstName = cookie.Values["FirstName"],
+                    LastName = cookie.Values["LastName"],
+                    Email = cookie.Values["Email"],
+                    Level = (AccountLevel)Enum.Parse(typeof(AccountLevel), idSplits[1])
+                };
+
+                return new QuerySetOne<UserInfo>(info);
+            }
+            catch (Exception)
+            {
+                return new QuerySetOne<UserInfo>(null);
+            }
         }
 
         /// <summary>

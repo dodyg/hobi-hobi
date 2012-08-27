@@ -113,5 +113,28 @@ namespace HobiHobi.Core
 
             return Convert.ToBase64String(key);
         }
+
+        public static SymmCrypto CreateFromConfig()
+        {
+            return new SymmCrypto(GetPasswordFromConfig(), GetPasswordFromConfig());
+        }
+
+        /// <summary>
+        /// Get value of TripleDES_Salt from web.config
+        /// </summary>
+        /// <returns></returns>
+        public static string GetSaltFromConfig()
+        {
+            return System.Configuration.ConfigurationManager.AppSettings["TripleDES_Salt"];
+        }
+
+        /// <summary>
+        /// Get value of TripleDES_Password from web.config
+        /// </summary>
+        /// <returns></returns>
+        public static string GetPasswordFromConfig()
+        {
+            return System.Configuration.ConfigurationManager.AppSettings["TripleDES_Password"];
+        }
     }
 }

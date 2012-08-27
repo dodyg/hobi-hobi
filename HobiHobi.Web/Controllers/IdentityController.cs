@@ -127,5 +127,6 @@ namespace HobiHobi.Web.Controllers
             var salt = HobiHobi.Core.SymmCrypto.GenerateSalt();
             return Content("DES_Salt=" + salt);
         }
+
     }
 }
