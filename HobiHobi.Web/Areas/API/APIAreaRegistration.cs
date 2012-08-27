@@ -18,7 +18,7 @@ namespace HobiHobi.Web.Areas.API
                 "API_default",
                 "API/1/{controller}/{action}/{id}",
                 new { action = "Index", id = UrlParameter.Optional },
-                new string[] { "HobiHobi.Web.Areas.API"}
+                new string[] { "HobiHobi.Web.Areas.API.Controllers"}
             );
         }
     }

@@ -73,6 +73,7 @@ namespace HobiHobi.Web
             RegisterGlobalFilters(GlobalFilters.Filters);
             RegisterRoutes(RouteTable.Routes);
 
+            DataAnnotationsModelValidatorProvider.AddImplicitRequiredAttributeForValueTypes = false;
             FluentValidationModelValidatorProvider.Configure(provider =>
             {
                 provider.ValidatorFactory = container.Resolve<IValidatorFactory>();

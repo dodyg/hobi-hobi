@@ -40,7 +40,7 @@ namespace HobiHobi.Core.ViewModels
                 FirstName = FirstName,
                 LastName = LastName,
                 Email = Email,
-                Password = Password,
+                Password = User.HashPassword(Password),
                 Status = AccountStatus.Enabled,
                 Level = AccountLevel.Participant,
                 DateCreated = Stamp.Time()

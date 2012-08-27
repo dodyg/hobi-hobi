@@ -17,8 +17,8 @@ namespace HobiHobi.Web.Areas.Manage
             context.MapRoute(
                 "Manage_default",
                 "Manage/{controller}/{action}/{id}",
-                new { action = "Index", id = UrlParameter.Optional },
-                new string[] { "HobiHobi.Web.Areas.Manage"}
+                new { action = "Index", id = UrlParameter.Optional, controller = "Home" },
+                new string[] { "HobiHobi.Web.Areas.Manage.Controllers"}
             );
         }
     }
