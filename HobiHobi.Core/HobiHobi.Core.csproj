@@ -92,7 +92,13 @@
     <Compile Include="Feeds\FeedsCollection.cs" />
     <Compile Include="Feeds\FeedSite.cs" />
     <Compile Include="Feeds\FeedsRiver.cs" />
+    <Compile Include="Feeds\RiverWallStatus.cs" />
+    <Compile Include="Feeds\RiverWallVisibility.cs" />
+    <Compile Include="Subscriptions\RiverSubscription.cs" />
+    <Compile Include="Subscriptions\RiverSubscriptionItem.cs" />
+    <Compile Include="Feeds\RiverTemplate.cs" />
     <Compile Include="Feeds\FeedTemplateRenderer.cs" />
+    <Compile Include="Feeds\RiverWall.cs" />
     <Compile Include="Feeds\Fetcher.cs" />
     <Compile Include="Framework\BootStrapType.cs" />
     <Compile Include="Framework\ControllerExtensions.cs" />
