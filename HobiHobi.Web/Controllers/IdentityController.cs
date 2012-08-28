@@ -73,14 +73,11 @@ namespace HobiHobi.Web.Controllers
                       DateTime.Now,
                       expiration,  // expiry
                       rememberMe,  //do not remember
-                      roles,
+                      Newtonsoft.Json.JsonConvert.SerializeObject(usr.GetUserInfo()),
                       "/");
 
                     var cookie = new HttpCookie(FormsAuthentication.FormsCookieName, FormsAuthentication.Encrypt(authTicket));
                     Response.Cookies.Add(cookie);
-
-                    var userCookie = HobiHobi.Core.Identity.User.WriteCookie(usr);
-                    Response.Cookies.Add(userCookie);
 
                     return Redirect("/Manage");
                 }
@@ -116,17 +113,8 @@ namespace HobiHobi.Web.Controllers
         public ActionResult Logout()
         {
             FormsAuthentication.SignOut();
-            Response.Cookies.Add(HobiHobi.Core.Identity.User.ExpireCookie());
             this.FlashSuccess(Local.Identity.Logout.MsgLogout);
             return RedirectToAction("Index", "Home");
         }
-
-        [HttpGet]
-        public ActionResult SaltGenerator()
-        {
-            var salt = HobiHobi.Core.SymmCrypto.GenerateSalt();
-            return Content("DES_Salt=" + salt);
-        }
-
     }
 }

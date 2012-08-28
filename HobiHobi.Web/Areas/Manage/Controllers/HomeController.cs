@@ -9,7 +9,7 @@ using HobiHobi.Core.Framework;
 
 namespace HobiHobi.Web.Areas.Manage.Controllers
 {
-    [Authorize(Roles = "Participant")]
+    [Authorize(Roles="Participant")]
     public class HomeController : RavenController
     {
         public ActionResult Index()
@@ -17,7 +17,7 @@ namespace HobiHobi.Web.Areas.Manage.Controllers
             var userInfo = this.GetCurrentUser();
 
             if (userInfo.IsFound)
-                return Content(userInfo.Item.Id + " " + userInfo.Item.Email);
+                return Content(userInfo.Item.Id + " " + userInfo.Item.Email + " " + userInfo.Item.Level);
             else
                 return Content("nothing");
         }

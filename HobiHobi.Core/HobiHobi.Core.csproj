@@ -149,7 +149,6 @@
     <Compile Include="Subscriptions\Outline.cs" />
     <Compile Include="Subscriptions\RssSubscription.cs" />
     <Compile Include="Subscriptions\RssSubscriptionItem.cs" />
-    <Compile Include="SymmCrypto.cs" />
     <Compile Include="Utils\JsonSerializer.cs" />
     <Compile Include="Validators\Resources\UserViewModelValidator.Designer.cs">
       <AutoGen>True</AutoGen>

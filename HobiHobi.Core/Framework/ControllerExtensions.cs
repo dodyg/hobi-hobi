@@ -30,8 +30,7 @@ namespace HobiHobi.Core.Framework
 
         public static IQuerySetOne<UserInfo> GetCurrentUser(this Controller self)
         {
-            var cookie = self.Request.Cookies[HobiHobi.Core.Identity.User.USER_COOKIE_NAME];
-            return User.GetFromCookie(cookie);
+            return UserInfo.GetFromContext(HttpContext.Current);
         }
     }
 }

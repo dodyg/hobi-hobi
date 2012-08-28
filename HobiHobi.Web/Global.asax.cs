@@ -13,6 +13,10 @@ using HobiHobi.Web.IoC;
 using Raven.Client.Document;
 using Raven.Client.Extensions;
 using Raven.Client.Indexes;
+using System.Web.Security;
+using System.Security.Principal;
+using Newtonsoft.Json;
+using HobiHobi.Core.Identity;
 namespace HobiHobi.Web
 {
     public class MvcApplication : System.Web.HttpApplication
@@ -24,6 +28,29 @@ namespace HobiHobi.Web
 #if DEBUG
         public const string DATABASE_NAME = "hobihobi";
 #endif
+
+        /// <summary>
+        /// We are using this because we are not using any stupid membership provider
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void Application_AuthenticateRequest(Object sender, EventArgs e)
+        {
+            HttpCookie authCookie = Context.Request.Cookies[FormsAuthentication.FormsCookieName];
+            if (authCookie != null)
+            {
+                var authTicket = FormsAuthentication.Decrypt(authCookie.Value);
+                var usr = JsonConvert.DeserializeObject<UserInfo>(authTicket.UserData);
+
+                string[] roles = new string[] { usr.Level.ToString() };
+
+                var userPrincipal = new GenericPrincipal(new GenericIdentity(authTicket.Name), roles);
+                Context.User = userPrincipal;
+
+                Context.Items["UserInfo"] = usr;
+
+            }
+        }
 
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
