@@ -80,5 +80,26 @@ namespace HobiHobi.Core.Subscriptions
                 Outlines.Add(o);
             }
         }
+
+        public XElement ToXML()
+        {
+            var root = new XElement("opml",
+                new XAttribute("version", "2.0"),
+                    new XElement("head",
+                        new XElement("title", this.Title),
+                        (this.DateCreated.HasValue) ? new XElement("dateCreated", this.DateCreated.Value.ToString("R")) : null,
+                        (this.DateModified.HasValue) ? new XElement("dateModified", this.DateModified.Value.ToString("R")) : null,
+                        (!string.IsNullOrWhiteSpace(this.OwnerName))? new XElement("ownerName", this.OwnerName) : null,
+                        (!string.IsNullOrWhiteSpace(this.OwnerEmail)) ? new XElement("ownerEmail", this.OwnerEmail) : null
+                        ),
+                    new XElement("body",
+                        from x in this.Outlines
+                        select new XElement("outline",
+                            from y in x.Attributes
+                            select new XAttribute(y.Key, y.Value)
+                        )));
+
+            return root;
+        }
     }
 }
