@@ -46,9 +46,7 @@ Source : <a href="#" id="river_origin_feed"></a>
 
 @section JsInline{
     <script type="text/ecmascript">
-        $(function () {
-            $('#river_tabs li:first').attr('class', 'active'); //select first one
-
+        $(function () {            
             $('#loading_div').hide()  // hide it initially
                 .ajaxStart(function () {
                     $(this).show();
@@ -56,20 +54,29 @@ Source : <a href="#" id="river_origin_feed"></a>
                 .ajaxStop(function () {
                 $(this).hide();});
             
-            load('apple', true, 'static.scripting.com/houston/rivers/apple/apple.json');
+            var firstTab = $('#river_tabs li:first');
+            firstTab.attr('class', 'active'); //select first one
+            loadFromNavigation(firstTab.children(':first'));
+            
 
             $('a[data-toggle="tab"]').on('shown', function (e) {
-                var feedName = $(e.target).data('id'); 
-                var feedOrigin = $(e.target).data('origin-feed');
-                load(feedName, false, feedOrigin);
+                loadFromNavigation($(e.target));
             })
         });
 
-        function load(feedName, isInitial, feedOrigin) {
-            $('#river_title').html(feedName + " river");
+        function loadFromNavigation(target) {
+            var feedName = target.data('id');
+            var feedOrigin = target.data('origin-feed');
+            var feedTitle = target.text();
+            load(feedName, feedTitle, false, feedOrigin);
+        }
+
+        function load(feedName, feedTitle, isInitial, feedOrigin) {
             
             $.get('/home/feed?feedname=' + feedName, function (data) {
                 //change title
+                $('#river_title').html(feedTitle);
+
                 if (feedOrigin !== undefined) {
                     $('#river_origin_feed')
                         .attr('href', 'http://' + feedOrigin)
