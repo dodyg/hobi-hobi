@@ -21,6 +21,7 @@ namespace HobiHobi.Web.Areas.API.Controllers
             {
                Title = "Apple River",
                Text = "Apple River",
+               Name = "apple",
                JSONUri = new Uri("http://static.scripting.com/houston/rivers/apple/apple.json")
             });
 
@@ -28,6 +29,7 @@ namespace HobiHobi.Web.Areas.API.Controllers
             {
                 Title = "Dave River",
                 Text = "Dave's River",
+                Name = "dave",
                 JSONPUri = new Uri("http://static.scripting.com/houston/rivers/iowaRiver3.js")
             });
 
@@ -35,6 +37,7 @@ namespace HobiHobi.Web.Areas.API.Controllers
             {
                 Title = "Tech River",
                 Text = "Tech River (TechMeme)",
+                Name = "tech",
                 JSONUri = new Uri("http://static.scripting.com/houston/rivers/techmeme/techmeme.json")
             });
 
@@ -42,6 +45,7 @@ namespace HobiHobi.Web.Areas.API.Controllers
             {
                 Title = "NYT River",
                 Text = "NYT River",
+                Name = "nyt",
                 JSONUri = new Uri("http://static.scripting.com/houston/rivers/nyt/nyt.json")
             });
 
@@ -49,6 +53,7 @@ namespace HobiHobi.Web.Areas.API.Controllers
             {
                 Title = "No Agenda River",
                 Text = "No Agenda River",
+                Name = "noagenda",
                 JSONPUri = new Uri("http://s3.amazonaws.com/river.curry.com/rivers/radio2/River3.js")
             });
 

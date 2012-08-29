@@ -55,21 +55,47 @@ namespace HobiHobi.Web.Controllers
             return View();
         }
 
-        public ActionResult Hello()
+        public IQuerySetOne<RiverSubscription> FetchDefaultRivers()
         {
-            var fetcher = new SubscriptionFetcher();
-            var xml = fetcher.Download("http://hobihobi.apphb.com", "api/1/default/RiversSubscription");
-            var opml = new Opml();
-            var res = opml.LoadFromXML(xml);
+            string cacheKey = "DEFAULT_RIVERS";
+            var cache = HttpContext.Cache[cacheKey] as RiverSubscription;
 
-            if (res.IsTrue)
+            if (cache != null)
             {
-                var subscriptionList = new RiverSubscription(opml);
-                return Content(subscriptionList.Items.First().Title);
+                return new QuerySetOne<RiverSubscription>(cache);
             }
             else
             {
-                return Content(res.Message);
+                var fetcher = new SubscriptionFetcher();
+                var xml = fetcher.Download("http://hobihobi.apphb.com", "api/1/default/RiversSubscription");
+                var opml = new Opml();
+                var res = opml.LoadFromXML(xml);
+
+                if (res.IsTrue)
+                {
+                    var subscriptionList = new RiverSubscription(opml);
+                    HttpContext.Cache.Add(cacheKey, subscriptionList, null, Cache.NoAbsoluteExpiration, new TimeSpan(0, 10, 0), CacheItemPriority.Default, null);
+
+                    return new QuerySetOne<RiverSubscription>(subscriptionList);
+                }
+                else
+                {
+                    return new QuerySetOne<RiverSubscription>(null);
+                }
+            }
+        }
+
+        public ActionResult Hello()
+        {
+            var river = FetchDefaultRivers();
+
+            if (river.IsFound)
+            {
+                return Content(river.Item.Items.First().Title);
+            }
+            else
+            {
+                return Content("No rivers");
             }
         }
 
