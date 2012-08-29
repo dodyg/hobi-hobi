@@ -48,9 +48,9 @@ namespace HobiHobi.Core.Subscriptions
                         if (y.Key == "text")
                             item.Text = y.Value;
                         else if (y.Key == "description")
-                            item.Text = y.Value;
+                            item.Description = y.Value;
                         else if (y.Key == "title")
-                            item.Text = y.Value;
+                            item.Title = y.Value;
                         else if (y.Key == "name")
                             item.Name = y.Value;
                         else if (y.Key == "htmlUrl" && !string.IsNullOrWhiteSpace(y.Value))

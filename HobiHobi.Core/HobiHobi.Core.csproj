@@ -99,7 +99,7 @@
     <Compile Include="Feeds\RiverTemplate.cs" />
     <Compile Include="Feeds\FeedTemplateRenderer.cs" />
     <Compile Include="Feeds\RiverWall.cs" />
-    <Compile Include="Feeds\Fetcher.cs" />
+    <Compile Include="Feeds\RiverFetcher.cs" />
     <Compile Include="Framework\BootStrapType.cs" />
     <Compile Include="Framework\ControllerExtensions.cs" />
     <Compile Include="Framework\DateTimeExtensions.cs" />
@@ -149,6 +149,7 @@
     <Compile Include="Subscriptions\Outline.cs" />
     <Compile Include="Subscriptions\RssSubscription.cs" />
     <Compile Include="Subscriptions\RssSubscriptionItem.cs" />
+    <Compile Include="Subscriptions\SubscriptionFetcher.cs" />
     <Compile Include="Utils\JsonSerializer.cs" />
     <Compile Include="Validators\Resources\UserViewModelValidator.Designer.cs">
       <AutoGen>True</AutoGen>

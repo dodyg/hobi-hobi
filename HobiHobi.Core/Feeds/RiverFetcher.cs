@@ -8,7 +8,7 @@ using RestSharp;
 
 namespace HobiHobi.Core.Feeds
 {
-    public class Fetcher
+    public class RiverFetcher
     {
         public string Download(string host, string path){
             var target = host;

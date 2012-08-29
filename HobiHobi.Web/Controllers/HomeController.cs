@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using HobiHobi.Core;
 using HobiHobi.Core.Feeds;
 using HobiHobi.Core.Framework;
+using HobiHobi.Core.Subscriptions;
 
 namespace HobiHobi.Web.Controllers
 {
@@ -56,12 +57,20 @@ namespace HobiHobi.Web.Controllers
 
         public ActionResult Hello()
         {
-            var val = this.RavenSession.Load<dynamic>("user/dody");
+            var fetcher = new SubscriptionFetcher();
+            var xml = fetcher.Download("http://hobihobi.apphb.com", "api/1/default/RiversSubscription");
+            var opml = new Opml();
+            var res = opml.LoadFromXML(xml);
 
-            if (val != null)
-                return Content("Hello " + val.Message);
+            if (res.IsTrue)
+            {
+                var subscriptionList = new RiverSubscription(opml);
+                return Content(subscriptionList.Items.First().Title);
+            }
             else
-                return Content("No such key");
+            {
+                return Content(res.Message);
+            }
         }
 
         public ActionResult Feed(string feedName)
@@ -80,7 +89,7 @@ namespace HobiHobi.Web.Controllers
 
             if (cache == null)
             {
-                var fetch = new Fetcher();
+                var fetch = new RiverFetcher();
                 try
                 {
                     var output = fetch.Download(hostTarget, pathTarget);

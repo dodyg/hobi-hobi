@@ -19,6 +19,13 @@ namespace HobiHobi.Tests.Core.Subscriptions
             var subscription = new RssSubscription(opml);
 
             Assert.IsTrue(subscription.Items.Count > 0);
+            var item1 = subscription.Items.First();
+            Assert.IsNotNullOrEmpty(item1.Title);
+            Assert.IsNotNullOrEmpty(item1.Text);
+            Assert.IsNotNullOrEmpty(item1.Name);
+            Assert.IsNotNullOrEmpty(item1.Description);
+            Assert.IsNotNullOrEmpty(item1.HtmlUri.ToString());
+            Assert.IsNotNullOrEmpty(item1.XmlUri.ToString());
         }
 
         string _sample = @"<?xml version=""1.0"" encoding=""ISO-8859-1""?>

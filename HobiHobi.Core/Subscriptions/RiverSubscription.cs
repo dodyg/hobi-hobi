@@ -20,6 +20,45 @@ namespace HobiHobi.Core.Subscriptions
             ParsingErrors = new List<string>();
         }
 
+        public RiverSubscription(Opml opml)
+            : this()
+        {
+            Title = opml.Title;
+            DateCreated = opml.DateCreated;
+            DateModified = opml.DateModified;
+
+            var line = 0;
+            foreach (var x in opml.Outlines)
+            {
+                line++;
+                var item = new RiverSubscriptionItem();
+                foreach (var y in x.Attributes)
+                {
+                    try
+                    {
+                        if (y.Key == "text")
+                            item.Text = y.Value;
+                        else if (y.Key == "title")
+                            item.Title = y.Value;
+                        else if (y.Key == "name")
+                            item.Name = y.Value;
+                        else if (y.Key == "url" && !string.IsNullOrWhiteSpace(y.Value))
+                        {
+                            item.JSONPUri = new Uri(y.Value);
+                            item.JSONUri = new Uri(y.Value);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        ParsingErrors.Add("Error at line " + line + " in processing attribute " 
+                            + y.Key + " with value " + y.Value + " " +  ex.Message);
+                    }
+                }
+
+                Items.Add(item);
+            }
+        }
+
         /// <summary>
         /// List errors in parsing opml attributes
         /// </summary>
