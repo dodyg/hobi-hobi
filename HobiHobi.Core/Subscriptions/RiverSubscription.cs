@@ -86,6 +86,10 @@ namespace HobiHobi.Core.Subscriptions
                     item.Attributes["text"] = x.Text;
                     item.Attributes["title"] = x.Title;
                     item.Attributes["type"] = "river";
+                    if (!string.IsNullOrWhiteSpace(x.Name))
+                        item.Attributes["name"] = x.Name;
+                    if (!string.IsNullOrWhiteSpace(x.Description))
+                        item.Attributes["description"] = x.Description;
                     if (x.JSONPUri != null)
                         item.Attributes["url"] = x.JSONPUri.ToString();
                     if (x.JSONUri != null)
