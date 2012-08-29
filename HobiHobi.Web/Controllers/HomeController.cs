@@ -51,8 +51,14 @@ namespace HobiHobi.Web.Controllers
                 }
             );
 
+            var list = FetchDefaultRivers();
+
             this.Compress();
-            return View();
+
+            if (list.IsFound)
+                return View(list.Item);
+            else
+                return View(new RiverSubscription());
         }
 
         public IQuerySetOne<RiverSubscription> FetchDefaultRivers()

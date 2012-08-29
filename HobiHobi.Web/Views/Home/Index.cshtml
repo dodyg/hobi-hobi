@@ -1,4 +1,4 @@
-﻿@model HobiHobi.Core.Feeds.FeedsRiver
+﻿@model HobiHobi.Core.Subscriptions.RiverSubscription
 @{
     ViewBag.Title = "Tabbed Rivers";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -20,12 +20,10 @@
 
 @this.Flash()
 <div class="tabbable">
-    <ul class="nav nav-tabs">
-        <li class="active"><a href="#apple" data-id="apple" data-toggle="tab" data-origin-feed="static.scripting.com/houston/rivers/apple/apple.json">apple</a></li>
-        <li><a href="#dave" data-id="dave" data-toggle="tab" data-origin-feed="static.scripting.com/houston/rivers/iowaRiver3.js">dave</a></li>
-        <li><a href="#tech" data-id="tech" data-toggle="tab" data-origin-feed="static.scripting.com/houston/rivers/techmeme/techmeme.json">tech</a></li>
-        <li><a href="#nyt" data-id="nyt" data-toggle="tab" data-origin-feed="static.scripting.com/houston/rivers/nyt/nyt.json">nyt</a></li>
-        <li><a href="#noAgenda" data-id="noAgenda" data-toggle="tab" data-origin-feed="s3.amazonaws.com/river.curry.com/rivers/radio2/River3.js">no agenda</a></li>
+    <ul class="nav nav-tabs" id="river_tabs">
+        @foreach (var river in Model.Items){
+            <li><a href="#@river.Name" data-id="@river.Name" data-toggle="tab" data-origin-feed="@river.JSONUri">@river.Title</a></li>
+        }
     </ul>
 </div>
 
@@ -49,6 +47,8 @@ Source : <a href="#" id="river_origin_feed"></a>
 @section JsInline{
     <script type="text/ecmascript">
         $(function () {
+            $('#river_tabs li:first').attr('class', 'active'); //select first one
+
             $('#loading_div').hide()  // hide it initially
                 .ajaxStart(function () {
                     $(this).show();
@@ -67,18 +67,21 @@ Source : <a href="#" id="river_origin_feed"></a>
 
         function load(feedName, isInitial, feedOrigin) {
             $('#river_title').html(feedName + " river");
-            if (feedOrigin !== undefined) {
-                $('#river_origin_feed')
-                    .attr('href', 'http://' + feedOrigin)
-                    .html(feedOrigin);
-            }
+            
             $.get('/home/feed?feedname=' + feedName, function (data) {
+                //change title
+                if (feedOrigin !== undefined) {
+                    $('#river_origin_feed')
+                        .attr('href', 'http://' + feedOrigin)
+                        .html(feedOrigin);
+                }
+
                 $('#river').html(data);
                 if (isInitial)
                     arrange();
                 else {
                     $('#river').isotope('destroy');
-                    arrange()
+                    arrange() 
                 }
             });
         }
