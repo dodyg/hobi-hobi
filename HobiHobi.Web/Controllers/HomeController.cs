@@ -145,15 +145,28 @@ namespace HobiHobi.Web.Controllers
 
         IQuerySetOne<HostAndPath> GetFeed(string feedName)
         {
-            switch (feedName)
+            var list = FetchDefaultRivers();
+
+            if (list.IsFound)
             {
-                case "apple": return new QuerySetOne<HostAndPath>(new HostAndPath("http://static.scripting.com","/houston/rivers/apple/apple.json"));
-                case "tech": return new QuerySetOne<HostAndPath>(new HostAndPath("http://static.scripting.com","/houston/rivers/techmeme/techmeme.json"));
-                case "dave": return new QuerySetOne<HostAndPath>(new HostAndPath("http://static.scripting.com", "/houston/rivers/iowaRiver3.js"));
-                case "nyt": return new QuerySetOne<HostAndPath>(new HostAndPath("http://static.scripting.com","/houston/rivers/nyt/nyt.json"));
-                case "noAgenda": return new QuerySetOne<HostAndPath>(new HostAndPath("http://s3.amazonaws.com", "/river.curry.com/rivers/radio2/River3.js"));   
-                default: return new QuerySetOne<HostAndPath>(null);
+                var rivers = list.Item.Items;
+
+                var feed = rivers.Where(x => x.Name == feedName).FirstOrDefault();
+
+                if (feed != null)
+                {
+                    var uri = feed.JSONUri;
+                    return new QuerySetOne<HostAndPath>(new HostAndPath
+                    (
+                        host:"http://" + uri.DnsSafeHost,
+                        path:uri.PathAndQuery
+                    ));
+                }
+                else
+                    return new QuerySetOne<HostAndPath>(null);
             }
+            else
+                return new QuerySetOne<HostAndPath>(null);
         }
     }
 }
