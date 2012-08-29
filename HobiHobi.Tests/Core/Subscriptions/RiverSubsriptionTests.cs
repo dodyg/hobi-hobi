@@ -24,7 +24,6 @@ namespace HobiHobi.Tests.Core.Subscriptions
 
             Assert.IsTrue(subscription.Items.Count > 0);
             var item1 = subscription.Items.First();
-            Assert.IsNotNullOrEmpty(item1.Title);
             Assert.IsNotNullOrEmpty(item1.Text);
 //            Assert.IsNotNullOrEmpty(item1.Name); //depending on sample data
 //            Assert.IsNotNullOrEmpty(item1.Description); //depending on sample data
