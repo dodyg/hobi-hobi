@@ -9,7 +9,7 @@ namespace HobiHobi.Web.Areas.API.Controllers
 {
     public class DefaultController : Controller
     {
-        public ActionResult RiversSubscription(string type)
+        public ActionResult RiversSubscription()
         {
             var river = new RiverSubscription();
             river.Title = "Default Rivers";
@@ -19,15 +19,13 @@ namespace HobiHobi.Web.Areas.API.Controllers
 
             river.Items.Add(new RiverSubscriptionItem
             {
-               Title = "Apple River",
                Text = "Apple River",
                Name = "apple",
-               JSONUri = new Uri("http://static.scripting.com/houston/rivers/apple/apple.json")
+               JSONPUri = new Uri("http://static.scripting.com/houston/rivers/apple/River3.js")
             });
 
             river.Items.Add(new RiverSubscriptionItem
             {
-                Title = "Dave River",
                 Text = "Dave's River",
                 Name = "dave",
                 JSONPUri = new Uri("http://static.scripting.com/houston/rivers/iowaRiver3.js")
@@ -35,32 +33,31 @@ namespace HobiHobi.Web.Areas.API.Controllers
 
             river.Items.Add(new RiverSubscriptionItem
             {
-                Title = "Tech River",
                 Text = "Tech River (TechMeme)",
                 Name = "tech",
-                JSONUri = new Uri("http://static.scripting.com/houston/rivers/techmeme/techmeme.json")
+                JSONPUri = new Uri("http://static.scripting.com/houston/rivers/techmeme/River3.js")
             });
 
             river.Items.Add(new RiverSubscriptionItem
             {
-                Title = "NYT River",
                 Text = "NYT River",
                 Name = "nyt",
-                JSONUri = new Uri("http://static.scripting.com/houston/rivers/nyt/nyt.json")
+                JSONPUri = new Uri("http://static.scripting.com/houston/rivers/nyt/River3.js")
             });
 
             river.Items.Add(new RiverSubscriptionItem
             {
-                Title = "No Agenda River",
                 Text = "No Agenda River",
                 Name = "noagenda",
                 JSONPUri = new Uri("http://s3.amazonaws.com/river.curry.com/rivers/radio2/River3.js")
             });
 
-            if (type == "json")
-                river.Items.RemoveAll(x => x.JSONPUri != null);
-            else if (type == "jsonp")
-                river.Items.RemoveAll(x => x.JSONUri != null);
+            river.Items.Add(new RiverSubscriptionItem
+            {
+                Text = "East Village News",
+                Name = "eastVillageNews",
+                JSONPUri = new Uri("http://static.scripting.com/houston/rivers/eastVillageRiver3.js")
+            });
 
             var opml = river.ToOpml();
             var xml = opml.ToXML();

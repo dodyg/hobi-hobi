@@ -97,7 +97,7 @@ namespace HobiHobi.Web.Controllers
 
             if (river.IsFound)
             {
-                return Content(river.Item.Items.First().Title);
+                return Content(river.Item.Items.First().Text);
             }
             else
             {
@@ -161,7 +161,7 @@ namespace HobiHobi.Web.Controllers
 
                 if (feed != null)
                 {
-                    var uri = feed.JSONUri;
+                    var uri = feed.JSONPUri;
                     return new QuerySetOne<HostAndPath>(new HostAndPath
                     (
                         host:"http://" + uri.DnsSafeHost,

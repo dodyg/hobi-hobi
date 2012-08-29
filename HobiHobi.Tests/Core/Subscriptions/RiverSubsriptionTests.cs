@@ -22,7 +22,6 @@ namespace HobiHobi.Tests.Core.Subscriptions
 
             Assert.IsTrue(subscription.Items.Count > 0, "River must contains items");
 
-
             Assert.IsTrue(subscription.Items.Count > 0);
             var item1 = subscription.Items.First();
             Assert.IsNotNullOrEmpty(item1.Title);
@@ -30,8 +29,6 @@ namespace HobiHobi.Tests.Core.Subscriptions
 //            Assert.IsNotNullOrEmpty(item1.Name); //depending on sample data
 //            Assert.IsNotNullOrEmpty(item1.Description); //depending on sample data
             Assert.IsNotNullOrEmpty(item1.JSONPUri.ToString());
-            Assert.IsNotNullOrEmpty(item1.JSONUri.ToString());
-        
         }
 
         string _sample = @"<?xml version=""1.0"" encoding=""ISO-8859-1""?>

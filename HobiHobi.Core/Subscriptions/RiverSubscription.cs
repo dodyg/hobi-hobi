@@ -38,15 +38,10 @@ namespace HobiHobi.Core.Subscriptions
                     {
                         if (y.Key == "text")
                             item.Text = y.Value;
-                        else if (y.Key == "title")
-                            item.Title = y.Value;
                         else if (y.Key == "name")
                             item.Name = y.Value;
                         else if (y.Key == "url" && !string.IsNullOrWhiteSpace(y.Value))
-                        {
                             item.JSONPUri = new Uri(y.Value);
-                            item.JSONUri = new Uri(y.Value);
-                        }
                     }
                     catch (Exception ex)
                     {
@@ -84,7 +79,6 @@ namespace HobiHobi.Core.Subscriptions
                 {
                     var item = new Outline();
                     item.Attributes["text"] = x.Text;
-                    item.Attributes["title"] = x.Title;
                     item.Attributes["type"] = "river";
                     if (!string.IsNullOrWhiteSpace(x.Name))
                         item.Attributes["name"] = x.Name;
@@ -92,8 +86,6 @@ namespace HobiHobi.Core.Subscriptions
                         item.Attributes["description"] = x.Description;
                     if (x.JSONPUri != null)
                         item.Attributes["url"] = x.JSONPUri.ToString();
-                    if (x.JSONUri != null)
-                        item.Attributes["url"] = x.JSONUri.ToString();
 
                     return item;
                 }))

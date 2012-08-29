@@ -22,7 +22,7 @@
 <div class="tabbable">
     <ul class="nav nav-tabs" id="river_tabs">
         @foreach (var river in Model.Items){
-            <li><a href="#@river.Name" data-id="@river.Name" data-toggle="tab" data-origin-feed="@river.JSONUri">@river.Title</a></li>
+            <li><a href="#@river.Name" data-id="@river.Name" data-toggle="tab" data-origin-feed="@river.JSONPUri">@river.Text</a></li>
         }
     </ul>
 </div>

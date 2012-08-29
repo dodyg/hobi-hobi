@@ -1,22 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Web;
-using System.Web.Mvc;
-using System.Web.Routing;
-using Autofac;
+﻿using Autofac;
 using Autofac.Integration.Mvc;
 using FluentValidation;
 using FluentValidation.Mvc;
+using HobiHobi.Core.Identity;
 using HobiHobi.Web.IoC;
+using Newtonsoft.Json;
 using Raven.Client.Document;
 using Raven.Client.Extensions;
 using Raven.Client.Indexes;
-using System.Web.Security;
+using System;
+using System.Reflection;
 using System.Security.Principal;
-using Newtonsoft.Json;
-using HobiHobi.Core.Identity;
+using System.Web;
+using System.Web.Mvc;
+using System.Web.Routing;
+using System.Web.Security;
 namespace HobiHobi.Web
 {
     public class MvcApplication : System.Web.HttpApplication
