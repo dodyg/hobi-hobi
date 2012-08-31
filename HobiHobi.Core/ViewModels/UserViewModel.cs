@@ -36,7 +36,7 @@ namespace HobiHobi.Core.ViewModels
         {
             var usr = new User
             {
-                Id = User.NewKey(Key.GenerateGuid()).Full(),
+                Id = User.NewId(Key.GenerateGuid()).Full(),
                 FirstName = FirstName,
                 LastName = LastName,
                 Email = Email,

@@ -11,17 +11,26 @@ namespace HobiHobi.Core.Feeds
     /// </summary>
     public class RiverTemplate
     {
+        public static Key NewId(string value = null)
+        {
+            if (value == null)
+                value = Key.GenerateGuid();
+
+            return Key.Generate("RiverTemplate/", value);
+        }
+
         public string Id { get; set; }
         public string Name { get; set; }
+        public string Title { get; set; }
         public string AuthorName { get; set; }
         public string Url { get; set; }
         public DateTime DateCreated { get; set; }
         public DateTime LastModified { get; set; }
 
         public string LiquidTemplate { get; set; }
-        public string JavaScript { get; set; }
-        public string CoffeeScript { get; set; }
-        public string LessCss { get; set; }
+        public BundledText JavaScript { get; set; }
+        public BundledText CoffeeScript { get; set; }
+        public BundledText LessCss { get; set; }
         public string HtmlHeadInline { get; set; }
         public string HtmlBodyInline { get; set; }
         
@@ -29,6 +38,9 @@ namespace HobiHobi.Core.Feeds
 
         public RiverTemplate()
         {
+            JavaScript = new BundledText();
+            CoffeeScript = new BundledText();
+            LessCss = new BundledText();
             DateCreated = Stamp.Time();
             LastModified = Stamp.Time();
             AllowClone = true;

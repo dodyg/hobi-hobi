@@ -12,7 +12,13 @@ namespace HobiHobi.Core.Feeds
     /// </summary>
     public class RiverWall
     {
+        public static Key NewId(string value)
+        {
+            return Key.Generate("RiverWall/", value);
+        }
+
         public string Id { get; set; }
+        public string Guid { get; set; }
         public string Name { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
@@ -30,6 +36,7 @@ namespace HobiHobi.Core.Feeds
         {
             Participants = new List<string>();
             Sources = new RiverSubscription();
+            Template = new RiverTemplate();
             Visibility = RiverWallVisibility.Public;
             Status = RiverWallStatus.Draft;
             DateCreated = Stamp.Time();

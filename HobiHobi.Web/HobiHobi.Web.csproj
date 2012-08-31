@@ -120,6 +120,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\IdentityController.cs" />
     <Compile Include="Controllers\RavenController.cs" />
+    <Compile Include="Controllers\RiverController.cs" />
     <Compile Include="Controllers\SiteController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

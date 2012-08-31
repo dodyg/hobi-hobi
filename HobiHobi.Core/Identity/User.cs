@@ -10,7 +10,7 @@ namespace HobiHobi.Core.Identity
 {
     public class User
     {
-        public static Key NewKey(string value = null)
+        public static Key NewId(string value = null)
         {
             return Key.Generate("User/", value);
         }
