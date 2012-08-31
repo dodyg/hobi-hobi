@@ -24,10 +24,23 @@ namespace HobiHobi.Tests.Core.Feeds
 
             using (var store = Raven.GetStoreFromServer())
             {
-                using (var session = store.OpenSession())
+                using (var session = store.OpenSession(Raven.DATABASE_NAME))
                 {
                     session.Store(wall);
                     session.SaveChanges();
+                }
+            }
+        }
+
+        [Test, Explicit]
+        public void LoadRiverWall()
+        {
+            using (var store = Raven.GetStoreFromServer())
+            {
+                using (var session = store.OpenSession(Raven.DATABASE_NAME))
+                {
+                    var river = session.Load<RiverWall>(RiverWall.NewId("dodyg").Full());
+                    Assert.IsNotNull(river, "River cannot be null");
                 }
             }
         }
