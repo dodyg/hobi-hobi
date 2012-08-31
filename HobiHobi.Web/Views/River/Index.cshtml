@@ -1,0 +1,25 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>@ViewBag.Title</title>
+    <meta name="description" content="@ViewBag.Description" />
+    <meta name="keywords" content="@ViewBag.Keywords" />
+    <link href="/site/css/@HobiHobi.Web.MvcApplication.CommonCssTag" rel="stylesheet" type="text/css" />
+    <link href="@ViewBag.LinkedCss" rel="stylesheet" type="text/css" />
+    
+    <script src="/site/js/@HobiHobi.Web.MvcApplication.CommonJsTag" type="text/javascript"></script>
+    <script src="@ViewBag.LinkedJs" type="text/javascript"></script>
+   
+    @Html.Raw(ViewBag.HeadInline)
+</head>
+<body>
+    @Html.Raw(ViewBag.Body)
+    
+    @Html.Raw(ViewBag.BodyInline)
+</body>
+</html>

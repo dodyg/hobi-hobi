@@ -15,5 +15,7 @@ namespace HobiHobi.Tests
             store.Initialize();
             return store;
         }
+
+        public const string DATABASE_NAME = "hobihobi";
     }
 }

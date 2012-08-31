@@ -14,7 +14,8 @@ namespace HobiHobi.Core.Feeds
                 Id = RiverTemplate.NewId().Full(),
                 Title = "Dark Wood",
                 AuthorName = "Dody Gunawinata",
-                LiquidTemplate = _liquidTemplate,
+                FeedLiquidTemplate = _feedLiquidTemplate,
+                WallLiquidTemplate = _wallLiquidTemplate,
                 LessCss = new LessCssBundledText().SetText(_lessCss),
                 JavaScript = new BundledText().SetText(_javascript)
             };
@@ -168,7 +169,34 @@ body {
 
 ";
 
-        static string _liquidTemplate = @"
+        static string _wallLiquidTemplate = @"
+<div class=""tabbable"">
+    <ul class=""nav nav-tabs"" id=""river_tabs"">
+        @foreach (var river in Model.Items){
+            <li><a href=""#@river.Name"" data-id=""@river.Name"" data-toggle=""tab"" data-origin-feed=""@river.JSONPUri"">@river.Text</a></li>
+        }
+    </ul>
+</div>
+
+<h1 id=""river_title"">Apple River</h1>
+<br />
+
+<div style=""font-size:16px;"">
+Source : <a href=""#"" id=""river_origin_feed""></a>
+</div>
+
+
+<div id=""river"">
+    @ViewBag.Output
+</div>
+<br /><br />
+
+<div id=""loading_div"">
+    <img src=""/images/ajax_spinner.gif"" alt=""wait"" />
+</div>
+
+";
+        static string _feedLiquidTemplate = @"
 {% for feed in feeds -%}
         {% for item in feed.items -%}
             <div class=""feed_item"" data-id=""{{ item.id }}"">

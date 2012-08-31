@@ -60,12 +60,34 @@ namespace HobiHobi.Web
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+                "RiverFeedName", // Route name
+                "r/feed/{name}/{feedname}", // URL with parameters
+                new { controller = "River", action = "GetFeed" }, // Parameter defaults
+                new string[] { "HobiHobi.Web.Controllers" }
+            );
+
+
+            routes.MapRoute(
+                "RiverCss", // Route name
+                "r/css/{name}/{etag}", // URL with parameters
+                new { controller = "River", action = "GetCss" }, // Parameter defaults
+                new string[] { "HobiHobi.Web.Controllers" }
+            );
+
+            routes.MapRoute(
+                "RiverJs", // Route name
+                "r/js/{name}/{etag}", // URL with parameters
+                new { controller = "River", action = "GetJs" }, // Parameter defaults
+                new string[] { "HobiHobi.Web.Controllers" }
+            );
+
+            routes.MapRoute(
                 "River", // Route name
                 "r/{name}", // URL with parameters
                 new { controller = "River", action = "Index"}, // Parameter defaults
                 new string[] { "HobiHobi.Web.Controllers" }
             );
-
+            
             routes.MapRoute(
                 "Default", // Route name
                 "{controller}/{action}/{id}", // URL with parameters

@@ -21,6 +21,8 @@ namespace HobiHobi.Tests.Core.Feeds
             wall.Template = DefaultRiverTemplate.Get();
             wall.Sources = DefaultRiverSubscription.Get();
             wall.Title = "Dody's Wall";
+            wall.Description = "This is Dody Gunawinata's Wall";
+            wall.Keywords = "dody, gunawinata, awesome";
 
             using (var store = Raven.GetStoreFromServer())
             {
