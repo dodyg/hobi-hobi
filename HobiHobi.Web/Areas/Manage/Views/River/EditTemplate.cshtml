@@ -6,8 +6,16 @@
 
 <h2>@Local.Manage.River.EditTemplate.Title</h2>
 
+ <div class="tabbable"> <!-- Only required for left/right tabs -->
+  <ul class="nav nav-tabs">
+    <li class="active"><a href="#tab1" data-toggle="tab">Section 1</a></li>
+    <li><a href="#tab2" data-toggle="tab">Section 2</a></li>
+  </ul>
+
 <form method="post" action="@Request.RawUrl">
-    
+   
+  <div class="tab-content">
+    <div class="tab-pane active" id="tab1">
     @Html.AntiForgeryToken(HobiHobi.Core.SiteConstants.ANTI_FORGERY_SALT)
     <div class="control-group">
         <label class="control-label" for="WallLiquidTemplate">Wall Template</label>
@@ -17,6 +25,9 @@
         </div>
     </div>
 
+           </div>
+    <div class="tab-pane" id="tab2">
+ 
      <div class="control-group">
         <label class="control-label" for="FeedLiquidTemplate">Feed Template</label>
         <div class="controls">
@@ -24,15 +35,20 @@
             @Html.ValidationMessageFor(m => m.FeedLiquidTemplate, "*")
         </div>
     </div>
-
+    </div>
+ 
 
     <div class="control-group">
         <div class="controls">
           <button type="submit" class="btn btn-primary">@Local.Manage.River.EditTemplate.BtnSubmit</button>
         </div>
     </div>
+            </div>
+
 </form>
 
+</div>
+ 
 @section HeadInline{
     @CodeMirror.Declaration(Html)
 }
