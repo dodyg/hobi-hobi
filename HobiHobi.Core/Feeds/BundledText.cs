@@ -54,5 +54,11 @@ namespace HobiHobi.Core.Feeds
                 return string.IsNullOrWhiteSpace(Text);
             }
         }
+
+        public bool IsFileModifiedByETag(string etag)
+        {
+            var tag = "\"" + ETag + "\"";
+            return tag != etag;
+        }
     }
 }

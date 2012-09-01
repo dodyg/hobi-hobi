@@ -1,0 +1,51 @@
+﻿@model HobiHobi.Core.ViewModels.RiverTemplateViewModel
+@{
+    ViewBag.Title = Local.Manage.River.EditTemplate.Title;
+    Layout = "~/Areas/Manage/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Local.Manage.River.EditTemplate.Title</h2>
+
+<form method="post" action="@Request.RawUrl">
+    
+    @Html.AntiForgeryToken(HobiHobi.Core.SiteConstants.ANTI_FORGERY_SALT)
+    <div class="control-group">
+        <label class="control-label" for="WallLiquidTemplate">Wall Template</label>
+        <div class="controls">
+            @Html.TextAreaFor(m => m.WallLiquidTemplate)
+            @Html.ValidationMessageFor(m => m.WallLiquidTemplate, "*")
+        </div>
+    </div>
+
+     <div class="control-group">
+        <label class="control-label" for="FeedLiquidTemplate">Feed Template</label>
+        <div class="controls">
+            @Html.TextAreaFor(m => m.FeedLiquidTemplate)
+            @Html.ValidationMessageFor(m => m.FeedLiquidTemplate, "*")
+        </div>
+    </div>
+
+
+    <div class="control-group">
+        <div class="controls">
+          <button type="submit" class="btn btn-primary">@Local.Manage.River.EditTemplate.BtnSubmit</button>
+        </div>
+    </div>
+</form>
+
+@section HeadInline{
+    @CodeMirror.Declaration(Html)
+}
+
+@section JsInline{
+    <script type="text/javascript">
+        $(function () {
+            @CodeMirror.Js("WallLiquidTemplate", "htmlmixed")
+            @CodeMirror.Js("FeedLiquidTemplate", "htmlmixed")
+        
+        });
+
+        @CodeMirror.JsFunction()
+
+    </script>
+}

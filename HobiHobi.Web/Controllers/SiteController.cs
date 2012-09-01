@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Web;
 using System.Web.Mvc;
+using HobiHobi.Core.Framework;
 
 namespace HobiHobi.Web.Controllers
 {
@@ -32,14 +33,12 @@ namespace HobiHobi.Web.Controllers
                     onRemoveCallback: null,
                     priority: System.Web.Caching.CacheItemPriority.Normal);
 
-                Response.Cache.SetCacheability(HttpCacheability.Public);
-                Response.Cache.SetExpires(DateTime.Now.AddDays(60));
+                this.CompressAndSetLongExpirationCache();
                 return Content(combined, "text/css");
             }
             else
             {
-                Response.Cache.SetCacheability(HttpCacheability.Public);
-                Response.Cache.SetExpires(DateTime.Now.AddDays(60));
+                this.CompressAndSetLongExpirationCache();
                 return Content(css, "text/css");
             }
         }
@@ -68,15 +67,12 @@ namespace HobiHobi.Web.Controllers
                     onRemoveCallback: null,
                     priority: System.Web.Caching.CacheItemPriority.Normal);
 
-
-                Response.Cache.SetCacheability(HttpCacheability.Public);
-                Response.Cache.SetExpires(DateTime.Now.AddDays(60));
+                this.CompressAndSetLongExpirationCache();
                 return Content(combined, "application/javascript");
             }
             else
             {
-                Response.Cache.SetCacheability(HttpCacheability.Public);
-                Response.Cache.SetExpires(DateTime.Now.AddDays(60));
+                this.CompressAndSetLongExpirationCache();
                 return Content(js, "application/javascript");
             }
         }

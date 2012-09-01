@@ -32,5 +32,17 @@ namespace HobiHobi.Core.Framework
         {
             return UserInfo.GetFromContext(HttpContext.Current);
         }
+
+        public static void SetLongExpirationCache(this Controller self)
+        {
+                self.Response.Cache.SetCacheability(HttpCacheability.Public);
+                self.Response.Cache.SetExpires(DateTime.Now.AddDays(60));
+        }
+
+        public static void CompressAndSetLongExpirationCache(this Controller self)
+        {
+            Compress(self);
+            SetLongExpirationCache(self);
+        }
     }
 }

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using NUnit.Framework;
 using HobiHobi.Core.Feeds;
 using HobiHobi.Core.Subscriptions;
+using HobiHobi.Core.Framework;
 
 namespace HobiHobi.Tests.Core.Feeds
 {
@@ -17,6 +18,7 @@ namespace HobiHobi.Tests.Core.Feeds
         {
             var wall = new RiverWall();
             wall.Id = RiverWall.NewId("dodyg").Full();
+            wall.Guid = Stamp.GUID().ToString();
             wall.Name = "dodyg";
             wall.Template = DefaultRiverTemplate.Get();
             wall.Sources = DefaultRiverSubscription.Get();

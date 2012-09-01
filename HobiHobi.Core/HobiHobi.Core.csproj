@@ -111,6 +111,9 @@
     <Compile Include="Feeds\LessCssBundledText.cs" />
     <Compile Include="Feeds\RiverWallStatus.cs" />
     <Compile Include="Feeds\RiverWallVisibility.cs" />
+    <Compile Include="Framework\HtmlHelperExtensions.cs" />
+    <Compile Include="Identity\TransientAccount.cs" />
+    <Compile Include="SiteConstants.cs" />
     <Compile Include="Subscriptions\DefaultRiverSubscription.cs" />
     <Compile Include="Subscriptions\RiverSubscription.cs" />
     <Compile Include="Subscriptions\RiverSubscriptionItem.cs" />
@@ -168,6 +171,7 @@
     <Compile Include="Subscriptions\RssSubscription.cs" />
     <Compile Include="Subscriptions\RssSubscriptionItem.cs" />
     <Compile Include="Subscriptions\SubscriptionFetcher.cs" />
+    <Compile Include="Utils\CookieMonster.cs" />
     <Compile Include="Utils\JsonSerializer.cs" />
     <Compile Include="Validators\Resources\UserViewModelValidator.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -175,6 +179,7 @@
       <DependentUpon>UserViewModelValidator.resx</DependentUpon>
     </Compile>
     <Compile Include="Validators\UserViewModelValidator.cs" />
+    <Compile Include="ViewModels\RiverTemplateViewModel.cs" />
     <Compile Include="ViewModels\UserViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

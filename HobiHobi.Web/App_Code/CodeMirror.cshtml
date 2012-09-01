@@ -1,0 +1,43 @@
+﻿@using HobiHobi.Core.Framework
+
+@helper Declaration(System.Web.Mvc.HtmlHelper html){
+  <link type="text/css" rel="stylesheet" href="/widget/editor/lib/codemirror.css" />
+  <link type="text/css" rel="stylesheet" href="/widget/editor/theme/rubyblue.css" />
+  @html.JavascriptLink("/widget/editor/lib/codemirror", "/widget/editor/mode/coffeescript/coffeescript", 
+  "/widget/editor/mode/htmlmixed/htmlmixed", "/widget/editor/mode/javascript/javascript", "/widget/editor/mode/less/less",
+  "/widget/editor/mode/css/css","/widget/editor/mode/xml/xml")
+  <style>
+      
+  .CodeMirror
+  {
+      width: 959px;
+  }
+  
+  </style>
+}
+
+@helper Js(string element, string mode, int height = 500){
+    @:displayEditor("@element", "@mode", @height);
+}
+
+@helper JsFunction(){
+  <text>
+  function displayEditor(editor, mode, height){
+    if (typeof height === 'undefined')
+      height = 500;
+
+    var codeEditor = CodeMirror.fromTextArea(document.getElementById(editor), {
+        mode : mode,
+        theme : "rubyblue",
+        gutter : true,
+        lineNumbers : true,
+        onBlur :function(){
+            document.getElementById(editor).value = codeEditor.getValue();
+        }
+    });
+    
+    codeEditor.getScrollerElement().style.height =  height + "px"; 
+       
+  }
+  </text>
+}

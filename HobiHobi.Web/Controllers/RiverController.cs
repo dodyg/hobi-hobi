@@ -9,6 +9,8 @@ using HobiHobi.Core;
 using System.Web.Caching;
 using DotLiquid;
 using HobiHobi.Core.Drops;
+using HobiHobi.Core.Utils;
+using HobiHobi.Core.Identity;
 
 namespace HobiHobi.Web.Controllers
 {
@@ -34,6 +36,12 @@ namespace HobiHobi.Web.Controllers
                     if (!wall.Template.CoffeeScript.IsEmpty)
                         ViewBag.LinkedJs = string.Format("/r/js/{0}/{1}", id.Partial(), wall.Template.CoffeeScript.ETag);
 
+                var edit = CookieMonster.GetFromCookie<TransientAccount>(Request.Cookies[TransientAccount.COOKIE_NAME]);
+
+                if (edit.IsFound && edit.Item.IsFound(wall.Guid))
+                {
+                    ViewBag.EditLink = "/manage/river/edittemplate/?guid=" + wall.Guid;
+                }
                 
                 Template tmplt = Template.Parse(wall.Template.WallLiquidTemplate);
 
@@ -47,6 +55,13 @@ namespace HobiHobi.Web.Controllers
                     ));
 
                 ViewBag.Body = result;
+                /*
+                 * Use just for testing
+                var init = new TransientAccount();
+                init.RiverGuids.Add(wall.Guid);
+                Response.Cookies.Add(CookieMonster.SetCookie(init, TransientAccount.COOKIE_NAME));
+                */
+
                 return View();
             }
             else
@@ -81,7 +96,8 @@ namespace HobiHobi.Web.Controllers
                     HttpContext.Cache.Add(ViewBag.FeedUrl, river, null, Cache.NoAbsoluteExpiration, new TimeSpan(0, 10, 0), CacheItemPriority.Default, null);
                     
                     var renderer = new FeedTemplateRenderer(river, wall.Template.FeedLiquidTemplate);
-                    this.Compress();
+
+                    this.CompressAndSetLongExpirationCache();
                     return Content(renderer.Render().ToString(), "text/html");
                 }
                 catch (Exception ex)
@@ -92,7 +108,8 @@ namespace HobiHobi.Web.Controllers
             else
             {
                 var renderer = new FeedTemplateRenderer(cache as FeedsRiver, wall.Template.FeedLiquidTemplate);
-                this.Compress();
+
+                this.CompressAndSetLongExpirationCache();
                 return Content(renderer.Render().ToString(), "text/html");
             }
         }
@@ -132,7 +149,7 @@ namespace HobiHobi.Web.Controllers
             if (wall != null)
             {
                 var css = wall.Template.LessCss.GetText();
-                this.Compress();
+                this.CompressAndSetLongExpirationCache();
                 return Content(css, "text/css");
             }
             else
@@ -147,7 +164,7 @@ namespace HobiHobi.Web.Controllers
 
             if (wall != null)
             {
-                this.Compress();
+                this.CompressAndSetLongExpirationCache();
                 if (!wall.Template.JavaScript.IsEmpty)
                 {
                     var js = wall.Template.JavaScript.GetText();

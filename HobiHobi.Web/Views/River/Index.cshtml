@@ -18,6 +18,10 @@
     @Html.Raw(ViewBag.HeadInline)
 </head>
 <body>
+    @if (ViewBag.EditLink != null)
+    {
+        <div id="edit_this_tabbed_rivers"><a href="@ViewBag.EditLink">Edit These Tabbed Rivers</a></div>
+    }
     @Html.Raw(ViewBag.Body)
     
     @Html.Raw(ViewBag.BodyInline)

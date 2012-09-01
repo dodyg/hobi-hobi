@@ -13,5 +13,10 @@ namespace HobiHobi.Core.Framework
         {
             return Guid.NewGuid().ToString();
         }
+
+        public static Guid GUID()
+        {
+            return Guid.NewGuid();
+        }
     }
 }
