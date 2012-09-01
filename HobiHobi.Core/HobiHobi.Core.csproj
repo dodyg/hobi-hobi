@@ -99,6 +99,7 @@
     <Compile Include="Drops\FeedImageDrop.cs" />
     <Compile Include="Drops\FeedItemDrop.cs" />
     <Compile Include="Drops\FeedSiteDrop.cs" />
+    <Compile Include="Drops\RiverSubscriptionItemDrop.cs" />
     <Compile Include="Feeds\BundledText.cs" />
     <Compile Include="Feeds\CoffeeScriptBundledText.cs" />
     <Compile Include="Feeds\DefaultRiverTemplate.cs" />

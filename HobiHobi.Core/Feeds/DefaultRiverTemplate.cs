@@ -17,7 +17,9 @@ namespace HobiHobi.Core.Feeds
                 FeedLiquidTemplate = _feedLiquidTemplate,
                 WallLiquidTemplate = _wallLiquidTemplate,
                 LessCss = new LessCssBundledText().SetText(_lessCss),
-                JavaScript = new BundledText().SetText(_javascript)
+                JavaScript = new BundledText().SetText(_javascript),
+                HtmlHeadInline = @"
+<link href='http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:700' rel='stylesheet' type='text/css'>"
             };
 
 
@@ -172,13 +174,13 @@ body {
         static string _wallLiquidTemplate = @"
 <div class=""tabbable"">
     <ul class=""nav nav-tabs"" id=""river_tabs"">
-        @foreach (var river in Model.Items){
-            <li><a href=""#@river.Name"" data-id=""@river.Name"" data-toggle=""tab"" data-origin-feed=""@river.JSONPUri"">@river.Text</a></li>
-        }
+        {% for river in rivers -%}
+            <li><a href=""#{{ river.name }}"" data-id=""{{ river.name }}"" data-toggle=""tab"" data-origin-feed=""{{ river.json_p }}"">{{ river.text }}</a></li>
+        {% endfor -%}
     </ul>
 </div>
 
-<h1 id=""river_title"">Apple River</h1>
+<h1 id=""river_title""></h1>
 <br />
 
 <div style=""font-size:16px;"">
@@ -187,7 +189,6 @@ Source : <a href=""#"" id=""river_origin_feed""></a>
 
 
 <div id=""river"">
-    @ViewBag.Output
 </div>
 <br /><br />
 

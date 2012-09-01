@@ -7,6 +7,8 @@ using System.Web.Mvc;
 using HobiHobi.Core.Framework;
 using HobiHobi.Core;
 using System.Web.Caching;
+using DotLiquid;
+using HobiHobi.Core.Drops;
 
 namespace HobiHobi.Web.Controllers
 {
@@ -24,7 +26,7 @@ namespace HobiHobi.Web.Controllers
                 ViewBag.Description = Server.HtmlEncode(wall.Description);
                 ViewBag.Keywords = Server.HtmlEncode(wall.Keywords);
                 ViewBag.BodyInline = wall.Template.HtmlBodyInline;
-                ViewBag.HeaderInline = wall.Template.HtmlHeadInline;
+                ViewBag.HeadInline = wall.Template.HtmlHeadInline;
                 ViewBag.LinkedCss = string.Format("/r/css/{0}/{1}", id.Partial(), wall.Template.LessCss.ETag);
                 if (!wall.Template.JavaScript.IsEmpty)
                     ViewBag.LinkedJs = string.Format("/r/js/{0}/{1}", id.Partial(), wall.Template.JavaScript.ETag);
@@ -32,6 +34,19 @@ namespace HobiHobi.Web.Controllers
                     if (!wall.Template.CoffeeScript.IsEmpty)
                         ViewBag.LinkedJs = string.Format("/r/js/{0}/{1}", id.Partial(), wall.Template.CoffeeScript.ETag);
 
+                
+                Template tmplt = Template.Parse(wall.Template.WallLiquidTemplate);
+
+                string result = tmplt.Render(Hash.FromAnonymousObject(
+                    new
+                    {
+                        Rivers = wall.Sources.Items.Select(x => new RiverSubscriptionItemDrop(x)),
+                        Title = wall.Title,
+                        Description = wall.Description
+                    }
+                    ));
+
+                ViewBag.Body = result;
                 return View();
             }
             else
