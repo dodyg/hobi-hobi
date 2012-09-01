@@ -73,7 +73,11 @@ namespace HobiHobi.Web.Controllers
             else
             {
                 var fetcher = new SubscriptionFetcher();
+#if DEBUG
+                var xml = fetcher.Download("http://" + Request.Url.Host + ":" + Request.Url.Port, "api/1/default/RiversSubscription");
+#else
                 var xml = fetcher.Download("http://hobihobi.apphb.com", "api/1/default/RiversSubscription");
+#endif
                 var opml = new Opml();
                 var res = opml.LoadFromXML(xml);
 
