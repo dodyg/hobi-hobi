@@ -278,7 +278,9 @@
     <Content Include="Areas\Manage\Views\River\EditTemplate.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Code\CodeMirror.cshtml" />
+    <Content Include="App_Code\CodeMirror.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
