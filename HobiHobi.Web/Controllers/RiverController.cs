@@ -167,7 +167,7 @@ namespace HobiHobi.Web.Controllers
                 this.CompressAndSetLongExpirationCache();
                 if (!wall.Template.JavaScript.IsEmpty)
                 {
-                    var js = wall.Template.JavaScript.GetText();
+                    var js = wall.Template.JavaScript.GetText().Replace("RIVER_NAME",wall.Name);
                     return Content(js, "application/javascript");
                 }
                 else

@@ -53,8 +53,7 @@ namespace HobiHobi.Core.Feeds
         }
 
         function load(feedName, feedTitle, isInitial, feedOrigin) {
-            
-            $.get('/home/feed?feedname=' + feedName, function (data) {
+            $.get('/r/feed/RIVER_NAME/' + feedName, function (data) {
                 //change title
                 $('#river_title').html(feedTitle);
 

@@ -74,7 +74,7 @@
 
             <div class="control-group">
                 <div class="controls">
-                    <button type="submit" class="btn btn-primary">@Local.Manage.River.EditTemplate.BtnSubmit</button>
+                    <button type="submit" id="save_submit" class="btn btn-primary">@Local.Manage.River.EditTemplate.BtnSubmit</button>
                 </div>
             </div>
         </div>
@@ -112,9 +112,15 @@
                 }
             });
 
+
+            
         });
 
         @CodeMirror.JsFunction()
 
+        $('#save_submit').click(function () {
+            alert('hello world');
+            return false;
+        });
     </script>
 }

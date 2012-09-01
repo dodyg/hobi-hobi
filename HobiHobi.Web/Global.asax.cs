@@ -66,7 +66,6 @@ namespace HobiHobi.Web
                 new string[] { "HobiHobi.Web.Controllers" }
             );
 
-
             routes.MapRoute(
                 "RiverCss", // Route name
                 "r/css/{name}/{etag}", // URL with parameters
