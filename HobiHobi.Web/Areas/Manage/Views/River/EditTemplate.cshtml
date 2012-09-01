@@ -9,7 +9,10 @@
 <div class="tabbable">
     <ul class="nav nav-tabs">
         <li class="active"><a href="#wall_template" data-toggle="tab">Wall Template</a></li>
-        <li><a href="#feed_template" data-toggle="tab">FeedTemplate</a></li>
+        <li><a href="#feed_template" data-toggle="tab">Feed Template</a></li>
+        <li><a href="#css" data-toggle="tab">CSS</a></li>
+        <li><a href="#javascript" data-toggle="tab">JavaScript</a></li>
+        <li><a href="#coffeescript" data-toggle="tab">CoffeeScript</a></li>
     </ul>
 
     <form method="post" action="@Request.RawUrl">
@@ -23,7 +26,8 @@
                         @Html.ValidationMessageFor(m => m.WallLiquidTemplate, "*")
                     </div>
                 </div>
-            </div><!-- end of wall_template -->
+            </div>
+            <!-- end of wall_template -->
             <div class="tab-pane" id="feed_template">
                 <div class="control-group">
                     <label class="control-label" for="FeedLiquidTemplate">Feed Template</label>
@@ -32,15 +36,50 @@
                         @Html.ValidationMessageFor(m => m.FeedLiquidTemplate, "*")
                     </div>
                 </div>
-            </div><!-- end of feed_template -->
+            </div>
+            <!-- end of feed_template -->
+
+            <div class="tab-pane" id="css">
+                <div class="control-group">
+                    <label class="control-label" for="LessCss">CSS (with Less)</label>
+                    <div class="controls">
+                        @Html.TextAreaFor(m => m.LessCss)
+                        @Html.ValidationMessageFor(m => m.LessCss, "*")
+                    </div>
+                </div>
+            </div>
+            <!-- end of css -->
+
+            <div class="tab-pane" id="javascript">
+                <div class="control-group">
+                    <label class="control-label" for="JavaScript">JavaScript</label>
+                    <div class="controls">
+                        @Html.TextAreaFor(m => m.JavaScript)
+                        @Html.ValidationMessageFor(m => m.JavaScript, "*")
+                    </div>
+                </div>
+            </div>
+            <!-- end of javascript -->
+
+            <div class="tab-pane" id="coffeescript">
+                <div class="control-group">
+                    <label class="control-label" for="CoffeeScript">CoffeeScript</label>
+                    <div class="controls">
+                        @Html.TextAreaFor(m => m.CoffeeScript)
+                        @Html.ValidationMessageFor(m => m.CoffeeScript, "*")
+                    </div>
+                </div>
+            </div>
+            <!-- end of javascript -->
 
             <div class="control-group">
                 <div class="controls">
                     <button type="submit" class="btn btn-primary">@Local.Manage.River.EditTemplate.BtnSubmit</button>
                 </div>
             </div>
-        </div><!-- end of tab-content -->
-    </form>
+        </div>
+<!-- end of tab-content -->
+</form>
 </div><!-- end of tabbable -->
 
 @section HeadInline{
@@ -50,6 +89,9 @@
 @section JsInline{
     <script type="text/javascript">
         var feed_template_shown = false;
+        var css_shown = false;
+        var javascript_shown = false;
+        var coffeescript_shown = false;
         $(function () {
             @CodeMirror.Js("WallLiquidTemplate", "htmlmixed")
 
@@ -58,6 +100,15 @@
                 if (ref == '#feed_template' && !feed_template_shown) {
                     feed_template_shown = true;
                     @CodeMirror.Js("FeedLiquidTemplate", "htmlmixed")
+                } else if (ref == '#css' && !css_shown) {
+                    css_shown = true;
+                    @CodeMirror.Js("LessCss", "less")
+                } else if (ref == '#javascript' && !javascript_shown) {
+                    javascript_shown = true;
+                    @CodeMirror.Js("JavaScript", "javascript")
+                } else if (ref == '#coffeescript' && !coffeescript_shown) {
+                    coffeescript_shown = true;
+                    @CodeMirror.Js("CoffeeScript", "coffeescript")
                 }
             });
 
