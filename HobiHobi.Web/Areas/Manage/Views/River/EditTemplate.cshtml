@@ -6,59 +6,61 @@
 
 <h2>@Local.Manage.River.EditTemplate.Title</h2>
 
- <div class="tabbable"> <!-- Only required for left/right tabs -->
-  <ul class="nav nav-tabs">
-    <li class="active"><a href="#tab1" data-toggle="tab">Section 1</a></li>
-    <li><a href="#tab2" data-toggle="tab">Section 2</a></li>
-  </ul>
+<div class="tabbable">
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="#wall_template" data-toggle="tab">Wall Template</a></li>
+        <li><a href="#feed_template" data-toggle="tab">FeedTemplate</a></li>
+    </ul>
 
-<form method="post" action="@Request.RawUrl">
-   
-  <div class="tab-content">
-    <div class="tab-pane active" id="tab1">
-    @Html.AntiForgeryToken(HobiHobi.Core.SiteConstants.ANTI_FORGERY_SALT)
-    <div class="control-group">
-        <label class="control-label" for="WallLiquidTemplate">Wall Template</label>
-        <div class="controls">
-            @Html.TextAreaFor(m => m.WallLiquidTemplate)
-            @Html.ValidationMessageFor(m => m.WallLiquidTemplate, "*")
-        </div>
-    </div>
+    <form method="post" action="@Request.RawUrl">
+        <div class="tab-content">
+            <div class="tab-pane active" id="wall_template">
+                @Html.AntiForgeryToken(HobiHobi.Core.SiteConstants.ANTI_FORGERY_SALT)
+                <div class="control-group">
+                    <label class="control-label" for="WallLiquidTemplate">Wall Template</label>
+                    <div class="controls">
+                        @Html.TextAreaFor(m => m.WallLiquidTemplate)
+                        @Html.ValidationMessageFor(m => m.WallLiquidTemplate, "*")
+                    </div>
+                </div>
+            </div><!-- end of wall_template -->
+            <div class="tab-pane" id="feed_template">
+                <div class="control-group">
+                    <label class="control-label" for="FeedLiquidTemplate">Feed Template</label>
+                    <div class="controls">
+                        @Html.TextAreaFor(m => m.FeedLiquidTemplate)
+                        @Html.ValidationMessageFor(m => m.FeedLiquidTemplate, "*")
+                    </div>
+                </div>
+            </div><!-- end of feed_template -->
 
-           </div>
-    <div class="tab-pane" id="tab2">
- 
-     <div class="control-group">
-        <label class="control-label" for="FeedLiquidTemplate">Feed Template</label>
-        <div class="controls">
-            @Html.TextAreaFor(m => m.FeedLiquidTemplate)
-            @Html.ValidationMessageFor(m => m.FeedLiquidTemplate, "*")
-        </div>
-    </div>
-    </div>
- 
-
-    <div class="control-group">
-        <div class="controls">
-          <button type="submit" class="btn btn-primary">@Local.Manage.River.EditTemplate.BtnSubmit</button>
-        </div>
-    </div>
+            <div class="control-group">
+                <div class="controls">
+                    <button type="submit" class="btn btn-primary">@Local.Manage.River.EditTemplate.BtnSubmit</button>
+                </div>
             </div>
+        </div><!-- end of tab-content -->
+    </form>
+</div><!-- end of tabbable -->
 
-</form>
-
-</div>
- 
 @section HeadInline{
     @CodeMirror.Declaration(Html)
 }
 
 @section JsInline{
     <script type="text/javascript">
+        var feed_template_shown = false;
         $(function () {
             @CodeMirror.Js("WallLiquidTemplate", "htmlmixed")
-            @CodeMirror.Js("FeedLiquidTemplate", "htmlmixed")
-        
+
+            $('a[data-toggle="tab"]').on('shown', function (e) {
+                var ref = $(e.target).attr('href');
+                if (ref == '#feed_template' && !feed_template_shown) {
+                    feed_template_shown = true;
+                    @CodeMirror.Js("FeedLiquidTemplate", "htmlmixed")
+                }
+            });
+
         });
 
         @CodeMirror.JsFunction()
