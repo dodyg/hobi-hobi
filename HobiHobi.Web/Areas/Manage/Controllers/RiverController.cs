@@ -12,6 +12,7 @@ using System.Text;
 
 namespace HobiHobi.Web.Areas.Manage.Controllers
 {
+
     public class RiverController : RavenController
     {
         [HttpGet]
@@ -36,15 +37,42 @@ namespace HobiHobi.Web.Areas.Manage.Controllers
         [HttpPost]//, ValidateAntiForgeryToken(Salt = SiteConstants.ANTI_FORGERY_SALT)]
         public ActionResult EditTemplate(string guid, RiverTemplateViewModel vm)
         {
+            try
+            {
+                var feedTemplate = DotLiquid.Template.Parse(vm.WallLiquidTemplate);
+            }
+            catch (DotLiquid.Exceptions.SyntaxException se)
+            {
+                this.PropertyValidationMessage("WallLiquidTemplate", se.Message);
+            }
+
+            try
+            {
+                var feedTemplate = DotLiquid.Template.Parse(vm.FeedLiquidTemplate);
+            }
+            catch (DotLiquid.Exceptions.SyntaxException se)
+            {
+                this.PropertyValidationMessage("FeedLiquidTemplate", se.Message);
+            }
+
             if (!ModelState.IsValid)
             {
-                var errors = new StringBuilder();
-                foreach (ModelState modelState in ViewData.ModelState.Values) {
-                    foreach (ModelError error in modelState.Errors) {
-                       errors.AppendLine(error.ErrorMessage);
+                var errors = new ModelPropertyErrors();
+
+                foreach (var key in ModelState.Keys) {
+                    ModelState modelState = ModelState[key];
+                    if (modelState.Errors.Any())
+                    {
+                        var r = new ModelPropertyError { Key = key };
+                        foreach (ModelError error in modelState.Errors)
+                        {
+                            r.Errors.Add(error.ErrorMessage);
+                        }
+                        errors.Properties.Add(r);
                     }
                 }
-                return HttpDoc<EmptyHttpReponse>.PreconditionFailed(errors.ToString()).ToJson();
+
+                return HttpDoc<EmptyHttpReponse>.PreconditionFailed(errors.ToJson()).ToJson();
             }
 
             var wall = RavenSession.Query<RiverWall>().Where(x => x.Guid == vm.RiverGuid).FirstOrDefault();
