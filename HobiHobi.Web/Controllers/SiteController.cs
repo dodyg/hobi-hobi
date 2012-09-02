@@ -46,6 +46,7 @@ namespace HobiHobi.Web.Controllers
         public ActionResult Js()
         {
             var combinedUrls = new string[]{
+                "/scripts/json2",
                 "/scripts/jquery-1.8.0.min",
                 "/scripts/modernizr-2.5.3",
                 "/scripts/bootstrap.min",

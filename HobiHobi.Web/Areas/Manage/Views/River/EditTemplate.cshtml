@@ -14,9 +14,11 @@
         <li><a href="#javascript" data-toggle="tab">JavaScript</a></li>
         <li><a href="#coffeescript" data-toggle="tab">CoffeeScript</a></li>
     </ul>
-
+    @Html.ValidationSummary(false)
     <form method="post" action="@Request.RawUrl">
         <div class="tab-content">
+             @Html.HiddenFor(m => m.RiverGuid)
+                       
             <div class="tab-pane active" id="wall_template">
                 @Html.AntiForgeryToken(HobiHobi.Core.SiteConstants.ANTI_FORGERY_SALT)
                 <div class="control-group">
@@ -119,7 +121,37 @@
         @CodeMirror.JsFunction()
 
         $('#save_submit').click(function () {
-            alert('hello world');
+            var wall = $('#WallLiquidTemplate').text();
+            var feed = $('#FeedLiquidTemplate').text();
+            var less = $('#LessCss').text();
+            var js = $('#JavaScript').text();
+            var cs = $('#CoffeeScript').text();
+            var riverGuid = $('#RiverGuid').val();
+
+            var doc = {
+                RiverGuid: riverGuid,
+                WallLiquidTemplate: wall,
+                FeedLiquidTemplate: feed,
+                LessCss: less,
+                JavaScript: js,
+                CoffeeScript: cs
+            };
+
+            var json = JSON.stringify(doc);
+
+            $.ajax('/manage/river/edittemplate', {
+                data: json,
+                contentType: 'application/json; charset=utf-8',
+                type: 'POST',
+                dataType : 'json'
+            })
+                .done(function (data) {
+                    alert('done ' + data.Message);
+                })
+                .fail(function (jqXHR, textStatus) {
+                    alert('fail ' + textStatus);
+                });
+
             return false;
         });
     </script>

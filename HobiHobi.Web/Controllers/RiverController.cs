@@ -55,13 +55,12 @@ namespace HobiHobi.Web.Controllers
                     ));
 
                 ViewBag.Body = result;
-                /*
-                 * Use just for testing
+                
+                // * Use just for testing
                 var init = new TransientAccount();
                 init.RiverGuids.Add(wall.Guid);
                 Response.Cookies.Add(CookieMonster.SetCookie(init, TransientAccount.COOKIE_NAME));
-                */
-
+                
                 return View();
             }
             else

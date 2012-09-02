@@ -12,11 +12,6 @@ namespace HobiHobi.Web.Areas.Manage.Controllers
 {
     public class RiverController : RavenController
     {
-        public RiverController()
-        {
-
-        }
-
         [HttpGet]
         public ActionResult Create()
         {
@@ -36,12 +31,11 @@ namespace HobiHobi.Web.Areas.Manage.Controllers
             return View(vm);
         }
 
-        [HttpPost, ValidateAntiForgeryToken(Salt = SiteConstants.ANTI_FORGERY_SALT)]
+        [HttpPost]//, ValidateAntiForgeryToken(Salt = SiteConstants.ANTI_FORGERY_SALT)]
         public ActionResult EditTemplate(string guid, RiverTemplateViewModel vm)
         {
-
-
-            return View(vm);
+            var obj = new { Message = "Hello world" };
+            return Content(Newtonsoft.Json.JsonConvert.SerializeObject(obj), "application/json");
         }
     }
 }

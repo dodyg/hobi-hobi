@@ -40,13 +40,15 @@ namespace HobiHobi.Web
                 var authTicket = FormsAuthentication.Decrypt(authCookie.Value);
                 var usr = JsonConvert.DeserializeObject<UserInfo>(authTicket.UserData);
 
+                if (usr == null)
+                    return;
+
                 string[] roles = new string[] { usr.Level.ToString() };
 
                 var userPrincipal = new GenericPrincipal(new GenericIdentity(authTicket.Name), roles);
                 Context.User = userPrincipal;
 
                 Context.Items["UserInfo"] = usr;
-
             }
         }
 

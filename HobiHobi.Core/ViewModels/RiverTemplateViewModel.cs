@@ -17,6 +17,11 @@ namespace HobiHobi.Core.ViewModels
         public string FeedLiquidTemplate { get; set; }
         public string WallLiquidTemplate { get; set; }
 
+        public RiverTemplateViewModel()
+        {
+
+        }
+
         public RiverTemplateViewModel(RiverWall wall)
         {
             RiverGuid = wall.Guid;
