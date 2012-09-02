@@ -14,7 +14,7 @@
         <li><a href="#javascript" data-toggle="tab">JavaScript</a></li>
         <li><a href="#coffeescript" data-toggle="tab">CoffeeScript</a></li>
     </ul>
-    @Html.ValidationSummary(false)
+    <div id="message"></div>
     <form method="post" action="@Request.RawUrl">
         <div class="tab-content">
              @Html.HiddenFor(m => m.RiverGuid)
@@ -94,38 +94,58 @@
         var css_shown = false;
         var javascript_shown = false;
         var coffeescript_shown = false;
+        wall_editor = null, feed_editor = null, css_editor = null, js_editor = null, cs_editor = null;
+
         $(function () {
-            @CodeMirror.Js("WallLiquidTemplate", "htmlmixed")
+            @CodeMirror.Js("wall_editor", "WallLiquidTemplate", "htmlmixed")
 
             $('a[data-toggle="tab"]').on('shown', function (e) {
                 var ref = $(e.target).attr('href');
                 if (ref == '#feed_template' && !feed_template_shown) {
                     feed_template_shown = true;
-                    @CodeMirror.Js("FeedLiquidTemplate", "htmlmixed")
+                    @CodeMirror.Js("feed_editor", "FeedLiquidTemplate", "htmlmixed")
                 } else if (ref == '#css' && !css_shown) {
                     css_shown = true;
-                    @CodeMirror.Js("LessCss", "less")
+                    @CodeMirror.Js("css_editor", "LessCss", "less")
                 } else if (ref == '#javascript' && !javascript_shown) {
                     javascript_shown = true;
-                    @CodeMirror.Js("JavaScript", "javascript")
+                    @CodeMirror.Js("js_editor", "JavaScript", "javascript")
                 } else if (ref == '#coffeescript' && !coffeescript_shown) {
                     coffeescript_shown = true;
-                    @CodeMirror.Js("CoffeeScript", "coffeescript")
+                    @CodeMirror.Js("cs_editor", "CoffeeScript", "coffeescript")
                 }
             });
-
-
             
         });
 
         @CodeMirror.JsFunction()
 
         $('#save_submit').click(function () {
-            var wall = $('#WallLiquidTemplate').text();
-            var feed = $('#FeedLiquidTemplate').text();
-            var less = $('#LessCss').text();
-            var js = $('#JavaScript').text();
-            var cs = $('#CoffeeScript').text();
+            if (wall_editor == null)
+                var wall = $('#WallLiquidTemplate').text();
+            else
+                var wall = wall_editor.getValue();
+            
+            if (feed_editor == null)
+                var feed = $('#FeedLiquidTemplate').text();
+            else
+                var feed = feed_editor.getValue();
+
+            if (css_editor == null)
+                var less = $('#LessCss').text();
+            else
+                var less = css_editor.getValue();
+
+            if (js_editor == null)
+                var js = $('#JavaScript').text();
+            else
+                var js = js_editor.getValue();
+
+            if (cs_editor == null)
+                var cs = $('#CoffeeScript').text();
+            else
+                var cs = cs_editor.getValue();
+
             var riverGuid = $('#RiverGuid').val();
 
             var doc = {
@@ -145,14 +165,25 @@
                 type: 'POST',
                 dataType : 'json'
             })
-                .done(function (data) {
-                    alert('done ' + data.Message);
+                .done(function (payload) {
+                    if (payload.StatusCode == 200)
+                        inform("Update saved");
+                    else
+                        alarm("error : " + payload.ErrorDetails);
                 })
                 .fail(function (jqXHR, textStatus) {
-                    alert('fail ' + textStatus);
+                    alarm('fail ' + textStatus);
                 });
 
             return false;
         });
+
+        function inform(msg){
+            $('#message').addClass('alert alert-success').html(msg).show().fadeOut(3000);
+        }
+        
+        function alarm(msg) {
+            $('#message').addClass('alert alert-error').html(msg).show().fadeOut(3000);
+        }
     </script>
 }

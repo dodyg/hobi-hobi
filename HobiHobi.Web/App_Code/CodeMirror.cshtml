@@ -16,8 +16,8 @@
   </style>
 }
 
-@helper Js(string element, string mode, int height = 500){
-    @:displayEditor("@element", "@mode", @height);
+@helper Js(string var, string element, string mode, int height = 500){
+    @:@var = displayEditor("@element", "@mode", @height);
 }
 
 @helper JsFunction(){
@@ -37,7 +37,7 @@
     });
     
     codeEditor.getScrollerElement().style.height =  height + "px"; 
-       
+    return codeEditor;       
   }
   </text>
 }

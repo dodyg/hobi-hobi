@@ -111,7 +111,10 @@
     <Compile Include="Feeds\LessCssBundledText.cs" />
     <Compile Include="Feeds\RiverWallStatus.cs" />
     <Compile Include="Feeds\RiverWallVisibility.cs" />
+    <Compile Include="Framework\EmptyHttpReponse.cs" />
     <Compile Include="Framework\HtmlHelperExtensions.cs" />
+    <Compile Include="Framework\HttpDoc.cs" />
+    <Compile Include="Framework\HttpDocExtensions.cs" />
     <Compile Include="Identity\TransientAccount.cs" />
     <Compile Include="SiteConstants.cs" />
     <Compile Include="Subscriptions\DefaultRiverSubscription.cs" />
