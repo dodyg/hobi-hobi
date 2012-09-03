@@ -4,7 +4,7 @@
     Layout = "~/Areas/Manage/Views/Shared/_Layout.cshtml";
 }
 
-<h2>@Local.Manage.River.EditTemplate.Title</h2>
+<h2>@Local.Manage.River.EditTemplate.Title @Model.RiverTitle</h2>
 
 <div class="tabbable">
     <ul class="nav nav-tabs">
@@ -13,6 +13,9 @@
         <li><a href="#css" data-toggle="tab">CSS</a></li>
         <li><a href="#javascript" data-toggle="tab">JavaScript</a></li>
         <li><a href="#coffeescript" data-toggle="tab">CoffeeScript</a></li>
+        <li><a href="#html-head-inline" data-toggle="tab">Head Inline</a></li>
+        <li><a href="#html-body-inline" data-toggle="tab">Body Inline</a></li>
+
     </ul>
     <div id="message"></div>
     <form method="post" action="@Request.RawUrl">
@@ -84,6 +87,34 @@
             </div>
             <!-- end of javascript -->
 
+            <div class="tab-pane" id="html-head-inline">
+                <div class="control-group">
+                    <div class="alert alert-info">
+                        Use this to add extra meta or html for the head section of your <a target="_blank" href="/r/@Model.RiverName">Tabbed River</a>.
+                    </div>
+                    <label class="control-label" for="HtmlHeadInline">Html Head Inline</label>
+                    <div class="controls">
+                        @Html.TextAreaFor(m => m.HtmlHeadInline)
+                    </div>
+                </div>
+            </div>
+            <!-- end of html head inline -->
+
+
+            <div class="tab-pane" id="html-body-inline">
+                <div class="control-group">
+                    <div class="alert alert-info">
+                        Use this to add extra script or html at the body section of your <a target="_blank" href="/r/@Model.RiverName">Tabbed River</a>.
+                    </div>
+                    <label class="control-label" for="HtmlBodyInline">Html Body Inline</label>
+                    <div class="controls">
+                        @Html.TextAreaFor(m => m.HtmlBodyInline)
+                    </div>
+                </div>
+            </div>
+            <!-- end of html head inline -->
+
+
             <div class="control-group">
                 <div class="controls">
                     <button type="submit" id="save_submit" class="btn btn-primary">@Local.Manage.River.EditTemplate.BtnSubmit</button>
@@ -100,11 +131,11 @@
 
 @section JsInline{
     <script type="text/javascript">
-        var feed_template_shown = false;
-        var css_shown = false;
-        var javascript_shown = false;
-        var coffeescript_shown = false;
-        wall_editor = null, feed_editor = null, css_editor = null, js_editor = null, cs_editor = null;
+        var feed_template_shown = false, css_shown = false, javascript_shown = false, coffeescript_shown = false, html_head_shown = false,
+            html_body_shown = false;
+
+        var wall_editor = null, feed_editor = null, css_editor = null, js_editor = null, cs_editor = null, html_head_editor = null,
+        html_body_editor = null;
 
         $(function () {
             @CodeMirror.Js("wall_editor", "WallTemplate", "htmlmixed")
@@ -123,7 +154,14 @@
                 } else if (ref == '#coffeescript' && !coffeescript_shown) {
                     coffeescript_shown = true;
                     @CodeMirror.Js("cs_editor", "CoffeeScript", "coffeescript")
+                } else if (ref == '#html-head-inline' && !html_head_shown) {
+                    html_head_shown = true;
+                    @CodeMirror.Js("html_head_editor", "HtmlHeadInline", "htmlmixed")
                 }
+                else if (ref == '#html-body-inline' && !html_body_shown) {
+                    html_body_shown = true;
+                    @CodeMirror.Js("html_body_editor", "HtmlBodyInline", "htmlmixed")
+                 }
             });
             
         });
@@ -132,12 +170,12 @@
 
         $('#save_submit').click(function () {
             if (wall_editor == null)
-                var wall = $('#WallLiquidTemplate').text();
+                var wall = $('#WallTemplate').text();
             else
                 var wall = wall_editor.getValue();
             
             if (feed_editor == null)
-                var feed = $('#FeedLiquidTemplate').text();
+                var feed = $('#FeedTemplate').text();
             else
                 var feed = feed_editor.getValue();
 
@@ -156,15 +194,27 @@
             else
                 var cs = cs_editor.getValue();
 
+            if (html_head_editor == null)
+                var html_head = $('#HtmlHeadInline').text();
+            else
+                var html_head = html_head_editor.getValue();
+
+            if (html_body_editor == null)
+                var html_body = $('#HtmlBodyInline').text();
+            else
+                var html_body = html_body_editor.getValue();
+
             var riverGuid = $('#RiverGuid').val();
 
             var doc = {
                 RiverGuid: riverGuid,
-                WallLiquidTemplate: wall,
-                FeedLiquidTemplate: feed,
+                WallTemplate: wall,
+                FeedTemplate: feed,
                 LessCss: less,
                 JavaScript: js,
-                CoffeeScript: cs
+                CoffeeScript: cs,
+                HtmlHeadInline : html_head,
+                HtmlBodyInline : html_body
             };
 
             var json = JSON.stringify(doc);

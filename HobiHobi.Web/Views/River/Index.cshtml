@@ -20,10 +20,17 @@
 <body>
     @if (ViewBag.EditLink != null)
     {
-        <div id="edit_this_tabbed_rivers"><a href="@ViewBag.EditLink">Edit These Tabbed Rivers</a></div>
+        <div id="edit_this_tabbed_rivers"><a href="@ViewBag.EditLink">Edit this Tabbed River</a></div>
     }
     @Html.Raw(ViewBag.Body)
     
     @Html.Raw(ViewBag.BodyInline)
+
+    <style type="text/css">
+        #edit_this_tabbed_rivers {
+            margin-left:15px;
+            margin:5px;
+        }
+    </style>
 </body>
 </html>

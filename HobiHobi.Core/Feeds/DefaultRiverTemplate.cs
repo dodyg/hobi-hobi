@@ -171,6 +171,7 @@ body {
 ";
 
         static string _wallLiquidTemplate = @"
+<div class=""container"">
 <div class=""tabbable"">
     <ul class=""nav nav-tabs"" id=""river_tabs"">
         {% for river in rivers -%}
@@ -194,7 +195,7 @@ Source : <a href=""#"" id=""river_origin_feed""></a>
 <div id=""loading_div"">
     <img src=""/images/ajax_spinner.gif"" alt=""wait"" />
 </div>
-
+</div><!-- end of container -->
 ";
         static string _feedLiquidTemplate = @"
 {% for feed in feeds -%}

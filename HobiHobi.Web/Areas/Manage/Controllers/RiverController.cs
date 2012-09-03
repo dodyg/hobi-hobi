@@ -110,6 +110,8 @@ namespace HobiHobi.Web.Areas.Manage.Controllers
                 wall.Template.LessCss.SetText(vm.LessCss);
                 wall.Template.JavaScript.SetText(vm.JavaScript);
                 wall.Template.CoffeeScript.SetText(vm.CoffeeScript);
+                wall.Template.HtmlHeadInline = vm.HtmlHeadInline;
+                wall.Template.HtmlBodyInline = vm.HtmlBodyInline;
 
                 try
                 {

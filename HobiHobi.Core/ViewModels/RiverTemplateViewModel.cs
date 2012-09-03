@@ -16,7 +16,9 @@ namespace HobiHobi.Core.ViewModels
         public string CoffeeScript { get; set; }
         public string FeedTemplate { get; set; }
         public string WallTemplate { get; set; }
-
+        public string HtmlHeadInline { get; set; }
+        public string HtmlBodyInline { get; set; }
+        
         public RiverTemplateViewModel()
         {
 
@@ -32,6 +34,8 @@ namespace HobiHobi.Core.ViewModels
             CoffeeScript = wall.Template.CoffeeScript.Text;
             FeedTemplate = wall.Template.FeedTemplate;
             WallTemplate = wall.Template.WallTemplate;
+            HtmlHeadInline = wall.Template.HtmlHeadInline;
+            HtmlBodyInline = wall.Template.HtmlBodyInline;
         }
     }
 }
