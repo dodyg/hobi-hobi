@@ -9,6 +9,9 @@ using System.Web;
 using System.Web.Mvc;
 using HobiHobi.Core.Framework;
 using System.Text;
+using HobiHobi.Core.Validators;
+using FluentValidation.Results;
+using FluentValidation.Mvc;
 
 namespace HobiHobi.Web.Areas.Manage.Controllers
 {
@@ -34,12 +37,16 @@ namespace HobiHobi.Web.Areas.Manage.Controllers
             return View(vm);
         }
 
-        [HttpPost]//, ValidateAntiForgeryToken(Salt = SiteConstants.ANTI_FORGERY_SALT)]
-        public ActionResult EditTemplate(string guid, RiverTemplateViewModel vm)
+        private void ValidateRiverTemplate(RiverTemplateViewModel vm)
         {
+            //validate and validate some more
+            var validator = new RiverTemplateViewModelValidator();
+            ValidationResult results = validator.Validate(vm);
+            results.AddToModelState(ModelState, string.Empty);
+
             try
             {
-                var feedTemplate = DotLiquid.Template.Parse(vm.WallLiquidTemplate);
+                var feedTemplate = DotLiquid.Template.Parse(vm.WallTemplate);
             }
             catch (DotLiquid.Exceptions.SyntaxException se)
             {
@@ -48,32 +55,47 @@ namespace HobiHobi.Web.Areas.Manage.Controllers
 
             try
             {
-                var feedTemplate = DotLiquid.Template.Parse(vm.FeedLiquidTemplate);
+                var feedTemplate = DotLiquid.Template.Parse(vm.FeedTemplate);
             }
             catch (DotLiquid.Exceptions.SyntaxException se)
             {
                 this.PropertyValidationMessage("FeedLiquidTemplate", se.Message);
             }
+        }
+
+        private ModelPropertyErrors ProduceAJAXErrorMessage(ModelStateDictionary ms)
+        {
+            var errors = new ModelPropertyErrors();
+
+            foreach (var key in ms.Keys)
+            {
+                ModelState modelState = ModelState[key];
+                if (modelState.Errors.Any())
+                {
+                    var r = new ModelPropertyError { Key = key };
+                    foreach (ModelError error in modelState.Errors)
+                    {
+                        r.Errors.Add(error.ErrorMessage);
+                    }
+                    errors.Properties.Add(r);
+                }
+            }
+
+            return errors;
+        }
+
+        [HttpPost]//, ValidateAntiForgeryToken(Salt = SiteConstants.ANTI_FORGERY_SALT)]
+        public ActionResult EditTemplate(string guid, RiverTemplateViewModel vm)
+        {
+            ValidateRiverTemplate(vm);
 
             if (!ModelState.IsValid)
             {
-                var errors = new ModelPropertyErrors();
-
-                foreach (var key in ModelState.Keys) {
-                    ModelState modelState = ModelState[key];
-                    if (modelState.Errors.Any())
-                    {
-                        var r = new ModelPropertyError { Key = key };
-                        foreach (ModelError error in modelState.Errors)
-                        {
-                            r.Errors.Add(error.ErrorMessage);
-                        }
-                        errors.Properties.Add(r);
-                    }
-                }
-
+                var errors = ProduceAJAXErrorMessage(ModelState);
                 return HttpDoc<EmptyHttpReponse>.PreconditionFailed(errors.ToJson()).ToJson();
             }
+
+            // now that we are done with validation, get on with business
 
             var wall = RavenSession.Query<RiverWall>().Where(x => x.Guid == vm.RiverGuid).FirstOrDefault();
 
@@ -83,8 +105,8 @@ namespace HobiHobi.Web.Areas.Manage.Controllers
             else
             {
                 wall.LastModified = Stamp.Time();
-                wall.Template.FeedLiquidTemplate = vm.FeedLiquidTemplate;
-                wall.Template.WallLiquidTemplate = vm.WallLiquidTemplate;
+                wall.Template.FeedTemplate = vm.FeedTemplate;
+                wall.Template.WallTemplate = vm.WallTemplate;
                 wall.Template.LessCss.SetText(vm.LessCss);
                 wall.Template.JavaScript.SetText(vm.JavaScript);
                 wall.Template.CoffeeScript.SetText(vm.CoffeeScript);

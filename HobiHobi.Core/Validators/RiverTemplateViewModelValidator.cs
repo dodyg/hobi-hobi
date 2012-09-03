@@ -11,17 +11,17 @@ namespace HobiHobi.Core.Validators
     {
         public RiverTemplateViewModelValidator()
         {
-            RuleFor(m => m.WallLiquidTemplate).NotEmpty().WithMessage("Wall Template cannot be empty");
-            RuleFor(m => m.FeedLiquidTemplate).NotEmpty().WithMessage("Feed Name cannot be empty");
-            RuleFor(m => m.LessCss).NotEmpty().WithMessage("CSS is required");
+            RuleFor(m => m.WallTemplate).NotEmpty().WithMessage(Resources.RiverTemplateViewModelValidator.ReqWallTemplate);
+            RuleFor(m => m.FeedTemplate).NotEmpty().WithMessage(Resources.RiverTemplateViewModelValidator.ReqFeedTemplate);
+            RuleFor(m => m.LessCss).NotEmpty().WithMessage(Resources.RiverTemplateViewModelValidator.ReqCss);
             When(m => string.IsNullOrEmpty(m.JavaScript), () =>
                 {
-                    RuleFor(m => m.CoffeeScript).NotEmpty().WithMessage("CoffeeScript is required if you do not specify javascript");
+                    RuleFor(m => m.CoffeeScript).NotEmpty().WithMessage(Resources.RiverTemplateViewModelValidator.ReqCoffeeScript);
                 });
 
             When(m => string.IsNullOrEmpty(m.CoffeeScript), () =>
                 {
-                    RuleFor(m => m.JavaScript).NotEmpty().WithMessage("Javascript is required if you do not specify javascript");
+                    RuleFor(m => m.JavaScript).NotEmpty().WithMessage(Resources.RiverTemplateViewModelValidator.ReqJavaScript);
                 });
         }
     }

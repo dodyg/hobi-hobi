@@ -43,7 +43,7 @@ namespace HobiHobi.Web.Controllers
                     ViewBag.EditLink = "/manage/river/edittemplate/?guid=" + wall.Guid;
                 }
                 
-                Template tmplt = Template.Parse(wall.Template.WallLiquidTemplate);
+                Template tmplt = Template.Parse(wall.Template.WallTemplate);
 
                 string result = tmplt.Render(Hash.FromAnonymousObject(
                     new
@@ -94,7 +94,7 @@ namespace HobiHobi.Web.Controllers
 
                     HttpContext.Cache.Add(ViewBag.FeedUrl, river, null, Cache.NoAbsoluteExpiration, new TimeSpan(0, 10, 0), CacheItemPriority.Default, null);
                     
-                    var renderer = new FeedTemplateRenderer(river, wall.Template.FeedLiquidTemplate);
+                    var renderer = new FeedTemplateRenderer(river, wall.Template.FeedTemplate);
 
                     this.CompressAndSetLongExpirationCache();
                     return Content(renderer.Render().ToString(), "text/html");
@@ -106,7 +106,7 @@ namespace HobiHobi.Web.Controllers
             }
             else
             {
-                var renderer = new FeedTemplateRenderer(cache as FeedsRiver, wall.Template.FeedLiquidTemplate);
+                var renderer = new FeedTemplateRenderer(cache as FeedsRiver, wall.Template.FeedTemplate);
 
                 this.CompressAndSetLongExpirationCache();
                 return Content(renderer.Render().ToString(), "text/html");

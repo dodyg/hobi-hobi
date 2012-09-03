@@ -178,6 +178,11 @@
     <Compile Include="Subscriptions\SubscriptionFetcher.cs" />
     <Compile Include="Utils\CookieMonster.cs" />
     <Compile Include="Utils\JsonSerializer.cs" />
+    <Compile Include="Validators\Resources\RiverTemplateViewModelValidator.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RiverTemplateViewModelValidator.resx</DependentUpon>
+    </Compile>
     <Compile Include="Validators\Resources\UserViewModelValidator.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -195,6 +200,10 @@
     <Content Include="LICENSE.txt" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Validators\Resources\RiverTemplateViewModelValidator.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>RiverTemplateViewModelValidator.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Validators\Resources\UserViewModelValidator.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>UserViewModelValidator.Designer.cs</LastGenOutput>

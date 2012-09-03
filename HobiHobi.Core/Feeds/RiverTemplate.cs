@@ -27,8 +27,8 @@ namespace HobiHobi.Core.Feeds
         public DateTime DateCreated { get; set; }
         public DateTime LastModified { get; set; }
 
-        public string WallLiquidTemplate { get; set; }
-        public string FeedLiquidTemplate { get; set; }
+        public string WallTemplate { get; set; }
+        public string FeedTemplate { get; set; }
         public BundledText JavaScript { get; set; }
         public BundledText CoffeeScript { get; set; }
         public BundledText LessCss { get; set; }

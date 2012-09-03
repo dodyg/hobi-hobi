@@ -14,8 +14,8 @@ namespace HobiHobi.Core.ViewModels
         public string LessCss { get; set; }
         public string JavaScript { get; set; }
         public string CoffeeScript { get; set; }
-        public string FeedLiquidTemplate { get; set; }
-        public string WallLiquidTemplate { get; set; }
+        public string FeedTemplate { get; set; }
+        public string WallTemplate { get; set; }
 
         public RiverTemplateViewModel()
         {
@@ -30,8 +30,8 @@ namespace HobiHobi.Core.ViewModels
             LessCss = wall.Template.LessCss.Text;
             JavaScript = wall.Template.JavaScript.Text;
             CoffeeScript = wall.Template.CoffeeScript.Text;
-            FeedLiquidTemplate = wall.Template.FeedLiquidTemplate;
-            WallLiquidTemplate = wall.Template.WallLiquidTemplate;
+            FeedTemplate = wall.Template.FeedTemplate;
+            WallTemplate = wall.Template.WallTemplate;
         }
     }
 }

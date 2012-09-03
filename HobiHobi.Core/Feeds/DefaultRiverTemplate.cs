@@ -14,8 +14,8 @@ namespace HobiHobi.Core.Feeds
                 Id = RiverTemplate.NewId().Full(),
                 Title = "Dark Wood",
                 AuthorName = "Dody Gunawinata",
-                FeedLiquidTemplate = _feedLiquidTemplate,
-                WallLiquidTemplate = _wallLiquidTemplate,
+                FeedTemplate = _feedLiquidTemplate,
+                WallTemplate = _wallLiquidTemplate,
                 LessCss = new LessCssBundledText().SetText(_lessCss),
                 JavaScript = new BundledText().SetText(_javascript),
                 HtmlHeadInline = @"
