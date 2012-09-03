@@ -58,7 +58,7 @@ namespace HobiHobi.Web.Areas.Manage.Controllers
             //take care of the temporary account
 
             var transient = CookieMonster.GetFromCookie<TransientAccount>(Request.Cookies[TransientAccount.COOKIE_NAME]);
-            if (transient == null)
+            if (!transient.IsFound)
             {
                 var init = new TransientAccount();
                 init.RiverGuids.Add(wall.Guid);
