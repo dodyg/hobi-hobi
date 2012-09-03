@@ -103,6 +103,7 @@ namespace HobiHobi.Web
 
             Store = new DocumentStore { ConnectionStringName = "RavenDB" };
             Store.Initialize();
+            Store.Conventions.DefaultQueryingConsistency = ConsistencyOptions.QueryYourWrites;
 
             IndexCreation.CreateIndexes(Assembly.GetCallingAssembly(), Store);
 
