@@ -12,6 +12,9 @@ using System.Text;
 using HobiHobi.Core.Validators;
 using FluentValidation.Results;
 using FluentValidation.Mvc;
+using HobiHobi.Core.Subscriptions;
+using HobiHobi.Core.Identity;
+using HobiHobi.Core.Utils;
 
 namespace HobiHobi.Web.Areas.Manage.Controllers
 {
@@ -40,8 +43,34 @@ namespace HobiHobi.Web.Areas.Manage.Controllers
             if (!ModelState.IsValid)
                 return View(vm);
 
-            this.FlashInfo("Creation is successful man");
-            return View();
+            var wall = new RiverWall();
+            wall.Id = RiverWall.NewId(vm.Name).Full();
+            wall.Guid = Stamp.GUID().ToString();
+            wall.Name = vm.Name;
+            wall.Title = vm.Title;
+            wall.Description = vm.Description;
+            wall.Keywords = vm.Keywords;
+            wall.Template = DefaultRiverTemplate.Get();
+            wall.Sources = DefaultRiverSubscription.Get();
+
+            RavenSession.Store(wall);
+
+            //take care of the temporary account
+
+            var transient = CookieMonster.GetFromCookie<TransientAccount>(Request.Cookies[TransientAccount.COOKIE_NAME]);
+            if (transient == null)
+            {
+                var init = new TransientAccount();
+                init.RiverGuids.Add(wall.Guid);
+                Response.Cookies.Add(CookieMonster.SetCookie(init, TransientAccount.COOKIE_NAME));
+            }
+            else
+            {
+                transient.Item.RiverGuids.Add(wall.Guid);
+                Response.Cookies.Add(CookieMonster.SetCookie(transient.Item, TransientAccount.COOKIE_NAME));
+            }
+
+            return Redirect("/r/" + vm.Name);
         }
 
         [HttpGet]
