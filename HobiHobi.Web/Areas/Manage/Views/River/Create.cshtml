@@ -1,5 +1,50 @@
-﻿@{
+﻿@model HobiHobi.Core.ViewModels.BasicRiverWallViewModel
+@{
     Layout = "~/Areas/Manage/Views/Shared/_Layout.cshtml";
 }
 
 
+<h2>@Local.Manage.River.Create.Title</h2>
+@this.Flash()
+<div class="alert alert-info">
+</div>
+<form class="form-horizontal" action="@Request.RawUrl" method="post">
+    @Html.ValidationSummary(true)
+  <div class="control-group">
+    <label class="control-label" for="Name">@Local.Manage.River.Create.LblName</label>
+    <div class="controls">
+      @Html.TextBoxFor(m => m.Name, new { placehoder = "name"})
+      @Html.ValidationMessageFor(m=>m.Name)
+    </div>
+  </div>
+  
+  <div class="control-group">
+    <label class="control-label" for="Title">@Local.Manage.River.Create.LblTitle</label>
+    <div class="controls">
+      @Html.TextBoxFor(m => m.Title, new { placehoder = "title"})
+      @Html.ValidationMessageFor(m=>m.Title)
+    </div>
+  </div>
+    
+  <div class="control-group">
+    <label class="control-label" for="Description">@Local.Manage.River.Create.LblDescription</label>
+    <div class="controls">
+      @Html.TextAreaFor(m => m.Description, new { placehoder = "description"})
+      @Html.ValidationMessageFor(m=>m.Description)
+    </div>
+  </div>
+
+  <div class="control-group">
+    <label class="control-label" for="Keywords">@Local.Manage.River.Create.LblKeywords</label>
+    <div class="controls">
+      @Html.TextBoxFor(m => m.Keywords, new { placehoder = "keywords"})
+      @Html.ValidationMessageFor(m=>m.Keywords)
+    </div>
+  </div>
+    
+  <div class="control-group">
+    <div class="controls">
+      <button type="submit" class="btn btn-primary">@Local.Manage.River.Create.BtnSubmit</button>
+    </div>
+  </div>
+</form>

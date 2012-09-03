@@ -178,6 +178,7 @@
     <Compile Include="Subscriptions\SubscriptionFetcher.cs" />
     <Compile Include="Utils\CookieMonster.cs" />
     <Compile Include="Utils\JsonSerializer.cs" />
+    <Compile Include="Validators\BasicRiverWallViewModelValidator.cs" />
     <Compile Include="Validators\Resources\RiverTemplateViewModelValidator.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -190,6 +191,7 @@
     </Compile>
     <Compile Include="Validators\RiverTemplateViewModelValidator.cs" />
     <Compile Include="Validators\UserViewModelValidator.cs" />
+    <Compile Include="ViewModels\BasicRiverWallViewModel.cs" />
     <Compile Include="ViewModels\RiverTemplateViewModel.cs" />
     <Compile Include="ViewModels\UserViewModel.cs" />
   </ItemGroup>

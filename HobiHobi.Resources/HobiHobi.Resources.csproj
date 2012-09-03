@@ -65,6 +65,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Index.resx</DependentUpon>
     </Compile>
+    <Compile Include="Manage\River\Create.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Create.resx</DependentUpon>
+    </Compile>
     <Compile Include="Manage\River\EditTemplate.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -82,6 +87,11 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Index.Designer.cs</LastGenOutput>
       <CustomToolNamespace>Local.Manage.Home</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Manage\River\Create.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Create.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>Local.Manage.River</CustomToolNamespace>
     </EmbeddedResource>
     <EmbeddedResource Include="Manage\River\EditTemplate.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

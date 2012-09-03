@@ -17,6 +17,7 @@ namespace HobiHobi.Core
             //validators
             builder.RegisterType<UserViewModelValidator>().Keyed<IValidator>(typeof(UserViewModel));
             builder.RegisterType<RiverTemplateViewModelValidator>().Keyed<IValidator>(typeof(RiverTemplateViewModelValidator));
+            builder.RegisterType<BasicRiverWallViewModelValidator>().Keyed<IValidator>(typeof(BasicRiverWallViewModel));
         }
     }
 }

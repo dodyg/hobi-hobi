@@ -8,15 +8,7 @@
 
 <br />
 <br />
-@if (Request.IsAuthenticated)
-{
-    <div id="logout" style="margin-bottom:5px;">
-        <a href="/identity/logout">@Local.Identity.Logout.LnkLogout</a>
-    </div>
-}else{
-    @Html.Partial("~/Views/Identity/_Login.cshtml")
-    
-}
+<div id="create_new_wall" style="font-size:16px;margin-bottom:5px;"><a href="/manage/river/create">Create New Wall</a></div>
 
 @this.Flash()
 <div class="tabbable">

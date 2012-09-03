@@ -24,6 +24,26 @@ namespace HobiHobi.Web.Areas.Manage.Controllers
             return View();
         }
 
+        [HttpPost]
+        public ActionResult Create(BasicRiverWallViewModel vm)
+        {
+            //this is for basic validation
+            if (!ModelState.IsValid)
+                return View(vm);
+
+            var river = RavenSession.Query<RiverWall>().Where(x => x.Name == vm.Name).FirstOrDefault();
+
+            if (river != null)
+                this.PropertyValidationMessage("Name", string.Format("Please pick another name. {0} has already been taken.", vm.Name));
+
+            //do another check after this 'advanced' validation
+            if (!ModelState.IsValid)
+                return View(vm);
+
+            this.FlashInfo("Creation is successful man");
+            return View();
+        }
+
         [HttpGet]
         public ActionResult EditTemplate(string guid)
         {
