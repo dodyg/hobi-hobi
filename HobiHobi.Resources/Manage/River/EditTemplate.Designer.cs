@@ -124,7 +124,7 @@ namespace Local.Manage.River {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Style Your Wall.
+        ///   Looks up a localized string similar to Style Your Tabbed River.
         /// </summary>
         public static string Title {
             get {
