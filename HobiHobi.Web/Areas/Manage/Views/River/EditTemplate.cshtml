@@ -13,7 +13,6 @@
         <li><a href="#feed_template" data-toggle="tab">Feed Template</a></li>
         <li><a href="#css" data-toggle="tab">CSS</a></li>
         <li><a href="#javascript" data-toggle="tab">JavaScript</a></li>
-        <li><a href="#coffeescript" data-toggle="tab">CoffeeScript</a></li>
         <li><a href="#html-head-inline" data-toggle="tab">Head Inline</a></li>
         <li><a href="#html-body-inline" data-toggle="tab">Body Inline</a></li>
 
@@ -75,19 +74,6 @@
             </div>
             <!-- end of javascript -->
 
-            <div class="tab-pane" id="coffeescript">
-                <div class="control-group">
-                    <div class="alert alert-info">
-                        If you prefer to use CoffeeScript, then you can use this in place of JavaScript for your <a target="_blank" href="/r/@Model.RiverName">Tabbed River</a>.
-                    </div>
-                    <label class="control-label" for="CoffeeScript">CoffeeScript</label>
-                    <div class="controls">
-                        @Html.TextAreaFor(m => m.CoffeeScript)
-                    </div>
-                </div>
-            </div>
-            <!-- end of javascript -->
-
             <div class="tab-pane" id="html-head-inline">
                 <div class="control-group">
                     <div class="alert alert-info">
@@ -132,10 +118,10 @@
 
 @section JsInline{
     <script type="text/javascript">
-        var feed_template_shown = false, css_shown = false, javascript_shown = false, coffeescript_shown = false, html_head_shown = false,
+        var feed_template_shown = false, css_shown = false, javascript_shown = false, html_head_shown = false,
             html_body_shown = false;
 
-        var wall_editor = null, feed_editor = null, css_editor = null, js_editor = null, cs_editor = null, html_head_editor = null,
+        var wall_editor = null, feed_editor = null, css_editor = null, js_editor = null, html_head_editor = null,
         html_body_editor = null;
 
         $(function () {
@@ -152,9 +138,6 @@
                 } else if (ref == '#javascript' && !javascript_shown) {
                     javascript_shown = true;
                     @CodeMirror.Js("js_editor", "JavaScript", "javascript")
-                } else if (ref == '#coffeescript' && !coffeescript_shown) {
-                    coffeescript_shown = true;
-                    @CodeMirror.Js("cs_editor", "CoffeeScript", "coffeescript")
                 } else if (ref == '#html-head-inline' && !html_head_shown) {
                     html_head_shown = true;
                     @CodeMirror.Js("html_head_editor", "HtmlHeadInline", "htmlmixed")
@@ -190,11 +173,6 @@
             else
                 var js = js_editor.getValue();
 
-            if (cs_editor == null)
-                var cs = $('#CoffeeScript').text();
-            else
-                var cs = cs_editor.getValue();
-
             if (html_head_editor == null)
                 var html_head = $('#HtmlHeadInline').text();
             else
@@ -213,7 +191,6 @@
                 FeedTemplate: feed,
                 LessCss: less,
                 JavaScript: js,
-                CoffeeScript: cs,
                 HtmlHeadInline : html_head,
                 HtmlBodyInline : html_body
             };
@@ -242,8 +219,6 @@
                                     break;
                                 case "JavaScript": r.append("<li>JavaScript : " + m.Errors[0] + "</li>");
                                     break;
-                                case "CoffeeScript": r.append("<li>CoffeeScript : " + m.Errors[0] + "</li>");
-                                    default : ;
                             }
                         });
 

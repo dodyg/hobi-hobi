@@ -127,7 +127,7 @@
     <value>Feed Template cannot be empty</value>
   </data>
   <data name="ReqJavaScript" xml:space="preserve">
-    <value>JavaScript is required if you do not specify CoffeeScript</value>
+    <value>JavaScript is required</value>
   </data>
   <data name="ReqWallTemplate" xml:space="preserve">
     <value>Wall Template cannot be empty</value>

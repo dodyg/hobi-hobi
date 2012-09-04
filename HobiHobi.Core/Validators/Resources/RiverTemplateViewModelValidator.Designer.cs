@@ -88,7 +88,7 @@ namespace HobiHobi.Core.Validators.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to JavaScript is required if you do not specify CoffeeScript.
+        ///   Looks up a localized string similar to JavaScript is required.
         /// </summary>
         internal static string ReqJavaScript {
             get {
