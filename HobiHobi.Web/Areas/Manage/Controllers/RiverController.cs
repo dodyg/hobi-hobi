@@ -18,7 +18,6 @@ using HobiHobi.Core.Utils;
 
 namespace HobiHobi.Web.Areas.Manage.Controllers
 {
-
     public class RiverController : RavenController
     {
         [HttpGet]
@@ -27,7 +26,7 @@ namespace HobiHobi.Web.Areas.Manage.Controllers
             return View();
         }
 
-        [HttpPost]
+        [HttpPost, ValidateAntiForgeryToken(Salt = SiteConstants.ANTI_FORGERY_SALT)]
         public ActionResult Create(BasicRiverWallViewModel vm)
         {
             //this is for basic validation
@@ -133,7 +132,7 @@ namespace HobiHobi.Web.Areas.Manage.Controllers
             return errors;
         }
 
-        [HttpPost]//, ValidateAntiForgeryToken(Salt = SiteConstants.ANTI_FORGERY_SALT)]
+        [HttpPost]//, 
         public ActionResult EditTemplate(string guid, RiverTemplateViewModel vm)
         {
             ValidateRiverTemplate(vm);

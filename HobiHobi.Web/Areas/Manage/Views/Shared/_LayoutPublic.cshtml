@@ -1,0 +1,24 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewBag.Title</title>
+    <link href="/site/css/@HobiHobi.Web.MvcApplication.CommonCssTag" rel="stylesheet" type="text/css" />
+    <link href="/Content/Manage.css" rel="stylesheet" />
+    <script src="/site/js/@HobiHobi.Web.MvcApplication.CommonJsTag" type="text/javascript"></script>
+    @RenderSection("HeadInline", false)
+
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <div class="span12">
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+    @RenderSection("CssInline", false)
+    @RenderSection("JsInline", false)
+
+</body>
+</html>
