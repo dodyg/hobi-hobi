@@ -80,6 +80,11 @@
                             inform(payload.Data.Message);
                             $('#Title').val('');
                             $('#Uri').val('');
+
+                            $('.delete_source').off('click');
+                            $('.delete_source').on('click', function (event) {
+                                alert($(this).data('name'));
+                            });
                         }
                         else {
                             var details = JSON.parse(payload.ErrorDetails);
