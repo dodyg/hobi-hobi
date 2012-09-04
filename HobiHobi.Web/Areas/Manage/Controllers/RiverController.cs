@@ -33,6 +33,12 @@ namespace HobiHobi.Web.Areas.Manage.Controllers
             return View(sources);
         }
 
+        public string ConvertTitleToName(string title)
+        {
+            return title.Replace(" ", "_").Replace("#", "_").Replace("'", "_").Replace(".", "_")
+                .Replace("/","_").Replace("\\","_");
+        }
+
         [HttpPost]
         public ActionResult AddSource(string riverGuid, string title, string uri)
         {
@@ -71,8 +77,9 @@ namespace HobiHobi.Web.Areas.Manage.Controllers
                 var fetcher = new RiverFetcher();
                 var content = fetcher.Download("http://" + url.DnsSafeHost, url.PathAndQuery);
                 var river = fetcher.Serialize(content);
+                var name = ConvertTitleToName(title);
 
-                return HttpDoc<dynamic>.OK(new { Message = "hello world" }).ToJson();
+                return HttpDoc<dynamic>.OK(new { Message = "Source added", Name = name }).ToJson();
             }
             catch
             {

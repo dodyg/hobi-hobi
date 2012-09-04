@@ -6,12 +6,13 @@
 
 <h2>@Local.Manage.River.Sources.Title</h2>
 
-<table class="table">
+<table class="table" id="source_list">
 @foreach (var f in Model)
 {
     <tr>
         <td>@f.Text</td>
         <td><a href="@f.JSONPUri">@f.JSONPUri</a></td>
+        <td><a href="#" class="delete_source" data-name="@f.Name"><i class="icon-remove"></i></a></td>
     </tr>
 }
 </table>
@@ -21,7 +22,7 @@
     <div class="controls controls-row">
         <input type="hidden" name="RiverGuid" id="RiverGuid" value="@ViewBag.RiverGuid" />
         <input type="text" name="Title" id="Title" class="span3"  placeholder="Title"/> 
-        <input type="text" name="Uri" id="Uri" class="span4"  placeholder="JSONP URI"/> 
+        <input type="text" name="Uri" id="Uri" class="span5"  placeholder="JSONP URI"/> 
         <button type="button" id="btn_submit" class="btn btn-primary">Add River</button>
     </div>
 </form>
@@ -60,17 +61,26 @@
                     uri : uri
                 };
 
-                //var json = JSON.stringify(doc);
-
                 $.ajax('/manage/river/addsource', {
                     data: doc,
-                    //contentType: 'application/json; charset=utf-8',
                     type: 'POST',
                     dataType: 'json'
                 })
                     .done(function (payload) {
-                        if (payload.StatusCode == 200)
+                        if (payload.StatusCode == 200) {
+                            var name = payload.Data.Name;
+
+                            var row = $('<tr></tr>');
+                            row.append('<td>' + title + '</td>');
+                            row.append('<td><a href="' + uri + '">' + uri + '</a></td>');
+                            row.append('<td><a href="#" class="delete_source" data-name="' + name + '"><i class="icon-remove"></i></a></td>');
+                            $('#source_list').append(row);
+
+
                             inform(payload.Data.Message);
+                            $('#Title').val('');
+                            $('#Uri').val('');
+                        }
                         else {
                             var details = JSON.parse(payload.ErrorDetails);
                             var r = $('<ul></ul>');
@@ -85,6 +95,10 @@
                         alarm('fail ' + textStatus);
                     });
 
+            });
+
+            $('.delete_source').on('click', function (event) {
+                alert($(this).data('name'));
             });
         });
 
