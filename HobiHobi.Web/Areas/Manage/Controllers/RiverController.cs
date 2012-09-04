@@ -1,20 +1,17 @@
-﻿using HobiHobi.Core;
+﻿using FluentValidation.Mvc;
+using FluentValidation.Results;
+using HobiHobi.Core;
 using HobiHobi.Core.Feeds;
+using HobiHobi.Core.Framework;
+using HobiHobi.Core.Identity;
+using HobiHobi.Core.Subscriptions;
+using HobiHobi.Core.Utils;
+using HobiHobi.Core.Validators;
 using HobiHobi.Core.ViewModels;
 using HobiHobi.Web.Controllers;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using HobiHobi.Core.Framework;
-using System.Text;
-using HobiHobi.Core.Validators;
-using FluentValidation.Results;
-using FluentValidation.Mvc;
-using HobiHobi.Core.Subscriptions;
-using HobiHobi.Core.Identity;
-using HobiHobi.Core.Utils;
 
 namespace HobiHobi.Web.Areas.Manage.Controllers
 {
@@ -30,6 +27,7 @@ namespace HobiHobi.Web.Areas.Manage.Controllers
 
             var sources = wall.Sources.Items;
             ViewBag.RiverGuid = wall.Guid;
+            ViewBag.RiverName = wall.Name;
             return View(sources);
         }
 
@@ -51,10 +49,10 @@ namespace HobiHobi.Web.Areas.Manage.Controllers
             if (string.IsNullOrWhiteSpace(uri))
                 this.PropertyValidationMessage("Uri", "Uri is required");
 
-            Uri url = null;
+            Uri jsonUrl = null;
             try
             {
-                url = new Uri(uri);
+                jsonUrl = new Uri(uri);
             }
             catch
             {
@@ -75,9 +73,19 @@ namespace HobiHobi.Web.Areas.Manage.Controllers
             try
             {
                 var fetcher = new RiverFetcher();
-                var content = fetcher.Download("http://" + url.DnsSafeHost, url.PathAndQuery);
+                var content = fetcher.Download("http://" + jsonUrl.DnsSafeHost, jsonUrl.PathAndQuery);
                 var river = fetcher.Serialize(content);
                 var name = ConvertTitleToName(title);
+
+                wall.Sources.Items.Add(new RiverSubscriptionItem
+                {
+                    Name = name,
+                    Text = title,
+                    JSONPUri = jsonUrl
+                });
+
+                RavenSession.Store(wall);
+                this.SaveChangesAndTerminate();
 
                 return HttpDoc<dynamic>.OK(new { Message = "Source added", Name = name }).ToJson();
             }
@@ -143,6 +151,8 @@ namespace HobiHobi.Web.Areas.Manage.Controllers
                 transient.Item.RiverGuids.Add(wall.Guid);
                 Response.Cookies.Add(CookieMonster.SetCookie(transient.Item, TransientAccount.COOKIE_NAME));
             }
+
+            this.SaveChangesAndTerminate();
 
             return Redirect("/r/" + vm.Name);
         }
@@ -239,6 +249,8 @@ namespace HobiHobi.Web.Areas.Manage.Controllers
                 try
                 {
                     RavenSession.Store(wall);
+                    this.SaveChangesAndTerminate();
+
                     return HttpDoc<dynamic>.OK(new { Message = "hello world 2" }).ToJson();
                 }
                 catch (Exception ex)
