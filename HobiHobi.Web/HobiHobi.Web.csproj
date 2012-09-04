@@ -140,7 +140,7 @@
     <Content Include="Images\dust.png" />
     <Content Include="Images\glyphicons-halflings-white.png" />
     <Content Include="Images\glyphicons-halflings.png" />
-    <Content Include="Images\opml-icon.jpg" />
+    <Content Include="Images\opml-icon-128x128.png" />
     <Content Include="Images\paper.png" />
     <Content Include="Images\retina_wood.png" />
     <Content Include="Images\subtle_surface.png" />
