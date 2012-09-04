@@ -115,7 +115,7 @@ body {
         }
         
         .feed_item {
-            width: 300px;
+            width: 80%;
             
             margin-right:25px;
             margin-top:5px;
