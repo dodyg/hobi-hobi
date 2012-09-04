@@ -50,7 +50,8 @@ namespace HobiHobi.Web.Controllers
                     {
                         Rivers = wall.Sources.Items.Select(x => new RiverSubscriptionItemDrop(x)),
                         Title = wall.Title,
-                        Description = wall.Description
+                        Description = wall.Description,
+                        Name = wall.Name
                     }
                     ));
 
@@ -174,6 +175,22 @@ namespace HobiHobi.Web.Controllers
                     var js = wall.Template.CoffeeScript.GetText();
                     return Content(js, "application/javascript");
                 }
+            }
+            else
+                return HttpNotFound();
+        }
+
+        public ActionResult GetOpml(string name)
+        {
+            var id = RiverWall.NewId(name);
+            var wall = RavenSession.Load<RiverWall>(id.Full());
+
+            if (wall != null)
+            {
+                var opml = wall.Sources.ToOpml();
+                var xml = opml.ToXML();
+
+                return Content(xml.ToString(), "text/xml");
             }
             else
                 return HttpNotFound();

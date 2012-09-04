@@ -172,6 +172,7 @@ body {
 
         static string _wallLiquidTemplate = @"
 <div class=""container"">
+<a href=""/r/opml/{{ name }}""><img src=""/images/opml-icon-128x128.png"" width=""30"" title=""OPML River Subscription List""/></a>
 <div class=""tabbable"">
     <ul class=""nav nav-tabs"" id=""river_tabs"">
         {% for river in rivers -%}
