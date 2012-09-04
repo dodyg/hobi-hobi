@@ -19,6 +19,7 @@
 <div id="message"></div>
 <form class="form-search">
     <div class="controls controls-row">
+        <input type="hidden" name="RiverGuid" id="RiverGuid" value="@ViewBag.RiverGuid" />
         <input type="text" name="Title" id="Title" class="span3"  placeholder="Title"/> 
         <input type="text" name="Uri" id="Uri" class="span4"  placeholder="JSONP URI"/> 
         <button type="button" id="btn_submit" class="btn btn-primary">Add River</button>
@@ -29,9 +30,19 @@
     <script type="text/javascript">
         $(function () {
 
+            $('#loading_div').hide()  // hide it initially
+            .ajaxStart(function () {
+                $(this).show();
+            })
+            .ajaxStop(function () {
+                $(this).hide();
+            });
+
+
             $('#btn_submit').click(function () {
                 var title = $('#Title').val();
                 var uri = $('#Uri').val();
+                var riverGuid = $('#RiverGuid').val();
 
                 if (title == '') {
                     alarm('Title is required');
@@ -44,7 +55,8 @@
                 }
 
                 var doc = {
-                    title : title,
+                    riverGuid : riverGuid,
+                    title: title,
                     uri : uri
                 };
 

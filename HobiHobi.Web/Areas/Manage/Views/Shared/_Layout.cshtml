@@ -23,5 +23,26 @@
     @RenderSection("CssInline", false)
     @RenderSection("JsInline", false)
 
+    <div id="loading_div" style="display:none;">
+        <img src="/images/ajax_spinner.gif" alt="wait" />
+    </div>
+
+    <style type="text/css">
+    #loading_div {
+            height: 400px;
+            position: relative;
+        }
+            #loading_div img{
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                margin-left: -32px; /* -1 * image width / 2 */
+                margin-top: -32px;  /* -1 * image height / 2 */
+                display: block;     
+            }
+    </style>
+
+    </style>
+
 </body>
 </html>

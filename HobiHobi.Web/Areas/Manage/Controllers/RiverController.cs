@@ -34,8 +34,11 @@ namespace HobiHobi.Web.Areas.Manage.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddSource(string title, string uri)
+        public ActionResult AddSource(string riverGuid, string title, string uri)
         {
+            if (string.IsNullOrWhiteSpace(riverGuid))
+                this.PropertyValidationMessage("RiverGuid", "A critical id is missing. Please refresh your page and try again");
+
             if (string.IsNullOrWhiteSpace(title))
                 this.PropertyValidationMessage("Title", "Title is required");
 
@@ -50,6 +53,30 @@ namespace HobiHobi.Web.Areas.Manage.Controllers
             catch
             {
                 this.PropertyValidationMessage("Uri", "Given Uri is invalid. Please do not forget to include http://");
+            }
+
+            if (!ModelState.IsValid)
+            {
+                var errors = ProduceAJAXErrorMessage(ModelState);
+                return HttpDoc<EmptyHttpReponse>.PreconditionFailed(errors.ToJson()).ToJson();
+            }
+
+            var wall = RavenSession.Query<RiverWall>().Where(x => x.Guid == riverGuid).FirstOrDefault();
+
+            if (wall == null)
+                this.PropertyValidationMessage("RiverGuid", "The River Id is not valid. Please refresh your page.");
+
+            try
+            {
+                var fetcher = new RiverFetcher();
+                var content = fetcher.Download("http://" + url.DnsSafeHost, url.PathAndQuery);
+                var river = fetcher.Serialize(content);
+
+                return HttpDoc<dynamic>.OK(new { Message = "hello world" }).ToJson();
+            }
+            catch
+            {
+                this.PropertyValidationMessage("Uri", "Given Uri does not exist or is an invalid river format. Please try again.");
             }
 
             if (!ModelState.IsValid)
