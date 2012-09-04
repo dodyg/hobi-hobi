@@ -257,11 +257,11 @@
         });
 
         function inform(msg){
-            $('#message').addClass('alert alert-success').html(msg).show().fadeOut(3000);
+            $('#message').removeClass().addClass('alert alert-success').html(msg).show().fadeOut(3000);
         }
         
         function alarm(msg) {
-            $('#message').addClass('alert alert-error').html(msg).show().fadeOut(10000);
+            $('#message').removeClass().addClass('alert alert-error').html(msg).show().fadeOut(10000);
         }
     </script>
 }

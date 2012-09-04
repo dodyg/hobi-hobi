@@ -33,6 +33,34 @@ namespace HobiHobi.Web.Areas.Manage.Controllers
             return View(sources);
         }
 
+        [HttpPost]
+        public ActionResult AddSource(string title, string uri)
+        {
+            if (string.IsNullOrWhiteSpace(title))
+                this.PropertyValidationMessage("Title", "Title is required");
+
+            if (string.IsNullOrWhiteSpace(uri))
+                this.PropertyValidationMessage("Uri", "Uri is required");
+
+            Uri url = null;
+            try
+            {
+                url = new Uri(uri);
+            }
+            catch
+            {
+                this.PropertyValidationMessage("Uri", "Given Uri is invalid. Please do not forget to include http://");
+            }
+
+            if (!ModelState.IsValid)
+            {
+                var errors = ProduceAJAXErrorMessage(ModelState);
+                return HttpDoc<EmptyHttpReponse>.PreconditionFailed(errors.ToJson()).ToJson();
+            }
+
+            return HttpDoc<dynamic>.OK(new { Message = "hello world" }).ToJson();
+        }
+
         [HttpGet]
         public ActionResult Create()
         {

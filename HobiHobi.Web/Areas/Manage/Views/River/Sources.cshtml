@@ -16,6 +16,77 @@
 }
 </table>
 
+<div id="message"></div>
+<form class="form-search">
+    <div class="controls controls-row">
+        <input type="text" name="Title" id="Title" class="span3"  placeholder="Title"/> 
+        <input type="text" name="Uri" id="Uri" class="span4"  placeholder="JSONP URI"/> 
+        <button type="button" id="btn_submit" class="btn btn-primary">Add River</button>
+    </div>
+</form>
+
+@section JsInline{
+    <script type="text/javascript">
+        $(function () {
+
+            $('#btn_submit').click(function () {
+                var title = $('#Title').val();
+                var uri = $('#Uri').val();
+
+                if (title == '') {
+                    alarm('Title is required');
+                    return;
+                }
+
+                if (uri == '') {
+                    alarm('Uri is required');
+                    return;
+                }
+
+                var doc = {
+                    title : title,
+                    uri : uri
+                };
+
+                //var json = JSON.stringify(doc);
+
+                $.ajax('/manage/river/addsource', {
+                    data: doc,
+                    //contentType: 'application/json; charset=utf-8',
+                    type: 'POST',
+                    dataType: 'json'
+                })
+                    .done(function (payload) {
+                        if (payload.StatusCode == 200)
+                            inform(payload.Data.Message);
+                        else {
+                            var details = JSON.parse(payload.ErrorDetails);
+                            var r = $('<ul></ul>');
+                            _.each(details.Properties, function (m) {
+                                r.append("<li>" + m.Errors[0] + "</li>");
+                            });
+
+                            alarm(r);
+                        }
+                    })
+                    .fail(function (jqXHR, textStatus) {
+                        alarm('fail ' + textStatus);
+                    });
+
+            });
+        });
+
+        function inform(msg) {
+            $('#message').removeClass().addClass('alert alert-success').html(msg).show().fadeOut(3000);
+        }
+
+        function alarm(msg) {
+            $('#message').removeClass().addClass('alert alert-error').html(msg).show().fadeOut(10000);
+        }
+
+    </script>
+}
+
 @section SideNavigation{
 <ul class="nav nav-pills nav-stacked">
     <li class="active"><a href="#">Sources</a></li>
