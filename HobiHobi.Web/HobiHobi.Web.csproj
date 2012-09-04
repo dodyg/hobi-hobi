@@ -283,6 +283,12 @@
   <ItemGroup>
     <Content Include="App_Code\CodeMirror.cshtml" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Manage\Views\Shared\_LayoutPublic.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Manage\Views\River\Sources.cshtml" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

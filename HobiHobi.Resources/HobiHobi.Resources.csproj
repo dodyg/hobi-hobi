@@ -75,6 +75,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>EditTemplate.resx</DependentUpon>
     </Compile>
+    <Compile Include="Manage\River\Sources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Sources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -96,6 +101,11 @@
     <EmbeddedResource Include="Manage\River\EditTemplate.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>EditTemplate.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>Local.Manage.River</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Manage\River\Sources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Sources.Designer.cs</LastGenOutput>
       <CustomToolNamespace>Local.Manage.River</CustomToolNamespace>
     </EmbeddedResource>
   </ItemGroup>

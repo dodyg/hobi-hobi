@@ -10,6 +10,7 @@
 </div>
 <form class="form-horizontal" action="@Request.RawUrl" method="post">
     @Html.ValidationSummary(true)
+    @Html.AntiForgeryToken(HobiHobi.Core.SiteConstants.ANTI_FORGERY_SALT)
   <div class="control-group">
     <label class="control-label required" for="Name">@Local.Manage.River.Create.LblName</label>
     <div class="controls">

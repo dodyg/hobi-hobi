@@ -21,6 +21,19 @@ namespace HobiHobi.Web.Areas.Manage.Controllers
     public class RiverController : RavenController
     {
         [HttpGet]
+        public ActionResult Sources(string guid)
+        {
+            var wall = RavenSession.Query<RiverWall>().Where(x => x.Guid == guid).FirstOrDefault();
+
+            if (wall == null)
+                return HttpNotFound();
+
+            var sources = wall.Sources.Items;
+            ViewBag.RiverGuid = wall.Guid;
+            return View(sources);
+        }
+
+        [HttpGet]
         public ActionResult Create()
         {
             return View();

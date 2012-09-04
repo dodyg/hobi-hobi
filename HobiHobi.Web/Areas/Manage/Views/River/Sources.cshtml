@@ -1,0 +1,24 @@
+﻿@model List<HobiHobi.Core.Subscriptions.RiverSubscriptionItem>
+@{
+    ViewBag.Title = "Sources";
+    Layout = "~/Areas/Manage/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Local.Manage.River.Sources.Title</h2>
+
+<table class="table">
+@foreach (var f in Model)
+{
+    <tr>
+        <td>@f.Text</td>
+        <td><a href="@f.JSONPUri">@f.JSONPUri</a></td>
+    </tr>
+}
+</table>
+
+@section SideNavigation{
+<ul class="nav nav-pills nav-stacked">
+    <li class="active"><a href="#">Sources</a></li>
+    <li><a href="/manage/river/edittemplate?guid=@ViewBag.RiverGuid">Style</a></li>
+</ul>
+}
