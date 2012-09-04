@@ -38,6 +38,45 @@ namespace HobiHobi.Web.Areas.Manage.Controllers
         }
 
         [HttpPost]
+        public ActionResult RemoveSource(string riverGuid, string name)
+        {
+            if (string.IsNullOrWhiteSpace(riverGuid))
+                this.PropertyValidationMessage("RiverGuid", "A critical id is missing. Please refresh your page and try again");
+
+            if (string.IsNullOrWhiteSpace(name))
+                this.PropertyValidationMessage("Name", "Feed name is missing");
+
+            if (!ModelState.IsValid)
+            {
+                var errors = ProduceAJAXErrorMessage(ModelState);
+                return HttpDoc<EmptyHttpReponse>.PreconditionFailed(errors.ToJson()).ToJson();
+            }
+
+            var wall = RavenSession.Query<RiverWall>().Where(x => x.Guid == riverGuid).FirstOrDefault();
+
+            if (wall == null)
+                this.PropertyValidationMessage("RiverGuid", "The River Id is not valid. Please refresh your page.");
+            else
+            {
+                //remove name
+                wall.Sources.Items = wall.Sources.Items.Where(x => x.Name != name).ToList();
+
+                RavenSession.Store(wall);
+                this.SaveChangesAndTerminate();
+
+                return HttpDoc<dynamic>.OK(new { Message = "Source remove", Name = name }).ToJson();
+            }
+
+            if (!ModelState.IsValid)
+            {
+                var errors = ProduceAJAXErrorMessage(ModelState);
+                return HttpDoc<EmptyHttpReponse>.PreconditionFailed(errors.ToJson()).ToJson();
+            }
+
+            return HttpDoc<dynamic>.OK(new { Message = "Source removed", Name = name }).ToJson();
+        }
+
+        [HttpPost]
         public ActionResult AddSource(string riverGuid, string title, string uri)
         {
             if (string.IsNullOrWhiteSpace(riverGuid))
@@ -69,29 +108,31 @@ namespace HobiHobi.Web.Areas.Manage.Controllers
 
             if (wall == null)
                 this.PropertyValidationMessage("RiverGuid", "The River Id is not valid. Please refresh your page.");
-
-            try
+            else
             {
-                var fetcher = new RiverFetcher();
-                var content = fetcher.Download("http://" + jsonUrl.DnsSafeHost, jsonUrl.PathAndQuery);
-                var river = fetcher.Serialize(content);
-                var name = ConvertTitleToName(title);
-
-                wall.Sources.Items.Add(new RiverSubscriptionItem
+                try
                 {
-                    Name = name,
-                    Text = title,
-                    JSONPUri = jsonUrl
-                });
+                    var fetcher = new RiverFetcher();
+                    var content = fetcher.Download("http://" + jsonUrl.DnsSafeHost, jsonUrl.PathAndQuery);
+                    var river = fetcher.Serialize(content);
+                    var name = ConvertTitleToName(title);
 
-                RavenSession.Store(wall);
-                this.SaveChangesAndTerminate();
+                    wall.Sources.Items.Add(new RiverSubscriptionItem
+                    {
+                        Name = name,
+                        Text = title,
+                        JSONPUri = jsonUrl
+                    });
 
-                return HttpDoc<dynamic>.OK(new { Message = "Source added", Name = name }).ToJson();
-            }
-            catch
-            {
-                this.PropertyValidationMessage("Uri", "Given Uri does not exist or is an invalid river format. Please try again.");
+                    RavenSession.Store(wall);
+                    this.SaveChangesAndTerminate();
+
+                    return HttpDoc<dynamic>.OK(new { Message = "Source added", Name = name }).ToJson();
+                }
+                catch
+                {
+                    this.PropertyValidationMessage("Uri", "Given Uri does not exist or is an invalid river format. Please try again.");
+                }
             }
 
             if (!ModelState.IsValid)
@@ -100,7 +141,7 @@ namespace HobiHobi.Web.Areas.Manage.Controllers
                 return HttpDoc<EmptyHttpReponse>.PreconditionFailed(errors.ToJson()).ToJson();
             }
 
-            return HttpDoc<dynamic>.OK(new { Message = "hello world" }).ToJson();
+            return HttpDoc<dynamic>.OK(new { Message = "Source added" }).ToJson();
         }
 
         [HttpGet]

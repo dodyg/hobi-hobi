@@ -11,7 +11,7 @@
 <table class="table" id="source_list">
 @foreach (var f in Model)
 {
-    <tr>
+    <tr data-name="@f.Name">
         <td>@f.Text</td>
         <td><a href="@f.JSONPUri">@f.JSONPUri</a></td>
         <td><a href="#" class="delete_source" data-name="@f.Name"><i class="icon-remove"></i></a></td>
@@ -72,7 +72,7 @@
                         if (payload.StatusCode == 200) {
                             var name = payload.Data.Name;
 
-                            var row = $('<tr></tr>');
+                            var row = $('<tr data-name="' + name + '"></tr>');
                             row.append('<td>' + title + '</td>');
                             row.append('<td><a href="' + uri + '">' + uri + '</a></td>');
                             row.append('<td><a href="#" class="delete_source" data-name="' + name + '"><i class="icon-remove"></i></a></td>');
@@ -85,7 +85,7 @@
 
                             $('.delete_source').off('click');
                             $('.delete_source').on('click', function (event) {
-                                alert($(this).data('name'));
+                                removeSource(this);
                             });
                         }
                         else {
@@ -101,13 +101,47 @@
                     .fail(function (jqXHR, textStatus) {
                         alarm('fail ' + textStatus);
                     });
-
             });
 
             $('.delete_source').on('click', function (event) {
-                alert($(this).data('name'));
+                removeSource(this);
             });
         });
+
+        function removeSource(self) {
+            var name = $(self).data('name');
+            var riverGuid = $('#RiverGuid').val();
+
+            var doc = {
+                riverGuid: riverGuid,
+                name : name
+            };
+
+            $.ajax('/manage/river/removesource', {
+                data: doc,
+                type: 'POST',
+                dataType: 'json'
+            })
+                    .done(function (payload) {
+                        if (payload.StatusCode == 200) {
+                            $('tr[data-name="' + name + '"]').remove();
+                            inform(payload.Data.Message);
+                        }
+                        else {
+                            var details = JSON.parse(payload.ErrorDetails);
+                            var r = $('<ul></ul>');
+                            _.each(details.Properties, function (m) {
+                                r.append("<li>" + m.Errors[0] + "</li>");
+                            });
+
+                            alarm(r);
+                        }
+                    })
+                    .fail(function (jqXHR, textStatus) {
+                        alarm('fail ' + textStatus);
+                    });
+        }
+
 
         function inform(msg) {
             $('#message').removeClass().addClass('alert alert-success').html(msg).show().fadeOut(3000);
