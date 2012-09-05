@@ -25,15 +25,5 @@ namespace HobiHobi.Core.Subscriptions
             var response = client.Execute(request);
             return response.Content;
         }
-
-        public Opml Serialize(string json)
-        {
-            var feeds = JsonConvert.DeserializeObject<Opml>(json, new JsonSerializerSettings
-            {
-                ContractResolver = new CamelCasePropertyNamesContractResolver()
-            });
-
-            return feeds;
-        }
     }
 }

@@ -36,9 +36,9 @@ namespace HobiHobi.Tests.Core.Syndications
 
             var fetcher = new SyndicationFetcher(subscription);
 
-            var totalCount = fetcher.Download();
+            var feeds = fetcher.DownloadAll();
 
-            Assert.IsTrue(totalCount > 0, "All downloads must be bigger than zero");
+            Assert.IsTrue(feeds.Count > 0, "All downloads must be bigger than zero");
         }
 
         

@@ -6,6 +6,8 @@ using System.Linq;
 using System.ServiceModel.Syndication;
 using System.Text;
 using System.Xml;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace HobiHobi.Core.Syndications
 {
@@ -17,17 +19,27 @@ namespace HobiHobi.Core.Syndications
             _subscription = subscription;
         }
 
-        public int Download()
+        public List<SyndicationFeed> DownloadAll()
         {
-            int totalCount = 0;
-            foreach (var sub in _subscription.Items)
+            var feeds = new List<SyndicationFeed>();
+
+            var tasks = new List<Task>();
+
+            foreach(var sub in _subscription.Items)
             {
-                var res = Fetch(sub.XmlUri);
-                if (res.IsFound)
-                    totalCount = res.Item.Items.Count();
+                var r = Task.Factory.StartNew(() =>
+                    {
+                        var res = Fetch(sub.XmlUri);
+                        if (res.IsFound)
+                            feeds.Add(res.Item);
+                    });
+
+                tasks.Add(r);
             }
 
-            return totalCount;
+            Task.WaitAll(tasks.ToArray());
+
+            return feeds;
         }
 
         /// <summary>
@@ -37,11 +49,18 @@ namespace HobiHobi.Core.Syndications
         /// <returns></returns>
         public IQuerySetOne<SyndicationFeed> Fetch(Uri uri)
         {
-            using (var reader = XmlReader.Create(uri.ToString()))
+            try
             {
-                var feed = SyndicationFeed.Load(reader);
+                using (var reader = XmlReader.Create(uri.ToString()))
+                {
+                    var feed = SyndicationFeed.Load(reader);
 
-                return new QuerySetOne<SyndicationFeed>(feed);
+                    return new QuerySetOne<SyndicationFeed>(feed);
+                }
+            }
+            catch
+            {
+                return new QuerySetOne<SyndicationFeed>(null);
             }
         }
     }
