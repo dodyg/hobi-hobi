@@ -15,6 +15,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using System.Web.Security;
+
 namespace HobiHobi.Web
 {
     public class MvcApplication : System.Web.HttpApplication
@@ -60,6 +61,20 @@ namespace HobiHobi.Web
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+
+            routes.MapRoute(
+                "Syndication", // Route name
+                "s/{name}", // URL with parameters
+                new { controller = "Syndication", action = "Index" }, // Parameter defaults
+                new string[] { "HobiHobi.Web.Controllers" }
+            );
+
+            routes.MapRoute(
+                "SyndicationOpml", // Route name
+                "s/opml/{name}", // URL with parameters
+                new { controller = "Syndication", action = "GetOpml" }, // Parameter defaults
+                new string[] { "HobiHobi.Web.Controllers" }
+            );
 
             routes.MapRoute(
                 "RiverFeedName", // Route name

@@ -1,0 +1,38 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>@ViewBag.Title</title>
+    <meta name="description" content="@ViewBag.Description" />
+    <meta name="keywords" content="@ViewBag.Keywords" />
+    <link href="/site/css/@HobiHobi.Web.MvcApplication.CommonCssTag" rel="stylesheet" type="text/css" />
+    <link href="@ViewBag.LinkedCss" rel="stylesheet" type="text/css" />
+    
+    <script src="/site/js/@HobiHobi.Web.MvcApplication.CommonJsTag" type="text/javascript"></script>
+    <script src="@ViewBag.LinkedJs" type="text/javascript"></script>
+   
+    @Html.Raw(ViewBag.HeadInline)
+</head>
+<body>
+    <div class="container">
+        @if (ViewBag.EditLink != null)
+        {
+            <div id="edit_this_syndication"><a href="@ViewBag.EditLink">Edit <i class="icon-edit"></i></a></div>
+        }
+        <h1>@ViewBag.Title</h1>
+        <p>@ViewBag.Description</p>
+
+        <a href="/s/opml/@ViewBag.Name"><img src="/images/opml-icon-128x128.png" width="30" title="OPML RSS Subscription List"/></a>
+
+    </div>
+    <style type="text/css">
+        #edit_this_syndication {
+            margin-left:15px;
+            margin:5px;
+        }
+    </style>
+</body>
+</html>

@@ -14,6 +14,7 @@ namespace HobiHobi.Core.Identity
         public const string COOKIE_NAME = "TransientAccountInfo";
  
         public List<string> RiverGuids { get; set; }
+        public List<string> SyndicationGuids { get; set; }
         public DateTime DateCreated { get; set; }
         public DateTime LastModified { get; set; }
 
@@ -22,11 +23,17 @@ namespace HobiHobi.Core.Identity
             DateCreated = Stamp.Time();
             LastModified = Stamp.Time();
             RiverGuids = new List<string>();
+            SyndicationGuids = new List<string>();
         }
 
-        public bool IsFound(string guid)
+        public bool IsRiverFound(string guid)
         {
             return RiverGuids.Any(x => x == guid);
+        }
+
+        public bool IsSyndicationListFound(string guid)
+        {
+            return SyndicationGuids.Any(x => x == guid);
         }
     }
 }

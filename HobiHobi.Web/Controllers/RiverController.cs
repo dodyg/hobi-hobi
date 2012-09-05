@@ -38,7 +38,7 @@ namespace HobiHobi.Web.Controllers
 
                 var edit = CookieMonster.GetFromCookie<TransientAccount>(Request.Cookies[TransientAccount.COOKIE_NAME]);
 
-                if (edit.IsFound && edit.Item.IsFound(wall.Guid))
+                if (edit.IsFound && edit.Item.IsRiverFound(wall.Guid))
                 {
                     ViewBag.EditLink = "/manage/river/edittemplate/?guid=" + wall.Guid;
                 }
@@ -57,11 +57,6 @@ namespace HobiHobi.Web.Controllers
 
                 ViewBag.Body = result;
                 
-                // * Use just for testing
-                /*var init = new TransientAccount();
-                init.RiverGuids.Add(wall.Guid);
-                Response.Cookies.Add(CookieMonster.SetCookie(init, TransientAccount.COOKIE_NAME));
-                */
                 return View();
             }
             else

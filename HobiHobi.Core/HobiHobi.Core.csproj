@@ -177,6 +177,7 @@
     <Compile Include="Subscriptions\RssSubscriptionItem.cs" />
     <Compile Include="Subscriptions\SubscriptionFetcher.cs" />
     <Compile Include="Syndications\SyndicationFetcher.cs" />
+    <Compile Include="Syndications\SyndicationList.cs" />
     <Compile Include="Utils\CookieMonster.cs" />
     <Compile Include="Utils\JsonSerializer.cs" />
     <Compile Include="Validators\BasicRiverWallViewModelValidator.cs" />

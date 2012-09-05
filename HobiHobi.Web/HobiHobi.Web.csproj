@@ -122,6 +122,7 @@
     <Compile Include="Controllers\RavenController.cs" />
     <Compile Include="Controllers\RiverController.cs" />
     <Compile Include="Controllers\SiteController.cs" />
+    <Compile Include="Controllers\SyndicationController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -288,6 +289,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Manage\Views\River\Sources.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Syndication\Index.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
