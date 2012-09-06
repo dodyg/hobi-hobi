@@ -77,6 +77,13 @@ namespace HobiHobi.Web
             );
 
             routes.MapRoute(
+                "SyndicationRiverJs", // Route name
+                "s/riverjs/{name}", // URL with parameters
+                new { controller = "Syndication", action = "GetRiverJs" }, // Parameter defaults
+                new string[] { "HobiHobi.Web.Controllers" }
+            );
+
+            routes.MapRoute(
                 "RiverFeedName", // Route name
                 "r/feed/{name}/{feedname}", // URL with parameters
                 new { controller = "River", action = "GetFeed" }, // Parameter defaults
