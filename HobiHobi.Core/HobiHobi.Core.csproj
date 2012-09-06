@@ -176,6 +176,7 @@
     <Compile Include="Subscriptions\RssSubscription.cs" />
     <Compile Include="Subscriptions\RssSubscriptionItem.cs" />
     <Compile Include="Subscriptions\SubscriptionFetcher.cs" />
+    <Compile Include="Syndications\FeedAndSource.cs" />
     <Compile Include="Syndications\SyndicationFetcher.cs" />
     <Compile Include="Syndications\SyndicationList.cs" />
     <Compile Include="Utils\CookieMonster.cs" />

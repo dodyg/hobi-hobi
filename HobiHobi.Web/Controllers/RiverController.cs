@@ -122,7 +122,7 @@ namespace HobiHobi.Web.Controllers
                     var uri = feed.JSONPUri;
                     return new QuerySetOne<HostAndPath>(new HostAndPath
                     (
-                        host: "http://" + uri.DnsSafeHost,
+                        host: "http://" + uri.DnsSafeHost + ":" + uri.Port,
                         path: uri.PathAndQuery
                     ));
                 }

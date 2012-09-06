@@ -19,19 +19,19 @@ namespace HobiHobi.Core.Syndications
             _subscription = subscription;
         }
 
-        public List<SyndicationFeed> DownloadAll()
+        public List<FeedAndSource> DownloadAll()
         {
-            var feeds = new List<SyndicationFeed>();
+            var feeds = new List<FeedAndSource>();
 
             var tasks = new List<Task>();
 
-            foreach(var sub in _subscription.Items)
+            foreach (var sub in _subscription.Items)
             {
                 var r = Task.Factory.StartNew(() =>
                     {
                         var res = Fetch(sub.XmlUri);
                         if (res.IsFound)
-                            feeds.Add(res.Item);
+                            feeds.Add(new FeedAndSource(sub, res.Item));
                     });
 
                 tasks.Add(r);

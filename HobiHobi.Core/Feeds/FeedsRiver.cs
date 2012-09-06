@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HobiHobi.Core.Syndications;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.ServiceModel.Syndication;
@@ -13,7 +14,7 @@ namespace HobiHobi.Core.Feeds
     {
         public FeedsCollection UpdatedFeeds { get; set; }
 
-        public static FeedsRiver FromSyndication(List<SyndicationFeed> feeds)
+        public static FeedsRiver FromSyndication(List<FeedAndSource> feeds)
         {
             var river = new FeedsRiver();
             river.UpdatedFeeds = new FeedsCollection();
@@ -21,17 +22,20 @@ namespace HobiHobi.Core.Feeds
             var f = from x in feeds
                     select new FeedSite
                     {
-                        FeedTitle = x.Title.Text,
-                        FeedDescription = x.Description.Text,
-                        WhenLastUpdate = x.LastUpdatedTime.ToString("R"),
-                        Item = (from y in x.Items
+                        FeedTitle = x.Feed.Title.Text,
+                        FeedDescription = x.Feed.Description.Text,
+                        WhenLastUpdate = x.Feed.LastUpdatedTime.ToString("R"),
+                        FeedUrl = x.Source.XmlUri != null ? x.Source.XmlUri.ToString() : string.Empty,
+                        WebsiteUrl = x.Source.HtmlUri != null ? x.Source.HtmlUri.ToString() : string.Empty,
+                        Item = (from y in x.Feed.Items
                                 select new FeedItem
                                 {
                                     Id = y.Id,
                                     Title = y.Title.Text,
                                     Body = y.Summary.Text,
                                     PubDate = y.PublishDate.ToString("R"),
-                                    PermaLink = y.Id
+                                    PermaLink = y.Id,
+                                    Link = y.Id
                                 }).ToArray()
                     };
 
