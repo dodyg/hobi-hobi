@@ -1,5 +1,6 @@
 ﻿using HobiHobi.Core.Subscriptions;
 using HobiHobi.Core.Syndications;
+using HobiHobi.Core.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +15,7 @@ namespace HobiHobi.Web.Controllers
         {
             var uri = new Uri(url);
             var subFetcher = new SubscriptionFetcher();
-            var xml = subFetcher.Download("http://" + uri.DnsSafeHost + ":" + uri.Port, uri.PathAndQuery);
+            var xml = subFetcher.Download(Texts.FromUriHost(uri), uri.PathAndQuery);
             var opml = new Opml();
             opml.LoadFromXML(xml);
             var subscription = new RssSubscription(opml);

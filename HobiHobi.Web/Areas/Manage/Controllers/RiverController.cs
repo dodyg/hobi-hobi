@@ -113,7 +113,7 @@ namespace HobiHobi.Web.Areas.Manage.Controllers
                 try
                 {
                     var fetcher = new RiverFetcher();
-                    var content = fetcher.Download("http://" + jsonUrl.DnsSafeHost + ":" + jsonUrl.Port, jsonUrl.PathAndQuery);
+                    var content = fetcher.Download(Texts.FromUriHost(jsonUrl), jsonUrl.PathAndQuery);
                     var river = fetcher.Serialize(content);
                     var name = ConvertTitleToName(title);
 

@@ -1,4 +1,5 @@
 ﻿using HobiHobi.Core.Syndications;
+using HobiHobi.Core.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,7 +33,7 @@ namespace HobiHobi.Core.Feeds
                                 {
                                     Id = y.Id,
                                     Title = y.Title.Text,
-                                    Body = y.Summary.Text,
+                                    Body = Texts.LimitTextForRiverJs(y.Summary.Text),
                                     PubDate = y.PublishDate.ToString("R"),
                                     PermaLink = y.Id,
                                     Link = y.Id

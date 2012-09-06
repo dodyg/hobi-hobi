@@ -8,6 +8,7 @@ using HobiHobi.Core;
 using HobiHobi.Core.Feeds;
 using HobiHobi.Core.Framework;
 using HobiHobi.Core.Subscriptions;
+using HobiHobi.Core.Utils;
 
 namespace HobiHobi.Web.Controllers
 {
@@ -74,7 +75,7 @@ namespace HobiHobi.Web.Controllers
             {
                 var fetcher = new SubscriptionFetcher();
 #if DEBUG
-                var xml = fetcher.Download("http://" + Request.Url.Host + ":" + Request.Url.Port, "api/1/default/RiversSubscription");
+                var xml = fetcher.Download(Texts.FromUriHost(Request.Url), "api/1/default/RiversSubscription");
 #else
                 var xml = fetcher.Download("http://hobihobi.apphb.com", "api/1/default/RiversSubscription");
 #endif
@@ -168,7 +169,7 @@ namespace HobiHobi.Web.Controllers
                     var uri = feed.JSONPUri;
                     return new QuerySetOne<HostAndPath>(new HostAndPath
                     (
-                        host:"http://" + uri.DnsSafeHost,
+                        host: Texts.FromUriHost(uri),
                         path:uri.PathAndQuery
                     ));
                 }
