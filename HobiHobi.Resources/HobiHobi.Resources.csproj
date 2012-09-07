@@ -80,6 +80,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Sources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Manage\Syndication\Create.Designer.cs">
+      <DependentUpon>Create.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -107,6 +112,11 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Sources.Designer.cs</LastGenOutput>
       <CustomToolNamespace>Local.Manage.River</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Manage\Syndication\Create.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Create.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>Local.Manage.Syndication</CustomToolNamespace>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

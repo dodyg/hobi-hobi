@@ -183,6 +183,7 @@
     <Compile Include="Utils\JsonSerializer.cs" />
     <Compile Include="Utils\Texts.cs" />
     <Compile Include="Validators\BasicRiverWallViewModelValidator.cs" />
+    <Compile Include="Validators\BasicSyndicationListViewModelValidator.cs" />
     <Compile Include="Validators\Resources\RiverTemplateViewModelValidator.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

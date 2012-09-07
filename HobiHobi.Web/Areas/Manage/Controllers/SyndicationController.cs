@@ -70,7 +70,8 @@ namespace HobiHobi.Web.Areas.Manage.Controllers
 
             this.SaveChangesAndTerminate();
 
-            return RedirectToAction("Source", new { guid = list.Guid });
+            return Redirect("/s/" + list.Name);
+            //return RedirectToAction("Source", new { guid = list.Guid });
         }
 
     }
