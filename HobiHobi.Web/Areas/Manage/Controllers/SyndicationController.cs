@@ -115,7 +115,7 @@ namespace HobiHobi.Web.Areas.Manage.Controllers
             var list = RavenSession.Query<SyndicationList>().Where(x => x.Guid == syndicationGuid).FirstOrDefault();
 
             if (list == null)
-                this.PropertyValidationMessage("RiverGuid", "The River Id is not valid. Please refresh your page.");
+                this.PropertyValidationMessage("SyndicationGuid", "The Syndication List Id is not valid. Please refresh your page.");
             else
             {
                 try
@@ -155,6 +155,45 @@ namespace HobiHobi.Web.Areas.Manage.Controllers
             }
 
             return HttpDoc<dynamic>.OK(new { Message = "Source added" }).ToJson();
+        }
+
+        [HttpPost]
+        public ActionResult RemoveSource(string syndicationGuid, string name)
+        {
+            if (string.IsNullOrWhiteSpace(syndicationGuid))
+                this.PropertyValidationMessage("SyndicationGuid", "A critical id is missing. Please refresh your page and try again");
+
+            if (string.IsNullOrWhiteSpace(name))
+                this.PropertyValidationMessage("Name", "Feed name is missing");
+
+            if (!ModelState.IsValid)
+            {
+                var errors = this.ProduceAJAXErrorMessage(ModelState);
+                return HttpDoc<EmptyHttpReponse>.PreconditionFailed(errors.ToJson()).ToJson();
+            }
+
+            var list = RavenSession.Query<SyndicationList>().Where(x => x.Guid == syndicationGuid).FirstOrDefault();
+
+            if (list == null)
+                this.PropertyValidationMessage("SyndicationGuid", "The River Id is not valid. Please refresh your page.");
+            else
+            {
+                //remove name
+                list.Sources.Items = list.Sources.Items.Where(x => x.Name != name).ToList();
+
+                RavenSession.Store(list);
+                this.SaveChangesAndTerminate();
+
+                return HttpDoc<dynamic>.OK(new { Message = "Source remove", Name = name }).ToJson();
+            }
+
+            if (!ModelState.IsValid)
+            {
+                var errors = this.ProduceAJAXErrorMessage(ModelState);
+                return HttpDoc<EmptyHttpReponse>.PreconditionFailed(errors.ToJson()).ToJson();
+            }
+
+            return HttpDoc<dynamic>.OK(new { Message = "Source removed", Name = name }).ToJson();
         }
     }
 }

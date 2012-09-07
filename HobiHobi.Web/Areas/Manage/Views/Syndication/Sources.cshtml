@@ -110,12 +110,13 @@
 
         function removeSource(self) {
             var name = $(self).data('name');
-            var SyndicationGuid = $('#SyndicationGuid').val();
+            var syndicationGuid = $('#SyndicationGuid').val();
 
             var doc = {
-                SyndicationGuid: SyndicationGuid,
+                syndicationGuid: syndicationGuid,
                 name : name
             };
+
 
             $.ajax('/manage/syndication/removesource', {
                 data: doc,
@@ -157,6 +158,5 @@
 @section SideNavigation{
 <ul class="nav nav-pills nav-stacked">
     <li class="active"><a href="#">Sources</a></li>
-    <li><a href="/manage/river/edittemplate?guid=@ViewBag.SyndicationGuid">Style</a></li>
 </ul>
 }
