@@ -31,12 +31,7 @@ namespace HobiHobi.Web.Areas.Manage.Controllers
             return View(sources);
         }
 
-        public string ConvertTitleToName(string title)
-        {
-            return title.Replace(" ", "_").Replace("#", "_").Replace("'", "_").Replace(".", "_")
-                .Replace("/","_").Replace("\\","_");
-        }
-
+        
         [HttpPost]
         public ActionResult RemoveSource(string riverGuid, string name)
         {
@@ -48,7 +43,7 @@ namespace HobiHobi.Web.Areas.Manage.Controllers
 
             if (!ModelState.IsValid)
             {
-                var errors = ProduceAJAXErrorMessage(ModelState);
+                var errors = this.ProduceAJAXErrorMessage(ModelState);
                 return HttpDoc<EmptyHttpReponse>.PreconditionFailed(errors.ToJson()).ToJson();
             }
 
@@ -69,7 +64,7 @@ namespace HobiHobi.Web.Areas.Manage.Controllers
 
             if (!ModelState.IsValid)
             {
-                var errors = ProduceAJAXErrorMessage(ModelState);
+                var errors = this.ProduceAJAXErrorMessage(ModelState);
                 return HttpDoc<EmptyHttpReponse>.PreconditionFailed(errors.ToJson()).ToJson();
             }
 
@@ -100,7 +95,7 @@ namespace HobiHobi.Web.Areas.Manage.Controllers
 
             if (!ModelState.IsValid)
             {
-                var errors = ProduceAJAXErrorMessage(ModelState);
+                var errors = this.ProduceAJAXErrorMessage(ModelState);
                 return HttpDoc<EmptyHttpReponse>.PreconditionFailed(errors.ToJson()).ToJson();
             }
 
@@ -115,7 +110,7 @@ namespace HobiHobi.Web.Areas.Manage.Controllers
                     var fetcher = new RiverFetcher();
                     var content = fetcher.Download(Texts.FromUriHost(jsonUrl), jsonUrl.PathAndQuery);
                     var river = fetcher.Serialize(content);
-                    var name = ConvertTitleToName(title);
+                    var name = Texts.ConvertTitleToName(title);
 
                     wall.Sources.Items.Add(new RiverSubscriptionItem
                     {
@@ -137,7 +132,7 @@ namespace HobiHobi.Web.Areas.Manage.Controllers
 
             if (!ModelState.IsValid)
             {
-                var errors = ProduceAJAXErrorMessage(ModelState);
+                var errors = this.ProduceAJAXErrorMessage(ModelState);
                 return HttpDoc<EmptyHttpReponse>.PreconditionFailed(errors.ToJson()).ToJson();
             }
 
@@ -237,26 +232,6 @@ namespace HobiHobi.Web.Areas.Manage.Controllers
             }
         }
 
-        private ModelPropertyErrors ProduceAJAXErrorMessage(ModelStateDictionary ms)
-        {
-            var errors = new ModelPropertyErrors();
-
-            foreach (var key in ms.Keys)
-            {
-                ModelState modelState = ModelState[key];
-                if (modelState.Errors.Any())
-                {
-                    var r = new ModelPropertyError { Key = key };
-                    foreach (ModelError error in modelState.Errors)
-                    {
-                        r.Errors.Add(error.ErrorMessage);
-                    }
-                    errors.Properties.Add(r);
-                }
-            }
-
-            return errors;
-        }
 
         [HttpPost]//, 
         public ActionResult EditTemplate(string guid, RiverTemplateViewModel vm)
@@ -265,7 +240,7 @@ namespace HobiHobi.Web.Areas.Manage.Controllers
 
             if (!ModelState.IsValid)
             {
-                var errors = ProduceAJAXErrorMessage(ModelState);
+                var errors = this.ProduceAJAXErrorMessage(ModelState);
                 return HttpDoc<EmptyHttpReponse>.PreconditionFailed(errors.ToJson()).ToJson();
             }
 

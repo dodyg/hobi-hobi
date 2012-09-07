@@ -1,6 +1,7 @@
 ﻿using HobiHobi.Core;
 using HobiHobi.Core.Framework;
 using HobiHobi.Core.Identity;
+using HobiHobi.Core.Subscriptions;
 using HobiHobi.Core.Syndications;
 using HobiHobi.Core.Utils;
 using HobiHobi.Core.ViewModels;
@@ -15,9 +16,18 @@ namespace HobiHobi.Web.Areas.Manage.Controllers
 {
     public class SyndicationController : RavenController
     {
-        public ActionResult Index()
+        [HttpGet]
+        public ActionResult Sources(string guid)
         {
-            return View();
+            var list = RavenSession.Query<SyndicationList>().Where(x => x.Guid == guid).FirstOrDefault();
+
+            if (list == null)
+                return HttpNotFound();
+
+            var sources = list.Sources.Items;
+            ViewBag.SyndicationGuid = list.Guid;
+            ViewBag.SyndicationName = list.Name;
+            return View(sources);
         }
 
 
@@ -74,5 +84,77 @@ namespace HobiHobi.Web.Areas.Manage.Controllers
             //return RedirectToAction("Source", new { guid = list.Guid });
         }
 
+        [HttpPost]
+        public ActionResult AddSource(string syndicationGuid, string title, string uri)
+        {
+            if (string.IsNullOrWhiteSpace(syndicationGuid))
+                this.PropertyValidationMessage("SyndicationGuid", "A critical id is missing. Please refresh your page and try again");
+
+            if (string.IsNullOrWhiteSpace(title))
+                this.PropertyValidationMessage("Title", "Title is required");
+
+            if (string.IsNullOrWhiteSpace(uri))
+                this.PropertyValidationMessage("Uri", "Uri is required");
+
+            Uri xmlUrl = null;
+            try
+            {
+                xmlUrl = new Uri(uri);
+            }
+            catch
+            {
+                this.PropertyValidationMessage("Uri", "Given Uri is invalid. Please do not forget to include http://");
+            }
+
+            if (!ModelState.IsValid)
+            {
+                var errors = this.ProduceAJAXErrorMessage(ModelState);
+                return HttpDoc<EmptyHttpReponse>.PreconditionFailed(errors.ToJson()).ToJson();
+            }
+
+            var list = RavenSession.Query<SyndicationList>().Where(x => x.Guid == syndicationGuid).FirstOrDefault();
+
+            if (list == null)
+                this.PropertyValidationMessage("RiverGuid", "The River Id is not valid. Please refresh your page.");
+            else
+            {
+                try
+                {
+                    var fetcher = new SyndicationFetcher();
+                    var content = fetcher.Fetch(xmlUrl);
+
+                    if (content.IsFound)
+                    {
+                        var name = Texts.ConvertTitleToName(title);
+
+                        list.Sources.Items.Add(new RssSubscriptionItem
+                        {
+                            Name = name,
+                            Text = title,
+                            XmlUri = xmlUrl
+                        });
+
+                        RavenSession.Store(list);
+                        this.SaveChangesAndTerminate();
+
+                        return HttpDoc<dynamic>.OK(new { Message = "Source added", Name = name }).ToJson();
+                    }
+                    else
+                        this.PropertyValidationMessage("Uri", "Given Uri does not exist or is an invalid river format. Please try again.");
+                }
+                catch
+                {
+                    this.PropertyValidationMessage("Uri", "Given Uri does not exist or is an invalid river format. Please try again.");
+                }
+            }
+
+            if (!ModelState.IsValid)
+            {
+                var errors = this.ProduceAJAXErrorMessage(ModelState);
+                return HttpDoc<EmptyHttpReponse>.PreconditionFailed(errors.ToJson()).ToJson();
+            }
+
+            return HttpDoc<dynamic>.OK(new { Message = "Source added" }).ToJson();
+        }
     }
 }

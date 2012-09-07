@@ -13,19 +13,13 @@ namespace HobiHobi.Core.Syndications
 {
     public class SyndicationFetcher
     {
-        RssSubscription _subscription;
-        public SyndicationFetcher(RssSubscription subscription)
-        {
-            _subscription = subscription;
-        }
-
-        public List<FeedAndSource> DownloadAll()
+        public List<FeedAndSource> DownloadAll(RssSubscription subscription)
         {
             var feeds = new List<FeedAndSource>();
 
             var tasks = new List<Task>();
 
-            foreach (var sub in _subscription.Items)
+            foreach (var sub in subscription.Items)
             {
                 var r = Task.Factory.StartNew(() =>
                     {

@@ -11,6 +11,27 @@ namespace HobiHobi.Core.Framework
 {
     public static class ControllerExtensions
     {
+        public static ModelPropertyErrors ProduceAJAXErrorMessage(this Controller self, ModelStateDictionary ms)
+        {
+            var errors = new ModelPropertyErrors();
+
+            foreach (var key in ms.Keys)
+            {
+                ModelState modelState = ms[key];
+                if (modelState.Errors.Any())
+                {
+                    var r = new ModelPropertyError { Key = key };
+                    foreach (ModelError error in modelState.Errors)
+                    {
+                        r.Errors.Add(error.ErrorMessage);
+                    }
+                    errors.Properties.Add(r);
+                }
+            }
+
+            return errors;
+        }
+
         public static void Compress(this Controller self)
         {
             string acceptEncoding = self.Request.Headers["Accept-Encoding"];

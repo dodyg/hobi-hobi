@@ -34,5 +34,11 @@ namespace HobiHobi.Core.Utils
             else
                 return uri.Scheme + "://" + uri.DnsSafeHost + ":" + uri.Port;
         }
+
+        public static string ConvertTitleToName(string title)
+        {
+            return title.Replace(" ", "_").Replace("#", "_").Replace("'", "_").Replace(".", "_")
+                .Replace("/", "_").Replace("\\", "_");
+        }
     }
 }

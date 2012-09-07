@@ -20,8 +20,8 @@ namespace HobiHobi.Web.Controllers
             opml.LoadFromXML(xml);
             var subscription = new RssSubscription(opml);
 
-            var fetcher = new SyndicationFetcher(subscription);
-            var feeds = fetcher.DownloadAll();
+            var fetcher = new SyndicationFetcher();
+            var feeds = fetcher.DownloadAll(subscription);
 
             return Content("Feeds " + feeds.Count);
         }

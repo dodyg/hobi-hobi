@@ -1,4 +1,4 @@
-﻿@model List<HobiHobi.Core.Subscriptions.RiverSubscriptionItem>
+﻿@model List<HobiHobi.Core.Subscriptions.RssSubscriptionItem>
 @{
     ViewBag.Title = "Sources";
     Layout = "~/Areas/Manage/Views/Shared/_Layout.cshtml";
@@ -6,14 +6,14 @@
 
 <h2>@Local.Manage.River.Sources.Title</h2>
 
-<a target="_blank" href="/r/@ViewBag.RiverName">Open your Tabbed River</a>
+<a target="_blank" href="/s/@ViewBag.SyndicationName">Open your Syndication List</a>
 <br /><br />
 <table class="table" id="source_list">
 @foreach (var f in Model)
 {
     <tr data-name="@f.Name">
         <td>@f.Text</td>
-        <td><a href="@f.JSONPUri">@f.JSONPUri</a></td>
+        <td><a href="@f.XmlUri">@f.XmlUri</a></td>
         <td><a href="#" class="delete_source" data-name="@f.Name"><i class="icon-remove"></i></a></td>
     </tr>
 }
@@ -22,10 +22,10 @@
 <div id="message"></div>
 <form class="form-search">
     <div class="controls controls-row">
-        <input type="hidden" name="RiverGuid" id="RiverGuid" value="@ViewBag.RiverGuid" />
+        <input type="hidden" name="SyndicationGuid" id="SyndicationGuid" value="@ViewBag.SyndicationGuid" />
         <input type="text" name="Title" id="Title" class="span3"  placeholder="Title"/> 
-        <input type="text" name="Uri" id="Uri" class="span5"  placeholder="JSONP URI"/> 
-        <button type="button" id="btn_submit" class="btn btn-primary">Add River</button>
+        <input type="text" name="Uri" id="Uri" class="span5"  placeholder="RSS URI"/> 
+        <button type="button" id="btn_submit" class="btn btn-primary">Add RSS</button>
     </div>
 </form>
 
@@ -45,7 +45,7 @@
             $('#btn_submit').click(function () {
                 var title = $('#Title').val();
                 var uri = $('#Uri').val();
-                var riverGuid = $('#RiverGuid').val();
+                var syndicationGuid = $('#SyndicationGuid').val();
 
                 if (title == '') {
                     alarm('Title is required');
@@ -58,12 +58,12 @@
                 }
 
                 var doc = {
-                    riverGuid : riverGuid,
+                    syndicationGuid : syndicationGuid,
                     title: title,
                     uri : uri
                 };
 
-                $.ajax('/manage/river/addsource', {
+                $.ajax('/manage/syndication/addsource', {
                     data: doc,
                     type: 'POST',
                     dataType: 'json'
@@ -110,14 +110,14 @@
 
         function removeSource(self) {
             var name = $(self).data('name');
-            var riverGuid = $('#RiverGuid').val();
+            var SyndicationGuid = $('#SyndicationGuid').val();
 
             var doc = {
-                riverGuid: riverGuid,
+                SyndicationGuid: SyndicationGuid,
                 name : name
             };
 
-            $.ajax('/manage/river/removesource', {
+            $.ajax('/manage/syndication/removesource', {
                 data: doc,
                 type: 'POST',
                 dataType: 'json'
@@ -157,6 +157,6 @@
 @section SideNavigation{
 <ul class="nav nav-pills nav-stacked">
     <li class="active"><a href="#">Sources</a></li>
-    <li><a href="/manage/river/edittemplate?guid=@ViewBag.RiverGuid">Style</a></li>
+    <li><a href="/manage/river/edittemplate?guid=@ViewBag.SyndicationGuid">Style</a></li>
 </ul>
 }

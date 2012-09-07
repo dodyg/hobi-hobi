@@ -29,7 +29,7 @@ namespace HobiHobi.Web.Controllers
 
                 var edit = CookieMonster.GetFromCookie<TransientAccount>(Request.Cookies[TransientAccount.COOKIE_NAME]);
 
-                if (edit.IsFound && edit.Item.IsRiverFound(list.Guid))
+                if (edit.IsFound && edit.Item.IsSyndicationListFound(list.Guid))
                 {
                     ViewBag.EditLink = "/manage/syndication/sources/?guid=" + list.Guid;
                 }
@@ -84,8 +84,8 @@ namespace HobiHobi.Web.Controllers
                 if (list != null)
                 {
                     var subscription = list.Sources;
-                    var fetcher = new SyndicationFetcher(subscription);
-                    var feeds = fetcher.DownloadAll();
+                    var fetcher = new SyndicationFetcher();
+                    var feeds = fetcher.DownloadAll(subscription);
 
                     var river = FeedsRiver.FromSyndication(feeds);
 
