@@ -13,7 +13,7 @@ namespace HobiHobi.Tests.Core.Syndications
     [TestFixture]
     public class SyndicationListTests
     {
-        [Test]
+        [Test, Explicit]
         public void SaveSyndicationList()
         {
             var syndication = new SyndicationList();
