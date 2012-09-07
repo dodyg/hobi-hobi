@@ -34,9 +34,9 @@ namespace HobiHobi.Tests.Core.Syndications
             opml.LoadFromXML(_sampleOPML);
             var subscription = new RssSubscription(opml);
 
-            var fetcher = new SyndicationFetcher(subscription);
+            var fetcher = new SyndicationFetcher();
 
-            var feeds = fetcher.DownloadAll();
+            var feeds = fetcher.DownloadAll(subscription);
 
             Assert.IsTrue(feeds.Count > 0, "All downloads must be bigger than zero");
         }
