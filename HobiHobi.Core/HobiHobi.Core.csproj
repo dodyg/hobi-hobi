@@ -196,6 +196,7 @@
     <Compile Include="Validators\RiverTemplateViewModelValidator.cs" />
     <Compile Include="Validators\UserViewModelValidator.cs" />
     <Compile Include="ViewModels\BasicRiverWallViewModel.cs" />
+    <Compile Include="ViewModels\BasicSyndicationListViewModel.cs" />
     <Compile Include="ViewModels\RiverTemplateViewModel.cs" />
     <Compile Include="ViewModels\UserViewModel.cs" />
   </ItemGroup>

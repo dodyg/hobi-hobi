@@ -117,6 +117,7 @@
     <Compile Include="Areas\API\Controllers\DefaultController.cs" />
     <Compile Include="Areas\Manage\Controllers\HomeController.cs" />
     <Compile Include="Areas\Manage\Controllers\RiverController.cs" />
+    <Compile Include="Areas\Manage\Controllers\SyndicationController.cs" />
     <Compile Include="Areas\Manage\ManageAreaRegistration.cs" />
     <Compile Include="Controllers\AggregatorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -294,6 +295,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Syndication\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Manage\Views\Syndication\Create.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Manage\Views\Syndication\Sources.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

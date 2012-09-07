@@ -11,7 +11,8 @@
     <tr>
         <td><a href="/api/1/default/riverssubscription"><img src="/images/opml-icon-128x128.png" width="30" title="OPML River Subscription List"/></a>
 </td>
-        <td><div id="create_new_wall" style="font-size:16px;margin-bottom:5px;"><a href="/manage/river/create">Create New Wall</a></div>
+        <td><div id="create_new_river"><a href="/manage/river/create">Create Tabbed River</a></div>
+        <td><div id="create_new_list"><a href="/manage/syndication/create">Create Syndication</a></div>
         </td>
     </tr>
 </table>
@@ -119,6 +120,12 @@ Source : <a href="#" id="river_origin_feed"></a>
                 
             /*background-color:#4d6a80;*/
             color:lightgray;
+        }
+
+        #create_new_river, #create_new_list {
+            font-size:16px;
+            margin-bottom:5px;
+            margin-left:5px;
         }
 
         h1, h2 {

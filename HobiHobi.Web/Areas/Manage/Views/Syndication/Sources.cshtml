@@ -1,0 +1,162 @@
+﻿@model List<HobiHobi.Core.Subscriptions.RiverSubscriptionItem>
+@{
+    ViewBag.Title = "Sources";
+    Layout = "~/Areas/Manage/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Local.Manage.River.Sources.Title</h2>
+
+<a target="_blank" href="/r/@ViewBag.RiverName">Open your Tabbed River</a>
+<br /><br />
+<table class="table" id="source_list">
+@foreach (var f in Model)
+{
+    <tr data-name="@f.Name">
+        <td>@f.Text</td>
+        <td><a href="@f.JSONPUri">@f.JSONPUri</a></td>
+        <td><a href="#" class="delete_source" data-name="@f.Name"><i class="icon-remove"></i></a></td>
+    </tr>
+}
+</table>
+
+<div id="message"></div>
+<form class="form-search">
+    <div class="controls controls-row">
+        <input type="hidden" name="RiverGuid" id="RiverGuid" value="@ViewBag.RiverGuid" />
+        <input type="text" name="Title" id="Title" class="span3"  placeholder="Title"/> 
+        <input type="text" name="Uri" id="Uri" class="span5"  placeholder="JSONP URI"/> 
+        <button type="button" id="btn_submit" class="btn btn-primary">Add River</button>
+    </div>
+</form>
+
+@section JsInline{
+    <script type="text/javascript">
+        $(function () {
+
+            $('#loading_div').hide()  // hide it initially
+            .ajaxStart(function () {
+                $(this).show();
+            })
+            .ajaxStop(function () {
+                $(this).hide();
+            });
+
+
+            $('#btn_submit').click(function () {
+                var title = $('#Title').val();
+                var uri = $('#Uri').val();
+                var riverGuid = $('#RiverGuid').val();
+
+                if (title == '') {
+                    alarm('Title is required');
+                    return;
+                }
+
+                if (uri == '') {
+                    alarm('Uri is required');
+                    return;
+                }
+
+                var doc = {
+                    riverGuid : riverGuid,
+                    title: title,
+                    uri : uri
+                };
+
+                $.ajax('/manage/river/addsource', {
+                    data: doc,
+                    type: 'POST',
+                    dataType: 'json'
+                })
+                    .done(function (payload) {
+                        if (payload.StatusCode == 200) {
+                            var name = payload.Data.Name;
+
+                            var row = $('<tr data-name="' + name + '"></tr>');
+                            row.append('<td>' + title + '</td>');
+                            row.append('<td><a href="' + uri + '">' + uri + '</a></td>');
+                            row.append('<td><a href="#" class="delete_source" data-name="' + name + '"><i class="icon-remove"></i></a></td>');
+                            $('#source_list').append(row);
+
+
+                            inform(payload.Data.Message);
+                            $('#Title').val('');
+                            $('#Uri').val('');
+
+                            $('.delete_source').off('click');
+                            $('.delete_source').on('click', function (event) {
+                                removeSource(this);
+                            });
+                        }
+                        else {
+                            var details = JSON.parse(payload.ErrorDetails);
+                            var r = $('<ul></ul>');
+                            _.each(details.Properties, function (m) {
+                                r.append("<li>" + m.Errors[0] + "</li>");
+                            });
+
+                            alarm(r);
+                        }
+                    })
+                    .fail(function (jqXHR, textStatus) {
+                        alarm('fail ' + textStatus);
+                    });
+            });
+
+            $('.delete_source').on('click', function (event) {
+                removeSource(this);
+            });
+        });
+
+        function removeSource(self) {
+            var name = $(self).data('name');
+            var riverGuid = $('#RiverGuid').val();
+
+            var doc = {
+                riverGuid: riverGuid,
+                name : name
+            };
+
+            $.ajax('/manage/river/removesource', {
+                data: doc,
+                type: 'POST',
+                dataType: 'json'
+            })
+                    .done(function (payload) {
+                        if (payload.StatusCode == 200) {
+                            $('tr[data-name="' + name + '"]').remove();
+                            inform(payload.Data.Message);
+                        }
+                        else {
+                            var details = JSON.parse(payload.ErrorDetails);
+                            var r = $('<ul></ul>');
+                            _.each(details.Properties, function (m) {
+                                r.append("<li>" + m.Errors[0] + "</li>");
+                            });
+
+                            alarm(r);
+                        }
+                    })
+                    .fail(function (jqXHR, textStatus) {
+                        alarm('fail ' + textStatus);
+                    });
+        }
+
+
+        function inform(msg) {
+            $('#message').removeClass().addClass('alert alert-success').html(msg).show().fadeOut(3000);
+        }
+
+        function alarm(msg) {
+            $('#message').removeClass().addClass('alert alert-error').html(msg).show().fadeOut(10000);
+        }
+
+    </script>
+}
+
+@section SideNavigation{
+<ul class="nav nav-pills nav-stacked">
+    <li class="active"><a href="#">Sources</a></li>
+    <li><a href="/manage/river/edittemplate?guid=@ViewBag.RiverGuid">Style</a></li>
+</ul>
+}
