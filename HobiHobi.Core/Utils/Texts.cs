@@ -29,10 +29,14 @@ namespace HobiHobi.Core.Utils
 
         public static string FromUriHost(Uri uri)
         {
+#if DEBUG
             if (uri.IsDefaultPort)
                 return uri.Scheme + "://" + uri.DnsSafeHost;
             else
                 return uri.Scheme + "://" + uri.DnsSafeHost + ":" + uri.Port;
+#else
+            return uri.Scheme + "://" + uri.DnsSafeHost;
+#endif
         }
 
         public static string ConvertTitleToName(string title)
