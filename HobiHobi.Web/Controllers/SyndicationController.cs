@@ -71,6 +71,45 @@ namespace HobiHobi.Web.Controllers
                 return HttpNotFound();
         }
 
+        public ActionResult Feed(string name)
+        {
+            var hostTarget = Texts.FromUriHost(this.Request.Url);
+            var pathTarget = "/s/riverjs/" + name;
+
+            ViewBag.FeedUrl = hostTarget + pathTarget;
+            
+            var cache = this.HttpContext.Cache[ViewBag.FeedUrl];
+
+            if (cache == null)
+            {
+                var fetch = new RiverFetcher();
+                try
+                {
+                    var output = fetch.Download(hostTarget, pathTarget);
+                    var river = fetch.Serialize(output);
+
+                    HttpContext.Cache.Add(ViewBag.FeedUrl, river, null, Cache.NoAbsoluteExpiration, new TimeSpan(0, 10, 0), CacheItemPriority.Default, null);
+
+                    ViewBag.CacheStatus = "No Cache";
+
+                    var renderer = new FeedTemplateRenderer(river, _template);
+                    this.Compress();
+                    return Content(renderer.Render().ToString(), "text/html");
+                }
+                catch (Exception ex)
+                {
+                    return Content("Sorry, we really try to process " + ViewBag.FeedUrl + " but fate has decided on something else. " + ex.Message);
+                }
+            }
+            else
+            {
+                ViewBag.CacheStatus = "Cached for 10 minutes";
+                var renderer = new FeedTemplateRenderer(cache as FeedsRiver, _template);
+                this.Compress();
+                return Content(renderer.Render().ToString(), "text/html");
+            }
+        }
+
         public ActionResult GetRiverJs(string name)
         {
             var cacheKey = "_RSS_" + name;
@@ -105,5 +144,35 @@ namespace HobiHobi.Web.Controllers
                 return Content(syndications, "application/json");
             }
         }
+
+        string _template = @"
+{% for feed in feeds -%}
+        {% for item in feed.items -%}
+            <div class=""feed_item"" data-id=""{{ item.id }}"">
+                <h2>{{ item.title }} <a href=""{{ item.link }}"" class=""item_link"">#</a></h2>
+                <div class=""feed_item_body"">
+                    {% if item.thumbnails -%}
+                    <div class=""feed_item_thumbnail"">
+                        {% for thumb in item.thumbnails -%}
+                            <img src=""{{ thumb.url }}"" width=""{{ thumb.width }}"" height=""{{ thumb.height }}"" />
+                        {% endfor -%}
+                    </div><!-- end of feed_item_thumbnail -->
+                    {% endif -%}
+                    {{ item.body }}
+                    <p class=""feed_item_date"">{{ item.pub_date }}</p>
+                    {% if feed.title != """" -%}
+                    <div class=""feed_origin_website"">Source: <a href=""{{ feed.website_url }}"">{{ feed.title }}</a></div>
+                    {% else %}
+                    <div class=""feed_origin_website""><a href=""{{ feed.website_url }}"">Source</a></div>
+                    {% endif -%}
+                    {% if item.comments_link -%}
+                    <div class=""feed_item_comments""><a href=""{{ item.comments_link }}"">Comments</a></div> 
+                    {% endif -%}
+                </div><!-- feed item body-->
+            </div><!-- feed_item -->
+        {% endfor -%}
+{% endfor -%}
+";
+
     }
 }

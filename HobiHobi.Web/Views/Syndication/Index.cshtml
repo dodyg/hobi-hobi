@@ -10,6 +10,7 @@
     <meta name="keywords" content="@ViewBag.Keywords" />
     <link href="/site/css/@HobiHobi.Web.MvcApplication.CommonCssTag" rel="stylesheet" type="text/css" />
     <link href="@ViewBag.LinkedCss" rel="stylesheet" type="text/css" />
+    <link href='http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:700' rel='stylesheet' type='text/css'>
     
     <script src="/site/js/@HobiHobi.Web.MvcApplication.CommonJsTag" type="text/javascript"></script>
     <script src="@ViewBag.LinkedJs" type="text/javascript"></script>
@@ -28,13 +29,153 @@
         <a href="/s/opml/@ViewBag.Name"><img src="/images/opml-icon-128x128.png" width="30" title="OPML RSS Subscription List"/></a>
         <br />
         <a href="/s/riverjs/@ViewBag.Name">River.Js</a>
+    
         
+        <div id="river"></div>
+        <br /><br />
+
+        <div id="loading_div">
+            <img src="/images/ajax_spinner.gif" alt="wait" />
+        </div>
+    
     </div>
+    
+    <script type="text/javascript">
+        $(function () {
+            $('#loading_div').hide()  // hide it initially
+                .ajaxStart(function () {
+                    $(this).show();
+                })
+                .ajaxStop(function () {
+                    $(this).hide();
+                });
+
+            load('@ViewBag.Name', '@ViewBag.Title', true, '');
+
+        });
+
+        
+        function load(feedName, feedTitle, isInitial, feedOrigin) {
+            $.get('/syndication/feed?name=' + feedName, function (data) {
+                //change title
+                $('#river_title').html(feedTitle);
+
+                if (feedOrigin !== undefined) {
+                    $('#river_origin_feed')
+                        .attr('href', 'http://' + feedOrigin)
+                        .html(feedOrigin);
+                }
+
+                $('#river').html(data);
+                if (isInitial)
+                    arrange();
+                else {
+                    $('#river').isotope('destroy');
+                    arrange()
+                }
+            });
+        }
+
+        function arrange() {
+            $('#river').isotope({
+                itemSelector: ".feed_item",
+                layoutMode: 'masonry',
+                getSortData: {
+                    feed_id: function ($elem) {
+                        return parseInt($elem.data('id'));
+                    }
+                },
+                sortBy: 'feed_id',
+                sortAscending: false
+            });
+        }
+    </script>
+
+     <style type="text/css">
+    </style>
+
+   
     <style type="text/css">
+        body {
+            color:lightgray;
+        }
+
         #edit_this_syndication {
             margin-left:15px;
             margin:5px;
         }
+   
+        h1, h2 {
+            color: #000088;
+            font-family: 'Yanone Kaffeesatz', sans-serif;
+        }
+        h1 {
+            font-size:48px;
+        }
+
+        h2 {
+            font-size:26px;
+            line-height:28px;
+        }
+
+        a:link, a:visited{
+            color:lightgray;
+        }
+        
+        .feed_item {
+            width: 80%;
+            
+            margin-right:25px;
+            margin-top:5px;
+            margin-bottom:25px;
+        }
+
+            
+            .feed_item h3 {
+                font-size: 14px;
+                line-height: 16px;
+            }
+
+            a.item_link {
+                color:deeppink;
+            }
+
+        .feed_item_body {
+            background-image: url('/images/paper.png');
+            background-repeat: repeat;
+            background-color:#f7f1f1;
+            padding:5px;
+            border-bottom-right-radius: 12px;
+            border-top-right-radius: 12px; 
+            font-family:'Courier New';
+            color: #232323;
+        }
+
+        .feed_item_body a:link, .feed_item_body a:visited{
+            color:deeppink;
+        }
+
+        .feed_item_thumbnail {
+            margin:5px;
+        }
+        .feed_item_comments, .feed_item_date, .last_updated, .feed_origin_website, .feed_origin_website a:link {
+            font-size:10px;
+        }
+       
+        
+        #loading_div {
+            height: 400px;
+            position: relative;
+        }
+            #loading_div img{
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                margin-left: -32px; /* -1 * image width / 2 */
+                margin-top: -32px;  /* -1 * image height / 2 */
+                display: block;     
+            }
     </style>
+
 </body>
 </html>

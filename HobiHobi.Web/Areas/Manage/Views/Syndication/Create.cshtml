@@ -11,15 +11,8 @@
 <form class="form-horizontal" action="@Request.RawUrl" method="post">
     @Html.ValidationSummary(true)
     @Html.AntiForgeryToken(HobiHobi.Core.SiteConstants.ANTI_FORGERY_SALT)
-  <div class="control-group">
-    <label class="control-label required" for="Name">@Local.Manage.Syndication.Create.LblName</label>
-    <div class="controls">
-      @Html.TextBoxFor(m => m.Name, new { placehoder = "name"})
-      <span class="help-inline">No space is allowed for Syndication List name</span>
-      @Html.ValidationMessageFor(m=>m.Name)
-    </div>
-  </div>
   
+    
   <div class="control-group">
     <label class="control-label required" for="Title">@Local.Manage.Syndication.Create.LblTitle</label>
     <div class="controls">
@@ -27,6 +20,16 @@
       @Html.ValidationMessageFor(m=>m.Title)
     </div>
   </div>
+
+  <div class="control-group">
+    <label class="control-label required" for="Name">@Local.Manage.Syndication.Create.LblName</label>
+    <div class="controls">
+      @Html.TextBoxFor(m => m.Name, new { placehoder = "name", @class="slug"})
+      <span class="help-inline">No space is allowed for Syndication List name - it will be used as url</span>
+      @Html.ValidationMessageFor(m=>m.Name)
+    </div>
+  </div>
+  
     
   <div class="control-group">
     <label class="control-label" for="Description">@Local.Manage.Syndication.Create.LblDescription</label>
@@ -50,3 +53,9 @@
     </div>
   </div>
 </form>
+
+<script type="text/javascript">
+    $(function () {
+        $("#Title").slug({ hide: false });
+    });
+</script>

@@ -190,7 +190,7 @@ namespace HobiHobi.Web.Areas.Manage.Controllers
 
             this.SaveChangesAndTerminate();
 
-            return RedirectToAction("Source", new { guid = wall.Guid });
+            return RedirectToAction("Sources", new { guid = wall.Guid });
         }
 
         [HttpGet]

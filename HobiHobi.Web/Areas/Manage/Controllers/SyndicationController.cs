@@ -80,8 +80,7 @@ namespace HobiHobi.Web.Areas.Manage.Controllers
 
             this.SaveChangesAndTerminate();
 
-            return Redirect("/s/" + list.Name);
-            //return RedirectToAction("Source", new { guid = list.Guid });
+            return RedirectToAction("Sources", new { guid = list.Guid });
         }
 
         [HttpPost]

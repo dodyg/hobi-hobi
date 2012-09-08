@@ -54,7 +54,8 @@ namespace HobiHobi.Web.Controllers
                 "/scripts/jquery.isotope.min",
                 "/scripts/jquery.unobtrusive-ajax.min",
                 "/scripts/jquery.validate.min",
-                "/scripts/jquery.validate.unobtrusive.min"
+                "/scripts/jquery.validate.unobtrusive.min",
+                "/scripts/jquery.slug"
             };
 
             var js = HttpContext.Cache["JS"] as string;
