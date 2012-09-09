@@ -59,7 +59,7 @@ namespace HobiHobi.Core.Feeds
 
                 if (feedOrigin !== undefined) {
                     $('#river_origin_feed')
-                        .attr('href', 'http://' + feedOrigin)
+                        .attr('href', feedOrigin)
                         .html(feedOrigin);
                 }
 

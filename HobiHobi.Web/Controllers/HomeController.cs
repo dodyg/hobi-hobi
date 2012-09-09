@@ -96,20 +96,6 @@ namespace HobiHobi.Web.Controllers
             }
         }
 
-        public ActionResult Hello()
-        {
-            var river = FetchDefaultRivers();
-
-            if (river.IsFound)
-            {
-                return Content(river.Item.Items.First().Text);
-            }
-            else
-            {
-                return Content("No rivers");
-            }
-        }
-
         public ActionResult Feed(string feedName)
         {
             var feedTarget = GetFeed(feedName);
