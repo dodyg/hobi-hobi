@@ -126,6 +126,7 @@ namespace HobiHobi.Web.Controllers
             }));
 
             var xml = opml.ToXML();
+            this.Compress();
             return Content(xml.ToString(), "text/xml");
         }
 
@@ -148,6 +149,7 @@ namespace HobiHobi.Web.Controllers
             }));
 
             var xml = opml.ToXML();
+            this.Compress();
             return Content(xml.ToString(), "text/xml");
         }
     }
