@@ -38,7 +38,7 @@ namespace HobiHobi.Core.Feeds
             Sources = new RiverSubscription();
             Template = new RiverTemplate();
             Visibility = RiverWallVisibility.Public;
-            Status = RiverWallStatus.Draft;
+            Status = RiverWallStatus.Published;
             DateCreated = Stamp.Time();
             LastModified = Stamp.Time();
         }
