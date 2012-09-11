@@ -1,10 +1,10 @@
 ﻿@{
-    ViewBag.Title = "Rss JS";
+    ViewBag.Title = "RSS.JS";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-Rendering of a <a href="http://scripting.com/rss.js">rss.js</a>
-<h2 id="title">Js Rss</h2>
+Rendering of a <a href="http://scripting.com/rss.js">RSS.JS</a>
+<h2 id="title">RSS.JS</h2>
 <div id="description"></div>
 <div id="pub-date"></div>
 <div id="feeds"></div>
@@ -48,11 +48,11 @@ Rendering of a <a href="http://scripting.com/rss.js">rss.js</a>
         <% var f = feeds[i] %>
         <div class="feed-item">
             <h3><a href="<%= f.link %>"><%= f.title %></a></h3>
-            <div class="feed-item-body">
-                <%= getCleaned(f.description) %>
-            </div>
             <div class="feed-item-pub-date">
                 <%= f.pubDate %>
+            </div>
+            <div class="feed-item-body">
+                <%= getCleaned(f.description) %>
             </div>
         </div>
     <% } %>
@@ -61,10 +61,11 @@ Rendering of a <a href="http://scripting.com/rss.js">rss.js</a>
 <style type="text/css">
     .feed-item {
         margin:5px;
+        margin-bottom:30px;
     }
 
         .feed-item-body {
-            background-color:mistyrose;
+            background-color:#F8F8F8;
             padding:5px;
         }
 
