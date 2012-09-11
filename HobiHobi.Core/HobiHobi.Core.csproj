@@ -119,6 +119,9 @@
     <Compile Include="Framework\ModelPropertyErrors.cs" />
     <Compile Include="Identity\TransientAccount.cs" />
     <Compile Include="SiteConstants.cs" />
+    <Compile Include="Site\BrokenAttempt.cs" />
+    <Compile Include="Site\BrokenLink.cs" />
+    <Compile Include="Site\BrokenLinkType.cs" />
     <Compile Include="Subscriptions\DefaultRiverSubscription.cs" />
     <Compile Include="Subscriptions\RiverSubscription.cs" />
     <Compile Include="Subscriptions\RiverSubscriptionItem.cs" />
