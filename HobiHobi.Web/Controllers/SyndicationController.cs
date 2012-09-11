@@ -145,6 +145,11 @@ namespace HobiHobi.Web.Controllers
             }
         }
 
+        public ActionResult RssJs()
+        {
+            return View();
+        }
+
         string _template = @"
 {% for feed in feeds -%}
         {% for item in feed.items -%}

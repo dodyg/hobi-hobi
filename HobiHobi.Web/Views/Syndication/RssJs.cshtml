@@ -1,0 +1,83 @@
+﻿@{
+    ViewBag.Title = "Rss JS";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+Rendering of a <a href="http://scripting.com/rss.js">rss.js</a>
+<h2 id="title">Js Rss</h2>
+<div id="description"></div>
+<div id="pub-date"></div>
+<div id="feeds"></div>
+
+<script type="text/javascript">
+    $(function () {
+        $('#li-home').removeClass('active');
+        $.ajax('http://scripting.com/rss.js?callback=?',
+            {
+                crossDomain: true,
+                dataType: 'jsonp',
+                jsonpCallback: 'onGetRss'
+            }).done(function (data, status) {
+                display(data.rss);
+            }).fail(function () {
+                alert("Sorry, I have problem in loading the feed");
+            });
+    });
+
+    function display(rss){
+        var channel = rss.channel;
+        $('#title').html(channel.title);
+        $('#description').html(channel.description);
+        $('#pub-date').html(channel.pubDate);
+
+        var tmpl = $('#tmpl-feed').html();
+        var compiled = _.template(tmpl, { feeds: channel.item });
+        $('#feeds').html(compiled);
+    }
+
+    function getCleaned(html) {
+        var text = $('<div>' + html + '</div>').html();
+        return text;
+    };
+
+    function htmlEscape(str) {
+        return String(str)
+                .replace('&amp;', '&')
+                .replace('&quot;', '"')
+                .replace('&#39;', "'")
+                .replace('&lt;', '<')
+                .replace('&gt;', '>');
+    }
+
+</script>
+
+<script id="tmpl-feed" type="text/template">
+    <% for (var i = 0; i < feeds.length; i++) { %>
+        <% var f = feeds[i] %>
+        <div class="feed-item">
+            <h3><a href="<%= f.link %>"><%= f.title %></a></h3>
+            <div class="feed-item-body">
+                <%= getCleaned(f.description) %>
+            </div>
+            <div class="feed-item-pub-date">
+                <%= f.pubDate %>
+            </div>
+        </div>
+    <% } %>
+
+</script>
+
+<style type="text/css">
+    .feed-item {
+        margin:5px;
+    }
+
+        .feed-item-body {
+            background-color:mistyrose;
+            padding:5px;
+        }
+
+    .feed-item-pub-date {
+        font-style:italic;
+    }
+</style>
