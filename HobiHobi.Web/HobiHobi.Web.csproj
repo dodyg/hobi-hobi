@@ -306,7 +306,7 @@
     <Content Include="Scripts\jquery.slug.js" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Syndication\JsRss.cshtml" />
+    <Content Include="Views\Syndication\RssJs.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
