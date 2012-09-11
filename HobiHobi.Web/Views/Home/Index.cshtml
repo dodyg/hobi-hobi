@@ -4,17 +4,6 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<br /><br />
-<table>
-    <tr>
-        <td><a href="/api/1/default/riverssubscription"><img src="/images/opml-icon-128x128.png" width="30" title="OPML River Subscription List"/></a>
-</td>
-        <td><div id="create_new_river"><a href="/manage/river/create">Create Tabbed River</a></div>
-        <td><div id="create_new_list"><a href="/manage/syndication/create">Create Syndication</a></div>
-        </td>
-    </tr>
-</table>
-<br />
 @this.Flash()
 <div class="tabbable">
     <ul class="nav nav-tabs" id="river_tabs">
