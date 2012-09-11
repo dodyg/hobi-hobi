@@ -24,30 +24,22 @@ Rendering of a <a href="http://scripting.com/rss.js">rss.js</a>
             });
     });
 
+    var once = 0;
     function display(rss){
         var channel = rss.channel;
         $('#title').html(channel.title);
         $('#description').html(channel.description);
         $('#pub-date').html(channel.pubDate);
 
-        var tmpl = $('#tmpl-feed').html();
-        var compiled = _.template(tmpl, { feeds: channel.item });
+        var compiled = _.template($('#tmpl-feed').html(), { feeds: channel.item });
         $('#feeds').html(compiled);
     }
 
     function getCleaned(html) {
-        var text = $('<div>' + html + '</div>').html();
+        var text = $('<div>' + html.replace(/&quot;/gi, '"') + '</div>').html()
         return text;
-    };
 
-    function htmlEscape(str) {
-        return String(str)
-                .replace('&amp;', '&')
-                .replace('&quot;', '"')
-                .replace('&#39;', "'")
-                .replace('&lt;', '<')
-                .replace('&gt;', '>');
-    }
+    };
 
 </script>
 
@@ -64,7 +56,6 @@ Rendering of a <a href="http://scripting.com/rss.js">rss.js</a>
             </div>
         </div>
     <% } %>
-
 </script>
 
 <style type="text/css">
