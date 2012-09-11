@@ -36,7 +36,7 @@ This is a rendering of a <a href="http://scripting.com/rss.js">RSS.JS</a>. Find 
     }
 
     function getCleaned(html) {
-        var text = $('<div>' + html.replace(/&quot;/gi, '"') + '</div>').html()
+        var text = $('<div>' + html + '</div>').html()
         return text;
 
     };
