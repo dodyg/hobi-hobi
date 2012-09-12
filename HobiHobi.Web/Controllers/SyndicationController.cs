@@ -129,10 +129,11 @@ namespace HobiHobi.Web.Controllers
                     var river = FeedsRiver.FromSyndication(feeds);
 
                     var jsonString = Newtonsoft.Json.JsonConvert.SerializeObject(river, Newtonsoft.Json.Formatting.Indented);
+                    var jsonp = "onGetRiverStream (" + jsonString + ")";
 
-                    HttpContext.Cache.Add(cacheKey, jsonString, null, Cache.NoAbsoluteExpiration, new TimeSpan(0, 10, 0), CacheItemPriority.Default, null);
+                    HttpContext.Cache.Add(cacheKey, jsonp, null, Cache.NoAbsoluteExpiration, new TimeSpan(0, 10, 0), CacheItemPriority.Default, null);
                     this.Compress();
-                    return Content(jsonString, "application/json");
+                    return Content(jsonp, "application/json");
                 }
                 else
                     return HttpNotFound();
