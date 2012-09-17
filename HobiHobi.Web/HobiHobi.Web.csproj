@@ -115,6 +115,7 @@
   <ItemGroup>
     <Compile Include="Areas\API\APIAreaRegistration.cs" />
     <Compile Include="Areas\API\Controllers\DefaultController.cs" />
+    <Compile Include="Areas\API\Controllers\SiteController.cs" />
     <Compile Include="Areas\Manage\Controllers\HomeController.cs" />
     <Compile Include="Areas\Manage\Controllers\RiverController.cs" />
     <Compile Include="Areas\Manage\Controllers\SyndicationController.cs" />

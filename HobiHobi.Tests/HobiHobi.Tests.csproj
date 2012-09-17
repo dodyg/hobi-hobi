@@ -85,6 +85,7 @@
     <Compile Include="Core\Subscriptions\RssSubscriptionTests.cs" />
     <Compile Include="Core\Syndications\SyndicationListTests.cs" />
     <Compile Include="Core\Syndications\SyndicationParsingTests.cs" />
+    <Compile Include="Core\Utils\TextsTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Raven.cs" />
   </ItemGroup>
