@@ -9,6 +9,7 @@ using System.Web;
 using System.Web.Caching;
 using System.Web.Mvc;
 using HobiHobi.Core.Framework;
+using HobiHobi.Core.Caching;
 
 namespace HobiHobi.Web.Controllers
 {
@@ -112,8 +113,7 @@ namespace HobiHobi.Web.Controllers
 
         public ActionResult GetRiverJs(string name)
         {
-            var cacheKey = "_RSS_" + name;
-            var syndications = HttpContext.Cache[cacheKey] as string;
+            var syndications = SyndicationRiverJsCache.Get(name, HttpContext.Cache);
 
             if (syndications == null)
             {
@@ -131,7 +131,7 @@ namespace HobiHobi.Web.Controllers
                     var jsonString = Newtonsoft.Json.JsonConvert.SerializeObject(river, Newtonsoft.Json.Formatting.Indented);
                     var jsonp = "onGetRiverStream (" + jsonString + ")";
 
-                    HttpContext.Cache.Add(cacheKey, jsonp, null, Cache.NoAbsoluteExpiration, new TimeSpan(0, 10, 0), CacheItemPriority.Default, null);
+                    SyndicationRiverJsCache.Store(name, jsonp, HttpContext.Cache);
                     this.Compress();
                     return Content(jsonp, "application/json");
                 }

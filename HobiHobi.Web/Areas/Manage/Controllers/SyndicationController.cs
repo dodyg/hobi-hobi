@@ -1,4 +1,5 @@
 ﻿using HobiHobi.Core;
+using HobiHobi.Core.Caching;
 using HobiHobi.Core.Framework;
 using HobiHobi.Core.Identity;
 using HobiHobi.Core.Subscriptions;
@@ -136,6 +137,8 @@ namespace HobiHobi.Web.Areas.Manage.Controllers
                         RavenSession.Store(list);
                         this.SaveChangesAndTerminate();
 
+                        SyndicationRiverJsCache.Flush(list.Name, HttpContext.Cache);
+
                         return HttpDoc<dynamic>.OK(new { Message = "Source added", Name = name }).ToJson();
                     }
                     else
@@ -182,6 +185,7 @@ namespace HobiHobi.Web.Areas.Manage.Controllers
 
                 RavenSession.Store(list);
                 this.SaveChangesAndTerminate();
+                SyndicationRiverJsCache.Flush(list.Name, HttpContext.Cache);
 
                 return HttpDoc<dynamic>.OK(new { Message = "Source remove", Name = name }).ToJson();
             }
