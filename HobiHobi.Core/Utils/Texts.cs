@@ -19,8 +19,9 @@ namespace HobiHobi.Core.Utils
                 return str;
             else
             {
+                str = StripTagsRegex(str); //remove any html tags
                 str = str.Substring(0, 279); //take only 280 according to riverjs.org
-                var lastEmpty = str.LastIndexOf(' ');
+                var lastEmpty = str.LastIndexOf(' '); //take care we do not truncate words 
                 if (lastEmpty != 279)
                     str = str.Substring(0, lastEmpty);
 
@@ -29,6 +30,12 @@ namespace HobiHobi.Core.Utils
                 return str;
             }
         }
+
+        public static string StripTagsRegex(string source)
+        {
+            return Regex.Replace(source, "<.*?>", string.Empty);
+        }
+
 
         //dirty code
         public static string TruncateHTMLSafeishChar(string text, int charCount)
