@@ -10,6 +10,8 @@ namespace HobiHobi.Core.Utils
 {
     public static class Texts
     {
+        const int CUT_POINT = 276;
+
         public static string LimitTextForRiverJs(string str)
         {
             if (str == null)
@@ -20,245 +22,27 @@ namespace HobiHobi.Core.Utils
             else
             {
                 str = StripTagsRegex(str); //remove any html tags
-                str = str.Substring(0, 279); //take only 280 according to riverjs.org
-                var lastEmpty = str.LastIndexOf(' '); //take care we do not truncate words 
-                if (lastEmpty != 279)
-                    str = str.Substring(0, lastEmpty);
 
-                str += "...";
+                if (str.Length > CUT_POINT)
+                {
+                    str = str.Substring(0, CUT_POINT); //take only 280 according to riverjs.org
+
+                    var lastEmpty = str.LastIndexOf(' '); //take care we do not truncate words 
+                    if (lastEmpty != CUT_POINT)
+                        str = str.Substring(0, lastEmpty);
+
+                    str += "...";
+                }
 
                 return str;
             }
         }
 
+        static Regex _htmlRegex = new Regex("<.*?>", RegexOptions.Compiled);
+
         public static string StripTagsRegex(string source)
         {
-            return Regex.Replace(source, "<.*?>", string.Empty);
-        }
-
-
-        //dirty code
-        public static string TruncateHTMLSafeishChar(string text, int charCount)
-        {
-            bool inTag = false;
-            int cntr = 0;
-            int cntrContent = 0;
-
-            // loop through html, counting only viewable content
-            foreach (Char c in text)
-            {
-                if (cntrContent == charCount) break;
-                cntr++;
-                if (c == '<')
-                {
-                    inTag = true;
-                    continue;
-                }
-
-                if (c == '>')
-                {
-                    inTag = false;
-                    continue;
-                }
-                if (!inTag) cntrContent++;
-            }
-
-            string substr = text.Substring(0, cntr);
-
-            //search for nonclosed tags        
-            MatchCollection openedTags = new Regex("<[^/](.|\n)*?>").Matches(substr);
-            MatchCollection closedTags = new Regex("<[/](.|\n)*?>").Matches(substr);
-
-            // create stack          
-            Stack<string> opentagsStack = new Stack<string>();
-            Stack<string> closedtagsStack = new Stack<string>();
-
-            // to be honest, this seemed like a good idea then I got lost along the way 
-            // so logic is probably hanging by a thread!! 
-            foreach (Match tag in openedTags)
-            {
-                string openedtag = tag.Value.Substring(1, tag.Value.Length - 2);
-                // strip any attributes, sure we can use regex for this!
-                if (openedtag.IndexOf(" ") >= 0)
-                {
-                    openedtag = openedtag.Substring(0, openedtag.IndexOf(" "));
-                }
-
-                // ignore brs as self-closed
-                if (openedtag.Trim() != "br")
-                {
-                    opentagsStack.Push(openedtag);
-                }
-            }
-
-            foreach (Match tag in closedTags)
-            {
-                string closedtag = tag.Value.Substring(2, tag.Value.Length - 3);
-                closedtagsStack.Push(closedtag);
-            }
-
-            if (closedtagsStack.Count < opentagsStack.Count)
-            {
-                while (opentagsStack.Count > 0)
-                {
-                    string tagstr = opentagsStack.Pop();
-
-                    if (closedtagsStack.Count == 0 || tagstr != closedtagsStack.Peek())
-                    {
-                        substr += "</" + tagstr + ">";
-                    }
-                    else
-                    {
-                        closedtagsStack.Pop();
-                    }
-                }
-            }
-
-            return substr;
-        }
-
-        //dirty code
-        public static string TruncateHTMLSafeishWord(string text, int wordCount)
-        {
-            bool inTag = false;
-            int cntr = 0;
-            int cntrWords = 0;
-            Char lastc = ' ';
-
-            // loop through html, counting only viewable content
-            foreach (Char c in text)
-            {
-                if (cntrWords == wordCount) break;
-                cntr++;
-                if (c == '<')
-                {
-                    inTag = true;
-                    continue;
-                }
-
-                if (c == '>')
-                {
-                    inTag = false;
-                    continue;
-                }
-                if (!inTag)
-                {
-                    // do not count double spaces, and a space not in a tag counts as a word
-                    if (c == 32 && lastc != 32)
-                        cntrWords++;
-                }
-            }
-
-            string substr = text.Substring(0, cntr) + " ...";
-
-            //search for nonclosed tags        
-            MatchCollection openedTags = new Regex("<[^/](.|\n)*?>").Matches(substr);
-            MatchCollection closedTags = new Regex("<[/](.|\n)*?>").Matches(substr);
-
-            // create stack          
-            Stack<string> opentagsStack = new Stack<string>();
-            Stack<string> closedtagsStack = new Stack<string>();
-
-            foreach (Match tag in openedTags)
-            {
-                string openedtag = tag.Value.Substring(1, tag.Value.Length - 2);
-                // strip any attributes, sure we can use regex for this!
-                if (openedtag.IndexOf(" ") >= 0)
-                {
-                    openedtag = openedtag.Substring(0, openedtag.IndexOf(" "));
-                }
-
-                // ignore brs as self-closed
-                if (openedtag.Trim() != "br")
-                {
-                    opentagsStack.Push(openedtag);
-                }
-            }
-
-            foreach (Match tag in closedTags)
-            {
-                string closedtag = tag.Value.Substring(2, tag.Value.Length - 3);
-                closedtagsStack.Push(closedtag);
-            }
-
-            if (closedtagsStack.Count < opentagsStack.Count)
-            {
-                while (opentagsStack.Count > 0)
-                {
-                    string tagstr = opentagsStack.Pop();
-
-                    if (closedtagsStack.Count == 0 || tagstr != closedtagsStack.Peek())
-                    {
-                        substr += "</" + tagstr + ">";
-                    }
-                    else
-                    {
-                        closedtagsStack.Pop();
-                    }
-                }
-            }
-
-            return substr;
-        }
-
-        //dirty code
-        public static string TruncateHTMLSafeishCharXML(string text, int charCount)
-        {
-            // your data, probably comes from somewhere, or as params to a methodint 
-            XmlDocument xml = new XmlDocument();
-            xml.LoadXml(text);
-            // create a navigator, this is our primary tool
-            XPathNavigator navigator = xml.CreateNavigator();
-            XPathNavigator breakPoint = null;
-
-            // find the text node we need:
-            while (navigator.MoveToFollowing(XPathNodeType.Text))
-            {
-                string lastText = navigator.Value.Substring(0, Math.Min(charCount, navigator.Value.Length));
-                charCount -= navigator.Value.Length;
-                if (charCount <= 0)
-                {
-                    // truncate the last text. Here goes your "search word boundary" code:        
-                    navigator.SetValue(lastText);
-                    breakPoint = navigator.Clone();
-                    break;
-                }
-            }
-
-            // first remove text nodes, because Microsoft unfortunately merges them without asking
-            while (navigator.MoveToFollowing(XPathNodeType.Text))
-            {
-                if (navigator.ComparePosition(breakPoint) == XmlNodeOrder.After)
-                {
-                    navigator.DeleteSelf();
-                }
-            }
-
-            // moves to parent, then move the rest
-            navigator.MoveTo(breakPoint);
-            while (navigator.MoveToFollowing(XPathNodeType.Element))
-            {
-                if (navigator.ComparePosition(breakPoint) == XmlNodeOrder.After)
-                {
-                    navigator.DeleteSelf();
-                }
-            }
-
-            // moves to parent
-            // then remove *all* empty nodes to clean up (not necessary):
-            // TODO, add empty elements like <br />, <img /> as exclusion
-            navigator.MoveToRoot();
-            while (navigator.MoveToFollowing(XPathNodeType.Element))
-            {
-                while (!navigator.HasChildren && (navigator.Value ?? "").Trim() == "")
-                {
-                    navigator.DeleteSelf();
-                }
-            }
-
-            // moves to parent
-            navigator.MoveToRoot();
-            return navigator.InnerXml;
+            return _htmlRegex.Replace(source, string.Empty);
         }
 
         public static string FromUriHost(Uri uri)
