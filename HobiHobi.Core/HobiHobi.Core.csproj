@@ -96,6 +96,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BootStrap.cs" />
+    <Compile Include="Caching\SyndicationFeedCache.cs" />
     <Compile Include="Caching\SyndicationRiverJsCache.cs" />
     <Compile Include="Drops\FeedImageDrop.cs" />
     <Compile Include="Drops\FeedItemDrop.cs" />

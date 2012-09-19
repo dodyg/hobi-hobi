@@ -1,16 +1,15 @@
-﻿using HobiHobi.Core.Feeds;
+﻿using DotLiquid;
+using HobiHobi.Core;
+using HobiHobi.Core.Drops;
+using HobiHobi.Core.Feeds;
+using HobiHobi.Core.Framework;
+using HobiHobi.Core.Identity;
+using HobiHobi.Core.Utils;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using System.Web.Mvc;
-using HobiHobi.Core.Framework;
-using HobiHobi.Core;
 using System.Web.Caching;
-using DotLiquid;
-using HobiHobi.Core.Drops;
-using HobiHobi.Core.Utils;
-using HobiHobi.Core.Identity;
+using System.Web.Mvc;
 
 namespace HobiHobi.Web.Controllers
 {

@@ -1,16 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using HobiHobi.Core.Framework;
+using System;
 using System.Text;
 using System.Web;
 using System.Web.Mvc;
-using HobiHobi.Core.Framework;
-using HobiHobi.Core.Feeds;
-using HobiHobi.Core.Subscriptions;
-using HobiHobi.Core.Utils;
-using System.Xml;
-using System.Xml.Linq;
-using HobiHobi.Core.Syndications;
 
 namespace HobiHobi.Web.Controllers
 {
@@ -106,6 +98,5 @@ namespace HobiHobi.Web.Controllers
 
             return combined.ToString();
         }
-
     }
 }

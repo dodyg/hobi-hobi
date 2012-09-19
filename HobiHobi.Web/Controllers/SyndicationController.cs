@@ -1,15 +1,12 @@
-﻿using HobiHobi.Core.Feeds;
+﻿using HobiHobi.Core.Caching;
+using HobiHobi.Core.Feeds;
+using HobiHobi.Core.Framework;
 using HobiHobi.Core.Identity;
 using HobiHobi.Core.Syndications;
 using HobiHobi.Core.Utils;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Web;
-using System.Web.Caching;
 using System.Web.Mvc;
-using HobiHobi.Core.Framework;
-using HobiHobi.Core.Caching;
 
 namespace HobiHobi.Web.Controllers
 {
@@ -79,7 +76,7 @@ namespace HobiHobi.Web.Controllers
 
             ViewBag.FeedUrl = hostTarget + pathTarget;
             
-            var cache = this.HttpContext.Cache[ViewBag.FeedUrl];
+            FeedsRiver cache = SyndicationFeedCache.Get(ViewBag.FeedUrl as string, HttpContext.Cache);
 
             if (cache == null)
             {
@@ -89,7 +86,7 @@ namespace HobiHobi.Web.Controllers
                     var output = fetch.Download(hostTarget, pathTarget);
                     var river = fetch.Serialize(output);
 
-                    HttpContext.Cache.Add(ViewBag.FeedUrl, river, null, Cache.NoAbsoluteExpiration, new TimeSpan(0, 10, 0), CacheItemPriority.Default, null);
+                    SyndicationFeedCache.Store(ViewBag.Url as string, river, HttpContext.Cache);
 
                     ViewBag.CacheStatus = "No Cache";
 
@@ -105,7 +102,7 @@ namespace HobiHobi.Web.Controllers
             else
             {
                 ViewBag.CacheStatus = "Cached for 10 minutes";
-                var renderer = new FeedTemplateRenderer(cache as FeedsRiver, _template);
+                var renderer = new FeedTemplateRenderer(cache, _template);
                 this.Compress();
                 return Content(renderer.Render().ToString(), "text/html");
             }
