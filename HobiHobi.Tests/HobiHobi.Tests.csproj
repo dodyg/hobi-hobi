@@ -80,6 +80,7 @@
   <ItemGroup>
     <Compile Include="Core\Feeds\RiverWallTests.cs" />
     <Compile Include="Core\Identity\UserTests.cs" />
+    <Compile Include="Core\Subscriptions\Opml2Tests.cs" />
     <Compile Include="Core\Subscriptions\OpmlTests.cs" />
     <Compile Include="Core\Subscriptions\RiverSubsriptionTests.cs" />
     <Compile Include="Core\Subscriptions\RssSubscriptionTests.cs" />

@@ -123,6 +123,7 @@
     <Compile Include="Controllers\AggregatorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\IdentityController.cs" />
+    <Compile Include="Controllers\ListController.cs" />
     <Compile Include="Controllers\RavenController.cs" />
     <Compile Include="Controllers\RiverController.cs" />
     <Compile Include="Controllers\SiteController.cs" />
@@ -308,6 +309,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Syndication\RssJs.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\List\Rivers.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\List\Syndications.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
