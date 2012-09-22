@@ -63,6 +63,13 @@ namespace HobiHobi.Web
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+                "Blog", // Route name
+                "b/{name}", // URL with parameters
+                new { controller = "Blog", action = "Index" }, // Parameter defaults
+                new string[] { "HobiHobi.Web.Controllers" }
+            );
+
+            routes.MapRoute(
                 "Syndication", // Route name
                 "s/{name}", // URL with parameters
                 new { controller = "Syndication", action = "Index" }, // Parameter defaults

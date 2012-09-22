@@ -1,0 +1,61 @@
+﻿@model HobiHobi.Core.ViewModels.BasicBlogViewModel
+@{
+    Layout = "~/Areas/Manage/Views/Shared/_LayoutPublic.cshtml";
+}
+
+<h2>@Local.Manage.Blog.Create.Title</h2>
+@this.Flash()
+<div class="alert alert-info">
+    This is the <strong>only step</strong> required to start your own blog. There is no registration needed. 
+</div>
+<form class="form-horizontal" action="@Request.RawUrl" method="post">
+    @Html.ValidationSummary(true)
+    @Html.AntiForgeryToken(HobiHobi.Core.SiteConstants.ANTI_FORGERY_SALT)
+  
+    
+  <div class="control-group">
+    <label class="control-label required" for="Name">@Local.Manage.Blog.Create.LblName</label>
+    <div class="controls">
+      @Html.TextBoxFor(m => m.Name, new { placehoder = "name", @class = "slug" })
+      <span class="help-inline">No space is allowed for blog name - it will be used as url</span>
+      @Html.ValidationMessageFor(m=>m.Name)
+    </div>
+  </div>
+    
+
+  <div class="control-group">
+    <label class="control-label required" for="Title">@Local.Manage.Blog.Create.LblTitle</label>
+    <div class="controls">
+      @Html.TextBoxFor(m => m.Title, new { placehoder = "title"})
+      @Html.ValidationMessageFor(m=>m.Title)
+    </div>
+  </div>
+
+  <div class="control-group">
+    <label class="control-label" for="Description">@Local.Manage.Blog.Create.LblDescription</label>
+    <div class="controls">
+      @Html.TextAreaFor(m => m.Description, new { placehoder = "description"})
+      @Html.ValidationMessageFor(m=>m.Description)
+    </div>
+  </div>
+
+  <div class="control-group">
+    <label class="control-label" for="Keywords">@Local.Manage.Blog.Create.LblKeywords</label>
+    <div class="controls">
+      @Html.TextBoxFor(m => m.Keywords, new { placehoder = "keywords"})
+      @Html.ValidationMessageFor(m=>m.Keywords)
+    </div>
+  </div>
+    
+  <div class="control-group">
+    <div class="controls">
+      <button type="submit" class="btn btn-primary">@Local.Manage.Blog.Create.BtnSubmit</button>
+    </div>
+  </div>
+</form>
+
+
+<script type="text/javascript">
+    $(function () {
+    });
+</script>

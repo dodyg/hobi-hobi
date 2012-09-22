@@ -15,6 +15,7 @@ namespace HobiHobi.Core.Identity
  
         public List<string> RiverGuids { get; set; }
         public List<string> SyndicationGuids { get; set; }
+        public List<string> BlogGuids { get; set; }
         public DateTime DateCreated { get; set; }
         public DateTime LastModified { get; set; }
 
@@ -24,6 +25,7 @@ namespace HobiHobi.Core.Identity
             LastModified = Stamp.Time();
             RiverGuids = new List<string>();
             SyndicationGuids = new List<string>();
+            BlogGuids = new List<string>();
         }
 
         public bool IsRiverFound(string guid)
@@ -34,6 +36,11 @@ namespace HobiHobi.Core.Identity
         public bool IsSyndicationListFound(string guid)
         {
             return SyndicationGuids.Any(x => x == guid);
+        }
+
+        public bool IsBlogFound(string guid)
+        {
+            return BlogGuids.Any(x => x == guid);
         }
     }
 }

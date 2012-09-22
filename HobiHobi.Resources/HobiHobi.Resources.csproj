@@ -60,6 +60,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Register.resx</DependentUpon>
     </Compile>
+    <Compile Include="Manage\Blog\Create.Designer.cs">
+      <DependentUpon>Create.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Manage\Home\Index.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -92,6 +97,11 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Messages.Designer.cs</LastGenOutput>
       <CustomToolNamespace>Global</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Manage\Blog\Create.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Create.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>Local.Manage.Blog</CustomToolNamespace>
     </EmbeddedResource>
     <EmbeddedResource Include="Manage\Home\Index.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
