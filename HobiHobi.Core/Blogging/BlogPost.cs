@@ -8,9 +8,9 @@ namespace HobiHobi.Core.Blogging
 {
     public class BlogPost
     {
-        public static Key NewId(string postId, string value = null)
+        public static Key NewId(string value = null)
         {
-            return Key.Generate(string.Format("{0}/Post/", postId), value);
+            return Key.Generate("Blog/Feed/Post/", value);
         }
 
         public string Id { get; set; }

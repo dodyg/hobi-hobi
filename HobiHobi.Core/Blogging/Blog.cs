@@ -1,4 +1,5 @@
 ﻿using HobiHobi.Core.Framework;
+using HobiHobi.Core.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -47,13 +48,14 @@ namespace HobiHobi.Core.Blogging
                 Title = title,
                 Description = description,
                 Guid = Stamp.GUID().ToString(),
-                BlogId = this.Id
+                BlogId = this.Id,
+                Url = Texts.ConvertTitleToName(title)
             };
 
             BlogFeedIds.Add(feed.Id);
 
             return feed;
-        }
+        } 
 
         /// <summary>
         /// Create a default feed for this blog
@@ -66,7 +68,7 @@ namespace HobiHobi.Core.Blogging
 
         public string GetDefaultFeedId()
         {
-            return BlogFeed.NewId(Name, Name).Full();
+            return BlogFeed.NewId("Default-" + Name).Full();
         }
     }
 }
