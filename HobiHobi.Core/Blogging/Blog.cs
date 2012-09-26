@@ -37,19 +37,21 @@ namespace HobiHobi.Core.Blogging
         /// <param name="title"></param>
         /// <param name="description"></param>
         /// <returns></returns>
-        public BlogFeed CreateFeed(string name, string title, string description)
+        public BlogFeed CreateFeed(string title, string description, string newId = null)
         {
             if (Id.IsNullOrWhiteSpace())
                 throw new ApplicationException("This blog must have an id before performing a create feed operation");
 
+            if (newId == null)
+                newId = BlogFeed.NewId().Full();
+
             var feed = new BlogFeed
             {
-                Id = GetDefaultFeedId(),
-                Title = title,
-                Description = description,
+                Id = newId,
                 Guid = Stamp.GUID().ToString(),
                 BlogId = this.Id,
-                Url = Texts.ConvertTitleToName(title)
+                Title = title,
+                Url = Texts.ConvertTitleToUrl(title)
             };
 
             BlogFeedIds.Add(feed.Id);
@@ -63,7 +65,7 @@ namespace HobiHobi.Core.Blogging
         /// <returns></returns>
         public BlogFeed CreateDefaultFeed()
         {
-            return CreateFeed(this.Name, this.Title, this.Description);
+            return CreateFeed(this.Title, this.Description, GetDefaultFeedId());
         }
 
         public string GetDefaultFeedId()

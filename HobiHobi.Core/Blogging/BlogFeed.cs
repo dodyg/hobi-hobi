@@ -8,7 +8,7 @@ namespace HobiHobi.Core.Blogging
 {
     public class BlogFeed
     {
-        public static Key NewId(string value)
+        public static Key NewId(string value = null)
         {
             return Key.Generate("Blog/Feed/", value);
         }
@@ -35,7 +35,7 @@ namespace HobiHobi.Core.Blogging
 
             var post = new BlogPost
             {
-                Id = BlogPost.NewId(this.Id).Full(),
+                Id = BlogPost.NewId().Full(),
                 FeedId = this.Id,
                 Title = title,
                 Content = content,
@@ -45,7 +45,7 @@ namespace HobiHobi.Core.Blogging
             return post;
         }
 
-        public static bool CheckIfUrlExist(Raven.Client.IDocumentSession session, string url)
+        public static bool CheckIfNameExist(Raven.Client.IDocumentSession session, string url)
         {
             return session.Query<BlogFeed>().Where( x => x.Url == url.ToLower()).Any();
         }

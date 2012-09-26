@@ -62,5 +62,10 @@ namespace HobiHobi.Core.Utils
             return title.Replace(" ", "_").Replace("#", "_").Replace("'", "_").Replace(".", "_")
                 .Replace("/", "_").Replace("\\", "_");
         }
+
+        public static string ConvertTitleToUrl(string title)
+        {
+            return ConvertTitleToName(title);
+        }
     }
 }

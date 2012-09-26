@@ -15,10 +15,8 @@ namespace HobiHobi.Tests.Core.Blogging
         [Test, Explicit]
         public void LoadBlog()
         {
-            using (var store = Raven.GetStoreFromServer())
+            Raven.Session(session =>
             {
-                using (var session = store.OpenSession(Raven.DATABASE_NAME))
-                {
                     var blog = session.Query<Blog>().Where(x => x.Guid == TEST_BLOG_GUID).FirstOrDefault();
 
                     Assert.IsTrue(blog != null, "Blog cannot be found");
@@ -27,38 +25,32 @@ namespace HobiHobi.Tests.Core.Blogging
                     Assert.IsNotNullOrEmpty(blog.Description, "Descriptioin cannot be null");
                     Assert.IsNotNullOrEmpty(blog.Guid, "Guid cannot be null");
                     Assert.IsTrue(blog.BlogFeedIds.Count() > 0, "There must be at least 1 blog feed");
-                }
-            }
+            });
         }
 
         [Test, Explicit]
         public void ClearBlog()
         {
-            using (var store = Raven.GetStoreFromServer())
+            Raven.Session(session =>
             {
-                using (var session = store.OpenSession(Raven.DATABASE_NAME))
+                var blog = session.Query<Blog>().Where(x => x.Guid == TEST_BLOG_GUID).First();
+
+                foreach (var feed in blog.BlogFeedIds)
                 {
-                    var blog = session.Query<Blog>().Where(x => x.Guid == TEST_BLOG_GUID).First();
-
-                    foreach (var feed in blog.BlogFeedIds)
-                    {
-                        session.Advanced.DatabaseCommands.Delete(feed, null);
-                    }
-
-                    blog.BlogFeedIds.Clear();
-                    session.Store(blog);
-                    session.SaveChanges();
+                    session.Advanced.DatabaseCommands.Delete(feed, null);
                 }
-            }
+
+                blog.BlogFeedIds.Clear();
+                session.Store(blog);
+                session.SaveChanges();
+            });
         }
         
         [Test, Explicit]
         public void CreateDefaultFeed()
         {
-            using (var store = Raven.GetStoreFromServer())
+            Raven.Session(session =>
             {
-                using (var session = store.OpenSession(Raven.DATABASE_NAME))
-                {
                     var blog = session.Query<Blog>().Where(x => x.Guid == TEST_BLOG_GUID).First();
 
                     var feed = blog.CreateDefaultFeed();
@@ -67,38 +59,32 @@ namespace HobiHobi.Tests.Core.Blogging
                     session.Store(feed);
 
                     session.SaveChanges();
-                }
-            }
+            });
         }
 
         [Test, Explicit]
         public void LoadDefaultFeed()
         {
-            using (var store = Raven.GetStoreFromServer())
+            Raven.Session(session =>
             {
-                using (var session = store.OpenSession(Raven.DATABASE_NAME))
-                {
-                    var blog = session.Query<Blog>().Where(x => x.Guid == TEST_BLOG_GUID).First();
+                var blog = session.Query<Blog>().Where(x => x.Guid == TEST_BLOG_GUID).First();
 
-                    var defaultFeedId = blog.GetDefaultFeedId();
+                var defaultFeedId = blog.GetDefaultFeedId();
 
-                    var feed = session.Load<BlogFeed>(defaultFeedId);
+                var feed = session.Load<BlogFeed>(defaultFeedId);
 
-                    Assert.IsTrue(feed != null, defaultFeedId + " must load");
-                    Assert.IsNotNullOrEmpty(feed.Title, "Title cannot be null");
-                    Assert.IsNotNullOrEmpty(feed.BlogId, "Blog id cannot be null");
-                    Assert.IsNotNullOrEmpty(feed.Description, "Description cannot be null");
-                    Assert.IsNotNullOrEmpty(feed.Url, "Url cannot be null");
-                }
-            }
+                Assert.IsTrue(feed != null, defaultFeedId + " must load");
+                Assert.IsNotNullOrEmpty(feed.Title, "Title cannot be null");
+                Assert.IsNotNullOrEmpty(feed.BlogId, "Blog id cannot be null");
+                Assert.IsNotNullOrEmpty(feed.Description, "Description cannot be null");
+                Assert.IsNotNullOrEmpty(feed.Url, "Url cannot be null");
+            });
         }
 
         [Test, Explicit]
         public void AddNewPost()
         {
-            using (var store = Raven.GetStoreFromServer())
-            {
-                using (var session = store.OpenSession(Raven.DATABASE_NAME))
+            Raven.Session(session =>
                 {
                     var blog = session.Query<Blog>().Where(x => x.Guid == TEST_BLOG_GUID).First();
 
@@ -112,8 +98,21 @@ namespace HobiHobi.Tests.Core.Blogging
 
                     session.Store(post);
                     session.SaveChanges();
-                }
-            }
+                });
+        }
+
+        [Test, Explicit]
+        public void LoadPosts()
+        {
+            Raven.Session(session =>
+                {
+                    var blog = session.Query<Blog>().Where(x => x.Guid == TEST_BLOG_GUID).First();
+                    var defaultFeedId = blog.GetDefaultFeedId();
+
+                    var posts = session.Query<BlogPost>().Where(x => x.FeedId == defaultFeedId).ToList();
+
+                    Assert.IsTrue(posts.Count() > 0, "There must be more than zero post");
+                });
         }
     }
 }
