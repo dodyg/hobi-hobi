@@ -78,6 +78,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Core\Blogging\BlogTests.cs" />
     <Compile Include="Core\Feeds\RiverWallTests.cs" />
     <Compile Include="Core\Identity\UserTests.cs" />
     <Compile Include="Core\Subscriptions\Opml2Tests.cs" />
