@@ -28,6 +28,10 @@ namespace HobiHobi.Web.Controllers
                 ViewBag.EditLink = "/manage/blog/?guid=" + blog.Guid;
             }
 
+            ViewBag.Title = blog.Title;
+            ViewBag.Description = blog.Description;
+            ViewBag.Keywords = blog.Keywords;
+
             return View();
         }
 
