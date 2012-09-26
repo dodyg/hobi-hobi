@@ -3,15 +3,17 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Rivers</h2>
+<h2>All tabbed rivers in this site</h2>
 
 <ul id="rivers">
 </ul>
 
-
 @section JsInline{
     <script type="text/javascript">
         $(function () {
+            $('#menu_top li').removeClass('active');
+            $('#menu_rivers').addClass('active');
+
             $.get('/api/1/site/tabbedrivers', function (xml) {
                 var opml = $.xml2json(xml);
                 var outlines = _.sortBy(opml.body.outline, function (line) { return line.text.toString().toLocaleLowerCase(); });
