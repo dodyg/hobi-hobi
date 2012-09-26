@@ -156,6 +156,7 @@
     <Content Include="Scripts\jquery-1.8.0.min.js" />
     <Content Include="Scripts\jquery.isotope.min.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.xml2json.js" />
     <Content Include="Scripts\json2.js" />
     <Content Include="Scripts\modernizr-2.5.3.js" />
     <Content Include="Scripts\underscore-min.js" />

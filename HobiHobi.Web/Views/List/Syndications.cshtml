@@ -4,3 +4,21 @@
 }
 
 <h2>Syndications</h2>
+
+
+<ul id="syndications">
+</ul>
+
+
+@section JsInline{
+    <script type="text/javascript">
+        $(function () {
+            $.get('/api/1/site/syndicationlists', function (xml) {
+                var opml = $.xml2json(xml);
+                var outlines = _.sortBy(opml.body.outline, function (line) { return line.text.toString().toLocaleLowerCase(); });
+                var template = _.template('<% _.each(outlines, function(line) { %><li><a href="<%= line.url %>"><%= line.text %></a></li> <% }) %>', { outlines: outlines });
+                $('#syndications').append(template);
+            });
+        });
+    </script>
+}
