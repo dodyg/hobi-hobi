@@ -59,8 +59,8 @@ namespace HobiHobi.Core.Utils
 
         public static string ConvertTitleToName(string title)
         {
-            return title.Replace(" ", "_").Replace("#", "_").Replace("'", "_").Replace(".", "_")
-                .Replace("/", "_").Replace("\\", "_");
+            return title.Replace(" ", "-").Replace("#", "-").Replace("'", "-").Replace(".", "-")
+                .Replace("/", "-").Replace("\\", "-");
         }
 
         public static string ConvertTitleToUrl(string title)

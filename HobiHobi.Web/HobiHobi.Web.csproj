@@ -116,6 +116,7 @@
     <Compile Include="Areas\API\APIAreaRegistration.cs" />
     <Compile Include="Areas\API\Controllers\DefaultController.cs" />
     <Compile Include="Areas\API\Controllers\SiteController.cs" />
+    <Compile Include="Areas\API\Controllers\SamplesController.cs" />
     <Compile Include="Areas\Manage\Controllers\BlogController.cs" />
     <Compile Include="Areas\Manage\Controllers\HomeController.cs" />
     <Compile Include="Areas\Manage\Controllers\RiverController.cs" />
@@ -141,6 +142,7 @@
     <Content Include="Content\bootstrap-responsive.min.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Manage.css" />
+    <Content Include="Content\Samples\RiverWithOutlines.js" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Images\ajax_spinner.gif" />
@@ -327,6 +329,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Manage\Views\Blog\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Blog\Feed.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

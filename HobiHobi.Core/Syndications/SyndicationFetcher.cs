@@ -13,6 +13,11 @@ namespace HobiHobi.Core.Syndications
 {
     public class SyndicationFetcher
     {
+        /// <summary>
+        /// Download all the latest RSS feed
+        /// </summary>
+        /// <param name="subscription"></param>
+        /// <returns></returns>
         public List<FeedAndSource> DownloadAll(RssSubscription subscription)
         {
             var feeds = new List<FeedAndSource>();

@@ -63,6 +63,27 @@ namespace HobiHobi.Web
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+                "BlogFeedRssJs", // Route name
+                "f/rssjs/{slug}", // URL with parameters
+                new { controller = "Blog", action = "FeedRssJs" }, // Parameter defaults
+                new string[] { "HobiHobi.Web.Controllers" }
+            );
+
+            routes.MapRoute(
+                "BlogFeedRss", // Route name
+                "f/rss/{slug}", // URL with parameters
+                new { controller = "Blog", action = "FeedRss" }, // Parameter defaults
+                new string[] { "HobiHobi.Web.Controllers" }
+            );
+
+            routes.MapRoute(
+                "BlogFeed", // Route name
+                "f/{slug}", // URL with parameters
+                new { controller = "Blog", action = "Feed" }, // Parameter defaults
+                new string[] { "HobiHobi.Web.Controllers" }
+            );
+
+            routes.MapRoute(
                 "Blog", // Route name
                 "b/{name}", // URL with parameters
                 new { controller = "Blog", action = "Index" }, // Parameter defaults
