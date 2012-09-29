@@ -8,6 +8,9 @@ using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using System.Xml;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
+using Newtonsoft.Json.Converters;
 
 namespace HobiHobi.Web.Controllers
 {
@@ -55,7 +58,24 @@ namespace HobiHobi.Web.Controllers
 
         public ActionResult FeedRssJs(string slug)
         {
-            return View();
+            var feed = BlogFeed.FindByUrl(RavenSession, slug);
+
+            if (!feed.IsFound)
+                return HttpNotFound();
+
+            feed.Item.LoadRss(RavenSession);
+            var rss = feed.Item.GetRssJs(HttpContext.Request.Url);
+
+            var settings = new JsonSerializerSettings
+            {
+                NullValueHandling = NullValueHandling.Ignore,
+                ContractResolver = new CamelCasePropertyNamesContractResolver()
+            };
+
+            var json = JsonConvert.SerializeObject(rss, Newtonsoft.Json.Formatting.Indented, settings);
+            var jsonP = "onGetRss(" + json + ")";
+
+            return Content(jsonP, "application/json");
         }
 
         public ActionResult FeedRss(string slug)

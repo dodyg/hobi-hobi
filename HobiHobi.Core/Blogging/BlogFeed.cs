@@ -1,4 +1,5 @@
 ﻿using HobiHobi.Core.Framework;
+using HobiHobi.Core.Syndications;
 using HobiHobi.Core.Utils;
 using Raven.Client.Linq;
 using System;
@@ -204,6 +205,49 @@ namespace HobiHobi.Core.Blogging
             
             feed.Items = items;
             return feed;
+        }
+
+        public RssJs GetRssJs(Uri currentHost)
+        {
+            var host = Utils.Texts.FromUriHost(currentHost);
+            var alternativeLink = host + "/f/" + this.Url;
+
+            var rss = new RssJs
+            {
+                Channel = new RssJs.RssChannel
+                {
+                    Title = Title,
+                    Description = Description,
+                    Link = alternativeLink,
+                    LastBuildDate = LastModified.ToString("R"),
+                    PubDate = LastModified.ToString("R"),
+                    Ttl = RSS_TTL,
+                    Generator = "Hobi Hobi",
+                    Items = Posts.Select( x =>
+                        {
+                            var item = new RssJs.RssChannel.RssItem
+                            {
+                                Description = x.Content,
+                                Guid = host + "/f/" + this.Url + "/" + x.Slug,
+                                PubDate = x.DatePublished
+                            };
+
+                            if (!x.ShortLink.IsNullOrWhiteSpace())
+                                item.Link = x.ShortLink;
+                            else
+                                item.Link = x.Link;
+
+                            if (!Title.IsNullOrWhiteSpace())
+                                item.Title = x.Title;
+
+                            return item;
+                        }
+                    ).ToList()
+                }
+            };
+
+
+            return rss;
         }
     }
 }
