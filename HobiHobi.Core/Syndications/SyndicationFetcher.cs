@@ -11,6 +11,9 @@ using System.Threading.Tasks;
 
 namespace HobiHobi.Core.Syndications
 {
+    /// <summary>
+    /// This class manage the downloading mechanism for RSS/ATOM feeds
+    /// </summary>
     public class SyndicationFetcher
     {
         /// <summary>

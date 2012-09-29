@@ -94,9 +94,11 @@ namespace HobiHobi.Tests.Core.Blogging
 
                     Assert.IsTrue(feed != null, defaultFeedId + " must load");
 
-                    var post = feed.NewPost("Hello world");
+                    var sentence = SentenceGenerator.Get();
+                    var post = feed.NewPost(sentence, link: "http://nomadlife.org");
 
                     session.Store(post);
+                    session.Store(blog);
                     session.SaveChanges();
                 });
         }

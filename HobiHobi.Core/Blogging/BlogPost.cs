@@ -3,6 +3,7 @@ using HobiHobi.Core.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.ServiceModel.Syndication;
 using System.Text;
 
 namespace HobiHobi.Core.Blogging
@@ -18,6 +19,8 @@ namespace HobiHobi.Core.Blogging
         public string Slug { get; set; }
         public string Title { get; set; }
         public string Content { get; set; }
+        public string Author { get; set; }
+        public string AuthorEmail { get; set; }
         public DateTime DateCreated { get; set; }
         public DateTime DatePublished { get; set; }
         public DateTime LastModified { get; set; }
@@ -38,6 +41,19 @@ namespace HobiHobi.Core.Blogging
             IsDeleted = false;
         }
 
+        public SyndicationPerson GetAuthorForRss()
+        {
+            if (Author.IsNullOrWhiteSpace() && AuthorEmail.IsNullOrWhiteSpace())
+                return null;
+            else if (Author.IsNullOrWhiteSpace())
+                return new SyndicationPerson(AuthorEmail);
+            else
+                return new SyndicationPerson(AuthorEmail, Author, string.Empty);
+        }
+
+        /// <summary>
+        /// Generate a slug based on the information available for this blog post (whether a title exists or not)
+        /// </summary>
         public void GenerateSlug()
         {
             if (Title.IsNullOrWhiteSpace())
@@ -46,14 +62,21 @@ namespace HobiHobi.Core.Blogging
                 GenerateTitleSlug();
         }
 
+        /// <summary>
+        /// Generate a slug based on the title of the post
+        /// </summary>
         public void GenerateTitleSlug()
         {
             Slug = Texts.ConvertTitleToUrl(Title);
         }
 
+        /// <summary>
+        /// Generate number based slug
+        /// </summary>
         public void GenerateNumberSlug()
         {
-            Slug = DateTime.UtcNow.Ticks.ToString();
+            var ticks = DateTime.UtcNow.Ticks.ToString();
+            Slug = ticks;
         }
 
         public void AddTag(string tag)

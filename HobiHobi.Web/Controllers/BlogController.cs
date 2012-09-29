@@ -66,7 +66,7 @@ namespace HobiHobi.Web.Controllers
                 return HttpNotFound();
 
             feed.Item.LoadRss(RavenSession);
-            var rss = feed.Item.GetRss();
+            var rss = feed.Item.GetRss(HttpContext.Request.Url);
             var rssOutput = new StringBuilder();
             using (var xml = XmlWriter.Create(rssOutput))
             {
