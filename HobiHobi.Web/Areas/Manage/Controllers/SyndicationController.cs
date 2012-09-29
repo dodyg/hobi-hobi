@@ -78,7 +78,7 @@ namespace HobiHobi.Web.Areas.Manage.Controllers
                 Response.Cookies.Add(CookieMonster.SetCookie(transient.Item, TransientAccount.COOKIE_NAME));
             }
 
-            this.SaveChangesAndTerminate();
+            this.RavenSession.SaveChanges();
 
             return RedirectToAction("Sources", new { guid = list.Guid });
         }
@@ -134,7 +134,7 @@ namespace HobiHobi.Web.Areas.Manage.Controllers
                         });
 
                         RavenSession.Store(list);
-                        this.SaveChangesAndTerminate();
+                        this.RavenSession.SaveChanges();
 
                         SyndicationRiverJsCache.Flush(list.Name, HttpContext.Cache);
 
@@ -183,7 +183,7 @@ namespace HobiHobi.Web.Areas.Manage.Controllers
                 list.Sources.Items = list.Sources.Items.Where(x => x.Name != name).ToList();
 
                 RavenSession.Store(list);
-                this.SaveChangesAndTerminate();
+                this.RavenSession.SaveChanges();
                 SyndicationRiverJsCache.Flush(list.Name, HttpContext.Cache);
 
                 return HttpDoc<dynamic>.OK(new { Message = "Source remove", Name = name }).ToJson();

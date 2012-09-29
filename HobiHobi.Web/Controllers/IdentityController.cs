@@ -40,7 +40,7 @@ namespace HobiHobi.Web.Controllers
             var u = user.GetUserForCreation();
 
             RavenSession.Store(u);
-            SaveChangesAndTerminate();
+            this.RavenSession.SaveChanges();
             this.FlashSuccess(Global.Messages.RegistrationSuccessful);
             return RedirectToAction("Index", "Home");
         }

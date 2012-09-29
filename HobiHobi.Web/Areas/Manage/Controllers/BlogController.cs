@@ -74,7 +74,7 @@ namespace HobiHobi.Web.Areas.Manage.Controllers
                 Response.Cookies.Add(CookieMonster.SetCookie(transient.Item, TransientAccount.COOKIE_NAME));
             }
 
-            this.SaveChangesAndTerminate();
+            this.RavenSession.SaveChanges();
 
             return Redirect("/b/" + blog.Name);
         }

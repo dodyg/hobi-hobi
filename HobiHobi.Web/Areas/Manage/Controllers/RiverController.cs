@@ -57,7 +57,8 @@ namespace HobiHobi.Web.Areas.Manage.Controllers
                 wall.Sources.Items = wall.Sources.Items.Where(x => x.Name != name).ToList();
 
                 RavenSession.Store(wall);
-                this.SaveChangesAndTerminate();
+                this.RavenSession.SaveChanges();
+
 
                 return HttpDoc<dynamic>.OK(new { Message = "Source remove", Name = name }).ToJson();
             }
@@ -120,7 +121,7 @@ namespace HobiHobi.Web.Areas.Manage.Controllers
                     });
 
                     RavenSession.Store(wall);
-                    this.SaveChangesAndTerminate();
+                    this.RavenSession.SaveChanges();
 
                     return HttpDoc<dynamic>.OK(new { Message = "Source added", Name = name }).ToJson();
                 }
@@ -188,7 +189,7 @@ namespace HobiHobi.Web.Areas.Manage.Controllers
                 Response.Cookies.Add(CookieMonster.SetCookie(transient.Item, TransientAccount.COOKIE_NAME));
             }
 
-            this.SaveChangesAndTerminate();
+            this.RavenSession.SaveChanges();
 
             return RedirectToAction("Sources", new { guid = wall.Guid });
         }
@@ -265,7 +266,7 @@ namespace HobiHobi.Web.Areas.Manage.Controllers
                 try
                 {
                     RavenSession.Store(wall);
-                    this.SaveChangesAndTerminate();
+                    this.RavenSession.SaveChanges();
 
                     return HttpDoc<dynamic>.OK(new { Message = "hello world 2" }).ToJson();
                 }
