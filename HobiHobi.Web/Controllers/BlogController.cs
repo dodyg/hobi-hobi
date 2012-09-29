@@ -66,13 +66,7 @@ namespace HobiHobi.Web.Controllers
             feed.Item.LoadRss(RavenSession);
             var rss = feed.Item.GetRssJs(HttpContext.Request.Url);
 
-            var settings = new JsonSerializerSettings
-            {
-                NullValueHandling = NullValueHandling.Ignore,
-                ContractResolver = new CamelCasePropertyNamesContractResolver()
-            };
-
-            var json = JsonConvert.SerializeObject(rss, Newtonsoft.Json.Formatting.Indented, settings);
+            var json = JsonConvert.SerializeObject(rss, JsonSettings.Get());
             var jsonP = "onGetRss(" + json + ")";
 
             return Content(jsonP, "application/json");
@@ -93,7 +87,9 @@ namespace HobiHobi.Web.Controllers
                 rss.SaveAsRss20(xml);
             }
 
-            return Content(rssOutput.ToString(), "application/rss+xml"); 
+            //Read http://baleinoid.com/whaly/2009/07/xmlwriter-and-utf-8-encoding-without-signature/
+            var payload = rssOutput.ToString().Replace("encoding=\"utf-16\"",""); //remove the Processing Instruction encoding mark for the xml body = it's a hack I know
+            return Content(payload, "application/rss+xml"); 
         }
     }
 }

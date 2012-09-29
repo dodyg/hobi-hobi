@@ -198,6 +198,7 @@
     <Compile Include="Syndications\SyndicationFetcher.cs" />
     <Compile Include="Syndications\SyndicationList.cs" />
     <Compile Include="Utils\CookieMonster.cs" />
+    <Compile Include="Utils\JsonSettings.cs" />
     <Compile Include="Utils\UrlShortener.cs" />
     <Compile Include="Utils\JsonSerializer.cs" />
     <Compile Include="Utils\Texts.cs" />

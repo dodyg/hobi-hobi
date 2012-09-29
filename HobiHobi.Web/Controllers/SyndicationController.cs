@@ -125,7 +125,7 @@ namespace HobiHobi.Web.Controllers
 
                     var river = FeedsRiver.FromSyndication(feeds);
 
-                    var jsonString = Newtonsoft.Json.JsonConvert.SerializeObject(river, Newtonsoft.Json.Formatting.Indented);
+                    var jsonString = Newtonsoft.Json.JsonConvert.SerializeObject(river, JsonSettings.Get());
                     var jsonp = "onGetRiverStream (" + jsonString + ")";
 
                     SyndicationRiverJsCache.Store(name, jsonp, HttpContext.Cache);

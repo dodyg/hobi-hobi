@@ -32,8 +32,8 @@ namespace HobiHobi.Core.Feeds
                                 select new FeedItem
                                 {
                                     Id = y.Id,
-                                    Title = y.Title.Text,
-                                    Body = Texts.LimitTextForRiverJs(y.Summary.Text),
+                                    Title = (y.Title != null) ? y.Title.Text : string.Empty,
+                                    Body = Texts.LimitTextForRiverJs((y.Summary != null) ? y.Summary.Text : string.Empty),
                                     PubDate = y.PublishDate.ToString("R"),
                                     PermaLink = y.Id,
                                     Link = y.Id
