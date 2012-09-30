@@ -124,7 +124,7 @@ namespace HobiHobi.Core.Blogging
         /// <param name="session"></param>
         /// <param name="page"></param>
         /// <param name="pageSize"></param>
-        public void LoadRss(Raven.Client.IDocumentSession session, int page = 0, int pageSize = 30)
+        public void LoadRss(Raven.Client.IDocumentSession session, int page = 1, int pageSize = 30)
         {
             RavenQueryStatistics stats;
 

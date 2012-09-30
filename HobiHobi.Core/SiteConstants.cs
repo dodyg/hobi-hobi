@@ -11,6 +11,9 @@ namespace HobiHobi.Core
         public const int STANDARD_PAGE_SIZE = 20;
         public const int SMALL_PAGE_SIZE = 10;
         public const int MINI_PAGE_SIZE = 5;
+        public const int MAXIMUM_PAGE_SIZE = 128;
+        
+        public const int INITIAL_PAGE = 1;
 
         public const string ANTI_FORGERY_SALT = "THERE_BE_DRAGONS_FOR_WHEREVER_YOU_FIND_THEM";
     }
