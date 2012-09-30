@@ -89,10 +89,18 @@ namespace HobiHobi.Core.Blogging
             Tags = Tags.Where(x => x != tag).ToList();
         }
 
-        public static IQuerySetOne<BlogPost> FindByUrl(Raven.Client.IDocumentSession session, string url)
+        public static IQuerySetOne<BlogPost> GetByUrl(Raven.Client.IDocumentSession session, string url)
         {
             var item = session.Query<BlogPost>().Where(x => x.Slug == url).FirstOrDefault();
             return new QuerySetOne<BlogPost>(item);
+        }
+
+        public static IQuerySetMany<BlogPost> GetByFeedId(Raven.Client.IDocumentSession session, string feedId, int page = 0, int pageSize = 30)
+        {
+            var items = session.Query<BlogPost>().Where(x => x.FeedId == feedId)
+                .OrderByDescending(x => x.DatePublished)
+                .Take(pageSize).Skip((page - 1) * pageSize).ToList();
+            return new QuerySetMany<BlogPost>(items);
         }
     }
 }

@@ -24,6 +24,11 @@ namespace HobiHobi.Web.Areas.Manage.Controllers
             if (blog == null)
                 return HttpNotFound();
 
+            var feeds = RavenSession.Query<BlogFeed>().Where(x => x.BlogId == blog.Id).ToList();
+
+            ViewBag.BlogTitle = blog.Title;
+            ViewBag.Feeds = feeds;
+
             return View();
         }
 
@@ -77,6 +82,38 @@ namespace HobiHobi.Web.Areas.Manage.Controllers
             this.RavenSession.SaveChanges();
 
             return Redirect("/b/" + blog.Name);
+        }
+
+        [HttpGet]
+        public ActionResult GetPosts(string feedId, int page = SiteConstants.INITIAL_PAGE, int pageSize = SiteConstants.MAXIMUM_PAGE_SIZE)
+        {
+            var posts = BlogPost.GetByFeedId(RavenSession, feedId, page, pageSize);
+
+            if (!posts.IsFound)
+            {
+                return HttpDoc<IEnumerable<BlogPost>>.OK(new List<BlogPost>()).ToJson();
+            }
+            else
+            {
+                return HttpDoc<IEnumerable<BlogPost>>.OK(posts.Items).ToJson();
+            }
+        }
+
+        [HttpPost]
+        public ActionResult CreatePost(string feedId, string content, string title = null, string link = null)
+        {
+            var feed = RavenSession.Load<BlogFeed>(feedId);
+
+            if (feed == null)
+                return HttpDoc<EmptyHttpReponse>.OK(EmptyHttpReponse.Instance).ToJson();
+
+            var post = feed.NewPost(content, title: title, link:link);
+        
+            RavenSession.Store(post);
+            RavenSession.Store(feed);
+            RavenSession.SaveChanges();
+
+            return HttpDoc<BlogPost>.OK(post).ToJson();
         }
     }
 }

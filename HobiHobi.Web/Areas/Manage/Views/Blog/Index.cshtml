@@ -3,8 +3,132 @@
     Layout = "~/Areas/Manage/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>@ViewBag.BlogTitle</h2>
 
-<form>
-    
+<div class="tabbable">
+    <ul class="nav nav-tabs" id="feed_tabs">
+        @foreach (var f in ViewBag.Feeds)
+        {
+            <li><a href="#@f.Url" data-id="@f.Id" data-toggle="tab">@f.Title</a></li>
+        }
+        <li><a href="#test" data-id="test" data-toggle="tab">Test</a></li>
+        <li><a href="#" id="feed_new" data-id="feed_new">+</a></li>
+    </ul> 
+</div>
+<div id="message"></div>
+
+<form id="new_post">
+    <textarea style="width:100%;height:100px;" id="post_content"></textarea>
+    <button type="submit" class="btn btn-primary">Post</button>
 </form>
+
+<table class="table" id="posts"></table>
+
+
+<div class="modal hide fade" id="feed_create">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h3>Create feed</h3>
+  </div>
+  <div class="modal-body">
+    <form>
+    
+    </form>
+
+  </div>
+  <div class="modal-footer">
+    <a href="#" class="btn" data-dismiss="modal">Close</a>
+    <a href="#" class="btn btn-primary">Save changes</a>
+  </div>
+</div>
+
+@section JsInline{
+    
+    <script type="text/javascript">
+        $(function () {
+            var firstTab = $('#feed_tabs li:first');
+            firstTab.attr('class', 'active'); //select first one
+            load(firstTab.children(':first').data('id'));
+        });
+
+        function load(feedId) {
+            $.get('/manage/blog/getposts/?feedId=' + feedId, function (payload) {
+                if (payload.Data.length == 0)
+                    $('#posts').html('');
+                else {
+                    var template = $('#tmpl-posts').html();
+
+                    var compiled = _.template(template, { posts: payload.Data });
+                    $('#posts').html(compiled);
+                }
+            });
+
+        }
+
+        $('a[data-toggle="tab"]').on('shown', function (e) {
+            var id = $(e.target).data('id');
+
+            load(id);
+        })
+
+        $('#feed_new').click(function () {
+            $('#feed_create').modal();
+        });
+
+        $('#new_post').submit(function () {
+            var content = $.trim($('#post_content').val());
+            if (content.length == 0)
+                return false;
+
+            var activeTab = $('#feed_tabs li.active a');
+            var id = activeTab.data('id');
+
+            var doc = {
+                feedId : id,
+                content : content
+            };
+
+            var json = JSON.stringify(doc);
+
+            $.ajax('/manage/blog/createpost', {
+                data: json,
+                type: 'POST',
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'json'
+            }).done(function (payload) {
+                //insert the data into the list
+                var template = $('#tmpl-single-post').html();
+                var compiled = _.template(template, { post: payload.Data });
+                $('#posts').prepend(compiled);
+
+                $('#post_content').val('');//reset the content
+                inform('Your post is successfully added');
+            });
+
+            return false;
+        });
+
+        function inform(msg) {
+            $('#message').removeClass().addClass('alert alert-success').html(msg).show().fadeOut(3000);
+        }
+
+        function alarm(msg) {
+            $('#message').removeClass().addClass('alert alert-error').html(msg).show().fadeOut(10000);
+        }
+    </script>
+
+    
+    <script id="tmpl-posts" type="text/template">
+        <% for (var i = 0; i < posts.length; i++) { %>
+            <% var p = posts[i] %>
+            <tr id="<%= p.Id %>">
+                <td><%= p.Content %></td>
+            </tr>
+        <% } %>
+    </script>
+    <script id="tmpl-single-post" type="text/template">
+        <tr id="<%= post.Id %>">
+            <td><%= post.Content %></td>
+        </tr>
+    </script>
+}

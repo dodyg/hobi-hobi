@@ -108,7 +108,7 @@ namespace HobiHobi.Web.Controllers
             if (!feed.IsFound)
                 return HttpNotFound("Feed is not found");
 
-            var blogPost = BlogPost.FindByUrl(RavenSession, postSlug);
+            var blogPost = BlogPost.GetByUrl(RavenSession, postSlug);
 
             if (!blogPost.IsFound)
                 return HttpNotFound("Post is not found");
