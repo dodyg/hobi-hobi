@@ -43,7 +43,7 @@ namespace HobiHobi.Web.Controllers
         /// <summary>
         /// There are three types of feed. Render as HTML or RSS or RSSJS
         /// </summary>
-        /// <param name="slug"></param>
+        /// <param name="feedSlug"></param>
         /// <param name="type"></param>
         /// <returns></returns>
         public ActionResult Feed(string slug)
@@ -90,6 +90,21 @@ namespace HobiHobi.Web.Controllers
             //Read http://baleinoid.com/whaly/2009/07/xmlwriter-and-utf-8-encoding-without-signature/
             var payload = rssOutput.ToString().Replace("encoding=\"utf-16\"",""); //remove the Processing Instruction encoding mark for the xml body = it's a hack I know
             return Content(payload, "application/rss+xml"); 
+        }
+
+        public ActionResult FeedItem(string feedSlug, string postSlug)
+        {
+            var feed = BlogFeed.FindByUrl(RavenSession, feedSlug);
+
+            if (!feed.IsFound)
+                return HttpNotFound("Feed is not found");
+
+            var blogPost = BlogPost.FindByUrl(RavenSession, postSlug);
+
+            if (!blogPost.IsFound)
+                return HttpNotFound("Post is not found");
+
+            return View();
         }
     }
 }

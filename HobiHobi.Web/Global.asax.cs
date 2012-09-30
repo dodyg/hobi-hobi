@@ -77,6 +77,13 @@ namespace HobiHobi.Web
             );
 
             routes.MapRoute(
+                "BlogFeedItem", // Route name
+                "f/{feedSlug}/{postSlug}", // URL with parameters
+                new { controller = "Blog", action = "FeedItem" }, // Parameter defaults
+                new string[] { "HobiHobi.Web.Controllers" }
+            );
+
+            routes.MapRoute(
                 "BlogFeed", // Route name
                 "f/{slug}", // URL with parameters
                 new { controller = "Blog", action = "Feed" }, // Parameter defaults

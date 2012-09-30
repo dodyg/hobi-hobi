@@ -68,7 +68,7 @@ namespace HobiHobi.Web.Controllers
 
                     var authTicket = new FormsAuthenticationTicket(
                       1,
-                      usr.FirstName + " " + usr.LastName,  //user id
+                      usr.FirstName + " " + usr.LastName,  //user postSlug
                       DateTime.Now,
                       expiration,  // expiry
                       rememberMe,  //do not remember

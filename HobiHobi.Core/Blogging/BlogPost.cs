@@ -88,5 +88,11 @@ namespace HobiHobi.Core.Blogging
         {
             Tags = Tags.Where(x => x != tag).ToList();
         }
+
+        public static IQuerySetOne<BlogPost> FindByUrl(Raven.Client.IDocumentSession session, string url)
+        {
+            var item = session.Query<BlogPost>().Where(x => x.Slug == url).FirstOrDefault();
+            return new QuerySetOne<BlogPost>(item);
+        }
     }
 }
