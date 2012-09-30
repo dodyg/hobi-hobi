@@ -115,5 +115,22 @@ namespace HobiHobi.Web.Areas.Manage.Controllers
 
             return HttpDoc<BlogPost>.OK(post).ToJson();
         }
+
+        [HttpPost]
+        public ActionResult CreateFeed(string blogId, string title, string description)
+        {
+            var blog = RavenSession.Load<Blog>(blogId);
+
+            if (blog == null)
+                return HttpDoc<EmptyHttpReponse>.OK(EmptyHttpReponse.Instance).ToJson();
+
+            var feed = blog.CreateFeed(title, description);
+
+            RavenSession.Store(blog);
+            RavenSession.Store(feed);
+            RavenSession.SaveChanges();
+
+            return HttpDoc<BlogFeed>.OK(feed).ToJson();
+        }
     }
 }

@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "Index";
+    ViewBag.Title = ViewBag.BlogTitle;
     Layout = "~/Areas/Manage/Views/Shared/_Layout.cshtml";
 }
 
@@ -11,14 +11,16 @@
         {
             <li><a href="#@f.Url" data-id="@f.Id" data-toggle="tab">@f.Title</a></li>
         }
-        <li><a href="#test" data-id="test" data-toggle="tab">Test</a></li>
         <li><a href="#" id="feed_new" data-id="feed_new">+</a></li>
     </ul> 
 </div>
 <div id="message"></div>
 
 <form id="new_post">
-    <textarea style="width:100%;height:100px;" id="post_content"></textarea>
+    <textarea class="input-xxlarge" id="post_content" name="content"></textarea>
+    <br />
+    <input type="url" id="post_link" class="input-xxlarge" name="link" placeholder="Link"/>
+    <br />
     <button type="submit" class="btn btn-primary">Post</button>
 </form>
 
@@ -31,8 +33,10 @@
     <h3>Create feed</h3>
   </div>
   <div class="modal-body">
-    <form>
-    
+    <form id="new_feed">
+        <input type="text" class="input-large" placeholder="Title" id="feed_title" name="title"/>
+        <br />
+        <textarea class="input-large" id="feed_description" name="description" placeholder="Description"></textarea>
     </form>
 
   </div>
@@ -88,6 +92,11 @@
                 content : content
             };
 
+            var link = $('#post_link').val();
+
+            if (link.length > 0)
+                doc.link = link;
+
             var json = JSON.stringify(doc);
 
             $.ajax('/manage/blog/createpost', {
@@ -100,13 +109,17 @@
                 var template = $('#tmpl-single-post').html();
                 var compiled = _.template(template, { post: payload.Data });
                 $('#posts').prepend(compiled);
-
-                $('#post_content').val('');//reset the content
+                postFormReset();
                 inform('Your post is successfully added');
             });
 
             return false;
         });
+
+        function postFormReset() {
+            $('#post_content').val('');//reset the content
+            $('#post_link').val('');
+        }
 
         function inform(msg) {
             $('#message').removeClass().addClass('alert alert-success').html(msg).show().fadeOut(3000);
@@ -122,13 +135,21 @@
         <% for (var i = 0; i < posts.length; i++) { %>
             <% var p = posts[i] %>
             <tr id="<%= p.Id %>">
-                <td><%= p.Content %></td>
+                <td><%= p.Content %>
+                <% if (p.ShortLink != null) { %>
+                    <a href="<%= p.ShortLink %>"><b class="icon-zoom-in"></b></a>
+                <% } %>
+                </td>
             </tr>
         <% } %>
     </script>
     <script id="tmpl-single-post" type="text/template">
         <tr id="<%= post.Id %>">
-            <td><%= post.Content %></td>
+            <td><%= post.Content %>
+                <% if (post.ShortLink != null) { %>
+                    <a href="<%= post.ShortLink %>"><b class="icon-zoom-in"></b></a>
+                <% } %>
+            </td>
         </tr>
     </script>
 }

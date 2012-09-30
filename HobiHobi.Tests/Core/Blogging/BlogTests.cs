@@ -63,6 +63,23 @@ namespace HobiHobi.Tests.Core.Blogging
         }
 
         [Test, Explicit]
+        public void CreatePoliticalFeed()
+        {
+            Raven.Session(session =>
+            {
+                var blog = session.Query<Blog>().Where(x => x.Guid == TEST_BLOG_GUID).First();
+
+                var feed = blog.CreateFeed("Election 2012", "This is election 2012 feed");
+
+                session.Store(blog);
+                session.Store(feed);
+
+                session.SaveChanges();
+            });
+        
+        }
+
+        [Test, Explicit]
         public void LoadDefaultFeed()
         {
             Raven.Session(session =>
