@@ -94,7 +94,7 @@ namespace HobiHobi.Tests.Core.Blogging
 
                     Assert.IsTrue(feed != null, defaultFeedId + " must load");
 
-                    var sentence = SentenceGenerator.Get();
+                    var sentence = SentenceGenerator.Get(30);
                     var post = feed.NewPost(sentence, link: "http://nytimes.com");
 
                     session.Store(post);

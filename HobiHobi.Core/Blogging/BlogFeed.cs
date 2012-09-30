@@ -102,7 +102,7 @@ namespace HobiHobi.Core.Blogging
         /// <returns></returns>
         public static bool CheckIfUrlExist(Raven.Client.IDocumentSession session, string url)
         {
-            return session.Query<BlogFeed>().Where( x => x.Url == url.ToLower()).Any();
+            return session.Query<BlogFeed>().Where(x => x.Url == url.ToLower()).Any();
         }
 
         /// <summary>
@@ -133,7 +133,7 @@ namespace HobiHobi.Core.Blogging
                 .Where(x => x.FeedId == this.Id)
                 .OrderByDescending(x => x.DatePublished)
                 .Take(pageSize)
-                .Skip((page - 1)*pageSize)
+                .Skip((page - 1) * pageSize)
                 .ToList();
         }
 
@@ -149,7 +149,7 @@ namespace HobiHobi.Core.Blogging
         {
             var host = Utils.Texts.FromUriHost(currentHost);
             var alternativeLink = host + "/f/" + this.Url;
-            
+
             //prepare the channel information
             var feed = new SyndicationFeed(Title, Description, new Uri(alternativeLink));
             feed.LastUpdatedTime = this.LastModified;
@@ -202,7 +202,7 @@ namespace HobiHobi.Core.Blogging
 
                 items.Add(item);
             }
-            
+
             feed.Items = items;
             return feed;
         }
@@ -214,35 +214,37 @@ namespace HobiHobi.Core.Blogging
 
             var rss = new RssJs
             {
-                Channel = new RssJs.RssChannel
-                {
-                    Title = Title,
-                    Description = Description,
-                    Link = alternativeLink,
-                    LastBuildDate = LastModified.ToString("R"),
-                    PubDate = LastModified.ToString("R"),
-                    Ttl = RSS_TTL,
-                    Generator = "Hobi Hobi",
-                    Items = Posts.Select( x =>
-                        {
-                            var item = new RssJs.RssChannel.RssItem
+                Rss = new RssJs.RssRoot{
+                    Channel = new RssJs.RssRoot.RssChannel
+                    {
+                        Title = Title,
+                        Description = Description,
+                        Link = alternativeLink,
+                        LastBuildDate = LastModified.ToString("R"),
+                        PubDate = LastModified.ToString("R"),
+                        Ttl = RSS_TTL,
+                        Generator = "Hobi Hobi",
+                        Items = Posts.Select( x =>
                             {
-                                Description = x.Content,
-                                Guid = host + "/f/" + this.Url + "/" + x.Slug,
-                                PubDate = x.DatePublished
-                            };
+                                var item = new RssJs.RssRoot.RssChannel.RssItem
+                                {
+                                    Description = x.Content,
+                                    Guid = host + "/f/" + this.Url + "/" + x.Slug,
+                                    PubDate = x.DatePublished.ToString("R")
+                                };
 
-                            if (!x.ShortLink.IsNullOrWhiteSpace())
-                                item.Link = x.ShortLink;
-                            else
-                                item.Link = x.Link;
+                                if (!x.ShortLink.IsNullOrWhiteSpace())
+                                    item.Link = x.ShortLink;
+                                else
+                                    item.Link = x.Link;
 
-                            if (!Title.IsNullOrWhiteSpace())
-                                item.Title = x.Title;
+                                if (!Title.IsNullOrWhiteSpace())
+                                    item.Title = x.Title;
 
-                            return item;
-                        }
-                    ).ToList()
+                                return item;
+                            }
+                        ).ToList()
+                    }
                 }
             };
 
