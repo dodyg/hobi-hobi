@@ -54,8 +54,8 @@ namespace HobiHobi.Web.Controllers
             if (!feed.IsFound)
                 return HttpNotFound();
 
-            ViewBag.RssJs = Texts.FromUriHost(Request.Url) + "/f/rssjs/" + feed.Item.Url;
-            ViewBag.Rss = Texts.FromUriHost(Request.Url) + "/f/rss/" + feed.Item.Url;
+            ViewBag.RssJs = feed.Item.GetRssJsLink(Request);
+            ViewBag.Rss = feed.Item.GetRssLink(Request);
 
             return View();
         }
@@ -113,6 +113,9 @@ namespace HobiHobi.Web.Controllers
 
             if (!blogPost.IsFound)
                 return HttpNotFound("Post is not found");
+
+            ViewBag.FeedName = feed.Item;
+            ViewBag.FeedUrl = feed.Item.GetHtmlLink(Request);
 
             return View();
         }

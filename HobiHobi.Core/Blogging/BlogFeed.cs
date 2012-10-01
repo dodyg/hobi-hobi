@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.ServiceModel.Syndication;
 using System.Text;
+using System.Web;
 using System.Xml;
 using System.Xml.Linq;
 
@@ -252,5 +253,40 @@ namespace HobiHobi.Core.Blogging
 
             return rss;
         }
+
+        /// <summary>
+        /// Get the RssJs version of this blog feed
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        public string GetRssJsLink(HttpRequestBase request)
+        {
+            var link = Texts.FromUriHost(request.Url) + "/f/rssjs/" + this.Url;
+            return link;
+        }
+
+        /// <summary>
+        /// Get the Rss version of this blog feed
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        public string GetRssLink(HttpRequestBase request)
+        {
+            var link = Texts.FromUriHost(request.Url) + "/f/rss/" + this.Url;
+            return link;
+        }
+
+        /// <summary>
+        /// Get the HTML rendition of this blog feed
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        public string GetHtmlLink(HttpRequestBase request)
+        {
+            var link = Texts.FromUriHost(request.Url) + "/f/" + this.Url;
+            return link;
+        }
+
+
     }
 }
