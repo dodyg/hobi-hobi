@@ -117,7 +117,11 @@
                 contentType: 'application/json; charset=utf-8',
                 dataType: 'json'
             }).done(function (payload) {
-                document.location.reload(true);
+                if (payload.StatusCode != 200) {
+                    alarm(payload.StatusMessage + ":" + payload.ErrorDetails, '#message_popup');
+                }
+                else //operation successful
+                    document.location.reload(true);
             });
         });
 

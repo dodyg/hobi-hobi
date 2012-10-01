@@ -65,7 +65,7 @@ namespace HobiHobi.Core.Utils
 
         public static string ConvertTitleToUrl(string title)
         {
-            return ConvertTitleToName(title);
+            return ConvertTitleToName(title.ToLower());
         }
     }
 }

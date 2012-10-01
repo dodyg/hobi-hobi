@@ -125,6 +125,13 @@ namespace HobiHobi.Web.Areas.Manage.Controllers
             if (blog == null)
                 return HttpDoc<EmptyHttpReponse>.OK(EmptyHttpReponse.Instance).ToJson();
 
+            var titleUrl = blog.ConvertFeedTitleToUrl(title);
+
+            var isUrlExist = BlogFeed.CheckIfUrlExist(RavenSession, titleUrl);
+
+            if (isUrlExist)
+                return HttpDoc<EmptyHttpReponse>.PreconditionFailed("The url generated from the title is '" + titleUrl + "'. Unfortunately this is already taken. Please change your title and try again").ToJson(); 
+
             var feed = blog.CreateFeed(title, description);
 
             RavenSession.Store(blog);

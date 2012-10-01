@@ -51,13 +51,23 @@ namespace HobiHobi.Core.Blogging
                 Guid = Stamp.GUID().ToString(),
                 BlogId = this.Id,
                 Title = title,
-                Url = Texts.ConvertTitleToUrl(title)
+                Url = ConvertFeedTitleToUrl(title)
             };
 
             BlogFeedIds.Add(feed.Id);
 
             return feed;
-        } 
+        }
+
+        /// <summary>
+        /// Use this method to convert a given feed title to a url
+        /// </summary>
+        /// <param name="title"></param>
+        /// <returns></returns>
+        public string ConvertFeedTitleToUrl(string title)
+        {
+            return Texts.ConvertTitleToUrl(title);
+        }
 
         /// <summary>
         /// Create a default feed for this blog
