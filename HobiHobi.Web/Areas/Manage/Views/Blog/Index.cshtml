@@ -9,11 +9,14 @@
     <ul class="nav nav-tabs" id="feed_tabs">
         @foreach (var f in ViewBag.Feeds)
         {
-            <li><a href="#@f.Url" data-id="@f.Id" data-toggle="tab">@f.Title</a></li>
+            <li><a href="#@f.Url" data-url="@f.Url" data-id="@f.Id" data-toggle="tab">@f.Title</a></li>
         }
         <li><a href="#" id="feed_new" data-id="feed_new">+</a></li>
     </ul> 
 </div>
+
+<a href="#" id="feed_tab_link" target="_blank"><i class="icon-zoom-in"></i></a>
+
 <div id="message"></div>
 
 <form id="new_post">
@@ -33,16 +36,18 @@
     <h3>Create feed</h3>
   </div>
   <div class="modal-body">
+    <div id="message_popup"></div>
     <form id="new_feed">
         <input type="text" class="input-large" placeholder="Title" id="feed_title" name="title"/>
         <br />
         <textarea class="input-large" id="feed_description" name="description" placeholder="Description"></textarea>
+        <br />
+        <input type="hidden" id="feed_blog_id" value="@ViewBag.BlogId" />
     </form>
-
   </div>
   <div class="modal-footer">
     <a href="#" class="btn" data-dismiss="modal">Close</a>
-    <a href="#" class="btn btn-primary">Save changes</a>
+    <a href="#" class="btn btn-primary" id="save_new_feed">Save changes</a>
   </div>
 </div>
 
@@ -51,8 +56,14 @@
     <script type="text/javascript">
         $(function () {
             var firstTab = $('#feed_tabs li:first');
-            firstTab.attr('class', 'active'); //select first one
-            load(firstTab.children(':first').data('id'));
+
+            if (firstTab == null)
+                return;
+
+            firstTab.attr('class', 'active');//select first one
+            var firstTabUrl = firstTab.children(':first'); 
+            $('#feed_tab_link').attr('href', '/f/' + firstTabUrl.data('url'));
+            load(firstTabUrl.data('id'));
         });
 
         function load(feedId) {
@@ -71,12 +82,43 @@
 
         $('a[data-toggle="tab"]').on('shown', function (e) {
             var id = $(e.target).data('id');
-
+            $('#feed_tab_link').attr('href', '/f/' + $(e.target).data('url'));//switch the link to the rendering of the blog
             load(id);
         })
 
         $('#feed_new').click(function () {
             $('#feed_create').modal();
+        });
+
+        $('#save_new_feed').click(function () {
+            var title = $.trim($('#feed_title').val());
+            if (title.length < 6) {
+                alarm('Title must be at least 10 characters long', '#message_popup');
+                return;
+            }
+
+            var description = $.trim($('#feed_description').val());
+            if (description.length == 0) {
+                alarm('Description is required', '#message_popup');
+                return;
+            }
+
+            var doc = {
+                blogId: $('#feed_blog_id').val(),
+                title: title,
+                description: description
+            };
+
+            var json = JSON.stringify(doc);
+
+            $.ajax('/manage/blog/createfeed', {
+                data: json,
+                type: 'POST',
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'json'
+            }).done(function (payload) {
+                document.location.reload(true);
+            });
         });
 
         $('#new_post').submit(function () {
@@ -121,12 +163,18 @@
             $('#post_link').val('');
         }
 
-        function inform(msg) {
-            $('#message').removeClass().addClass('alert alert-success').html(msg).show().fadeOut(3000);
+        function inform(msg, target) {
+            if (target === undefined)
+                $('#message').removeClass().addClass('alert alert-success').html(msg).show().fadeOut(3000);
+            else
+                $(target).removeClass().addClass('alert alert-success').html(msg).show().fadeOut(3000);
         }
 
-        function alarm(msg) {
-            $('#message').removeClass().addClass('alert alert-error').html(msg).show().fadeOut(10000);
+        function alarm(msg, target) {
+            if (target === undefined) 
+                $('#message').removeClass().addClass('alert alert-error').html(msg).show().fadeOut(10000);
+            else
+                $(target).removeClass().addClass('alert alert-error').html(msg).show().fadeOut(10000);
         }
     </script>
 

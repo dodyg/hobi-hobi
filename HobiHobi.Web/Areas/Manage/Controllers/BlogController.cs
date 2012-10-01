@@ -26,6 +26,7 @@ namespace HobiHobi.Web.Areas.Manage.Controllers
 
             var feeds = RavenSession.Query<BlogFeed>().Where(x => x.BlogId == blog.Id).ToList();
 
+            ViewBag.BlogId = blog.Id;
             ViewBag.BlogTitle = blog.Title;
             ViewBag.Feeds = feeds;
 
