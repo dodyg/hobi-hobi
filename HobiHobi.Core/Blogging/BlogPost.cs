@@ -31,6 +31,19 @@ namespace HobiHobi.Core.Blogging
         public bool IsDeleted { get; set; }
         public ICollection<string> Tags { get; set; }
 
+        public string PreferredLink
+        {
+            get
+            {
+                if (!ShortLink.IsNullOrWhiteSpace())
+                    return ShortLink;
+                else if (!Link.IsNullOrWhiteSpace())
+                    return Link;
+                else
+                    return string.Empty;
+            }
+        }
+
         public BlogPost()
         {
             DateCreated = Stamp.Time();

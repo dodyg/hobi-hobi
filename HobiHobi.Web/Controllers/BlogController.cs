@@ -114,8 +114,9 @@ namespace HobiHobi.Web.Controllers
             if (!blogPost.IsFound)
                 return HttpNotFound("Post is not found");
 
-            ViewBag.FeedName = feed.Item;
-            ViewBag.FeedUrl = feed.Item.GetHtmlLink(Request);
+            ViewBag.FeedTitle = feed.Item.Title;
+            ViewBag.FeedHtmlLink = feed.Item.GetHtmlLink(Request);
+            ViewBag.Post = blogPost.Item;
 
             return View();
         }

@@ -3,4 +3,30 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>FeedItem</h2>
+<h2>@ViewBag.FeedTitle</h2>
+<a href="@ViewBag.FeedHtmlLink">@ViewBag.FeedHtmlLink</a>
+
+@if (!string.IsNullOrWhiteSpace(@ViewBag.Post.Title)) {
+    <h3>@ViewBag.Post.Title</h3>
+}
+<br /><br />
+<div class="post_body">
+    @if (!string.IsNullOrWhiteSpace(ViewBag.Post.PreferredLink))
+    {
+        <a href="@ViewBag.Post.PreferredLink">@ViewBag.Post.Content</a>
+    }else{
+        @ViewBag.Post.Content
+    }
+</div>
+<div class="post_published">
+    @ViewBag.Post.DatePublished.ToString("R")
+</div>
+
+@section CssInline{
+
+  <style type="text/css">
+      .post_published {
+        font-size:11px;
+      }
+  </style>
+}
