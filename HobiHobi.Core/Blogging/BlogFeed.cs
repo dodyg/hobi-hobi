@@ -89,6 +89,7 @@ namespace HobiHobi.Core.Blogging
             post.GenerateSlug();
 
             this.MarkEtag();
+            this.LastModified = Stamp.Time();
 
             return post;
         }
