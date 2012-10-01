@@ -55,6 +55,7 @@ namespace HobiHobi.Web.Controllers
                 return HttpNotFound();
 
             ViewBag.RssJs = Texts.FromUriHost(Request.Url) + "/f/rssjs/" + feed.Item.Url;
+            ViewBag.Rss = Texts.FromUriHost(Request.Url) + "/f/rss/" + feed.Item.Url;
 
             return View();
         }

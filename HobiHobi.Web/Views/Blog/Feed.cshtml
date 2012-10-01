@@ -3,9 +3,9 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-This is a rendering of <a href="@ViewBag.RssJs">this Rss.Js feed</a>. 
+<a href="@ViewBag.RssJs">RSS.Js</a> / <a href="@ViewBag.Rss">RSS</a>
 
-<h2 id="title">RSS.JS</h2>
+<h2 id="title"></h2>
 <div id="description"></div>
 <div id="pub-date"></div>
 <br />
@@ -54,10 +54,14 @@ This is a rendering of <a href="@ViewBag.RssJs">this Rss.Js feed</a>.
             <h3><a href="<%= f.link %>"><%= f.title %></a></h3>
             <% } %>
             <div class="feed-item-body">
+                <% if (f.link != null) { %>
+                   <a href="<%= f.link %>"><%= getCleaned(f.description) %></a>                
+                <% } else { %>
                 <%= getCleaned(f.description) %>
+                <% } %>
             </div>
             <div class="feed-item-pub-date">
-                <%= f.pubDate %>
+                <%= f.pubDate %> <a href="<%= f.guid %>">#</a>
             </div>
         </div>
     <% } %>
