@@ -12,6 +12,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using Newtonsoft.Json.Converters;
 using HobiHobi.Core;
+using HobiHobi.Core.Framework;
 
 namespace HobiHobi.Web.Controllers
 {
@@ -37,8 +38,24 @@ namespace HobiHobi.Web.Controllers
             ViewBag.Title = blog.Title;
             ViewBag.Description = blog.Description;
             ViewBag.Keywords = blog.Keywords;
-
+            ViewBag.OpmlUrl = "/b/opml/" + blog.Name;
             return View();
+        }
+
+
+        public ActionResult BlogOpmlSubscriptionList(string name)
+        {
+            var blog = RavenSession.Query<Blog>().Where(x => x.Name == name).FirstOrDefault();
+
+            if (blog == null)
+                return HttpNotFound();
+
+            var feeds = blog.GetFeeds(RavenSession);
+            var opml = blog.GetFeedsOpml(feeds, Request);
+            var xml = opml.ToXML();
+
+            this.Compress();
+            return Content(xml.ToString(), "text/xml");
         }
 
         /// <summary>
@@ -102,6 +119,7 @@ namespace HobiHobi.Web.Controllers
             return Content(payload, "application/rss+xml"); 
         }
 
+
         public ActionResult FeedItem(string feedSlug, string postSlug)
         {
             var feed = BlogFeed.FindByUrl(RavenSession, feedSlug);
@@ -120,5 +138,7 @@ namespace HobiHobi.Web.Controllers
 
             return View();
         }
+
+
     }
 }

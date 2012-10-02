@@ -1,9 +1,11 @@
 ﻿using HobiHobi.Core.Framework;
+using HobiHobi.Core.Subscriptions;
 using HobiHobi.Core.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Web;
 
 namespace HobiHobi.Core.Blogging
 {
@@ -57,6 +59,50 @@ namespace HobiHobi.Core.Blogging
             BlogFeedIds.Add(feed.Id);
 
             return feed;
+        }
+
+        public List<BlogFeed> GetFeeds(Raven.Client.IDocumentSession session)
+        {
+            if (Id.IsNullOrWhiteSpace())
+                throw new ApplicationException("This blog must have an id before performing GetFeeds operations");
+
+            var feeds = session.Query<BlogFeed>().Where(x => x.BlogId == this.Id).ToList();
+
+            return feeds;
+        }
+
+        public Opml GetFeedsOpml(List<BlogFeed> feeds, HttpRequestBase request)
+        {
+            if (Id.IsNullOrWhiteSpace())
+                throw new ApplicationException("This blog must have an id before performing GetFeedsOpml operations");
+
+            var opml = new Opml
+            {
+                Title = Title,
+                DateCreated = DateCreated,
+            };
+
+
+            foreach (var i in feeds.Select(
+                x =>
+                {
+                    var item = new Outline();
+                    item.Attributes["text"] = x.Title;
+                    item.Attributes["type"] = "rss";
+                    item.Attributes["name"] = Texts.ConvertTitleToName(x.Title);
+                    if (!string.IsNullOrWhiteSpace(x.Description))
+                        item.Attributes["description"] = x.Description;
+                    item.Attributes["htmlUrl"] = x.GetHtmlLink(request);
+                    item.Attributes["xmlUrl"] = x.GetRssLink(request);
+
+                    return item;
+                }))
+            {
+                opml.Outlines.Add(i);
+            }
+
+
+            return opml;
         }
 
         /// <summary>

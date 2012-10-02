@@ -91,6 +91,14 @@ namespace HobiHobi.Web
             );
 
             routes.MapRoute(
+                "BlogSubscriptionFeedList", // Route name
+                "b/opml/{name}", // URL with parameters
+                new { controller = "Blog", action = "BlogOpmlSubscriptionList" }, // Parameter defaults
+                new string[] { "HobiHobi.Web.Controllers" }
+            );
+
+
+            routes.MapRoute(
                 "Blog", // Route name
                 "b/{name}", // URL with parameters
                 new { controller = "Blog", action = "Index" }, // Parameter defaults

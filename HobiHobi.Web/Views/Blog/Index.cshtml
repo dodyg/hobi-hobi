@@ -23,7 +23,9 @@
 {
     <div id="edit_this_blog"><a href="@ViewBag.EditLink">Edit <i class="icon-edit"></i></a></div>
 }
-
+    <br />
+    <a href="@ViewBag.OpmlUrl"><img src="/Images/opml-icon-128x128.png" width="32" /></a>
+    <br /><br />
     @Html.Raw(ViewBag.Body)
     
     @Html.Raw(ViewBag.BodyInline)
