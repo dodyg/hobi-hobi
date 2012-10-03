@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using HobiHobi.Core.Framework;
 using HobiHobi.Core.Utils;
 using HobiHobi.Core.Syndications;
+using HobiHobi.Core.Blogging;
 
 namespace HobiHobi.Web.Areas.API.Controllers
 {
@@ -55,6 +56,30 @@ namespace HobiHobi.Web.Areas.API.Controllers
                 outline.Attributes["url"] = Texts.FromUriHost(Request.Url) + "/s/" + x.Name;
                 return outline;
             }));
+
+            var xml = opml.ToXML();
+            this.Compress();
+            return Content(xml.ToString(), "text/xml");
+        }
+
+        [HttpGet]
+        public ActionResult Blogs()
+        {
+            var blogs = this.RavenSession.Query<Blog>().ToList();
+            var opml = new Opml()
+            {
+                Title = "Hobie Published Blogs",
+                OwnerName = "hobieu"
+            };
+            opml.Outlines.AddRange(blogs.Select(x =>
+                {
+                    var outline = new Outline();
+                    outline.Attributes["type"] = "link";
+                    outline.Attributes["text"] = x.Title;
+                    outline.Attributes["name"] = x.Name;
+                    outline.Attributes["url"] = Texts.FromUriHost(Request.Url) + "/b/" + x.Name;
+                    return outline;
+                }));
 
             var xml = opml.ToXML();
             this.Compress();

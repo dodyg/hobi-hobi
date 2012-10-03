@@ -20,5 +20,10 @@ namespace HobiHobi.Web.Controllers
         {
             return View();
         }
+
+        public ActionResult Blogs()
+        {
+            return View();
+        }
     }
 }
