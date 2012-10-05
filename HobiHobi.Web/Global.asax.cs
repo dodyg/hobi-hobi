@@ -22,6 +22,11 @@ namespace HobiHobi.Web
         public static string CommonJsTag;
         public static string CommonCssTag;
 
+
+#if DEBUG
+        public const string DATABASE_NAME = "hobihobi";
+#endif
+
         /// <summary>
         /// We are using this because we are not using any stupid membership provider
         /// </summary>
@@ -54,7 +59,7 @@ namespace HobiHobi.Web
 
         protected void Application_Start()
         {
-            Startup.RavenDB.Init(Store);
+            Startup.RavenDB.Init(out Store);
 
             CommonCssTag = System.Configuration.ConfigurationManager.AppSettings["Site.CssTag"];
             CommonJsTag = System.Configuration.ConfigurationManager.AppSettings["Site.JsTag"];

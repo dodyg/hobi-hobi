@@ -8,11 +8,7 @@ namespace HobiHobi.Web.Startup
     public static class RavenDB
     {
 
-#if DEBUG
-        public const string DATABASE_NAME = "hobihobi";
-#endif
-
-        public static void Init(DocumentStore store)
+        public static void Init(out DocumentStore store)
         {
             store = new DocumentStore { ConnectionStringName = "RavenDB" };
             store.Initialize();
@@ -21,7 +17,7 @@ namespace HobiHobi.Web.Startup
             IndexCreation.CreateIndexes(Assembly.GetCallingAssembly(), store);
 
 #if DEBUG
-            store.DatabaseCommands.EnsureDatabaseExists(DATABASE_NAME);
+            store.DatabaseCommands.EnsureDatabaseExists(MvcApplication.DATABASE_NAME);
 #endif
 
         }
