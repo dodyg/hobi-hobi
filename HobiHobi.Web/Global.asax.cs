@@ -4,12 +4,10 @@ using FluentValidation;
 using FluentValidation.Mvc;
 using HobiHobi.Core.Identity;
 using HobiHobi.Web.IoC;
+using HobiHobi.Web.Startup;
 using Newtonsoft.Json;
 using Raven.Client.Document;
-using Raven.Client.Extensions;
-using Raven.Client.Indexes;
 using System;
-using System.Reflection;
 using System.Security.Principal;
 using System.Web;
 using System.Web.Mvc;
@@ -23,10 +21,6 @@ namespace HobiHobi.Web
         public static DocumentStore Store;
         public static string CommonJsTag;
         public static string CommonCssTag;
-
-#if DEBUG
-        public const string DATABASE_NAME = "hobihobi";
-#endif
 
         /// <summary>
         /// We are using this because we are not using any stupid membership provider
@@ -58,135 +52,10 @@ namespace HobiHobi.Web
             filters.Add(new HandleErrorAttribute());
         }
 
-        public static void RegisterRoutes(RouteCollection routes)
-        {
-            routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
-
-            routes.MapRoute(
-                "BlogFeedRssJs", // Route name
-                "f/rssjs/{slug}", // URL with parameters
-                new { controller = "Blog", action = "FeedRssJs" }, // Parameter defaults
-                new string[] { "HobiHobi.Web.Controllers" }
-            );
-
-            routes.MapRoute(
-                "BlogFeedRss", // Route name
-                "f/rss/{slug}", // URL with parameters
-                new { controller = "Blog", action = "FeedRss" }, // Parameter defaults
-                new string[] { "HobiHobi.Web.Controllers" }
-            );
-
-            routes.MapRoute(
-                "BlogFeedItem", // Route name
-                "f/{feedSlug}/{postSlug}", // URL with parameters
-                new { controller = "Blog", action = "FeedItem" }, // Parameter defaults
-                new string[] { "HobiHobi.Web.Controllers" }
-            );
-
-            routes.MapRoute(
-                "BlogFeed", // Route name
-                "f/{slug}", // URL with parameters
-                new { controller = "Blog", action = "Feed" }, // Parameter defaults
-                new string[] { "HobiHobi.Web.Controllers" }
-            );
-
-            routes.MapRoute(
-                "BlogSubscriptionFeedList", // Route name
-                "b/opml/{name}", // URL with parameters
-                new { controller = "Blog", action = "BlogOpmlSubscriptionList" }, // Parameter defaults
-                new string[] { "HobiHobi.Web.Controllers" }
-            );
-
-
-            routes.MapRoute(
-                "Blog", // Route name
-                "b/{name}", // URL with parameters
-                new { controller = "Blog", action = "Index" }, // Parameter defaults
-                new string[] { "HobiHobi.Web.Controllers" }
-            );
-
-            routes.MapRoute(
-                "Syndication", // Route name
-                "s/{name}", // URL with parameters
-                new { controller = "Syndication", action = "Index" }, // Parameter defaults
-                new string[] { "HobiHobi.Web.Controllers" }
-            );
-
-            routes.MapRoute(
-                "SyndicationOpml", // Route name
-                "s/opml/{name}", // URL with parameters
-                new { controller = "Syndication", action = "GetOpml" }, // Parameter defaults
-                new string[] { "HobiHobi.Web.Controllers" }
-            );
-
-            routes.MapRoute(
-                "SyndicationRiverJs", // Route name
-                "s/riverjs/{name}", // URL with parameters
-                new { controller = "Syndication", action = "GetRiverJs" }, // Parameter defaults
-                new string[] { "HobiHobi.Web.Controllers" }
-            );
-
-            routes.MapRoute(
-                "RiverFeedName", // Route name
-                "r/feed/{name}/{feedname}", // URL with parameters
-                new { controller = "River", action = "GetFeed" }, // Parameter defaults
-                new string[] { "HobiHobi.Web.Controllers" }
-            );
-
-            routes.MapRoute(
-                "RiverOpml", // Route name
-                "r/opml/{name}", // URL with parameters
-                new { controller = "River", action = "GetOpml" }, // Parameter defaults
-                new string[] { "HobiHobi.Web.Controllers" }
-            );
-
-            routes.MapRoute(
-                "RiverCss", // Route name
-                "r/css/{name}/{etag}", // URL with parameters
-                new { controller = "River", action = "GetCss" }, // Parameter defaults
-                new string[] { "HobiHobi.Web.Controllers" }
-            );
-
-            routes.MapRoute(
-                "RiverJs", // Route name
-                "r/js/{name}/{etag}", // URL with parameters
-                new { controller = "River", action = "GetJs" }, // Parameter defaults
-                new string[] { "HobiHobi.Web.Controllers" }
-            );
-
-            routes.MapRoute(
-                "River", // Route name
-                "r/{name}", // URL with parameters
-                new { controller = "River", action = "Index"}, // Parameter defaults
-                new string[] { "HobiHobi.Web.Controllers" }
-            );
-            
-            routes.MapRoute(
-                "Default", // Route name
-                "{controller}/{action}/{id}", // URL with parameters
-                new { controller = "Home", action = "Index", id = UrlParameter.Optional }, // Parameter defaults
-                new string[] { "HobiHobi.Web.Controllers"}
-            );
-
-        }
-
-        void InitializeRavenDB()
-        {
-
-            Store = new DocumentStore { ConnectionStringName = "RavenDB" };
-            Store.Initialize();
-            Store.Conventions.DefaultQueryingConsistency = ConsistencyOptions.QueryYourWrites;
-
-            IndexCreation.CreateIndexes(Assembly.GetCallingAssembly(), Store);
-
-#if DEBUG
-            Store.DatabaseCommands.EnsureDatabaseExists(DATABASE_NAME);
-#endif
-        }
-
         protected void Application_Start()
         {
-            InitializeRavenDB();
+            Startup.RavenDB.Init(Store);
+
             CommonCssTag = System.Configuration.ConfigurationManager.AppSettings["Site.CssTag"];
             CommonJsTag = System.Configuration.ConfigurationManager.AppSettings["Site.JsTag"];
 
@@ -198,7 +67,8 @@ namespace HobiHobi.Web
             AreaRegistration.RegisterAllAreas();
 
             RegisterGlobalFilters(GlobalFilters.Filters);
-            RegisterRoutes(RouteTable.Routes);
+            Routing.Configure(RouteTable.Routes);
+            Scheduler.Start();
 
             DataAnnotationsModelValidatorProvider.AddImplicitRequiredAttributeForValueTypes = false;
             FluentValidationModelValidatorProvider.Configure(provider =>

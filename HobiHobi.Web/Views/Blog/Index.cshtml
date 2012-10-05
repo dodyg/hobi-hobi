@@ -26,14 +26,23 @@
     <br />
     <a href="@ViewBag.OpmlUrl"><img src="/Images/opml-icon-128x128.png" width="32" /></a>
     <br /><br />
-    @Html.Raw(ViewBag.Body)
     
-    @Html.Raw(ViewBag.BodyInline)
-
-    <div class="hero-unit">
-        <h1>This page is left deliberately empty</h1>
-        <p>I am working on this(dodyg). If you are owner, you can <a href="@ViewBag.EditLink">edit</a> your blog via the edit link at the top of this page</p>
+    <div class="tabbable">
+        <ul class="nav nav-tabs" id="feed_tabs">
+            <li><a href="#">River</a></li>
+            @foreach (var f in ViewBag.Feeds)
+            {
+                <li><a href="#@f.Url" data-url="@f.Url" data-id="@f.Id" data-toggle="tab">@f.Title</a></li>
+            }
+        </ul> 
     </div>
+
+    @if(ViewBag.Feeds.Count == 0){
+        <div class="hero-unit">
+            <h1>This page is left deliberately empty</h1>
+            <p>I am working on this(dodyg). If you are owner, you can <a href="@ViewBag.EditLink">edit</a> your blog via the edit link at the top of this page</p>
+        </div>
+    }
     <style type="text/css">
         #edit_this_tabbed_rivers {
             margin-left:15px;

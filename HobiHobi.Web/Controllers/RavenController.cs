@@ -10,7 +10,7 @@ namespace HobiHobi.Web.Controllers
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {
 #if DEBUG
-            RavenSession = MvcApplication.Store.OpenSession(MvcApplication.DATABASE_NAME);
+            RavenSession = MvcApplication.Store.OpenSession(HobiHobi.Web.Startup.RavenDB.DATABASE_NAME);
 #else
             RavenSession = MvcApplication.Store.OpenSession();
 #endif

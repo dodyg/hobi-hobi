@@ -39,6 +39,10 @@ namespace HobiHobi.Web.Controllers
             ViewBag.Description = blog.Description;
             ViewBag.Keywords = blog.Keywords;
             ViewBag.OpmlUrl = "/b/opml/" + blog.Name;
+
+            var feeds = blog.GetFeeds(RavenSession);
+            ViewBag.Feeds = feeds;
+
             return View();
         }
 
