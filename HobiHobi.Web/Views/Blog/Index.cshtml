@@ -17,7 +17,7 @@
    
     @Html.Raw(ViewBag.HeadInline)
 </head>
-<body>
+<body style="padding:5px;">
 
 @if (ViewBag.EditLink != null)
 {
@@ -27,27 +27,133 @@
     <a href="@ViewBag.OpmlUrl"><img src="/Images/opml-icon-128x128.png" width="32" /></a>
     <br /><br />
     
-    <div class="tabbable">
-        <ul class="nav nav-tabs" id="feed_tabs">
-            <li><a href="#">River</a></li>
-            @foreach (var f in ViewBag.Feeds)
-            {
-                <li><a href="#@f.Url" data-url="@f.Url" data-id="@f.Id" data-toggle="tab">@f.Title</a></li>
-            }
-        </ul> 
+    <div class="tabbable tabs-left">
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#feeds_collection_tab" data-toggle="tab">Feeds</a></li>
+            <li><a href="#rivers_collection_tab" data-toggle="tab">Rivers</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane active" id="feeds_collection_tab">
+            <h1>@ViewBag.Title</h1>
+            <!-- content panel for blog feeds --> 
+                <div class="tabbable">
+                    <ul class="nav nav-tabs" id="feed_tabs">
+                        @foreach (var f in ViewBag.Feeds)
+                        {
+                            <li><a href="#@f.Url" data-url="@f.Url" data-id="@f.Id" data-toggle="tab">@f.Title</a></li>
+                        }
+                    </ul> 
+                </div>
+
+                @if(ViewBag.Feeds.Count == 0){
+                    <div class="hero-unit">
+                        <h1>This page is left deliberately empty</h1>
+                        <p>I am working on this(dodyg). If you are owner, you can <a href="@ViewBag.EditLink">edit</a> your blog via the edit link at the top of this page</p>
+                    </div>
+                }
+
+                <div id="feeds"></div>
+            </div><!-- end of feeds_collection_tab -->
+            <div class="tab-pane" id="rivers_collection_tab">
+                <!-- content panel for rivers -->
+                <h2>Rivers</h2>
+                <p>Coming Soon!</p>
+            </div><!-- ends of rivers_collection_tab -->
+        </div>
     </div>
 
-    @if(ViewBag.Feeds.Count == 0){
-        <div class="hero-unit">
-            <h1>This page is left deliberately empty</h1>
-            <p>I am working on this(dodyg). If you are owner, you can <a href="@ViewBag.EditLink">edit</a> your blog via the edit link at the top of this page</p>
-        </div>
+    
+<script type="text/javascript">
+    $(function () {
+        var firstTab = $('#feed_tabs li:first');
+
+        if (firstTab == null)
+            return;
+
+        firstTab.attr('class', 'active');//select first one
+        var firstLink = firstTab.children(':first');
+        var url = firstLink.data('url');
+        load(url);
+    });
+
+    function load(url) {
+        $.ajax('/f/rssjs/' + url + '?callback=?',
+        {
+            crossDomain: true,
+            dataType: 'jsonp',
+            jsonpCallback: 'onGetRss'
+        }).done(function (data, status) {
+            display(data.rss);
+        }).fail(function () {
+            alert("Sorry, I have problem in loading the feed");
+        });
     }
-    <style type="text/css">
-        #edit_this_tabbed_rivers {
-            margin-left:15px;
-            margin:5px;
-        }
-    </style>
+
+    $('a[data-toggle="tab"]').on('shown', function (e) {
+        var url = $(e.target).data('url');
+        load(url);
+    })
+
+
+    var once = 0;
+    function display(rss) {
+        var channel = rss.channel;
+        $('#title').html(channel.title);
+        $('#description').html(channel.description);
+        $('#pub-date').html(channel.pubDate);
+
+        var compiled = _.template($('#tmpl-feed').html(), { feeds: channel.item });
+        $('#feeds').html(compiled);
+    }
+
+    function getCleaned(html) {
+        var text = $('<div>' + html + '</div>').html()
+        return text;
+    };
+
+</script>
+
+    
+<script id="tmpl-feed" type="text/template">
+    <% for (var i = 0; i < feeds.length; i++) { %>
+        <% var f = feeds[i] %>
+        <div class="feed-item">
+            <% if (f.title != undefined) { %>
+            <h3><a href="<%= f.link %>"><%= f.title %></a></h3>
+            <% } %>
+            <div class="feed-item-body">
+                <% if (f.link != null) { %>
+                   <a href="<%= f.link %>"><%= getCleaned(f.description) %></a>                
+                <% } else { %>
+                <%= getCleaned(f.description) %>
+                <% } %>
+            </div>
+            <div class="feed-item-pub-date">
+                <%= f.pubDate %> <a href="<%= f.guid %>">#</a>
+            </div>
+        </div>
+    <% } %>
+</script>
+
+<style type="text/css">
+    #edit_this_tabbed_rivers {
+        margin-left:15px;
+        margin:5px;
+    }
+    .feed-item {
+    margin:5px;
+    margin-bottom:30px;
+    }
+
+    .feed-item-body {
+        background-color:#F8F8F8;
+        padding:5px;
+    }
+
+    .feed-item-pub-date {
+        font-style:italic;
+        font-size:10px;
+    }
+</style>
 </body>
 </html>
