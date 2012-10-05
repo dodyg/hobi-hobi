@@ -24,8 +24,6 @@
     <div id="edit_this_blog"><a href="@ViewBag.EditLink">Edit <i class="icon-edit"></i></a></div>
 }
     <br />
-    <a href="@ViewBag.OpmlUrl"><img src="/Images/opml-icon-128x128.png" width="32" /></a>
-    <br /><br />
     
     <div class="tabbable tabs-left">
         <ul class="nav nav-tabs">
@@ -34,7 +32,7 @@
         </ul>
         <div class="tab-content">
             <div class="tab-pane active" id="feeds_collection_tab">
-            <h1>@ViewBag.Title</h1>
+            <h1><a href="@ViewBag.OpmlUrl"><img src="/Images/opml-icon-128x128.png" width="32" /></a> @ViewBag.Title</h1>
             <!-- content panel for blog feeds --> 
                 <div class="tabbable">
                     <ul class="nav nav-tabs" id="feed_tabs">
