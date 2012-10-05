@@ -32,7 +32,7 @@
         </ul>
         <div class="tab-content">
             <div class="tab-pane active" id="feeds_collection_tab">
-            <h1><a href="@ViewBag.OpmlUrl"><img src="/Images/opml-icon-128x128.png" width="32" /></a> @ViewBag.Title</h1>
+            <h1><a href="@ViewBag.OpmlUrl"><img src="/Images/opml-icon-128x128.png" width="32" alt="OPML Subscription List" title="Subscription list"/></a> @ViewBag.Title</h1>
             <!-- content panel for blog feeds --> 
                 <div class="tabbable">
                     <ul class="nav nav-tabs" id="feed_tabs">
@@ -42,7 +42,8 @@
                         }
                     </ul> 
                 </div>
-
+                <a href="#" id="feed_rss"><img src="/Images/rss-icon-128x128.gif" width="32" alt="RSS Feed" title="RSS Feed"/></a>
+        
                 @if(ViewBag.Feeds.Count == 0){
                     <div class="hero-unit">
                         <h1>This page is left deliberately empty</h1>
@@ -75,6 +76,7 @@
     });
 
     function load(url) {
+        $('#feed_rss').attr('href', '/f/rss/' + url);
         $.ajax('/f/rssjs/' + url + '?callback=?',
         {
             crossDomain: true,
