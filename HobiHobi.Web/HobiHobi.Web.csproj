@@ -173,7 +173,13 @@
     <Content Include="Images\opml-icon-128x128.png" />
     <Content Include="Images\paper.png" />
     <Content Include="Images\retina_wood.png" />
+    <Content Include="Images\rss-icon-128x128.gif" />
     <Content Include="Images\subtle_surface.png" />
+    <Content Include="Scripts\angular.min.js" />
+    <TypeScriptCompile Include="Scripts\App\blog.ts" />
+    <Content Include="Scripts\App\blog.js">
+      <DependentUpon>blog.ts</DependentUpon>
+    </Content>
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-1.8.0.min.js" />
     <Content Include="Scripts\jquery.isotope.min.js" />
@@ -374,6 +380,10 @@
   </Target> -->
   <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
     <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <Target Name="TypeScriptCompile" BeforeTargets="Build">
+    <Message Text="Compiling TypeScript files" />
+    <Exec Command="&quot;$(PROGRAMFILES)\Microsoft SDKs\TypeScript\0.8.0.0\tsc&quot; -target ES5 @(TypeScriptCompile ->'&quot;%(fullpath)&quot;', ' ')" />
   </Target>
   <ProjectExtensions>
     <VisualStudio>
