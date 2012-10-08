@@ -1,6 +1,6 @@
 ﻿@{
     ViewBag.Title = ViewBag.BlogTitle;
-    Layout = "~/Areas/Manage/Views/Shared/_Layout.cshtml";
+    Layout = "~/Areas/Manage/Views/Shared/_LayoutApp.cshtml";
 }
 
 <h2>@ViewBag.BlogTitle</h2>
@@ -19,14 +19,16 @@
 
 <div id="message"></div>
 
-<form id="new_post">
-    <span id="post_content_count">280</span><br />
-    <textarea class="input-xxlarge" id="post_content" name="content" onkeyup="countChar(this)"></textarea>
-    <br />
-    <input type="url" id="post_link" class="input-xxlarge" name="link" placeholder="Link"/>
-    <br />
-    <button type="submit" class="btn btn-primary">Post</button>
-</form>
+<div data-ng-controller="BlogPostController">
+    <form>
+        <span id="post_content_count">280</span><br />
+        <textarea class="input-xxlarge" data-ng-model="post.content" required></textarea>
+        <br />
+        <input type="url" class="input-xxlarge" data-ng-model="post.link" placeholder="Link"/>
+        <br />
+        <button class="btn btn-primary" data-ng-click="newPost(post)">Post</button>
+    </form>
+</div>
 
 <table class="table" id="posts"></table>
 
@@ -52,8 +54,9 @@
   </div>
 </div>
 
+
 @section JsInline{
- 
+    <script src="/Scripts/angular.min.js"></script>
     <script src="/Scripts/App/blog.js"></script>
        
     <script id="tmpl-posts" type="text/template">
