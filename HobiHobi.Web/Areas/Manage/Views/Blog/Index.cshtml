@@ -19,10 +19,10 @@
 
 <div id="message"></div>
 
-<div data-ng-controller="BlogPostController">
-    <form>
+<div data-ng-controller="PostController">
+    <form novalidate>
         <span id="post_content_count">280</span><br />
-        <textarea class="input-xxlarge" data-ng-model="post.content" required></textarea>
+        <textarea class="input-xxlarge" data-ng-model="post.content" onkeyup="countChar(this)" required></textarea>
         <br />
         <input type="url" class="input-xxlarge" data-ng-model="post.link" placeholder="Link"/>
         <br />

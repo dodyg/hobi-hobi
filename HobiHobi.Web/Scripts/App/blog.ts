@@ -1,5 +1,42 @@
 declare var $;
 declare var _;
+declare var angular;
+
+function PostController($scope) {
+    $scope.master = {};
+    $scope.newPost = function (post) {
+        var activeTab = $('#feed_tabs li.active a');
+        var id = activeTab.data('id');
+
+        var doc = {
+            feedId : id,
+            content : post.content,
+            link : null
+        };
+
+        if (post.link !== undefined)
+            doc.link = post.link;
+
+        $scope.post = angular.copy($scope.master);
+
+        var json = JSON.stringify(doc);
+
+        $.ajax('/manage/blog/createpost', {
+            data: json,
+            type: 'POST',
+            contentType: 'application/json; charset=utf-8',
+            dataType: 'json'
+        }).done(function (payload) {
+            
+            //insert the data into the list
+            var template = $('#tmpl-single-post').html();
+            var compiled = _.template(template, { post: payload.Data });
+            $('#posts').prepend(compiled);
+           
+            inform('Your post is successfully added');
+        });
+    }//end of $scope.newPost
+}
 
 function countChar(val) {
     var len = val.value.length;
@@ -42,13 +79,11 @@ function load(feedId) {
 
 }
 
-
 $('a[data-toggle="tab"]').on('shown', function (e) {
     var id = $(e.target).data('id');
     $('#feed_tab_link').attr('href', '/f/' + $(e.target).data('url'));//switch the link to the rendering of the blog
     load(id);
 })
-
 
 $('#feed_new').click(function () {
     $('#feed_create').modal();
@@ -89,50 +124,13 @@ $('#save_new_feed').click(function () {
     });
 });
 
-$('#new_post').submit(function () {
-    var content = $.trim($('#post_content').val());
-    if (content.length == 0)
-        return false;
-
-    var activeTab = $('#feed_tabs li.active a');
-    var id = activeTab.data('id');
-
-    var doc = {
-        feedId : id,
-        content : content,
-        link : null
-    };
-
-    var link = $('#post_link').val();
-
-    if (link.length > 0)
-        doc.link = link;
-
-    var json = JSON.stringify(doc);
-
-    $.ajax('/manage/blog/createpost', {
-        data: json,
-        type: 'POST',
-        contentType: 'application/json; charset=utf-8',
-        dataType: 'json'
-    }).done(function (payload) {
-        //insert the data into the list
-        var template = $('#tmpl-single-post').html();
-        var compiled = _.template(template, { post: payload.Data });
-        $('#posts').prepend(compiled);
-        postFormReset();
-        inform('Your post is successfully added');
-    });
-
-    return false;
-});
 
 function postFormReset() {
     $('#post_content').val('');//reset the content
     $('#post_link').val('');
 }
 
-function inform(msg : String, target : any = undefined) {
+function inform(msg : string, target : any = undefined) {
     if (target === undefined)
         $('#message').removeClass().addClass('alert alert-success').html(msg).show().fadeOut(3000);
     else

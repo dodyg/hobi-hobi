@@ -1,27 +1,32 @@
-function TestController($scope) {
-    $scope.newPost = function (post) {
-        console.log(post.content);
-    };
-}
-function BlogPostController($scope) {
+function PostController($scope) {
     $scope.master = {
     };
-    $scope.reset = function () {
-        $scope.post = angular.copy($scope.master);
-    };
     $scope.newPost = function (post) {
-        var content = post.content;
         var activeTab = $('#feed_tabs li.active a');
         var id = activeTab.data('id');
         var doc = {
             feedId: id,
-            content: content,
+            content: post.content,
             link: null
         };
-        var link = post.link;
+        if(post.link !== undefined) {
+            doc.link = post.link;
+        }
+        $scope.post = angular.copy($scope.master);
         var json = JSON.stringify(doc);
-        $scope.reset();
-        alert(json);
+        $.ajax('/manage/blog/createpost', {
+            data: json,
+            type: 'POST',
+            contentType: 'application/json; charset=utf-8',
+            dataType: 'json'
+        }).done(function (payload) {
+            var template = $('#tmpl-single-post').html();
+            var compiled = _.template(template, {
+                post: payload.Data
+            });
+            $('#posts').prepend(compiled);
+            inform('Your post is successfully added');
+        });
     };
 }
 function countChar(val) {
@@ -36,12 +41,16 @@ function countChar(val) {
         }
     }
 }
+; ;
 $(function () {
     var firstTab = $('#feed_tabs li:first');
     if(firstTab == null) {
         return;
     }
     firstTab.attr('class', 'active');
+    var firstTabUrl = firstTab.children(':first');
+    $('#feed_tab_link').attr('href', '/f/' + firstTabUrl.data('url'));
+    load(firstTabUrl.data('id'));
 });
 function load(feedId) {
     $.get('/manage/blog/getposts/?feedId=' + feedId, function (payload) {
@@ -55,6 +64,48 @@ function load(feedId) {
             $('#posts').html(compiled);
         }
     });
+}
+$('a[data-toggle="tab"]').on('shown', function (e) {
+    var id = $(e.target).data('id');
+    $('#feed_tab_link').attr('href', '/f/' + $(e.target).data('url'));
+    load(id);
+});
+$('#feed_new').click(function () {
+    $('#feed_create').modal();
+});
+$('#save_new_feed').click(function () {
+    var title = $.trim($('#feed_title').val());
+    if(title.length < 6) {
+        alarm('Title must be at least 10 characters long', '#message_popup');
+        return;
+    }
+    var description = $.trim($('#feed_description').val());
+    if(description.length == 0) {
+        alarm('Description is required', '#message_popup');
+        return;
+    }
+    var doc = {
+        blogId: $('#feed_blog_id').val(),
+        title: title,
+        description: description
+    };
+    var json = JSON.stringify(doc);
+    $.ajax('/manage/blog/createfeed', {
+        data: json,
+        type: 'POST',
+        contentType: 'application/json; charset=utf-8',
+        dataType: 'json'
+    }).done(function (payload) {
+        if(payload.StatusCode != 200) {
+            alarm(payload.StatusMessage + ":" + payload.ErrorDetails, '#message_popup');
+        } else {
+            document.location.reload(true);
+        }
+    });
+});
+function postFormReset() {
+    $('#post_content').val('');
+    $('#post_link').val('');
 }
 function inform(msg, target) {
     if (typeof target === "undefined") { target = undefined; }
