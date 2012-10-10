@@ -1,3 +1,14 @@
+var blogModule = angular.module('blogModule', []);
+blogModule.run(function ($rootScope) {
+    $rootScope.$on('success-message', function (event, args) {
+        args.type = "success";
+        $rootScope.$broadcast('show-message', args);
+    });
+    $rootScope.$on('error-message', function (event, args) {
+        args.type = "error";
+        $rootScope.$broadcast('show-message', args);
+    });
+});
 function PostController($scope) {
     $scope.master = {
     };
@@ -13,6 +24,12 @@ function PostController($scope) {
             doc.link = post.link;
         }
         $scope.post = angular.copy($scope.master);
+        var showMessage = function () {
+            $scope.$emit('success-message', {
+                message: "Your post is successfully added"
+            });
+        };
+        showMessage();
         var json = JSON.stringify(doc);
         $.ajax('/manage/blog/createpost', {
             data: json,
@@ -25,7 +42,23 @@ function PostController($scope) {
                 post: payload.Data
             });
             $('#posts').prepend(compiled);
-            inform('Your post is successfully added');
+        });
+    };
+}
+function MessageController($scope) {
+    $scope.$on('show-message', function (event, args) {
+        $scope.message = args.message;
+        if(args.type === "success") {
+            $scope.type = "alert alert-success";
+        } else {
+            $scope.type = "alert alert-error";
+        }
+    });
+}
+function SenderController($scope) {
+    $scope.sendMessage = function () {
+        $scope.$emit('error-message', {
+            message: "this is a message sender"
         });
     };
 }
@@ -41,7 +74,6 @@ function countChar(val) {
         }
     }
 }
-; ;
 $(function () {
     var firstTab = $('#feed_tabs li:first');
     if(firstTab == null) {

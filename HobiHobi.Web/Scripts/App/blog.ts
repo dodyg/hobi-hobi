@@ -2,9 +2,23 @@ declare var $;
 declare var _;
 declare var angular;
 
+var blogModule = angular.module('blogModule', []);
+blogModule.run(function ($rootScope) {
+    $rootScope.$on('success-message', function(event, args) {
+        args.type = "success";
+        $rootScope.$broadcast('show-message', args);
+    });
+
+    $rootScope.$on('error-message', function(event, args) {
+        args.type = "error";
+        $rootScope.$broadcast('show-message', args);
+    });
+});
+
 function PostController($scope) {
     $scope.master = {};
     $scope.newPost = function (post) {
+     
         var activeTab = $('#feed_tabs li.active a');
         var id = activeTab.data('id');
 
@@ -19,6 +33,12 @@ function PostController($scope) {
 
         $scope.post = angular.copy($scope.master);
 
+        var showMessage = function () {
+            $scope.$emit('success-message', { message: "Your post is successfully added" });
+        }
+
+        showMessage();
+
         var json = JSON.stringify(doc);
 
         $.ajax('/manage/blog/createpost', {
@@ -32,10 +52,24 @@ function PostController($scope) {
             var template = $('#tmpl-single-post').html();
             var compiled = _.template(template, { post: payload.Data });
             $('#posts').prepend(compiled);
-           
-            inform('Your post is successfully added');
         });
     }//end of $scope.newPost
+}
+
+function MessageController($scope) {
+    $scope.$on('show-message', function (event, args: { message: string; type: string; }) {
+        $scope.message = args.message;
+        if (args.type === "success")
+            $scope.type = "alert alert-success";
+        else
+            $scope.type = "alert alert-error";
+    });
+}
+
+function SenderController($scope) {
+    $scope.sendMessage = function () {
+        $scope.$emit('error-message', { message: "this is a message sender" });
+    }
 }
 
 function countChar(val) {
@@ -50,7 +84,7 @@ function countChar(val) {
     else {
         $('#post_content_count').text(280 - len);
     }
-};
+}
 
 $(function () {
     var firstTab = $('#feed_tabs li:first');
