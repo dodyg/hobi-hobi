@@ -15,29 +15,30 @@ blogModule.run(function ($rootScope) {
     });
 });
 
-function PostController($scope) {
+function PostController($scope, $q) {
     $scope.master = {};
     $scope.newPost = function (post) {
      
         var activeTab = $('#feed_tabs li.active a');
         var id = activeTab.data('id');
 
+        if (post === undefined) {
+            $scope.$emit('error-message', { message: 'content is required' });
+            return;
+        }
+        
         var doc = {
             feedId : id,
             content : post.content,
             link : null
         };
 
-        if (post.link !== undefined)
+        if (angular.isDefined(post.link))
             doc.link = post.link;
 
         $scope.post = angular.copy($scope.master);
 
-        var showMessage = function () {
-            $scope.$emit('success-message', { message: "Your post is successfully added" });
-        }
-
-        showMessage();
+        var deferred = $q.defer();
 
         var json = JSON.stringify(doc);
 
@@ -52,6 +53,10 @@ function PostController($scope) {
             var template = $('#tmpl-single-post').html();
             var compiled = _.template(template, { post: payload.Data });
             $('#posts').prepend(compiled);
+
+            $scope.$apply(function () {
+                deferred.resolve($scope.$emit('success-message', { message: "Your post is successfully added" }));
+            });
         });
     }//end of $scope.newPost
 }
@@ -64,12 +69,6 @@ function MessageController($scope) {
         else
             $scope.type = "alert alert-error";
     });
-}
-
-function SenderController($scope) {
-    $scope.sendMessage = function () {
-        $scope.$emit('error-message', { message: "this is a message sender" });
-    }
 }
 
 function countChar(val) {
