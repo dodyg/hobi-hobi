@@ -8,6 +8,17 @@ blogModule.run(function ($rootScope) {
         args.type = "error";
         $rootScope.$broadcast('show-message', args);
     });
+    $rootScope.$on('data-posts', function (event, args) {
+        $rootScope.$broadcast('list-posts', args);
+    });
+});
+blogModule.factory('alertService', function ($window) {
+    var ser = {
+        hello: function () {
+            alert('hello world');
+        }
+    };
+    return ser;
 });
 function PostController($scope, $q) {
     $scope.master = {
@@ -61,6 +72,37 @@ function MessageController($scope) {
         }
     });
 }
+function PostListController($scope) {
+    $scope.posts = [];
+    $scope.$on('list-posts', function (event, args) {
+        $scope.posts = args.posts;
+    });
+    $scope.showLink = function (link) {
+        if(link != null) {
+            return '<a href=" ' + link + '"><b class="icon-zoom-in"></b></a>';
+        } else {
+            return '';
+        }
+    };
+}
+function TabsController($scope, $q, alertService) {
+    $scope.load = function (e) {
+        var el = angular.element(e.srcElement);
+        var feedId = el.data('id');
+        var deferred = $q.defer();
+        $.get('/manage/blog/getposts/?feedId=' + feedId, function (payload) {
+            if(payload.Data.length == 0) {
+                $('#posts').html('');
+            } else {
+                $scope.$apply(function () {
+                    deferred.resolve($scope.$emit('data-posts', {
+                        posts: payload.Data
+                    }));
+                });
+            }
+        });
+    };
+}
 function countChar(val) {
     var len = val.value.length;
     if(len >= 280) {
@@ -96,11 +138,6 @@ function load(feedId) {
         }
     });
 }
-$('a[data-toggle="tab"]').on('shown', function (e) {
-    var id = $(e.target).data('id');
-    $('#feed_tab_link').attr('href', '/f/' + $(e.target).data('url'));
-    load(id);
-});
 $('#feed_new').click(function () {
     $('#feed_create').modal();
 });

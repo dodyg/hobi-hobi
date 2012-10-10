@@ -4,21 +4,35 @@ declare var angular;
 
 var blogModule = angular.module('blogModule', []);
 blogModule.run(function ($rootScope) {
-    $rootScope.$on('success-message', function(event, args) {
+    $rootScope.$on('success-message', function (event, args) {
         args.type = "success";
         $rootScope.$broadcast('show-message', args);
     });
 
-    $rootScope.$on('error-message', function(event, args) {
+    $rootScope.$on('error-message', function (event, args) {
         args.type = "error";
         $rootScope.$broadcast('show-message', args);
     });
+
+    $rootScope.$on('data-posts', function (event, args) {
+        $rootScope.$broadcast('list-posts', args);
+    });
+});
+
+blogModule.factory('alertService', function ($window) {
+    var ser = {
+        hello: function () {
+            alert('hello world')
+        }
+    };
+
+    return ser;
 });
 
 function PostController($scope, $q) {
     $scope.master = {};
     $scope.newPost = function (post) {
-     
+
         var activeTab = $('#feed_tabs li.active a');
         var id = activeTab.data('id');
 
@@ -26,11 +40,11 @@ function PostController($scope, $q) {
             $scope.$emit('error-message', { message: 'content is required' });
             return;
         }
-        
+
         var doc = {
-            feedId : id,
-            content : post.content,
-            link : null
+            feedId: id,
+            content: post.content,
+            link: null
         };
 
         if (angular.isDefined(post.link))
@@ -48,7 +62,7 @@ function PostController($scope, $q) {
             contentType: 'application/json; charset=utf-8',
             dataType: 'json'
         }).done(function (payload) {
-            
+
             //insert the data into the list
             var template = $('#tmpl-single-post').html();
             var compiled = _.template(template, { post: payload.Data });
@@ -71,6 +85,45 @@ function MessageController($scope) {
     });
 }
 
+function PostListController($scope) {
+    $scope.posts = []
+
+    $scope.$on('list-posts', function (event, args: { posts: any; }) {
+        $scope.posts = args.posts;
+    });
+
+    $scope.showLink = function (link: any) {
+        if (link != null) {
+            return '<a href=" '+ link + '"><b class="icon-zoom-in"></b></a>';
+        }
+        else {
+            return '';
+        }
+    }
+}
+
+function TabsController($scope, $q, alertService) {
+    $scope.load = function (e) {
+        var el = angular.element(e.srcElement);
+        var feedId = el.data('id');
+
+        var deferred = $q.defer();
+
+        $.get('/manage/blog/getposts/?feedId=' + feedId, function (payload) {
+            if (payload.Data.length == 0)
+                $('#posts').html('');
+            else {
+                $scope.$apply(function () {
+                    deferred.resolve($scope.$emit('data-posts', 
+                    { posts : payload.Data }));
+                });
+            }
+        });
+    }
+}
+
+
+
 function countChar(val) {
     var len = val.value.length;
     if (len >= 280) {
@@ -90,9 +143,9 @@ $(function () {
 
     if (firstTab == null)
         return;
-    
+
     firstTab.attr('class', 'active');//select first one
-    var firstTabUrl = firstTab.children(':first'); 
+    var firstTabUrl = firstTab.children(':first');
     $('#feed_tab_link').attr('href', '/f/' + firstTabUrl.data('url'));
     load(firstTabUrl.data('id'));
 
@@ -112,11 +165,11 @@ function load(feedId) {
 
 }
 
-$('a[data-toggle="tab"]').on('shown', function (e) {
-    var id = $(e.target).data('id');
-    $('#feed_tab_link').attr('href', '/f/' + $(e.target).data('url'));//switch the link to the rendering of the blog
-    load(id);
-})
+//$('a[data-toggle="tab"]').on('shown', function (e) {
+//    var id = $(e.target).data('id');
+//    $('#feed_tab_link').attr('href', '/f/' + $(e.target).data('url'));//switch the link to the rendering of the blog
+//    load(id);
+//})
 
 $('#feed_new').click(function () {
     $('#feed_create').modal();
@@ -163,7 +216,7 @@ function postFormReset() {
     $('#post_link').val('');
 }
 
-function inform(msg : string, target : any = undefined) {
+function inform(msg: string, target: any = undefined) {
     if (target === undefined)
         $('#message').removeClass().addClass('alert alert-success').html(msg).show().fadeOut(3000);
     else
@@ -171,7 +224,7 @@ function inform(msg : string, target : any = undefined) {
 }
 
 function alarm(msg, target) {
-    if (target === undefined) 
+    if (target === undefined)
         $('#message').removeClass().addClass('alert alert-error').html(msg).show().fadeOut(10000);
     else
         $(target).removeClass().addClass('alert alert-error').html(msg).show().fadeOut(10000);
