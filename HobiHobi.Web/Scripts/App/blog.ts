@@ -17,6 +17,10 @@ blogModule.run(function ($rootScope) {
     $rootScope.$on('data-posts', function (event, args) {
         $rootScope.$broadcast('list-posts', args);
     });
+
+    $rootScope.$on('data-single-post', function (event, args) {
+        $rootScope.$broadcast('list-append-post', args);
+    });
 });
 
 blogModule.factory('alertService', function ($window) {
@@ -63,14 +67,9 @@ function PostController($scope, $q) {
             contentType: 'application/json; charset=utf-8',
             dataType: 'json'
         }).done(function (payload) {
-
-            //insert the data into the list
-            var template = $('#tmpl-single-post').html();
-            var compiled = _.template(template, { post: payload.Data });
-            $('#posts').prepend(compiled);
-
             $scope.$apply(function () {
                 deferred.resolve($scope.$emit('success-message', { message: "Your post is successfully added" }));
+                deferred.resolve($scope.$emit('data-single-post', [payload.Data]));
             });
         });
     }//end of $scope.newPost
@@ -101,10 +100,15 @@ function PostListController($scope) {
             return '';
         }
     }
+
+    $scope.$on('list-append-post', function (event, args: any) {
+        $scope.posts = args.concat($scope.posts);
+    });
 }
 
 function TabsController($scope, $q, $rootElement, alertService) {
     function load(feedId : string) {
+
         var deferred = $q.defer();
 
         $.get('/manage/blog/getposts/?feedId=' + feedId, function (payload) {
@@ -121,16 +125,20 @@ function TabsController($scope, $q, $rootElement, alertService) {
 
     $rootElement.ready(function () {
         var firstTab = $('#feed_tabs li:first');
+        if (firstTab == null)
+            return;
+
+        firstTab.attr('class', 'active');//select first one
         var firstTabUrl = firstTab.children(':first');
-   
         var feedId = firstTabUrl.data('id');
         load(feedId);
-    
     });
 
     $scope.load = function (e) {
         var el = angular.element(e.srcElement);
         var feedId = el.data('id');
+        
+        $('#feed_tab_link').attr('href', '/f/' + el.data('url'));
 
         load(feedId);
     }
@@ -148,32 +156,6 @@ function countChar(val) {
     else {
         $('#post_content_count').text(280 - len);
     }
-}
-
-$(function () {
-    var firstTab = $('#feed_tabs li:first');
-
-    if (firstTab == null)
-        return;
-
-    firstTab.attr('class', 'active');//select first one
-    var firstTabUrl = firstTab.children(':first');
-    $('#feed_tab_link').attr('href', '/f/' + firstTabUrl.data('url'));
-
-});
-
-function load(feedId) {
-    $.get('/manage/blog/getposts/?feedId=' + feedId, function (payload) {
-        if (payload.Data.length == 0)
-            $('#posts').html('');
-        else {
-            var template = $('#tmpl-posts').html();
-
-            var compiled = _.template(template, { posts: payload.Data });
-            $('#posts').html(compiled);
-        }
-    });
-
 }
 
 
@@ -234,3 +216,4 @@ function alarm(msg, target) {
         $('#message').removeClass().addClass('alert alert-error').html(msg).show().fadeOut(10000);
     else
         $(target).removeClass().addClass('alert alert-error').html(msg).show().fadeOut(10000);
+}
