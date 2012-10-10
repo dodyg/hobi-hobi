@@ -85,7 +85,24 @@ function PostListController($scope) {
         }
     };
 }
-function TabsController($scope, $q, alertService) {
+function TabsController($scope, $q, $rootElement, alertService) {
+    $rootElement.ready(function () {
+        var firstTab = angular.element('#feed_tabs li:first');
+        var firstTabUrl = firstTab.children(':first');
+        var feedId = firstTabUrl.data('id');
+        var deferred = $q.defer();
+        $.get('/manage/blog/getposts/?feedId=' + feedId, function (payload) {
+            if(payload.Data.length == 0) {
+                $('#posts').html('');
+            } else {
+                $scope.$apply(function () {
+                    deferred.resolve($scope.$emit('data-posts', {
+                        posts: payload.Data
+                    }));
+                });
+            }
+        });
+    });
     $scope.load = function (e) {
         var el = angular.element(e.srcElement);
         var feedId = el.data('id');
@@ -123,7 +140,6 @@ $(function () {
     firstTab.attr('class', 'active');
     var firstTabUrl = firstTab.children(':first');
     $('#feed_tab_link').attr('href', '/f/' + firstTabUrl.data('url'));
-    load(firstTabUrl.data('id'));
 });
 function load(feedId) {
     $.get('/manage/blog/getposts/?feedId=' + feedId, function (payload) {

@@ -29,6 +29,7 @@ blogModule.factory('alertService', function ($window) {
     return ser;
 });
 
+
 function PostController($scope, $q) {
     $scope.master = {};
     $scope.newPost = function (post) {
@@ -102,11 +103,8 @@ function PostListController($scope) {
     }
 }
 
-function TabsController($scope, $q, alertService) {
-    $scope.load = function (e) {
-        var el = angular.element(e.srcElement);
-        var feedId = el.data('id');
-
+function TabsController($scope, $q, $rootElement, alertService) {
+    function load(feedId : string) {
         var deferred = $q.defer();
 
         $.get('/manage/blog/getposts/?feedId=' + feedId, function (payload) {
@@ -118,11 +116,25 @@ function TabsController($scope, $q, alertService) {
                     { posts : payload.Data }));
                 });
             }
-        });
+        }); 
+    }
+
+    $rootElement.ready(function () {
+        var firstTab = $('#feed_tabs li:first');
+        var firstTabUrl = firstTab.children(':first');
+   
+        var feedId = firstTabUrl.data('id');
+        load(feedId);
+    
+    });
+
+    $scope.load = function (e) {
+        var el = angular.element(e.srcElement);
+        var feedId = el.data('id');
+
+        load(feedId);
     }
 }
-
-
 
 function countChar(val) {
     var len = val.value.length;
@@ -147,7 +159,6 @@ $(function () {
     firstTab.attr('class', 'active');//select first one
     var firstTabUrl = firstTab.children(':first');
     $('#feed_tab_link').attr('href', '/f/' + firstTabUrl.data('url'));
-    load(firstTabUrl.data('id'));
 
 });
 
@@ -165,11 +176,6 @@ function load(feedId) {
 
 }
 
-//$('a[data-toggle="tab"]').on('shown', function (e) {
-//    var id = $(e.target).data('id');
-//    $('#feed_tab_link').attr('href', '/f/' + $(e.target).data('url'));//switch the link to the rendering of the blog
-//    load(id);
-//})
 
 $('#feed_new').click(function () {
     $('#feed_create').modal();
@@ -228,4 +234,3 @@ function alarm(msg, target) {
         $('#message').removeClass().addClass('alert alert-error').html(msg).show().fadeOut(10000);
     else
         $(target).removeClass().addClass('alert alert-error').html(msg).show().fadeOut(10000);
-}

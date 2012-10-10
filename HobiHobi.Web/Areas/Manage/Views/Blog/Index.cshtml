@@ -73,18 +73,6 @@
     <script src="/Scripts/angular.min.js"></script>
     <script src="/Scripts/App/blog.js"></script>
        
-    <script id="tmpl-posts" type="text/template">
-        <% for (var i = 0; i < posts.length; i++) { %>
-            <% var p = posts[i] %>
-            <tr id="<%= p.Id %>">
-                <td><%= p.Content %>
-                <% if (p.ShortLink != null) { %>
-                    <a href="<%= p.ShortLink %>"><b class="icon-zoom-in"></b></a>
-                <% } %>
-                </td>
-            </tr>
-        <% } %>
-    </script>
     <script id="tmpl-single-post" type="text/template">
         <tr id="<%= post.Id %>">
             <td><%= post.Content %>
