@@ -1,12 +1,27 @@
+///<reference path='lib.ts' />
+
 declare var $;
 declare var _;
 declare var angular;
+var x: any[] = ['$window', function (win) {
+    var msgs = [];
+    return function (msg) {
+        msgs.push(msg);
+        if (msgs.length == 3) {
+            win.alert(msgs.join("\n"));
+            msgs = [];
+        }
+    };
+}];
+
+angular.module('MyServiceModule', []).factory('notify', x);
 
 var blogModule = angular.module('blogModule', []);
 blogModule.run(function ($rootScope) {
     $rootScope.$on('success-message', function (event, args) {
         args.type = "success";
         $rootScope.$broadcast('show-message', args);
+
     });
 
     $rootScope.$on('error-message', function (event, args) {
@@ -34,113 +49,122 @@ blogModule.factory('alertService', function ($window) {
 });
 
 
-function PostController($scope, $q) {
-    $scope.master = {};
-    $scope.newPost = function (post) {
+class PostController {
+    constructor ($scope, $q) {
+        $scope.master = {};
+        $scope.newPost = function (post) {
 
-        var activeTab = $('#feed_tabs li.active a');
-        var id = activeTab.data('id');
+            var activeTab = $('#feed_tabs li.active a');
+            var id = activeTab.data('id');
 
-        if (post === undefined) {
-            $scope.$emit('error-message', { message: 'content is required' });
-            return;
-        }
-
-        var doc = {
-            feedId: id,
-            content: post.content,
-            link: null
-        };
-
-        if (angular.isDefined(post.link))
-            doc.link = post.link;
-
-        $scope.post = angular.copy($scope.master);
-
-        var deferred = $q.defer();
-
-        var json = JSON.stringify(doc);
-
-        $.ajax('/manage/blog/createpost', {
-            data: json,
-            type: 'POST',
-            contentType: 'application/json; charset=utf-8',
-            dataType: 'json'
-        }).done(function (payload) {
-            $scope.$apply(function () {
-                deferred.resolve($scope.$emit('success-message', { message: "Your post is successfully added" }));
-                deferred.resolve($scope.$emit('data-single-post', [payload.Data]));
-            });
-        });
-    }//end of $scope.newPost
-}
-
-function MessageController($scope) {
-    $scope.$on('show-message', function (event, args: { message: string; type: string; }) {
-        $scope.message = args.message;
-        if (args.type === "success")
-            $scope.type = "alert alert-success";
-        else
-            $scope.type = "alert alert-error";
-    });
-}
-
-function PostListController($scope) {
-    $scope.posts = []
-
-    $scope.$on('list-posts', function (event, args: { posts: any; }) {
-        $scope.posts = args.posts;
-    });
-
-    $scope.showLink = function (link: any) {
-        if (link != null) {
-            return '<a href=" '+ link + '"><b class="icon-zoom-in"></b></a>';
-        }
-        else {
-            return '';
-        }
-    }
-
-    $scope.$on('list-append-post', function (event, args: any) {
-        $scope.posts = args.concat($scope.posts);
-    });
-}
-
-function TabsController($scope, $q, $rootElement, alertService) {
-    function load(feedId : string) {
-
-        var deferred = $q.defer();
-
-        $.get('/manage/blog/getposts/?feedId=' + feedId, function (payload) {
-            if (payload.Data.length == 0)
-                $('#posts').html('');
-            else {
-                $scope.$apply(function () {
-                    deferred.resolve($scope.$emit('data-posts', 
-                    { posts : payload.Data }));
-                });
+            if (post === undefined) {
+                $scope.$emit('error-message', { message: 'content is required' });
+                return;
             }
-        }); 
+
+            var doc = {
+                feedId: id,
+                content: post.content,
+                link: null
+            };
+
+            if (angular.isDefined(post.link))
+                doc.link = post.link;
+
+            $scope.post = angular.copy($scope.master);
+
+            var deferred = $q.defer();
+
+            var json = JSON.stringify(doc);
+
+            $.ajax('/manage/blog/createpost', {
+                data: json,
+                type: 'POST',
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'json'
+            }).done(function (payload) {
+                $scope.$apply(function () {
+                    deferred.resolve($scope.$emit('success-message', { message: "Your post is successfully added" }));
+                    deferred.resolve($scope.$emit('data-single-post', [payload.Data]));
+                });
+            });
+        }//end of $scope.newPost
     }
+}
 
-    $rootElement.ready(function () {
-        var firstTab = $('#feed_tabs li:first');
-        if (firstTab == null)
-            return;
+class MessageController {
+    constructor ($scope) {
+        $scope.$on('show-message', function (event, args: { message: string; type: string; }) {
+            $scope.message = args.message;
+            if (args.type === "success")
+                $scope.type = "alert alert-success";
+            else
+                $scope.type = "alert alert-error";
+        });
+    }
+}
 
-        firstTab.attr('class', 'active');//select first one
-        var firstTabUrl = firstTab.children(':first');
-        var feedId = firstTabUrl.data('id');
-        load(feedId);
-    });
+class PostListController {
+    constructor ($scope) {
+        $scope.posts = []
 
-    $scope.load = function (e) {
-        var el = angular.element(e.srcElement);
-        var feedId = el.data('id');
-        
-        $('#feed_tab_link').attr('href', '/f/' + el.data('url'));
+        $scope.$on('list-posts', function (event, args: { posts: any; }) {
+            $scope.posts = args.posts;
+        });
 
-        load(feedId);
+        $scope.showLink = function (link: any) {
+            if (link != null) {
+                return '<a href=" ' + link + '"><b class="icon-zoom-in"></b></a>';
+            }
+            else {
+                return '';
+            }
+        }
+
+        $scope.$on('list-append-post', function (event, args: any) {
+            $scope.posts = args.concat($scope.posts);
+        });
+    }
+}
+
+
+class TabsController {
+    constructor ($scope, $q, $rootElement, alertService) {
+        function load(feedId: string) {
+
+            var deferred = $q.defer();
+
+            $.get('/manage/blog/getposts/?feedId=' + feedId, function (payload) {
+                if (payload.Data.length == 0)
+                    $('#posts').html('');
+                else {
+                    $scope.$apply(function () {
+                        deferred.resolve($scope.$emit('data-posts',
+                        { posts: payload.Data }));
+                    });
+                }
+            });
+        }
+
+        $rootElement.ready(function () {
+            var firstTab = $('#feed_tabs li:first');
+            if (firstTab == null)
+                return;
+
+            firstTab.attr('class', 'active');//select first one
+            var firstTabUrl = firstTab.children(':first');
+            var feedId = firstTabUrl.data('id');
+            load(feedId);
+        });
+
+        $scope.load = function (e) {
+            var el = angular.element(e.srcElement);
+            var feedId = el.data('id');
+
+            $('#feed_tab_link').attr('href', '/f/' + el.data('url'));
+
+            load(feedId);
+        }
     }
 }
 
@@ -154,7 +178,7 @@ function countChar(val) {
 
     }
     else {
-        $('#post_content_count').text(280 - len);
+        $('#post_content_count').text((280 - len) + "");
     }
 }
 
@@ -211,7 +235,7 @@ function inform(msg: string, target: any = undefined) {
         $(target).removeClass().addClass('alert alert-success').html(msg).show().fadeOut(3000);
 }
 
-function alarm(msg, target) {
+function alarm(msg: string, target: any = undefined) {
     if (target === undefined)
         $('#message').removeClass().addClass('alert alert-error').html(msg).show().fadeOut(10000);
     else

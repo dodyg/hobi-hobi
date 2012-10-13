@@ -180,6 +180,14 @@
     <Content Include="Scripts\App\blog.js">
       <DependentUpon>blog.ts</DependentUpon>
     </Content>
+    <TypeScriptCompile Include="Scripts\App\jquery.d.ts" />
+    <Content Include="Scripts\App\jquery.d.js">
+      <DependentUpon>jquery.d.ts</DependentUpon>
+    </Content>
+    <TypeScriptCompile Include="Scripts\App\lib.ts" />
+    <Content Include="Scripts\App\lib.js">
+      <DependentUpon>lib.ts</DependentUpon>
+    </Content>
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-1.8.0.min.js" />
     <Content Include="Scripts\jquery.isotope.min.js" />
