@@ -11,7 +11,7 @@
         {
             <li data-ng-click="load($event)"><a href="#@f.Url" data-url="@f.Url" data-id="@f.Id" data-toggle="tab">@f.Title</a></li>
         }
-        <li><a href="#" id="feed_new" data-id="feed_new">+</a></li>
+        <li data-ng-click="showNewFeedDialog()"><a href="#" id="feed_new" data-id="feed_new">+</a></li>
     </ul> 
 </div>
 
@@ -46,7 +46,7 @@
 <table class="table" id="posts"></table>
 
 
-<div class="modal hide fade" id="feed_create">
+<div class="modal hide fade" id="feed_create" data-ng-controller="FeedController">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
     <h3>Create feed</h3>
@@ -54,16 +54,16 @@
   <div class="modal-body">
     <div id="message_popup"></div>
     <form id="new_feed">
-        <input type="text" class="input-large" placeholder="Title" id="feed_title" name="title"/>
+        <input type="text" class="input-large" placeholder="Title" name="title" data-ng-model="feed.title"/>
         <br />
-        <textarea class="input-large" id="feed_description" name="description" placeholder="Description"></textarea>
+        <textarea class="input-large" name="description" placeholder="Description" data-ng-model="feed.description"></textarea>
         <br />
-        <input type="hidden" id="feed_blog_id" value="@ViewBag.BlogId" />
+        <input type="hidden" id="feed_blog_id" value="@ViewBag.BlogId"/>
     </form>
   </div>
   <div class="modal-footer">
     <a href="#" class="btn" data-dismiss="modal">Close</a>
-    <a href="#" class="btn btn-primary" id="save_new_feed">Save changes</a>
+    <a href="#" class="btn btn-primary" id="save_new_feed" data-ng-click="newFeed(feed)">Save changes</a>
   </div>
 </div>
 

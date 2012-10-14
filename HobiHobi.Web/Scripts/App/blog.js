@@ -143,8 +143,43 @@ function load(feedId) {
             $('#feed_tab_link').attr('href', '/f/' + el.data('url'));
             load(feedId);
         };
+        $scope.showNewFeedDialog = function () {
+            $('#feed_create').modal();
+        };
     }
     return TabsController;
+})();
+var FeedController = (function () {
+    function FeedController($scope) {
+        $scope.newFeed = function (feed) {
+            if(feed == undefined) {
+                alert('feed must exists');
+                return;
+            }
+            if(!angular.isDefined(feed.description)) {
+                alert('description is required');
+                return;
+            }
+            var doc = {
+                blogId: $('#feed_blog_id').val(),
+                title: feed.title,
+                description: feed.description
+            };
+            var json = JSON.stringify(doc);
+            $.ajax('/manage/blog/createfeed', {
+                data: json,
+                type: 'POST',
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'json'
+            }).done(function (payload) {
+                if(payload.StatusCode != 200) {
+                } else {
+                    document.location.reload(true);
+                }
+            });
+        };
+    }
+    return FeedController;
 })();
 function countChar(val) {
     var len = val.value.length;
@@ -156,58 +191,5 @@ function countChar(val) {
         } else {
             $('#post_content_count').text((280 - len) + "");
         }
-    }
-}
-$('#feed_new').click(function () {
-    $('#feed_create').modal();
-});
-$('#save_new_feed').click(function () {
-    var title = $.trim($('#feed_title').val());
-    if(title.length < 6) {
-        alarm('Title must be at least 10 characters long', '#message_popup');
-        return;
-    }
-    var description = $.trim($('#feed_description').val());
-    if(description.length == 0) {
-        alarm('Description is required', '#message_popup');
-        return;
-    }
-    var doc = {
-        blogId: $('#feed_blog_id').val(),
-        title: title,
-        description: description
-    };
-    var json = JSON.stringify(doc);
-    $.ajax('/manage/blog/createfeed', {
-        data: json,
-        type: 'POST',
-        contentType: 'application/json; charset=utf-8',
-        dataType: 'json'
-    }).done(function (payload) {
-        if(payload.StatusCode != 200) {
-            alarm(payload.StatusMessage + ":" + payload.ErrorDetails, '#message_popup');
-        } else {
-            document.location.reload(true);
-        }
-    });
-});
-function postFormReset() {
-    $('#post_content').val('');
-    $('#post_link').val('');
-}
-function inform(msg, target) {
-    if (typeof target === "undefined") { target = undefined; }
-    if(target === undefined) {
-        $('#message').removeClass().addClass('alert alert-success').html(msg).show().fadeOut(3000);
-    } else {
-        $(target).removeClass().addClass('alert alert-success').html(msg).show().fadeOut(3000);
-    }
-}
-function alarm(msg, target) {
-    if (typeof target === "undefined") { target = undefined; }
-    if(target === undefined) {
-        $('#message').removeClass().addClass('alert alert-error').html(msg).show().fadeOut(10000);
-    } else {
-        $(target).removeClass().addClass('alert alert-error').html(msg).show().fadeOut(10000);
     }
 }
