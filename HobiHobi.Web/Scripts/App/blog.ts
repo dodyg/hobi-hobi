@@ -49,6 +49,7 @@ blogModule.factory('alertService', function ($window) {
 });
 
 
+
 class PostController {
     constructor ($scope, $q) {
         $scope.master = {};

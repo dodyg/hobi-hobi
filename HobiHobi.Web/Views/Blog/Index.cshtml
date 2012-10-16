@@ -64,15 +64,26 @@
     
 <script type="text/javascript">
     $(function () {
-        var firstTab = $('#feed_tabs li:first');
+        //enable link to tab directly
+        var url = document.location.toString();
+        if (url.match('#')) { //use # navigation
 
-        if (firstTab == null)
-            return;
+            var activeTab = $('.nav-tabs a[href=#' + url.split('#')[1] + ']');
+            activeTab.tab('show');
+        }
+        else { //if it doesn't exist, use the first tab
+            var firstTab = $('#feed_tabs li:first');
+            if (firstTab == null)
+                return;
 
-        firstTab.attr('class', 'active');//select first one
-        var firstLink = firstTab.children(':first');
-        var url = firstLink.data('url');
-        load(url);
+            firstTab.attr('class', 'active');//select first one
+
+            var firstLink = firstTab.children(':first');
+            window.location.hash = firstLink.attr('href');
+
+            var url = firstLink.data('url');
+            load(url);
+        }
     });
 
     function load(url) {
@@ -90,6 +101,8 @@
     }
 
     $('a[data-toggle="tab"]').on('shown', function (e) {
+        window.location.hash = e.target.hash;
+
         var url = $(e.target).data('url');
         load(url);
     })
