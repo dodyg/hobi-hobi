@@ -164,5 +164,10 @@ namespace HobiHobi.Web.Controllers
             else
                 return new QuerySetOne<HostAndPath>(null);
         }
+
+        public ActionResult MagicTabs()
+        {
+            return View();
+        }
     }
 }
