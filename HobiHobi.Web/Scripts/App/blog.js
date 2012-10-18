@@ -56,6 +56,20 @@ var notification = [
         }
     }];
 blogModule.factory('notification', notification);
+blogModule.directive('showonhoverparent', function () {
+    return {
+        link: function (scope, element, attrs) {
+            element.parent().bind('mouseenter', function () {
+                element.show();
+                element.css('cursor', 'pointer');
+            });
+            element.parent().bind('mouseleave', function () {
+                element.hide();
+                element.css('cursor', 'default');
+            });
+        }
+    };
+});
 var FeedSettingsController = (function () {
     function FeedSettingsController($scope, notification) {
         $scope.say = function () {
@@ -117,7 +131,7 @@ var MessageController = (function () {
     return MessageController;
 })();
 var PostListController = (function () {
-    function PostListController($scope) {
+    function PostListController($scope, notification) {
         $scope.posts = [];
         $scope.$on('list-posts', function (event, args) {
             $scope.posts = args.posts;
@@ -132,6 +146,11 @@ var PostListController = (function () {
         $scope.$on('list-append-post', function (event, args) {
             $scope.posts = args.concat($scope.posts);
         });
+        $scope.showActions = function (e) {
+        };
+        $scope.deletePost = function (post) {
+            alert('delete post');
+        };
     }
     return PostListController;
 })();

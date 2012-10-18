@@ -45,6 +45,22 @@ var notification: any[] = ['$window', function (win) {
 
 blogModule.factory('notification', notification);
 
+blogModule.directive('showonhoverparent',
+   function() {
+      return {
+         link : function(scope, element, attrs) {
+            element.parent().bind('mouseenter', function() {
+                element.show();
+                element.css('cursor', 'pointer');
+            });
+            element.parent().bind('mouseleave', function() {
+                 element.hide();
+                 element.css('cursor', 'default');
+           });
+       }
+   };
+});
+
 //settings
 
 class FeedSettingsController {
@@ -111,7 +127,7 @@ class MessageController {
 }
 
 class PostListController {
-    constructor ($scope) {
+    constructor ($scope, notification) {
         $scope.posts = []
 
         $scope.$on('list-posts', function (event, args: { posts: any; }) {
@@ -130,6 +146,14 @@ class PostListController {
         $scope.$on('list-append-post', function (event, args: any) {
             $scope.posts = args.concat($scope.posts);
         });
+
+        $scope.showActions = function (e) {
+            //notification(new UserMessage('hover', MessageType.INFO));
+        };
+
+        $scope.deletePost = function (post) {
+            alert('delete post');
+        }
     }
 }
 

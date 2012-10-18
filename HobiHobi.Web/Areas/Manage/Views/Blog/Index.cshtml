@@ -41,7 +41,9 @@
 <div data-ng-controller="PostListController">
     <table class="table">
         <tr data-ng-repeat="p in posts">
-            <td>{{ p.Content }} <span data-ng-bind-html-unsafe="showLink(p.ShortLink)"></span></td>
+            <td data-ng-mouseover="showActions($event)">{{ p.Content }} <span data-ng-bind-html-unsafe="showLink(p.ShortLink)"></span>
+                <span style="display:none;" data-ng-click="deletePost(p)" data-showonhoverparent="" class="icon-remove"></span>
+            </td>
         </tr>
     </table>
 </div>
