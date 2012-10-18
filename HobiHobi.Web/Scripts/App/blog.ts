@@ -4,20 +4,20 @@ declare var $;
 declare var _;
 declare var angular;
 
+enum MessageType {
+    ERROR,
+    INFO,
+    SUCCESS,
+    WARNING
+}
+
+class UserMessage {
+    constructor (public Message: string, public Type: MessageType) { }
+}
+
 /* module configuration */
 var blogModule = angular.module('blogModule', []);
 blogModule.run(function ($rootScope) {
-    $rootScope.$on('success-message', function (event, args) {
-        args.type = "success";
-        $rootScope.$broadcast('show-message', args);
-
-    });
-
-    $rootScope.$on('error-message', function (event, args) {
-        args.type = "error";
-        $rootScope.$broadcast('show-message', args);
-    });
-
     $rootScope.$on('data-posts', function (event, args) {
         $rootScope.$broadcast('list-posts', args);
     });
@@ -29,8 +29,17 @@ blogModule.run(function ($rootScope) {
 });
 
 var notification: any[] = ['$window', function (win) {
-    return function (msg) {
-        win.alert(msg);
+    return function (args: UserMessage) {
+        var msg = angular.element('#user-message');
+        switch (args.Type) {
+            case MessageType.ERROR : msg.removeClass().addClass('alert alert-error').text(args.Message);
+                break;
+            case MessageType.INFO : msg.removeClass().addClass('alert alert-info').text(args.Message);
+                break;
+            case MessageType.SUCCESS : msg.removeClass().addClass('alert alert-success').text(args.Message);
+                break;
+            case MessageType.WARNING: msg.removeClass().addClass('alert').text(args.Message);
+        }
     };
 }];
 
@@ -39,17 +48,15 @@ blogModule.factory('notification', notification);
 //settings
 
 class FeedSettingsController {
-    static $inject = ['$scope', 'notification'];
-    constructor ($scope, not) {
-
+    constructor ($scope, notification : (UserMessage) => void) {
         $scope.say = function () {
-            not('shit man');
+            notification(new UserMessage("Hello world", MessageType.INFO));
         };
     }
 }
 
 class PostController {
-    constructor ($scope, $q) {
+    constructor ($scope, $q, notification) {
         $scope.master = {};
         $scope.newPost = function (post) {
 
@@ -57,7 +64,7 @@ class PostController {
             var id = activeTab.data('id');
 
             if (post === undefined) {
-                $scope.$emit('error-message', { message: 'content is required' });
+                notification(new UserMessage("Content is required", MessageType.ERROR));
                 return;
             }
 
@@ -83,7 +90,7 @@ class PostController {
                 dataType: 'json'
             }).done(function (payload) {
                 $scope.$apply(function () {
-                    deferred.resolve($scope.$emit('success-message', { message: "Your post is successfully added" }));
+                    deferred.resolve(notification(new UserMessage("Your post is successfully added", MessageType.SUCCESS)));
                     deferred.resolve($scope.$emit('data-single-post', [payload.Data]));
                 });
             });
