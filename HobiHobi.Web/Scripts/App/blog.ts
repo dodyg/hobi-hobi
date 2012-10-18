@@ -3,19 +3,8 @@
 declare var $;
 declare var _;
 declare var angular;
-var x: any[] = ['$window', function (win) {
-    var msgs = [];
-    return function (msg) {
-        msgs.push(msg);
-        if (msgs.length == 3) {
-            win.alert(msgs.join("\n"));
-            msgs = [];
-        }
-    };
-}];
 
-angular.module('MyServiceModule', []).factory('notify', x);
-
+/* module configuration */
 var blogModule = angular.module('blogModule', []);
 blogModule.run(function ($rootScope) {
     $rootScope.$on('success-message', function (event, args) {
@@ -36,19 +25,28 @@ blogModule.run(function ($rootScope) {
     $rootScope.$on('data-single-post', function (event, args) {
         $rootScope.$broadcast('list-append-post', args);
     });
+
 });
 
-blogModule.factory('alertService', function ($window) {
-    var ser = {
-        hello: function () {
-            alert('hello world')
-        }
+var notification: any[] = ['$window', function (win) {
+    return function (msg) {
+        win.alert(msg);
     };
+}];
 
-    return ser;
-});
+blogModule.factory('notification', notification);
 
+//settings
 
+class FeedSettingsController {
+    static $inject = ['$scope', 'notification'];
+    constructor ($scope, not) {
+
+        $scope.say = function () {
+            not('shit man');
+        };
+    }
+}
 
 class PostController {
     constructor ($scope, $q) {
@@ -128,9 +126,8 @@ class PostListController {
     }
 }
 
-
 class TabsController {
-    constructor ($scope, $q, $rootElement, alertService) {
+    constructor ($scope, $q, $rootElement) {
         function load(feedId: string) {
 
             var deferred = $q.defer();

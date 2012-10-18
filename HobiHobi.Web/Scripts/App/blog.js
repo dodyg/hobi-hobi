@@ -1,16 +1,3 @@
-var x = [
-    '$window', 
-    function (win) {
-        var msgs = [];
-        return function (msg) {
-            msgs.push(msg);
-            if(msgs.length == 3) {
-                win.alert(msgs.join("\n"));
-                msgs = [];
-            }
-        }
-    }];
-angular.module('MyServiceModule', []).factory('notify', x);
 var blogModule = angular.module('blogModule', []);
 blogModule.run(function ($rootScope) {
     $rootScope.$on('success-message', function (event, args) {
@@ -28,14 +15,26 @@ blogModule.run(function ($rootScope) {
         $rootScope.$broadcast('list-append-post', args);
     });
 });
-blogModule.factory('alertService', function ($window) {
-    var ser = {
-        hello: function () {
-            alert('hello world');
+var notification = [
+    '$window', 
+    function (win) {
+        return function (msg) {
+            win.alert(msg);
         }
-    };
-    return ser;
-});
+    }];
+blogModule.factory('notification', notification);
+var FeedSettingsController = (function () {
+    function FeedSettingsController($scope, not) {
+        $scope.say = function () {
+            not('shit man');
+        };
+    }
+    FeedSettingsController.$inject = [
+        '$scope', 
+        'notification'
+    ];
+    return FeedSettingsController;
+})();
 var PostController = (function () {
     function PostController($scope, $q) {
         $scope.master = {
@@ -112,7 +111,7 @@ var PostListController = (function () {
     return PostListController;
 })();
 var TabsController = (function () {
-    function TabsController($scope, $q, $rootElement, alertService) {
+    function TabsController($scope, $q, $rootElement) {
 function load(feedId) {
             var deferred = $q.defer();
             $.get('/manage/blog/getposts/?feedId=' + feedId, function (payload) {

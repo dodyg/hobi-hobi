@@ -15,7 +15,10 @@
     </ul> 
 </div>
 
-<a href="#" id="feed_tab_link" target="_blank"><i class="icon-zoom-in"></i></a>
+<div data-ng-controller="FeedSettingsController">
+    <a href="#" id="feed_tab_link" target="_blank"><i class="icon-zoom-in"></i></a>
+    <button data-ng-click="say()">Say</button>
+</div>
 
 <div data-ng-controller="MessageController" class="{{ type }}">
     {{ message }}
