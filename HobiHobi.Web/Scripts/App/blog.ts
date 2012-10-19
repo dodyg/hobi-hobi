@@ -127,7 +127,7 @@ class MessageController {
 }
 
 class PostListController {
-    constructor ($scope, notification) {
+    constructor ($scope, $q, notification) {
         $scope.posts = []
 
         $scope.$on('list-posts', function (event, args: { posts: any; }) {
@@ -151,8 +151,6 @@ class PostListController {
             //notification(new UserMessage('hover', MessageType.INFO));
         };
 
-
-
         $scope.deletePost = function (e) {
             var el = angular.element(e.srcElement);
             el.removeClass('icon-remove');
@@ -163,7 +161,23 @@ class PostListController {
             var el = angular.element(e.srcElement);
             
             if (confirm) {
-                el.parent().parent().remove();
+                var doc = {
+                    postId : post.Id
+                };
+            
+                var deferred = $q.defer();
+                var json = JSON.stringify(doc);
+
+                $.ajax('/manage/blog/deletepost', {
+                    data: json,
+                    type: 'POST',
+                    contentType: 'application/json; charset=utf-8',
+                    dataType: 'json'
+                }).done(function (payload) {
+                    $scope.$apply(function () {
+                        deferred.resolve(el.parent().parent().remove());
+                    });
+                });
             }
             else {
                 el.parent().addClass('icon-remove').children().hide();

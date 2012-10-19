@@ -118,6 +118,27 @@ namespace HobiHobi.Web.Areas.Manage.Controllers
         }
 
         [HttpPost]
+        public ActionResult DeletePost(string postId)
+        {
+            try
+            {
+                var post = RavenSession.Load<BlogPost>(postId);
+                if (post == null)
+                    return HttpDoc<None>.NotFound("Post Id is not found").ToJson();
+                else
+                {
+                    RavenSession.Delete(post);
+                    RavenSession.SaveChanges();
+                    return HttpDoc<None>.OK(None.True()).ToJson();
+                }
+            }
+            catch (Exception ex)
+            {
+                return HttpDoc<None>.OK(None.False(ex)).ToJson();
+            }
+        }
+
+        [HttpPost]
         public ActionResult CreateFeed(string blogId, string title, string description)
         {
             var blog = RavenSession.Load<Blog>(blogId);

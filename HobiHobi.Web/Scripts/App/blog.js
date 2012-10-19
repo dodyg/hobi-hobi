@@ -131,7 +131,7 @@ var MessageController = (function () {
     return MessageController;
 })();
 var PostListController = (function () {
-    function PostListController($scope, notification) {
+    function PostListController($scope, $q, notification) {
         $scope.posts = [];
         $scope.$on('list-posts', function (event, args) {
             $scope.posts = args.posts;
@@ -156,7 +156,21 @@ var PostListController = (function () {
         $scope.confirmDeletion = function (e, post, confirm) {
             var el = angular.element(e.srcElement);
             if(confirm) {
-                el.parent().parent().remove();
+                var doc = {
+                    postId: post.Id
+                };
+                var deferred = $q.defer();
+                var json = JSON.stringify(doc);
+                $.ajax('/manage/blog/deletepost', {
+                    data: json,
+                    type: 'POST',
+                    contentType: 'application/json; charset=utf-8',
+                    dataType: 'json'
+                }).done(function (payload) {
+                    $scope.$apply(function () {
+                        deferred.resolve(el.parent().parent().remove());
+                    });
+                });
             } else {
                 el.parent().addClass('icon-remove').children().hide();
             }
