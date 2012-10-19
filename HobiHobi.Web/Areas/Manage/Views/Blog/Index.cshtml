@@ -40,9 +40,12 @@
 
 <div data-ng-controller="PostListController">
     <table class="table">
-        <tr data-ng-repeat="p in posts">
+        <tr data-ng-repeat="p in posts"> 
             <td data-ng-mouseover="showActions($event)">{{ p.Content }} <span data-ng-bind-html-unsafe="showLink(p.ShortLink)"></span>
-                <span style="display:none;" data-ng-click="deletePost(p)" data-showonhoverparent="" class="icon-remove"></span>
+                <span style="display:none;" data-ng-click="deletePost($event, p)" data-showonhoverparent="" class="icon-remove">
+                    <span data-ng-click="confirmDeletion($event, p, true)" style="font-weight:bold;color:red;display:none;">Sure</span>
+                    <span data-ng-click="confirmDeletion($event, p, false)" style="font-weight:bold;color:green;display:none;">No</span>
+                </span>
             </td>
         </tr>
     </table>

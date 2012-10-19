@@ -151,8 +151,23 @@ class PostListController {
             //notification(new UserMessage('hover', MessageType.INFO));
         };
 
-        $scope.deletePost = function (post) {
-            alert('delete post');
+
+
+        $scope.deletePost = function (e) {
+            var el = angular.element(e.srcElement);
+            el.removeClass('icon-remove');
+            el.children().show();
+        }
+
+        $scope.confirmDeletion = function (e, post, confirm) {
+            var el = angular.element(e.srcElement);
+            
+            if (confirm) {
+                el.parent().parent().remove();
+            }
+            else {
+                el.parent().addClass('icon-remove').children().hide();
+            }
         }
     }
 }
