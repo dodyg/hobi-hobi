@@ -113,7 +113,35 @@ namespace HobiHobi.Core.Blogging
             var items = session.Query<BlogPost>().Where(x => x.FeedId == feedId)
                 .OrderByDescending(x => x.DatePublished)
                 .Take(pageSize).Skip((page - 1) * pageSize).ToList();
+
             return new QuerySetMany<BlogPost>(items);
+        }
+
+        public static Result<None> Delete(Raven.Client.IDocumentSession session, string feedId, string blogPostId)
+        {
+            try
+            {
+                var feed = session.Load<BlogFeed>(feedId);
+
+                if (feed == null)
+                    return None.False(new ArgumentException("Feed Id is not found"));
+
+                var post = session.Load<BlogPost>(blogPostId);
+
+                if (post == null)
+                    return None.False(new ArgumentException("Blog Id is not found"));
+
+                session.Delete(post);
+                feed.MarkAsUpdated();
+                session.Store(feed);
+                session.SaveChanges();
+
+                return None.True();
+            }
+            catch (Exception ex)
+            {
+                return None.False(ex);
+            }
         }
     }
 }

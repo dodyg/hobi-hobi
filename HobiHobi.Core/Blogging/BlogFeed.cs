@@ -49,14 +49,14 @@ namespace HobiHobi.Core.Blogging
         public BlogFeed()
         {
             DateCreated = Stamp.Time();
-            LastModified = Stamp.Time();
             _posts = new List<BlogPost>();
-            MarkEtag();
+            MarkAsUpdated();
         }
 
-        public void MarkEtag()
+        public void MarkAsUpdated()
         {
             ETag = Stamp.GUID().ToString();
+            this.LastModified = Stamp.Time();
         }
 
         /// <summary>
@@ -89,8 +89,7 @@ namespace HobiHobi.Core.Blogging
 
             post.GenerateSlug();
 
-            this.MarkEtag();
-            this.LastModified = Stamp.Time();
+            this.MarkAsUpdated();
 
             return post;
         }
@@ -286,7 +285,5 @@ namespace HobiHobi.Core.Blogging
             var link = Texts.FromUriHost(request.Url) + "/f/" + this.Url;
             return link;
         }
-
-
     }
 }

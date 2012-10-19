@@ -157,6 +157,7 @@ var PostListController = (function () {
             var el = angular.element(e.srcElement);
             if(confirm) {
                 var doc = {
+                    feedId: post.FeedId,
                     postId: post.Id
                 };
                 var deferred = $q.defer();
@@ -168,7 +169,11 @@ var PostListController = (function () {
                     dataType: 'json'
                 }).done(function (payload) {
                     $scope.$apply(function () {
-                        deferred.resolve(el.parent().parent().remove());
+                        if(payload.StatusCode !== 200) {
+                            notification(new UserMessage(payload.ErrorDetails, MessageType.ERROR));
+                        } else {
+                            deferred.resolve(el.parent().parent().remove());
+                        }
                     });
                 });
             } else {

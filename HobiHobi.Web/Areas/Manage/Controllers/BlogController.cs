@@ -24,7 +24,7 @@ namespace HobiHobi.Web.Areas.Manage.Controllers
             if (blog == null)
                 return HttpNotFound();
 
-            var feeds = RavenSession.Query<BlogFeed>().Where(x => x.BlogId == blog.Id).ToList();
+            var feeds = RavenSession.Query<BlogFeed>().Where(x => x.BlogId == blog.Id).OrderBy(x => x.Title).ToList();
 
             ViewBag.BlogId = blog.Id;
             ViewBag.BlogTitle = blog.Title;
@@ -118,19 +118,16 @@ namespace HobiHobi.Web.Areas.Manage.Controllers
         }
 
         [HttpPost]
-        public ActionResult DeletePost(string postId)
+        public ActionResult DeletePost(string feedId, string postId)
         {
             try
             {
-                var post = RavenSession.Load<BlogPost>(postId);
-                if (post == null)
-                    return HttpDoc<None>.NotFound("Post Id is not found").ToJson();
-                else
-                {
-                    RavenSession.Delete(post);
-                    RavenSession.SaveChanges();
+                var res = BlogPost.Delete(RavenSession, feedId, postId);
+                
+                if (res.IsTrue)
                     return HttpDoc<None>.OK(None.True()).ToJson();
-                }
+                else
+                    return HttpDoc<None>.InternalServerError(res.Message).ToJson();
             }
             catch (Exception ex)
             {

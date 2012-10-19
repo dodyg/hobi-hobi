@@ -162,6 +162,7 @@ class PostListController {
             
             if (confirm) {
                 var doc = {
+                    feedId : post.FeedId,
                     postId : post.Id
                 };
             
@@ -175,7 +176,11 @@ class PostListController {
                     dataType: 'json'
                 }).done(function (payload) {
                     $scope.$apply(function () {
-                        deferred.resolve(el.parent().parent().remove());
+                        if (payload.StatusCode !== 200) {
+                            notification(new UserMessage(payload.ErrorDetails, MessageType.ERROR));
+                        }
+                        else
+                            deferred.resolve(el.parent().parent().remove());
                     });
                 });
             }

@@ -66,7 +66,7 @@ namespace HobiHobi.Core.Blogging
             if (Id.IsNullOrWhiteSpace())
                 throw new ApplicationException("This blog must have an id before performing GetFeeds operations");
 
-            var feeds = session.Query<BlogFeed>().Where(x => x.BlogId == this.Id).ToList();
+            var feeds = session.Query<BlogFeed>().Where(x => x.BlogId == this.Id).OrderBy(x => x.Title).ToList();
 
             return feeds;
         }
