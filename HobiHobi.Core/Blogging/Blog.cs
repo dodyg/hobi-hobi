@@ -61,6 +61,11 @@ namespace HobiHobi.Core.Blogging
             return feed;
         }
 
+        public void RemoveFeed(string feedId)
+        {
+            BlogFeedIds.Remove(feedId);
+        }
+
         public List<BlogFeed> GetFeeds(Raven.Client.IDocumentSession session)
         {
             if (Id.IsNullOrWhiteSpace())

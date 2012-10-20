@@ -15,9 +15,9 @@
     </ul>
     
     <a href="{{ feedTabLink }}" id="feed_tab_link" target="_blank"><i class="icon-zoom-in"></i></a>
-    <span class="icon-remove" data-ng-click="deleteFeed($event)">
-        <span data-ng-click="confirmDeletion($event, p, true)" style="font-weight:bold;color:red;display:none;">Sure</span>
-        <span data-ng-click="confirmDeletion($event, p, false)" style="font-weight:bold;color:green;display:none;">No</span>
+    <span class="icon-remove" data-ng-click="deleteFeed($event)" data-showonhoverparent="">
+        <span data-ng-click="confirmDeletion($event, feedId, true)" style="font-weight:bold;color:red;display:none;">Sure</span>
+        <span data-ng-click="confirmDeletion($event, feedId, false)" style="font-weight:bold;color:green;display:none;">No</span>
     </span> 
 </div>
 

@@ -170,7 +170,7 @@ class PostListController {
 }
 
 class TabsController {
-    constructor ($scope, $q, $rootElement) {
+    constructor ($scope, $q, $rootElement, $route) {
         function load(feedId: string) {
 
             var deferred = $q.defer();
@@ -197,6 +197,7 @@ class TabsController {
             var firstTabUrl = firstTab.children(':first');
             var feedId = firstTabUrl.data('id');
             $scope.feedTabLink = '/f/' + firstTabUrl.data('url');
+            $scope.feedId = feedId;
             load(feedId);
         });
 
@@ -204,11 +205,47 @@ class TabsController {
             var el = angular.element(e.srcElement);
             var feedId = el.data('id');
             $scope.feedTabLink = '/f/' + el.data('url');
+            $scope.feedId = feedId;
             load(feedId);
         }
 
         $scope.showNewFeedDialog = function () {
             $('#feed_create').modal();
+        }
+
+        $scope.deleteFeed = function (e) {
+            var el = angular.element(e.srcElement);
+            el.removeClass('icon-remove');
+            el.children().show();
+        }
+
+        $scope.confirmDeletion = function (e, feedId, confirm) {
+            var el = angular.element(e.srcElement);
+            
+            if (confirm) {
+                var doc = {
+                    feedId : feedId
+                };
+            
+                var deferred = $q.defer();
+                var json = JSON.stringify(doc);
+
+                $.ajax('/manage/blog/deletefeed', {
+                    data: json,
+                    type: 'POST',
+                    contentType: 'application/json; charset=utf-8',
+                    dataType: 'json'
+                }).done(function (payload) {
+                    if (payload.StatusCode != 200) {
+                        //alarm(payload.StatusMessage + ":" + payload.ErrorDetails, '#message_popup');
+                    }
+                    else //operation successful
+                        document.location.reload(true);
+                });
+            }
+            else {
+                el.parent().addClass('icon-remove').children().hide();
+            }
         }
     }
 }
