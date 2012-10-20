@@ -5,23 +5,20 @@
 
 <h2>@ViewBag.BlogTitle</h2>
 
-<div class="tabbable">
-    <ul class="nav nav-tabs" id="feed_tabs" data-ng-controller="TabsController">
+<div  data-ng-controller="TabsController">
+    <ul class="nav nav-tabs" id="feed_tabs">
         @foreach (var f in ViewBag.Feeds)
         {
             <li data-ng-click="load($event)"><a href="#@f.Url" data-url="@f.Url" data-id="@f.Id" data-toggle="tab">@f.Title</a></li>
         }
         <li data-ng-click="showNewFeedDialog()"><a href="#" id="feed_new" data-id="feed_new">+</a></li>
-    </ul> 
-</div>
-
-<div data-ng-controller="FeedSettingsController">
-    <a href="#" id="feed_tab_link" target="_blank"><i class="icon-zoom-in"></i></a>
-    <button data-ng-click="say()">Say</button>
-</div>
-
-<div data-ng-controller="MessageController" class="{{ type }}" id="user-message">
-    {{ message }}
+    </ul>
+    
+    <a href="{{ feedTabLink }}" id="feed_tab_link" target="_blank"><i class="icon-zoom-in"></i></a>
+    <span class="icon-remove" data-ng-click="deleteFeed($event)">
+        <span data-ng-click="confirmDeletion($event, p, true)" style="font-weight:bold;color:red;display:none;">Sure</span>
+        <span data-ng-click="confirmDeletion($event, p, false)" style="font-weight:bold;color:green;display:none;">No</span>
+    </span> 
 </div>
 
 <div id="message"></div>
@@ -81,14 +78,4 @@
     <script src="/Scripts/angular.min.js"></script>
     <script src="/Scripts/App/lib.js"></script>
     <script src="/Scripts/App/blog.js"></script>
-       
-    <script id="tmpl-single-post" type="text/template">
-        <tr id="<%= post.Id %>">
-            <td><%= post.Content %>
-                <% if (post.ShortLink != null) { %>
-                    <a href="<%= post.ShortLink %>"><b class="icon-zoom-in"></b></a>
-                <% } %>
-            </td>
-        </tr>
-    </script>
 }

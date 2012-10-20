@@ -61,16 +61,6 @@ blogModule.directive('showonhoverparent',
    };
 });
 
-//settings
-
-class FeedSettingsController {
-    constructor ($scope, notification : (UserMessage) => void) {
-        $scope.say = function () {
-            notification(new UserMessage("Hello world", MessageType.INFO));
-        };
-    }
-}
-
 class PostController {
     constructor ($scope, $q, notification) {
         $scope.master = {};
@@ -111,18 +101,6 @@ class PostController {
                 });
             });
         }//end of $scope.newPost
-    }
-}
-
-class MessageController {
-    constructor ($scope) {
-        $scope.$on('show-message', function (event, args: { message: string; type: string; }) {
-            $scope.message = args.message;
-            if (args.type === "success")
-                $scope.type = "alert alert-success";
-            else
-                $scope.type = "alert alert-error";
-        });
     }
 }
 
@@ -208,7 +186,8 @@ class TabsController {
                 }
             });
         }
-
+        
+        //when page completely loads
         $rootElement.ready(function () {
             var firstTab = $('#feed_tabs li:first');
             if (firstTab == null)
@@ -217,15 +196,14 @@ class TabsController {
             firstTab.attr('class', 'active');//select first one
             var firstTabUrl = firstTab.children(':first');
             var feedId = firstTabUrl.data('id');
+            $scope.feedTabLink = '/f/' + firstTabUrl.data('url');
             load(feedId);
         });
 
         $scope.load = function (e) {
             var el = angular.element(e.srcElement);
             var feedId = el.data('id');
-
-            $('#feed_tab_link').attr('href', '/f/' + el.data('url'));
-
+            $scope.feedTabLink = '/f/' + el.data('url');
             load(feedId);
         }
 
