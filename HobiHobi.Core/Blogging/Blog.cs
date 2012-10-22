@@ -26,6 +26,19 @@ namespace HobiHobi.Core.Blogging
 
         public DateTime DateCreated { get; set; }
 
+
+        /// <summary>
+        /// Path to display this blog in HTML
+        /// </summary>
+        public string HtmlLink
+        {
+            get
+            {
+                return "/b/" + this.Name;
+            }
+        }
+
+
         public Blog()
         {
             DateCreated = Stamp.Time();

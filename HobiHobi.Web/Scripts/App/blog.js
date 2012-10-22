@@ -123,8 +123,6 @@ var PostListController = (function () {
         $scope.$on('list-append-post', function (event, args) {
             $scope.posts = args.concat($scope.posts);
         });
-        $scope.showActions = function (e) {
-        };
         $scope.deletePost = function (e) {
             var el = angular.element(e.srcElement);
             el.removeClass('icon-remove');

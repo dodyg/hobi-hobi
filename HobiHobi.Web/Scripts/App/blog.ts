@@ -123,10 +123,6 @@ class PostListController {
             $scope.posts = args.concat($scope.posts);
         });
 
-        $scope.showActions = function (e) {
-            //notification(new UserMessage('hover', MessageType.INFO));
-        };
-
         $scope.deletePost = function (e) {
             var el = angular.element(e.srcElement);
             el.removeClass('icon-remove');

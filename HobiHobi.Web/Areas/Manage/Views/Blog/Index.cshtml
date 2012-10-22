@@ -24,8 +24,7 @@
 
 </style>
 
-<h2>@ViewBag.BlogTitle</h2>
-
+<h2><a href="@ViewBag.BlogLink">@ViewBag.BlogTitle</a></h2>
 <div  data-ng-controller="TabsController">
     <ul class="nav nav-tabs" id="feed_tabs">
         @foreach (var f in ViewBag.Feeds)

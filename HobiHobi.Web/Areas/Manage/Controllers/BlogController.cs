@@ -29,6 +29,7 @@ namespace HobiHobi.Web.Areas.Manage.Controllers
             ViewBag.BlogId = blog.Id;
             ViewBag.BlogTitle = blog.Title;
             ViewBag.Feeds = feeds;
+            ViewBag.BlogLink = blog.HtmlLink;
 
             return View();
         }
