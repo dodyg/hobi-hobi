@@ -51,11 +51,9 @@ blogModule.directive('showonhoverparent',
          link : function(scope, element, attrs) {
             element.parent().bind('mouseenter', function() {
                 element.show();
-                element.css('cursor', 'pointer');
             });
             element.parent().bind('mouseleave', function() {
                  element.hide();
-                 element.css('cursor', 'default');
            });
        }
    };
