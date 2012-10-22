@@ -3,6 +3,21 @@
     Layout = "~/Areas/Manage/Views/Shared/_LayoutApp.cshtml";
 }
 
+
+<style type="text/css">
+    .confirm-no {
+        font-weight:bold;
+        color:green;display:none;
+    }
+
+    .confirm-yes {
+        font-weight: bold;
+        color: red;
+        display: none;
+    }
+
+</style>
+
 <h2>@ViewBag.BlogTitle</h2>
 
 <div  data-ng-controller="TabsController">
@@ -15,9 +30,9 @@
     </ul>
     
     <a href="{{ feedTabLink }}" id="feed_tab_link" target="_blank"><i class="icon-zoom-in"></i></a>
-    <span class="icon-remove" data-ng-click="deleteFeed($event)" data-showonhoverparent="">
-        <span data-ng-click="confirmDeletion($event, feedId, true)" style="font-weight:bold;color:red;display:none;">Sure</span>
-        <span data-ng-click="confirmDeletion($event, feedId, false)" style="font-weight:bold;color:green;display:none;">No</span>
+    <span class="icon-remove" data-ng-click="deleteFeed($event)">
+        <span data-ng-click="confirmDeletion($event, feedId, false)" class="confirm-no" >No</span>
+        <span data-ng-click="confirmDeletion($event, feedId, true)" class="confirm-yes">Sure</span>
     </span> 
 </div>
 
@@ -40,8 +55,8 @@
         <tr data-ng-repeat="p in posts"> 
             <td data-ng-mouseover="showActions($event)">{{ p.Content }} <span data-ng-bind-html-unsafe="showLink(p.ShortLink)"></span>
                 <span style="display:none;" data-ng-click="deletePost($event, p)" data-showonhoverparent="" class="icon-remove">
-                    <span data-ng-click="confirmDeletion($event, p, true)" style="font-weight:bold;color:red;display:none;">Sure</span>
-                    <span data-ng-click="confirmDeletion($event, p, false)" style="font-weight:bold;color:green;display:none;">No</span>
+                    <span data-ng-click="confirmDeletion($event, p, false)" class="confirm-no">No</span>
+                    <span data-ng-click="confirmDeletion($event, p, true)" class="confirm-yes">Sure</span>
                 </span>
             </td>
         </tr>
