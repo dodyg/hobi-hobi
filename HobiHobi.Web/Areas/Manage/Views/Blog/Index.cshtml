@@ -3,27 +3,6 @@
     Layout = "~/Areas/Manage/Views/Shared/_LayoutApp.cshtml";
 }
 
-
-<style type="text/css">
-    .confirm-no {
-        font-weight:bold;
-        color:green;display:none;
-        cursor:pointer;
-    }
-
-    .confirm-yes {
-        font-weight: bold;
-        color: red;
-        display: none;
-        cursor:pointer;
-    }
-
-    .icon-remove {
-        cursor:pointer;
-    }
-
-</style>
-
 <h2><a href="@ViewBag.BlogLink">@ViewBag.BlogTitle</a></h2>
 <div  data-ng-controller="TabsController">
     <ul class="nav nav-tabs" id="feed_tabs">
@@ -68,9 +47,6 @@
     </table>
 </div>
 
-<table class="table" id="posts"></table>
-
-
 <div class="modal hide fade" id="feed_create" data-ng-controller="FeedController">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -92,7 +68,9 @@
   </div>
 </div>
 
-
+@section HeadInline{
+    <link href="/Content/App/blog.css" rel="stylesheet" />
+}
 
 @section JsInline{
     <script src="/Scripts/angular.min.js"></script>
