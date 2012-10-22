@@ -31,6 +31,7 @@
     function display(rss){
         var channel = rss.channel;
         $('#title').html(channel.title);
+        $('title').html(channel.title);
         $('#description').html(channel.description);
         $('#pub-date').html(channel.pubDate);
 
