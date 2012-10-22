@@ -167,15 +167,11 @@ var TabsController = (function () {
 function load(feedId) {
             var deferred = $q.defer();
             $.get('/manage/blog/getposts/?feedId=' + feedId, function (payload) {
-                if(payload.Data.length == 0) {
-                    $('#posts').html('');
-                } else {
-                    $scope.$apply(function () {
-                        deferred.resolve($scope.$emit('data-posts', {
-                            posts: payload.Data
-                        }));
-                    });
-                }
+                $scope.$apply(function () {
+                    deferred.resolve($scope.$emit('data-posts', {
+                        posts: payload.Data
+                    }));
+                });
             });
         }
         $rootElement.ready(function () {
