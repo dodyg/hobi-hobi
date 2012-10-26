@@ -157,16 +157,10 @@ class PostListController {
 }
 
 class TabsController {
-    constructor ($scope, $q, $rootElement, $route) {
+    constructor ($scope, $q, $rootElement, $route, $http) {
         function load(feedId: string) {
-
-            var deferred = $q.defer();
-
-            $.get('/manage/blog/getposts/?feedId=' + feedId, function (payload) {
-                $scope.$apply(function () {
-                    deferred.resolve($scope.$emit('data-posts',
-                    { posts: payload.Data }));
-                });
+            $http.get('/manage/blog/getposts/?feedId=' + feedId).success(function (payload) {
+                    $scope.$emit('data-posts',{ posts: payload.Data });
             });
         }
         

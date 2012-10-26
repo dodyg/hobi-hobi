@@ -152,14 +152,11 @@ var PostListController = (function () {
     return PostListController;
 })();
 var TabsController = (function () {
-    function TabsController($scope, $q, $rootElement, $route) {
+    function TabsController($scope, $q, $rootElement, $route, $http) {
 function load(feedId) {
-            var deferred = $q.defer();
-            $.get('/manage/blog/getposts/?feedId=' + feedId, function (payload) {
-                $scope.$apply(function () {
-                    deferred.resolve($scope.$emit('data-posts', {
-                        posts: payload.Data
-                    }));
+            $http.get('/manage/blog/getposts/?feedId=' + feedId).success(function (payload) {
+                $scope.$emit('data-posts', {
+                    posts: payload.Data
                 });
             });
         }
