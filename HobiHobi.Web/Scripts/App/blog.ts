@@ -128,7 +128,6 @@ class PostListController {
                     postId : post.Id
                 };
             
-                var deferred = $q.defer();
                 var json = JSON.stringify(doc);
 
                 $http.post('/manage/blog/deletepost', json).success(function (payload) {
@@ -194,10 +193,9 @@ class TabsController {
                     feedId : feedId
                 };
             
-                var deferred = $q.defer();
                 var json = JSON.stringify(doc);
 
-                common.PostJson('/manage/blog/deletefeed', json, function (payload) {
+                $http.post('/manage/blog/deletefeed', json).success(function (payload) {
                     if (payload.StatusCode != 200) {
                         //alarm(payload.StatusMessage + ":" + payload.ErrorDetails, '#message_popup');
                     }
@@ -213,7 +211,7 @@ class TabsController {
 }
 
 class FeedController {
-    constructor ($scope) {
+    constructor ($scope, $http) {
         $scope.newFeed = function (feed) {
             
             if (feed == undefined) {
@@ -234,7 +232,7 @@ class FeedController {
 
             var json = JSON.stringify(doc);
 
-            common.PostJson('/manage/blog/createfeed', json, function (payload) {
+            $http.post('/manage/blog/createfeed', json).success(function (payload) {
                 if (payload.StatusCode != 200) {
                     //alarm(payload.StatusMessage + ":" + payload.ErrorDetails, '#message_popup');
                 }

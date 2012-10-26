@@ -182,11 +182,17 @@
       <DependentUpon>blog.ts</DependentUpon>
     </Content>
     <TypeScriptCompile Include="Scripts\App\jquery.d.ts" />
+    <Content Include="Scripts\App\blog.min.js">
+      <DependentUpon>blog.ts</DependentUpon>
+    </Content>
     <Content Include="Scripts\App\jquery.d.js">
       <DependentUpon>jquery.d.ts</DependentUpon>
     </Content>
     <TypeScriptCompile Include="Scripts\App\lib.ts" />
     <Content Include="Scripts\App\lib.js">
+      <DependentUpon>lib.ts</DependentUpon>
+    </Content>
+    <Content Include="Scripts\App\lib.min.js">
       <DependentUpon>lib.ts</DependentUpon>
     </Content>
     <Content Include="Scripts\bootstrap.min.js" />

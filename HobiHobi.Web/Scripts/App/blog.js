@@ -127,7 +127,6 @@ var PostListController = (function () {
                     feedId: post.FeedId,
                     postId: post.Id
                 };
-                var deferred = $q.defer();
                 var json = JSON.stringify(doc);
                 $http.post('/manage/blog/deletepost', json).success(function (payload) {
                     if(payload.StatusCode !== 200) {
@@ -185,9 +184,8 @@ function load(feedId) {
                 var doc = {
                     feedId: feedId
                 };
-                var deferred = $q.defer();
                 var json = JSON.stringify(doc);
-                common.PostJson('/manage/blog/deletefeed', json, function (payload) {
+                $http.post('/manage/blog/deletefeed', json).success(function (payload) {
                     if(payload.StatusCode != 200) {
                     } else {
                         document.location.reload(true);
@@ -201,7 +199,7 @@ function load(feedId) {
     return TabsController;
 })();
 var FeedController = (function () {
-    function FeedController($scope) {
+    function FeedController($scope, $http) {
         $scope.newFeed = function (feed) {
             if(feed == undefined) {
                 alert('feed must exists');
@@ -217,7 +215,7 @@ var FeedController = (function () {
                 description: feed.description
             };
             var json = JSON.stringify(doc);
-            common.PostJson('/manage/blog/createfeed', json, function (payload) {
+            $http.post('/manage/blog/createfeed', json).success(function (payload) {
                 if(payload.StatusCode != 200) {
                 } else {
                     document.location.reload(true);
