@@ -103,7 +103,7 @@ class PostController {
 }
 
 class PostListController {
-    constructor ($scope, $q, notification) {
+    constructor ($scope, $q, $http, notification) {
         $scope.posts = []
 
         $scope.$on('list-posts', function (event, args: { posts: any; }) {
@@ -141,14 +141,12 @@ class PostListController {
                 var deferred = $q.defer();
                 var json = JSON.stringify(doc);
 
-                common.PostJson('/manage/blog/deletepost', json,function (payload) {
-                    $scope.$apply(function () {
-                        if (payload.StatusCode !== 200) {
-                            notification(new UserMessage(payload.ErrorDetails, MessageType.ERROR));
-                        }
-                        else
-                            deferred.resolve(el.parent().parent().remove());
-                    });
+                $http.post('/manage/blog/deletepost', json).success(function (payload) {
+                    if (payload.StatusCode !== 200) {
+                        notification(new UserMessage(payload.ErrorDetails, MessageType.ERROR));
+                    }
+                    else
+                        el.parent().parent().remove();
                 });
             }
             else {
