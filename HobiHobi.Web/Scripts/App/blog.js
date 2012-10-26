@@ -69,7 +69,7 @@ blogModule.directive('showonhoverparent', function () {
     };
 });
 var PostController = (function () {
-    function PostController($scope, $q, notification) {
+    function PostController($scope, $q, $http, notification) {
         $scope.master = {
         };
         $scope.newPost = function (post) {
@@ -88,20 +88,12 @@ var PostController = (function () {
                 doc.link = post.link;
             }
             $scope.post = angular.copy($scope.master);
-            var deferred = $q.defer();
             var json = JSON.stringify(doc);
-            $.ajax('/manage/blog/createpost', {
-                data: json,
-                type: 'POST',
-                contentType: 'application/json; charset=utf-8',
-                dataType: 'json'
-            }).done(function (payload) {
-                $scope.$apply(function () {
-                    deferred.resolve(notification(new UserMessage("Your post is successfully added", MessageType.SUCCESS)));
-                    deferred.resolve($scope.$emit('data-single-post', [
-                        payload.Data
-                    ]));
-                });
+            $http.post('/manage/blog/createpost', json).success(function (payload) {
+                notification(new UserMessage("Your post is successfully added", MessageType.SUCCESS));
+                $scope.$emit('data-single-post', [
+                    payload.Data
+                ]);
             });
         };
     }
