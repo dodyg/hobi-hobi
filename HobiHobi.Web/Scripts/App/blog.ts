@@ -59,6 +59,36 @@ blogModule.directive('showonhoverparent',
    };
 });
 
+blogModule.directive('alert',
+    function () {
+        return {
+            restrict : 'A',
+            link: function (scope, element, attrs) {
+                scope.$watch('alertType', function (val) {
+                    if (angular.isDefined(val)) {
+                        element.addClass('alert ' + val);
+                    }
+                }, true);
+            }
+        };
+    });
+
+class AuthenticationController {
+    constructor ($rootElement, $scope, $http, notification) {
+        $rootElement.ready(function () {
+            $http.get('/manage/identity/isauthenticated').success(function (payload) {
+                $scope.is_authenticated = payload.Data;
+                if (!payload.Data) {
+                    $scope.alertType = "alert-info";
+                    $scope.message = 'If you have an account, please <a href="#login">login</a>.';
+                } else {
+                    $scope.message = "you are logged in";
+                }
+            });
+        });
+    }
+}
+
 class PostController {
     constructor ($scope, $q, $http, notification) {
         $scope.master = {};

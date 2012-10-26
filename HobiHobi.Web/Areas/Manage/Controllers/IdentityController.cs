@@ -15,7 +15,7 @@ namespace HobiHobi.Web.Areas.Manage.Controllers
         public ActionResult IsAuthenticated()
         {
             var isAuthenticated = this.Request.IsAuthenticated;
-            return HttpDoc<bool>.OK(true).ToJson();
+            return HttpDoc<bool>.OK(isAuthenticated).ToJson();
         }
 
         [HttpPost]
