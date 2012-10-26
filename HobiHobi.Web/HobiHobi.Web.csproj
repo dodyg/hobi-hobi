@@ -136,6 +136,7 @@
     <Compile Include="Areas\API\Controllers\SamplesController.cs" />
     <Compile Include="Areas\Manage\Controllers\BlogController.cs" />
     <Compile Include="Areas\Manage\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Manage\Controllers\IdentityController.cs" />
     <Compile Include="Areas\Manage\Controllers\RiverController.cs" />
     <Compile Include="Areas\Manage\Controllers\SyndicationController.cs" />
     <Compile Include="Areas\Manage\ManageAreaRegistration.cs" />

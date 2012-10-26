@@ -141,12 +141,7 @@ class PostListController {
                 var deferred = $q.defer();
                 var json = JSON.stringify(doc);
 
-                $.ajax('/manage/blog/deletepost', {
-                    data: json,
-                    type: 'POST',
-                    contentType: 'application/json; charset=utf-8',
-                    dataType: 'json'
-                }).done(function (payload) {
+                common.PostJson('/manage/blog/deletepost', json,function (payload) {
                     $scope.$apply(function () {
                         if (payload.StatusCode !== 200) {
                             notification(new UserMessage(payload.ErrorDetails, MessageType.ERROR));
@@ -220,12 +215,7 @@ class TabsController {
                 var deferred = $q.defer();
                 var json = JSON.stringify(doc);
 
-                $.ajax('/manage/blog/deletefeed', {
-                    data: json,
-                    type: 'POST',
-                    contentType: 'application/json; charset=utf-8',
-                    dataType: 'json'
-                }).done(function (payload) {
+                common.PostJson('/manage/blog/deletefeed', json, function (payload) {
                     if (payload.StatusCode != 200) {
                         //alarm(payload.StatusMessage + ":" + payload.ErrorDetails, '#message_popup');
                     }
@@ -262,12 +252,7 @@ class FeedController {
 
             var json = JSON.stringify(doc);
 
-            $.ajax('/manage/blog/createfeed', {
-                data: json,
-                type: 'POST',
-                contentType: 'application/json; charset=utf-8',
-                dataType: 'json'
-            }).done(function (payload) {
+            common.PostJson('/manage/blog/createfeed', json, function (payload) {
                 if (payload.StatusCode != 200) {
                     //alarm(payload.StatusMessage + ":" + payload.ErrorDetails, '#message_popup');
                 }

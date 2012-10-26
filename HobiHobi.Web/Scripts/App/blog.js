@@ -137,12 +137,7 @@ var PostListController = (function () {
                 };
                 var deferred = $q.defer();
                 var json = JSON.stringify(doc);
-                $.ajax('/manage/blog/deletepost', {
-                    data: json,
-                    type: 'POST',
-                    contentType: 'application/json; charset=utf-8',
-                    dataType: 'json'
-                }).done(function (payload) {
+                common.PostJson('/manage/blog/deletepost', json, function (payload) {
                     $scope.$apply(function () {
                         if(payload.StatusCode !== 200) {
                             notification(new UserMessage(payload.ErrorDetails, MessageType.ERROR));
@@ -205,12 +200,7 @@ function load(feedId) {
                 };
                 var deferred = $q.defer();
                 var json = JSON.stringify(doc);
-                $.ajax('/manage/blog/deletefeed', {
-                    data: json,
-                    type: 'POST',
-                    contentType: 'application/json; charset=utf-8',
-                    dataType: 'json'
-                }).done(function (payload) {
+                common.PostJson('/manage/blog/deletefeed', json, function (payload) {
                     if(payload.StatusCode != 200) {
                     } else {
                         document.location.reload(true);
@@ -240,12 +230,7 @@ var FeedController = (function () {
                 description: feed.description
             };
             var json = JSON.stringify(doc);
-            $.ajax('/manage/blog/createfeed', {
-                data: json,
-                type: 'POST',
-                contentType: 'application/json; charset=utf-8',
-                dataType: 'json'
-            }).done(function (payload) {
+            common.PostJson('/manage/blog/createfeed', json, function (payload) {
                 if(payload.StatusCode != 200) {
                 } else {
                     document.location.reload(true);
