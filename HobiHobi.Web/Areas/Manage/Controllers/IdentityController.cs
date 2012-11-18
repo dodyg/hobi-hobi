@@ -86,5 +86,12 @@ namespace HobiHobi.Web.Areas.Manage.Controllers
             var lastErrors = this.ProduceAJAXErrorMessage(ModelState);
             return HttpDoc<EmptyHttpReponse>.PreconditionFailed(lastErrors.ToJson()).ToJson();
         }
+
+        [HttpPost]
+        public ActionResult Logout()
+        {
+            FormsAuthentication.SignOut();
+            return HttpDoc<EmptyHttpReponse>.OK(EmptyHttpReponse.Instance).ToJson();
+        }
     }
 }

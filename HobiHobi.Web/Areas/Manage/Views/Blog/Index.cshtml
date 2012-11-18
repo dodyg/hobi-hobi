@@ -8,7 +8,7 @@
 </div>
 
 <div data-ng-controller="AuthenticationController">
-    <span data-ng-bind-html-unsafe="message" data-alert="alertType" data-ng-show="loggedIn"></span>
+    <span data-ng-show="loggedIn" data-alert="alertType">You are logged in. <a data-ng-click="tryLogout()">Logout now</a></span>
     <span data-ng-show="!loggedIn" data-alert="alertType">If you have an account, please <a data-ng-click="showLoginPanel()" href="#login">login</a>.</span>
 
     <div class="modal hide fade" id="login_to_system" data-ng-controller="LoginController">
