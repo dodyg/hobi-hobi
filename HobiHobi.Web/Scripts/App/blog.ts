@@ -16,8 +16,8 @@ class UserMessage {
 }
 
 /* module configuration */
-var blogModule = angular.module('blogModule', []);
-blogModule.run(function ($rootScope) {
+var app = angular.module('MICRO_BLOG', []);
+app.run(function ($rootScope) {
     $rootScope.$on('data-posts', function (event, args) {
         $rootScope.$broadcast('list-posts', args);
     });
@@ -43,9 +43,9 @@ var notification: any[] = ['$window', function (win) {
     };
 }];
 
-blogModule.factory('notification', notification);
+app.factory('notification', notification);
 
-blogModule.directive('showonhoverparent',
+app.directive('showonhoverparent',
    function() {
       return {
          link : function(scope, element, attrs) {
@@ -59,7 +59,7 @@ blogModule.directive('showonhoverparent',
    };
 });
 
-blogModule.directive('alert',
+app.directive('alert',
     function () {
         return {
             restrict : 'A',

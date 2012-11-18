@@ -18,8 +18,8 @@ var UserMessage = (function () {
     }
     return UserMessage;
 })();
-var blogModule = angular.module('blogModule', []);
-blogModule.run(function ($rootScope) {
+var app = angular.module('MICRO_BLOG', []);
+app.run(function ($rootScope) {
     $rootScope.$on('data-posts', function (event, args) {
         $rootScope.$broadcast('list-posts', args);
     });
@@ -55,8 +55,8 @@ var notification = [
             }
         }
     }];
-blogModule.factory('notification', notification);
-blogModule.directive('showonhoverparent', function () {
+app.factory('notification', notification);
+app.directive('showonhoverparent', function () {
     return {
         link: function (scope, element, attrs) {
             element.parent().bind('mouseenter', function () {
@@ -68,7 +68,7 @@ blogModule.directive('showonhoverparent', function () {
         }
     };
 });
-blogModule.directive('alert', function () {
+app.directive('alert', function () {
     return {
         restrict: 'A',
         link: function (scope, element, attrs) {
