@@ -27,11 +27,11 @@ app.run(function ($rootScope) {
         $rootScope.$broadcast('list-append-post', args);
     });
 });
-var notification = [
+var notificationService = [
     '$window', 
     function (win) {
         return function (args) {
-            var msg = angular.element('#user-message');
+            var msg = angular.element('#user_message');
             switch(args.Type) {
                 case MessageType.ERROR: {
                     msg.removeClass().addClass('alert alert-error').text(args.Message);
@@ -55,7 +55,7 @@ var notification = [
             }
         }
     }];
-app.factory('notification', notification);
+app.factory('notification', notificationService);
 app.directive('showonhoverparent', function () {
     return {
         link: function (scope, element, attrs) {
@@ -80,6 +80,11 @@ app.directive('alert', function () {
         }
     };
 });
+var route = [
+    '$routeProvider', 
+    function ($routes) {
+    }];
+app.config(route);
 var AuthenticationController = (function () {
     function AuthenticationController($rootElement, $scope, $http, notification) {
         $rootElement.ready(function () {

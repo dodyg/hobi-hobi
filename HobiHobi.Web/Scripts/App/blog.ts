@@ -25,12 +25,11 @@ app.run(function ($rootScope) {
     $rootScope.$on('data-single-post', function (event, args) {
         $rootScope.$broadcast('list-append-post', args);
     });
-
 });
 
-var notification: any[] = ['$window', function (win) {
+var notificationService: any[] = ['$window', function (win) {
     return function (args: UserMessage) {
-        var msg = angular.element('#user-message');
+        var msg = angular.element('#user_message');
         switch (args.Type) {
             case MessageType.ERROR : msg.removeClass().addClass('alert alert-error').text(args.Message);
                 break;
@@ -43,7 +42,7 @@ var notification: any[] = ['$window', function (win) {
     };
 }];
 
-app.factory('notification', notification);
+app.factory('notification', notificationService);
 
 app.directive('showonhoverparent',
    function() {
@@ -72,6 +71,11 @@ app.directive('alert',
             }
         };
     });
+
+var route: any[] = ['$routeProvider', function ($routes) {
+}];
+
+app.config(route);
 
 /* Start controller section */
 
