@@ -3,12 +3,38 @@
     Layout = "~/Areas/Manage/Views/Shared/_LayoutApp.cshtml";
 }
 
-<div data-ng-controller="AuthenticationController">
-    <span data-ng-bind-html-unsafe="message" data-alert="alertType"></span>
+<div style="display:none" id="global_values">
+    <span id="feed_blog_id">@ViewBag.BlogId</span>
 </div>
 
+<div data-ng-controller="AuthenticationController">
+    <span data-ng-bind-html-unsafe="message" data-alert="alertType" data-ng-show="loggedIn"></span>
+    <span data-ng-show="!loggedIn" data-alert="alertType">If you have an account, please <a data-ng-click="showLoginPanel()" href="#login">login</a>.</span>
+
+    <div class="modal hide fade" id="login_to_system" data-ng-controller="LoginController">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h3>Login</h3>
+        </div>
+        <div class="modal-body">
+            <form>
+                <input type="text" class="input-large" placeholder="Username" name="username" data-ng-model="loginInfo.username" />
+                <br />
+                <input type="password" class="input-large" placeholder="Password" name="password" data-ng-model="loginInfo.password" />
+            </form>
+        </div>
+        <div class="modal-footer">
+            <a href="#" class="btn" data-dismiss="modal">Close</a>
+            <a href="#" class="btn btn-primary" data-ng-click="tryLogin(loginInfo)">Save changes</a>
+        </div>
+    </div>
+
+</div>
+
+
+
 <h2><a href="@ViewBag.BlogLink">@ViewBag.BlogTitle</a></h2>
-<div  data-ng-controller="TabsController">
+<div data-ng-controller="TabsController">
     <ul class="nav nav-tabs" id="feed_tabs">
         @foreach (var f in ViewBag.Feeds)
         {
@@ -16,12 +42,12 @@
         }
         <li data-ng-click="showNewFeedDialog()"><a href="#" id="feed_new" data-id="feed_new">+</a></li>
     </ul>
-    
+
     <a href="{{ feedTabLink }}" id="feed_tab_link" target="_blank"><i class="icon-zoom-in"></i></a>
     <span class="icon-remove" data-ng-click="deleteFeed($event)">
-        <span data-ng-click="confirmDeletion($event, feedId, false)" class="confirm-no" >No</span>
+        <span data-ng-click="confirmDeletion($event, feedId, false)" class="confirm-no">No</span>
         <span data-ng-click="confirmDeletion($event, feedId, true)" class="confirm-yes">Sure</span>
-    </span> 
+    </span>
 </div>
 
 <div id="message"></div>
@@ -31,18 +57,17 @@
         <span id="post_content_count">280</span><br />
         <textarea class="input-xxlarge" data-ng-model="post.content" onkeyup="countChar(this)" required></textarea>
         <br />
-        <input type="url" class="input-xxlarge" data-ng-model="post.link" placeholder="Link"/>
+        <input type="url" class="input-xxlarge" data-ng-model="post.link" placeholder="Link" />
         <br />
         <button class="btn btn-primary" data-ng-click="newPost(post)">Post</button>
     </form>
 </div>
 
-
 <div data-ng-controller="PostListController">
     <table class="table">
-        <tr data-ng-repeat="p in posts"> 
+        <tr data-ng-repeat="p in posts">
             <td data-ng-mouseover="showActions($event)">{{ p.Content }} <span data-ng-bind-html-unsafe="showLink(p.ShortLink)"></span>
-                <span style="display:none;" data-ng-click="deletePost($event, p)" data-showonhoverparent="" class="icon-remove">
+                <span style="display: none;" data-ng-click="deletePost($event, p)" data-showonhoverparent="" class="icon-remove">
                     <span data-ng-click="confirmDeletion($event, p, false)" class="confirm-no">No</span>
                     <span data-ng-click="confirmDeletion($event, p, true)" class="confirm-yes">Sure</span>
                 </span>
@@ -52,24 +77,23 @@
 </div>
 
 <div class="modal hide fade" id="feed_create" data-ng-controller="FeedController">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-    <h3>Create feed</h3>
-  </div>
-  <div class="modal-body">
-    <div id="message_popup"></div>
-    <form id="new_feed">
-        <input type="text" class="input-large" placeholder="Title" name="title" data-ng-model="feed.title"/>
-        <br />
-        <textarea class="input-large" name="description" placeholder="Description" data-ng-model="feed.description"></textarea>
-        <br />
-        <input type="hidden" id="feed_blog_id" value="@ViewBag.BlogId"/>
-    </form>
-  </div>
-  <div class="modal-footer">
-    <a href="#" class="btn" data-dismiss="modal">Close</a>
-    <a href="#" class="btn btn-primary" id="save_new_feed" data-ng-click="newFeed(feed)">Save changes</a>
-  </div>
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h3>Create feed</h3>
+    </div>
+    <div class="modal-body">
+        <div id="message_popup"></div>
+        <form id="new_feed">
+            <input type="text" class="input-large" placeholder="Title" name="title" data-ng-model="feed.title" />
+            <br />
+            <textarea class="input-large" name="description" placeholder="Description" data-ng-model="feed.description"></textarea>
+            <br />
+        </form>
+    </div>
+    <div class="modal-footer">
+        <a href="#" class="btn" data-dismiss="modal">Close</a>
+        <a href="#" class="btn btn-primary" id="save_new_feed" data-ng-click="newFeed(feed)">Save changes</a>
+    </div>
 </div>
 
 @section HeadInline{

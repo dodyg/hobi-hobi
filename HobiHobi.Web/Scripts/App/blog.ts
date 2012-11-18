@@ -73,6 +73,8 @@ blogModule.directive('alert',
         };
     });
 
+/* Start controller section */
+
 class AuthenticationController {
     constructor ($rootElement, $scope, $http, notification) {
         $rootElement.ready(function () {
@@ -80,12 +82,58 @@ class AuthenticationController {
                 $scope.is_authenticated = payload.Data;
                 if (!payload.Data) {
                     $scope.alertType = "alert-info";
-                    $scope.message = 'If you have an account, please <a href="#login">login</a>.';
+                    $scope.message = '';
+                    $scope.loggedIn = false;
                 } else {
+                    $scope.alertType = "alert-info";
+                    $scope.loggedIn = true;
                     $scope.message = "you are logged in";
                 }
             });
         });
+
+        $scope.showLoginPanel = function () {
+            angular.element('#login_to_system').modal();
+        }
+    }
+}
+
+class LoginController {
+    constructor ($rootElement, $scope, $http, notification) {
+        $scope.tryLogin = function (loginInfo) {
+            if (loginInfo == undefined) {
+                alert('Please enter the values');
+                return;
+            }
+
+            if (!angular.isDefined(loginInfo.username)) {
+                alert('username is required');
+                return;
+            }
+            if (!angular.isDefined(loginInfo.password)) {
+                alert('password is required');
+                return;
+            }
+
+            var doc = {
+                Email: loginInfo.username,
+                Password: loginInfo.password
+            };
+
+            var json = JSON.stringify(doc);
+
+            $http.post('/manage/identity/authenticate', json).success(function (payload) {
+                if (payload.StatusCode == 200) {
+                    alert('success');
+                } else {
+                    var errors = JSON.parse(payload.ErrorDetails);
+                    angular.forEach(errors.Properties, function (v, k) {
+                        alert(v.Errors[0]);
+                    });
+                }
+            });
+ 
+        }
     }
 }
 
@@ -255,7 +303,7 @@ class FeedController {
             }
             
             var doc = {
-                blogId: $('#feed_blog_id').val(),
+                blogId: angular.element('#feed_blog_id').text(),
                 title: feed.title,
                 description: feed.description
             };

@@ -35,6 +35,7 @@ namespace HobiHobi.Core.Blogging
         public string Author { get; set; }
         public string Copyright { get; set; }
         public string Language { get; set; }
+        public List<string> AvailableTags { get; set; }
 
         List<BlogPost> _posts;
 
@@ -50,6 +51,7 @@ namespace HobiHobi.Core.Blogging
         {
             DateCreated = Stamp.Time();
             _posts = new List<BlogPost>();
+            AvailableTags = new List<string>();
             MarkAsUpdated();
         }
 
