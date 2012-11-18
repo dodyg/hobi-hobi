@@ -132,8 +132,8 @@ var LoginController = (function () {
             var json = JSON.stringify(doc);
             $http.post('/manage/identity/authenticate', json).success(function (payload) {
                 if(payload.StatusCode == 200) {
+                    $scope.$parent.loggedIn = true;
                     angular.element('#login_to_system').modal('hide');
-                    $scope.loggedIn = true;
                 } else {
                     var errors = JSON.parse(payload.ErrorDetails);
                     angular.forEach(errors.Properties, function (v, k) {
