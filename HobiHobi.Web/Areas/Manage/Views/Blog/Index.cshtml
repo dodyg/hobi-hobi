@@ -5,6 +5,8 @@
 
 <div style="display:none" id="global_values">
     <span id="feed_blog_id">@ViewBag.BlogId</span>
+    <span id="feed_blog_is_secure">@ViewBag.IsSecureConnection</span>
+    <span id="feed_blog_secure_url">@ViewBag.SecureUrl</span>
 </div>
 
 <div data-ng-controller="AuthenticationController">
@@ -40,6 +42,7 @@
 
 </div>
 <br />
+
 <div id="user_message" data-alert="alertType"></div>
 
 

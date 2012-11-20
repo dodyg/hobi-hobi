@@ -30,7 +30,8 @@ namespace HobiHobi.Web.Areas.Manage.Controllers
             ViewBag.BlogTitle = blog.Title;
             ViewBag.Feeds = feeds;
             ViewBag.BlogLink = blog.HtmlLink;
-
+            ViewBag.IsSecureConnection = Request.IsSecureConnection;
+            ViewBag.SecureUrl = Texts.ConvertToSecureVersion(Request.Url);
             return View();
         }
 

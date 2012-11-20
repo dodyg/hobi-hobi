@@ -34,22 +34,22 @@ var notificationService = [
             var msg = angular.element('#user_message');
             switch(args.Type) {
                 case MessageType.ERROR: {
-                    msg.removeClass().addClass('alert alert-error').text(args.Message);
+                    msg.removeClass().addClass('alert alert-error').html(args.Message);
                     break;
 
                 }
                 case MessageType.INFO: {
-                    msg.removeClass().addClass('alert alert-info').text(args.Message);
+                    msg.removeClass().addClass('alert alert-info').html(args.Message);
                     break;
 
                 }
                 case MessageType.SUCCESS: {
-                    msg.removeClass().addClass('alert alert-success').text(args.Message);
+                    msg.removeClass().addClass('alert alert-success').html(args.Message);
                     break;
 
                 }
                 case MessageType.WARNING: {
-                    msg.removeClass().addClass('alert').text(args.Message);
+                    msg.removeClass().addClass('alert').html(args.Message);
 
                 }
             }
@@ -88,6 +88,11 @@ app.config(route);
 var AuthenticationController = (function () {
     function AuthenticationController($rootElement, $scope, $http, notification) {
         $rootElement.ready(function () {
+            var isSecure = angular.element('#feed_blog_is_secure').text() == "True";
+            if(!isSecure) {
+                var secureLink = angular.element('#feed_blog_secure_url').text();
+                notification(new UserMessage('You are accessing this page in a non secure way. Please click <a href="' + secureLink + '">here</a> to access it securely.', MessageType.ERROR));
+            }
             $http.get('/manage/identity/isauthenticated').success(function (payload) {
                 $scope.is_authenticated = payload.Data;
                 if(!payload.Data) {

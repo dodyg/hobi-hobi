@@ -57,6 +57,13 @@ namespace HobiHobi.Core.Utils
 #endif
         }
 
+        public static string ConvertToSecureVersion(Uri uri)
+        {
+            var url = FromUriHost(uri) + uri.PathAndQuery;
+            var secure = url.Replace("http://", "https://");
+            return secure;
+        }
+
         public static string ConvertTitleToName(string title)
         {
             return title.Replace(" ", "-").Replace("#", "-").Replace("'", "-").Replace(".", "-")
