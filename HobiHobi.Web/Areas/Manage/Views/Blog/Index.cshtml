@@ -53,11 +53,11 @@
         {
             <li data-ng-click="load($event)"><a href="#@f.Url" data-url="@f.Url" data-id="@f.Id" data-toggle="tab">@f.Title</a></li>
         }
-        <li data-ng-click="showNewFeedDialog()"><a href="#" id="feed_new" data-id="feed_new">+</a></li>
+        <li data-ng-click="showNewFeedDialog()"><a href="#" id="feed_new" data-id="feed_new" title="Opens up panel to create a new feed">+</a></li>
     </ul>
 
-    <a href="{{ feedTabLink }}" id="feed_tab_link" target="_blank"><i class="icon-zoom-in"></i></a>
-    <span class="icon-remove" data-ng-click="deleteFeed($event)">
+    <a href="{{ feedTabLink }}" id="feed_tab_link" target="_blank" title="View this feed in a new window"><i class="icon-zoom-in"></i></a>
+    <span class="icon-remove" data-ng-click="deleteFeed($event)" title="Ask for confirmation whether to delete this feed">
         <span data-ng-click="confirmDeletion($event, feedId, false)" class="confirm-no">No</span>
         <span data-ng-click="confirmDeletion($event, feedId, true)" class="confirm-yes">Sure</span>
     </span>
@@ -80,7 +80,7 @@
     <table class="table">
         <tr data-ng-repeat="p in posts">
             <td data-ng-mouseover="showActions($event)">{{ p.Content }} <span data-ng-bind-html-unsafe="showLink(p.ShortLink)"></span>
-                <span style="display: none;" data-ng-click="deletePost($event, p)" data-showonhoverparent="" class="icon-remove">
+                <span style="display: none;" data-ng-click="deletePost($event, p)" data-showonhoverparent="" class="icon-remove" title="Ask confirmation whether to delete this post">
                     <span data-ng-click="confirmDeletion($event, p, false)" class="confirm-no">No</span>
                     <span data-ng-click="confirmDeletion($event, p, true)" class="confirm-yes">Sure</span>
                 </span>
