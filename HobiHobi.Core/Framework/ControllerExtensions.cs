@@ -32,6 +32,12 @@ namespace HobiHobi.Core.Framework
             return errors;
         }
 
+        public static bool IfSecureConnectionOnAppHarbor(this Controller self)
+        {
+            var secure = self.Request.Headers["X-Forwarded-Proto"] == "https"; //specific hack for appharbor to detect whether request is secure
+            return secure;
+        }
+
         public static void Compress(this Controller self)
         {
             string acceptEncoding = self.Request.Headers["Accept-Encoding"];

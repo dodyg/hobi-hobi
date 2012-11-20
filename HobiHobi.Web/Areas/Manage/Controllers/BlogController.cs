@@ -30,7 +30,7 @@ namespace HobiHobi.Web.Areas.Manage.Controllers
             ViewBag.BlogTitle = blog.Title;
             ViewBag.Feeds = feeds;
             ViewBag.BlogLink = blog.HtmlLink;
-            ViewBag.IsSecureConnection = Request.Headers["X-Forwarded-Proto"] == "https"; //specific hack for appharbor to detect whether request is secure
+            ViewBag.IsSecureConnection = this.IfSecureConnectionOnAppHarbor();
             ViewBag.SecureUrl = Texts.ConvertToSecureVersion(Request.Url);
             return View();
         }
