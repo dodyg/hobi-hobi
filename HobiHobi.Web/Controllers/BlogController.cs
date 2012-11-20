@@ -46,6 +46,28 @@ namespace HobiHobi.Web.Controllers
             return View();
         }
 
+        public ActionResult FixTemporaryLogin(string name)
+        {
+            var blog = RavenSession.Query<Blog>().Where(x => x.Name == name).FirstOrDefault();
+
+            if (blog == null)
+                return HttpNotFound();
+
+            var transient = CookieMonster.GetFromCookie<TransientAccount>(Request.Cookies[TransientAccount.COOKIE_NAME]);
+            if (!transient.IsFound)
+            {
+                var init = new TransientAccount();
+                init.BlogGuids.Add(blog.Guid);
+                Response.Cookies.Add(CookieMonster.SetCookie(init, TransientAccount.COOKIE_NAME));
+            }
+            else
+            {
+                transient.Item.BlogGuids.Add(blog.Guid);
+                Response.Cookies.Add(CookieMonster.SetCookie(transient.Item, TransientAccount.COOKIE_NAME));
+            }
+
+            return Content("The temporary login has been issued");
+        }
 
         public ActionResult BlogOpmlSubscriptionList(string name)
         {
