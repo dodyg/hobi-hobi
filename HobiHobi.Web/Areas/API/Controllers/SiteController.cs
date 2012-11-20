@@ -15,7 +15,6 @@ namespace HobiHobi.Web.Areas.API.Controllers
 {
     public class SiteController : RavenController
     {
-
         [HttpGet]
         public ActionResult TabbedRivers()
         {
@@ -31,6 +30,7 @@ namespace HobiHobi.Web.Areas.API.Controllers
                 outline.Attributes["text"] = x.Title;
                 outline.Attributes["name"] = x.Name;
                 outline.Attributes["url"] = Texts.FromUriHost(Request.Url) + "/r/" + x.Name;
+                outline.Attributes["urlOpml"] = Texts.FromUriHost(Request.Url) + "/r/opml/" + x.Name;
                 return outline;
             }));
 
