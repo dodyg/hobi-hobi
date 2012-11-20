@@ -46,7 +46,7 @@
 <div id="user_message" data-alert="alertType"></div>
 
 
-<h2><a href="@ViewBag.BlogLink">@ViewBag.BlogTitle</a></h2>
+<h2><a href="@ViewBag.BlogLink" title="Opens to your blog home page in a new window" target="_blank">@ViewBag.BlogTitle</a></h2>
 <div data-ng-controller="TabsController">
     <ul class="nav nav-tabs" id="feed_tabs">
         @foreach (var f in ViewBag.Feeds)
