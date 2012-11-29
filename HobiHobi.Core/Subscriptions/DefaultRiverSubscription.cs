@@ -18,9 +18,9 @@ namespace HobiHobi.Core.Subscriptions
 
             river.Items.Add(new RiverSubscriptionItem
             {
-                Text = "Apple",
-                Name = "apple",
-                JSONPUri = new Uri("http://static.scripting.com/houston/rivers/apple/River3.js")
+                Text = "NYT",
+                Name = "nyt",
+                JSONPUri = new Uri("http://static.scripting.com/houston/rivers/nyt/River3.js")
             });
 
             river.Items.Add(new RiverSubscriptionItem
@@ -32,44 +32,17 @@ namespace HobiHobi.Core.Subscriptions
 
             river.Items.Add(new RiverSubscriptionItem
             {
-                Text = "Tech Meme",
-                Name = "tech",
-                JSONPUri = new Uri("http://static.scripting.com/houston/rivers/techmeme/River3.js")
-            });
-
-            river.Items.Add(new RiverSubscriptionItem
-            {
-                Text = "NYT",
-                Name = "nyt",
-                JSONPUri = new Uri("http://static.scripting.com/houston/rivers/nyt/River3.js")
-            });
-
-            river.Items.Add(new RiverSubscriptionItem
-            {
                 Text = "No Agenda",
                 Name = "noagenda",
                 JSONPUri = new Uri("http://s3.amazonaws.com/river.curry.com/rivers/radio2/River3.js")
             });
 
-            river.Items.Add(new RiverSubscriptionItem
-            {
-                Text = "East Village News",
-                Name = "eastVillageNews",
-                JSONPUri = new Uri("http://static.scripting.com/houston/rivers/eastVillageRiver3.js")
-            });
 
             river.Items.Add(new RiverSubscriptionItem
             {
-                Text = "Programming",
-                Name = "programmingNews",
-                JSONPUri = new Uri("http://hobieu.apphb.com/s/riverjs/programming")
-            });
-
-            river.Items.Add(new RiverSubscriptionItem
-            {
-                Text = "World",
-                Name = "worldRiver",
-                JSONPUri = new Uri("http://static.scripting.com/houston/rivers/international/River3.js")
+                Text = "Podcasts",
+                Name = "podcastRiver",
+                JSONPUri = new Uri("http://static.scripting.com/houston/rivers/podcasts/River3.js")
             });
 
             river.Items.Add(new RiverSubscriptionItem
@@ -81,9 +54,44 @@ namespace HobiHobi.Core.Subscriptions
 
             river.Items.Add(new RiverSubscriptionItem
             {
-                Text = "Podcasts",
-                Name = "podcastRiver",
-                JSONPUri = new Uri("http://static.scripting.com/houston/rivers/podcasts/River3.js")
+                Text = "Apple",
+                Name = "apple",
+                JSONPUri = new Uri("http://static.scripting.com/houston/rivers/apple/River3.js")
+            });
+
+            river.Items.Add(new RiverSubscriptionItem
+            {
+                Text = "Programming",
+                Name = "programmingNews",
+                JSONPUri = new Uri("http://hobieu.apphb.com/s/riverjs/programming")
+            });
+
+            river.Items.Add(new RiverSubscriptionItem
+            {
+                Text = "Tech Meme",
+                Name = "tech",
+                JSONPUri = new Uri("http://static.scripting.com/houston/rivers/techmeme/River3.js")
+            });
+
+            river.Items.Add(new RiverSubscriptionItem
+            {
+                Text = "ASEAN Nations",
+                Name = "asean",
+                JSONPUri = new Uri("http://hobieu.apphb.com/s/riverjs/asean")
+            });
+
+            river.Items.Add(new RiverSubscriptionItem
+            {
+                Text = "Southern Africa",
+                Name = "asean",
+                JSONPUri = new Uri("http://hobieu.apphb.com/s/riverjs/southern-africa")
+            });
+
+            river.Items.Add(new RiverSubscriptionItem
+            {
+                Text = "World",
+                Name = "worldRiver",
+                JSONPUri = new Uri("http://static.scripting.com/houston/rivers/international/River3.js")
             });
 
             river.Items.Add(new RiverSubscriptionItem
@@ -91,6 +99,13 @@ namespace HobiHobi.Core.Subscriptions
                 Text = "Nomadlife",
                 Name = "nomadlife",
                 JSONPUri = new Uri("http://hobieu.apphb.com/s/riverjs/nomadlife")
+            });
+
+            river.Items.Add(new RiverSubscriptionItem
+            {
+                Text = "East Village News",
+                Name = "eastVillageNews",
+                JSONPUri = new Uri("http://static.scripting.com/houston/rivers/eastVillageRiver3.js")
             });
 
             return river;
