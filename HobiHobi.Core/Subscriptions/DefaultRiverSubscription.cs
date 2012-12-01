@@ -42,7 +42,7 @@ namespace HobiHobi.Core.Subscriptions
             {
                 Text = "Podcasts",
                 Name = "podcastRiver",
-                JSONPUri = new Uri("http://static.scripting.com/houston/rivers/podcasts/River3.js")
+                JSONPUri = new Uri("http://static.scripting.com/podcastriver/River3.js")
             });
 
             river.Items.Add(new RiverSubscriptionItem
