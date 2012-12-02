@@ -108,6 +108,13 @@ namespace HobiHobi.Core.Subscriptions
                 JSONPUri = new Uri("http://static.scripting.com/houston/rivers/eastVillageRiver3.js")
             });
 
+            river.Items.Add(new RiverSubscriptionItem
+            {
+                Text = "Magazines",
+                Name = "magazines",
+                JSONPUri = new Uri("http://hobieu.apphb.com/s/riverjs/magazines")
+            });
+
             return river;
         }
     }

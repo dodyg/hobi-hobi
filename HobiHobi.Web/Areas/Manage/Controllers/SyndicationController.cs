@@ -140,12 +140,23 @@ namespace HobiHobi.Web.Areas.Manage.Controllers
 
                         return HttpDoc<dynamic>.OK(new { Message = "Source added", Name = name }).ToJson();
                     }
+                    else if (content.Exception != null)
+                    {
+                        var exception = content.Exception.Message;
+
+                        if (content.Exception.InnerException != null)
+                            exception += "-- Inner Exception --" + content.Exception.InnerException.Message;
+
+                        this.PropertyValidationMessage("Uri", String.Format(
+                            "Given Uri does not exist or is an invalid river format. The processing return the following error : {0}. Please try again.", exception));
+                    }
                     else
                         this.PropertyValidationMessage("Uri", "Given Uri does not exist or is an invalid river format. Please try again.");
                 }
-                catch
+                catch (Exception e)
                 {
-                    this.PropertyValidationMessage("Uri", "Given Uri does not exist or is an invalid river format. Please try again.");
+                    this.PropertyValidationMessage("Uri", String.Format(
+                        "Given Uri does not exist or is an invalid river format. The processing return the following error : {0}. Please try again.", e.Message));
                 }
             }
 

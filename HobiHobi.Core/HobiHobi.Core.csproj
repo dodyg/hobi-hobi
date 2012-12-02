@@ -51,6 +51,9 @@
     <Reference Include="CoffeeSharp">
       <HintPath>..\packages\CoffeeSharp.0.5\lib\CoffeeSharp.dll</HintPath>
     </Reference>
+    <Reference Include="CookComputing.XmlRpcV2">
+      <HintPath>..\packages\xmlrpcnet.2.5.0\lib\net20\CookComputing.XmlRpcV2.dll</HintPath>
+    </Reference>
     <Reference Include="dotless.Core, Version=1.3.1.0, Culture=neutral, PublicKeyToken=96b446c9e63eae34, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\dotless.1.3.1.0\lib\dotless.Core.dll</HintPath>
@@ -199,7 +202,9 @@
     <Compile Include="Syndications\RssJs.cs" />
     <Compile Include="Syndications\SyndicationFetcher.cs" />
     <Compile Include="Syndications\SyndicationList.cs" />
+    <Compile Include="Syndications\SyndicationXmlReader.cs" />
     <Compile Include="Utils\CookieMonster.cs" />
+    <Compile Include="Utils\DateTimeParser.cs" />
     <Compile Include="Utils\JsonSettings.cs" />
     <Compile Include="Utils\UrlShortener.cs" />
     <Compile Include="Utils\JsonSerializer.cs" />

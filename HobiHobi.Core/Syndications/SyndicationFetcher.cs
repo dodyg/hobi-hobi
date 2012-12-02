@@ -53,16 +53,18 @@ namespace HobiHobi.Core.Syndications
         {
             try
             {
-                using (var reader = XmlReader.Create(uri.ToString()))
+                using (var reader = new SyndicationXmlReader(uri.ToString()))
                 {
                     var feed = SyndicationFeed.Load(reader);
 
                     return new QuerySetOne<SyndicationFeed>(feed);
                 }
             }
-            catch
+            catch (Exception e)
             {
-                return new QuerySetOne<SyndicationFeed>(null);
+                var qone = new QuerySetOne<SyndicationFeed>(null);
+                qone.Error(e);
+                return qone;
             }
         }
     }
