@@ -23,7 +23,6 @@ namespace HobiHobi.Tests.Core.Syndications
             var time = DateTimeParser.ConvertWithTimezone(dateString);
             
             Assert.IsTrue(time.IsTrue, "Exception " + time.Message);
-            Assert.IsTrue(false, "Date time " + time.Value.ToString());
         }
 
         [Test]
