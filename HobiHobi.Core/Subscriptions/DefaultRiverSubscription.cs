@@ -89,6 +89,14 @@ namespace HobiHobi.Core.Subscriptions
 
             river.Items.Add(new RiverSubscriptionItem
             {
+                Text = "Middle East",
+                Name = "middleEast",
+                JSONPUri = new Uri("http://hobieu.apphb.com/s/riverjs/middle-east")
+            });
+
+
+            river.Items.Add(new RiverSubscriptionItem
+            {
                 Text = "World",
                 Name = "worldRiver",
                 JSONPUri = new Uri("http://static.scripting.com/houston/rivers/international/River3.js")

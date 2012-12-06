@@ -151,6 +151,7 @@ namespace HobiHobi.Core.Utils
         }
 
         const string PATTERN_1 = "ddd MMM dd HH:mm:ss zzzz yyyy"; //http://support.microsoft.com/kb/2020488
+        const string PATTERN_2 = "ddd, dd MMM yyyy HH:mm:ss zzzz"; //http://support.microsoft.com/kb/2020488
 
         public static Result<DateTimeOffset> ConvertWithTimezone(string strDate)
         {
@@ -181,8 +182,13 @@ namespace HobiHobi.Core.Utils
             var parsingAttemp1 = DateTimeOffset.TryParseExact(replacedDate, PATTERN_1, CultureInfo.InvariantCulture, DateTimeStyles.None, out complexTime);
 
             if (!parsingAttemp1)
-                return Result<DateTimeOffset>.False("Parsing " + replacedDate + " with " + PATTERN_1 + " fails");
+            {
+                var parsingAttempt2 = DateTimeOffset.TryParseExact(replacedDate, PATTERN_2, CultureInfo.InvariantCulture, DateTimeStyles.None, out complexTime);
 
+                if (!parsingAttempt2)
+                    return Result<DateTimeOffset>.False("2nd Parsing " + replacedDate + " with " + PATTERN_2 + " fails");
+            }
+            
             return Result<DateTimeOffset>.True(complexTime);
         }
     }
