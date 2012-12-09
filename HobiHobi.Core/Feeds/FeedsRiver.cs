@@ -15,7 +15,7 @@ namespace HobiHobi.Core.Feeds
     {
         public FeedsCollection UpdatedFeeds { get; set; }
 
-        public static FeedsRiver FromSyndication(List<FeedAndSource> feeds)
+        public static FeedsRiver FromSyndication(List<FeedAndSource> feeds, DateTime cuttOffDate)
         {
             var river = new FeedsRiver();
             river.UpdatedFeeds = new FeedsCollection();
@@ -29,6 +29,7 @@ namespace HobiHobi.Core.Feeds
                         FeedUrl = x.Source.XmlUri != null ? x.Source.XmlUri.ToString() : string.Empty,
                         WebsiteUrl = x.Source.HtmlUri != null ? x.Source.HtmlUri.ToString() : string.Empty,
                         Item = (from y in x.Feed.Items
+                                where y.PublishDate > cuttOffDate
                                 select new FeedItem
                                 {
                                     Id = y.Id,

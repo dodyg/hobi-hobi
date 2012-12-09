@@ -108,6 +108,11 @@ namespace HobiHobi.Web.Controllers
             }
         }
 
+        DateTime CutoffDate()
+        {
+            return DateTime.UtcNow.AddDays(-3);
+        }
+
         public ActionResult GetRiverJs(string name)
         {
             var syndications = SyndicationRiverJsCache.Get(name, HttpContext.Cache);
@@ -123,7 +128,7 @@ namespace HobiHobi.Web.Controllers
                     var fetcher = new SyndicationFetcher();
                     var feeds = fetcher.DownloadAll(subscription);
 
-                    var river = FeedsRiver.FromSyndication(feeds);
+                    var river = FeedsRiver.FromSyndication(feeds, CutoffDate());
 
                     var jsonString = Newtonsoft.Json.JsonConvert.SerializeObject(river, JsonSettings.Get());
                     var jsonp = "onGetRiverStream (" + jsonString + ")";
