@@ -36,7 +36,7 @@ namespace HobiHobi.Core.Feeds
                                     Body = Texts.LimitTextForRiverJs((y.Summary != null) ? y.Summary.Text : string.Empty),
                                     PubDate = y.PublishDate.ToString("R"),
                                     PermaLink = y.Id,
-                                    Link = y.Id
+                                    Link = (y.Links.Any() ? y.Links.First().Uri.ToString() : y.Id)
                                 }).ToArray()
                     };
 

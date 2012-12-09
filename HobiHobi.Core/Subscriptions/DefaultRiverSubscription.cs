@@ -37,7 +37,6 @@ namespace HobiHobi.Core.Subscriptions
                 JSONPUri = new Uri("http://s3.amazonaws.com/river.curry.com/rivers/radio2/River3.js")
             });
 
-
             river.Items.Add(new RiverSubscriptionItem
             {
                 Text = "Podcasts",
@@ -94,7 +93,6 @@ namespace HobiHobi.Core.Subscriptions
                 JSONPUri = new Uri("http://hobieu.apphb.com/s/riverjs/middle-east")
             });
 
-
             river.Items.Add(new RiverSubscriptionItem
             {
                 Text = "World",
@@ -114,6 +112,13 @@ namespace HobiHobi.Core.Subscriptions
                 Text = "East Village News",
                 Name = "eastVillageNews",
                 JSONPUri = new Uri("http://static.scripting.com/houston/rivers/eastVillageRiver3.js")
+            });
+
+            river.Items.Add(new RiverSubscriptionItem
+            {
+                Text = "The Economist's Blogs",
+                Name = "theeconomistblogs",
+                JSONPUri = new Uri("http://hobieu.apphb.com/s/riverjs/the-economist-blogs")
             });
 
             river.Items.Add(new RiverSubscriptionItem
