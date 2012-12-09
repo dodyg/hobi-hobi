@@ -86,7 +86,8 @@ namespace HobiHobi.Core.Subscriptions
                         item.Attributes["description"] = x.Description;
                     if (x.JSONPUri != null)
                         item.Attributes["url"] = x.JSONPUri.ToString();
-
+                    if (!string.IsNullOrWhiteSpace(x.Language))
+                        item.Attributes["language"] = x.Language;
                     return item;
                 }))
             {

@@ -20,6 +20,7 @@ namespace HobiHobi.Core.Subscriptions
             {
                 Text = "NYT",
                 Name = "nyt",
+                Language = "en",
                 JSONPUri = new Uri("http://static.scripting.com/houston/rivers/nyt/River3.js")
             });
 
@@ -27,6 +28,7 @@ namespace HobiHobi.Core.Subscriptions
             {
                 Text = "Dave",
                 Name = "dave",
+                Language = "en",
                 JSONPUri = new Uri("http://static.scripting.com/houston/rivers/iowaRiver3.js")
             });
 
@@ -34,6 +36,7 @@ namespace HobiHobi.Core.Subscriptions
             {
                 Text = "No Agenda",
                 Name = "noagenda",
+                Language = "en",
                 JSONPUri = new Uri("http://s3.amazonaws.com/river.curry.com/rivers/radio2/River3.js")
             });
 
@@ -41,6 +44,7 @@ namespace HobiHobi.Core.Subscriptions
             {
                 Text = "Podcasts",
                 Name = "podcastRiver",
+                Language = "en",
                 JSONPUri = new Uri("http://static.scripting.com/podcastriver/River3.js")
             });
 
@@ -48,6 +52,7 @@ namespace HobiHobi.Core.Subscriptions
             {
                 Text = "Movies",
                 Name = "moviesRiver",
+                Language = "en",
                 JSONPUri = new Uri("http://static.scripting.com/houston/rivers/movies/River3.js")
             });
 
@@ -55,6 +60,7 @@ namespace HobiHobi.Core.Subscriptions
             {
                 Text = "Apple",
                 Name = "apple",
+                Language = "en",
                 JSONPUri = new Uri("http://static.scripting.com/houston/rivers/apple/River3.js")
             });
 
@@ -62,6 +68,7 @@ namespace HobiHobi.Core.Subscriptions
             {
                 Text = "Programming",
                 Name = "programmingNews",
+                Language = "en",
                 JSONPUri = new Uri("http://hobieu.apphb.com/s/riverjs/programming")
             });
 
@@ -69,6 +76,7 @@ namespace HobiHobi.Core.Subscriptions
             {
                 Text = "Tech Meme",
                 Name = "tech",
+                Language = "en",
                 JSONPUri = new Uri("http://static.scripting.com/houston/rivers/techmeme/River3.js")
             });
 
@@ -76,6 +84,7 @@ namespace HobiHobi.Core.Subscriptions
             {
                 Text = "ASEAN Nations",
                 Name = "asean",
+                Language = "en",
                 JSONPUri = new Uri("http://hobieu.apphb.com/s/riverjs/asean")
             });
 
@@ -83,6 +92,7 @@ namespace HobiHobi.Core.Subscriptions
             {
                 Text = "Southern Africa",
                 Name = "asean",
+                Language = "en",
                 JSONPUri = new Uri("http://hobieu.apphb.com/s/riverjs/southern-africa")
             });
 
@@ -90,6 +100,7 @@ namespace HobiHobi.Core.Subscriptions
             {
                 Text = "Middle East",
                 Name = "middleEast",
+                Language = "en",
                 JSONPUri = new Uri("http://hobieu.apphb.com/s/riverjs/middle-east")
             });
 
@@ -97,6 +108,7 @@ namespace HobiHobi.Core.Subscriptions
             {
                 Text = "World",
                 Name = "worldRiver",
+                Language = "en",
                 JSONPUri = new Uri("http://static.scripting.com/houston/rivers/international/River3.js")
             });
 
@@ -104,6 +116,7 @@ namespace HobiHobi.Core.Subscriptions
             {
                 Text = "Nomadlife",
                 Name = "nomadlife",
+                Language = "en",
                 JSONPUri = new Uri("http://hobieu.apphb.com/s/riverjs/nomadlife")
             });
 
@@ -111,6 +124,7 @@ namespace HobiHobi.Core.Subscriptions
             {
                 Text = "East Village News",
                 Name = "eastVillageNews",
+                Language = "en",
                 JSONPUri = new Uri("http://static.scripting.com/houston/rivers/eastVillageRiver3.js")
             });
 
@@ -118,6 +132,7 @@ namespace HobiHobi.Core.Subscriptions
             {
                 Text = "The Economist's Blogs",
                 Name = "theeconomistblogs",
+                Language = "en",
                 JSONPUri = new Uri("http://hobieu.apphb.com/s/riverjs/the-economist-blogs")
             });
 
@@ -125,8 +140,18 @@ namespace HobiHobi.Core.Subscriptions
             {
                 Text = "Magazines",
                 Name = "magazines",
+                Language = "en",
                 JSONPUri = new Uri("http://hobieu.apphb.com/s/riverjs/magazines")
             });
+
+            river.Items.Add(new RiverSubscriptionItem
+            {
+                Text = "Notizie Italia",
+                Name = "notizieItalia",
+                Language = "it",
+                JSONPUri = new Uri("http://hobieu.apphb.com/s/riverjs/Italian")
+            });
+
 
             return river;
         }
