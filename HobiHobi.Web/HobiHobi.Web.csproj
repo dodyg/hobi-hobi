@@ -138,6 +138,7 @@
   <ItemGroup>
     <Compile Include="Areas\API\APIAreaRegistration.cs" />
     <Compile Include="Areas\API\Controllers\DefaultController.cs" />
+    <Compile Include="Areas\API\Controllers\OpmlController.cs" />
     <Compile Include="Areas\API\Controllers\SiteController.cs" />
     <Compile Include="Areas\API\Controllers\SamplesController.cs" />
     <Compile Include="Areas\Manage\Controllers\BlogController.cs" />
@@ -395,6 +396,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\App\blog.less" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\Opml\Root.opml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
