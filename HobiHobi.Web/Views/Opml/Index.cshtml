@@ -175,11 +175,12 @@
 		                                $(obj).each(function () {
 		                                    output = jQuery.map(this.attributes, function (item) {
 		                                        if (item.name == 'class' || item.name == 'id') return '';
-		                                        return '<tr><td>' + item.name + '</td><td>' + item.value + '</td></tr>';
+		                                        return '<tr><td>' + item.name + '</td><td>' + item.value + '</td>' +
+                                                    '<td><a href="#" onclick="removeAttr(\'' + item.name.trim() + '\', this)">remove</a>'
+                                                    + '</td></tr>';
 		                                    });
 		                                });
 		                                output = '<table>' + output.join('') + '</table>';
-		                                alert(output);
 		                                $('#modal-body').empty().append(output);
 		                                $('#modal-attributes-dialog').modal();
 		                            }
@@ -217,6 +218,10 @@
                 .done(function (payload) {
                     alert('done');
                 });
+		}
+		function removeAttr(name, elem) {
+		    $($.jstree._focused().get_selected()).removeAttr(name.trim());
+		    $(elem).parent().parent().remove();
 		}
 	</script>
 </html>
