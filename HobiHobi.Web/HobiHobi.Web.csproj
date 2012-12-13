@@ -171,7 +171,9 @@
     <Content Include="Content\App\blog.css" />
     <Content Include="Content\bootstrap-responsive.min.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\d.png" />
     <Content Include="Content\Manage.css" />
+    <Content Include="Content\opmlEditor.css" />
     <Content Include="Content\Samples\RiverWithOutlines.js" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -207,6 +209,7 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-1.8.0.min.js" />
     <Content Include="Scripts\jquery.isotope.min.js" />
+    <Content Include="Scripts\jquery.jstree.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.xml2json.js" />
     <Content Include="Scripts\json2.js" />
@@ -403,6 +406,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Opml\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Scripts\jquery.hotkeys.js" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
