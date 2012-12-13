@@ -1293,8 +1293,8 @@
                                 i.remove(); // rollback purposes
                                 this.set_text(obj, t); // rollback purposes
                                 this.rename_node(obj, v);
-                                callback.call(this, obj, v, t);
                                 obj.css("position", "");
+                                callback.call(this, obj, v, t);// originally 1296 https://github.com/vakata/jstree/issues/86
                             }, this),
                             "keyup": function (event) {
                                 var key = event.keyCode || event.which;
