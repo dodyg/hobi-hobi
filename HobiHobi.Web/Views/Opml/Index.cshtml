@@ -119,36 +119,41 @@
 		                select_node: true,
 		                items: function ($node) {
 		                    return {
-		                        rss: {
-		                            label: "RSS",
-		                            action: function (obj) {
-		                                var val = window.prompt("URL", "http://");
-		                                if (val != null)
-		                                    $(obj).attr({ type: 'rss', url: val }).addClass('type-rss');
-		                            }
-		                        },
-		                        blogpost: {
-		                            label: "Blog Post",
-		                            action: function (obj) {
-		                                var val = window.prompt("URL", "http://");
-		                                if (val != null)
-		                                    $(obj).attr({ type: 'blogpost', url: val }).addClass('type-blog');
-		                            }
-		                        },
-		                        river: {
-		                            label: "River",
-		                            action: function (obj) {
-		                                var val = window.prompt("URL", "http://");
-		                                if (val != null)
-		                                    $(obj).attr({ type: 'river', url: val }).addClass('type-river');
-		                            }
-		                        },
-		                        include: {
-		                            label: "OPML",
-		                            action: function (obj) {
-		                                var val = window.prompt("URL", "http://");
-		                                if (val != null)
-		                                    $(obj).attr({ type: 'include', url: val }).addClass('type-opml');
+		                        type: {
+		                            label: "Set Type",
+		                            submenu: {
+		                                rss: {
+		                                    label: "RSS",
+		                                    action: function (obj) {
+		                                        var val = window.prompt("URL", "http://");
+		                                        if (val != null)
+		                                            $(obj).attr({ type: 'rss', url: val }).addClass('type-rss');
+		                                    }
+		                                },
+		                                blogpost: {
+		                                    label: "Blog Post",
+		                                    action: function (obj) {
+		                                        var val = window.prompt("URL", "http://");
+		                                        if (val != null)
+		                                            $(obj).attr({ type: 'blogpost', url: val }).addClass('type-blog');
+		                                    }
+		                                },
+		                                river: {
+		                                    label: "River",
+		                                    action: function (obj) {
+		                                        var val = window.prompt("URL", "http://");
+		                                        if (val != null)
+		                                            $(obj).attr({ type: 'river', url: val }).addClass('type-river');
+		                                    }
+		                                },
+		                                include: {
+		                                    label: "OPML",
+		                                    action: function (obj) {
+		                                        var val = window.prompt("URL", "http://");
+		                                        if (val != null)
+		                                            $(obj).attr({ type: 'include', url: val }).addClass('type-opml');
+		                                    }
+		                                }
 		                            }
 		                        },
 		                        attribute: {
@@ -180,6 +185,7 @@
                                                     + '</td></tr>';
 		                                    });
 		                                });
+		                                if (output == '') return;
 		                                output = '<table>' + output.join('') + '</table>';
 		                                $('#modal-body').empty().append(output);
 		                                $('#modal-attributes-dialog').modal();
