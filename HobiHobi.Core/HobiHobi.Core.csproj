@@ -137,6 +137,7 @@
     <Compile Include="Framework\ModelPropertyError.cs" />
     <Compile Include="Framework\ModelPropertyErrors.cs" />
     <Compile Include="Identity\TransientAccount.cs" />
+    <Compile Include="OpmlEditor\EditorOutline.cs" />
     <Compile Include="SiteConstants.cs" />
     <Compile Include="Site\BrokenAttempt.cs" />
     <Compile Include="Site\BrokenLink.cs" />

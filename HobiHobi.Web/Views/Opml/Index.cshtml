@@ -8,6 +8,8 @@
 		<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
 		<script type="text/javascript" src="/scripts/jquery.jstree.js"></script>
 		<script type="text/javascript" src="/scripts/jquery.hotkeys.js"></script>
+        <script type="text/javascript" src="/scripts/json2.js"></script>
+
 		<link rel="stylesheet" type="text/css" media="all" href="/content/opmlEditor.css">
 	<style>
 		.type-rss { background-color: orange !important; }
@@ -23,93 +25,96 @@
 	</body>
 	<script type="text/javascript">
 		$(function () {
-			$('#demo1').jstree({
-				json_data: {
-					data: [
-						{
-							data: "Furniture"
-						}
-					]
-				},
-				plugins: ["themes", "json_data", "ui", "crrm", "hotkeys", "dnd", "contextmenu"],
-				hotkeys: {
-					tab: function() {
-						var selected = $.jstree._focused().get_selected();
-						var prev = $(selected).prev();
-						if(prev == null || prev == undefined)
-							return false;
-						$.jstree._focused().move_node($(selected), $(prev), 'last');
-						return false;
-						
-					},
-					'shift+tab': function() {
-						var selected = $.jstree._focused().get_selected();
-						if($(selected).parents('ul').length < 2)
-							return false;
-						$.jstree._focused().move_node($(selected), $(selected).parent().parent(), 'after');
-						return false;
-					},
-					del: function() {
-						if(confirm("Are you sure?"))
-							this.remove();
-					},
-					'return': function() {
-						$.jstree._focused().create(null, "after", {data:"Edit Here!!"}, null, false);
-						//alert('ba');
-					}
-				},
-				themes: {
-					theme: "default",
-					dots: false,
-					icons: false
-				},
-				contextmenu: {
-					select_node: true,
-					items: function($node) {
-						return {
-							rss: {
-								label: "RSS",
-								action: function(obj) {
-									var val = window.prompt("URL", "http://");
-									if (val != null)
-										$(obj).attr({type: 'rss', url: val}).addClass('type-rss');
-								}
-							},
-							blogpost: {
-								label: "Blog Post",
-								action: function(obj) {
-									var val = window.prompt("URL", "http://");
-									if (val != null)
-										$(obj).attr({type: 'blogpost', url: val}).addClass('type-blog');
-								}
-							},
-							river: {
-								label: "River",
-								action: function(obj) {
-									var val = window.prompt("URL", "http://");
-									if (val != null)
-										$(obj).attr({type: 'river', url: val}).addClass('type-river');
-								}
-							},
-							include: {
-								label: "River",
-								action: function(obj) {
-									var val = window.prompt("URL", "http://");
-									if (val != null)
-										$(obj).attr({type: 'include', url: val}).addClass('type-opml');
-								}
-							}
-						}
-					}
-				}
-			}).bind('create.jstree', function(event, data) {
-				$.jstree._focused().select_node($(data.rslt.obj), true);
-				$.jstree._focused().rename(data.rslt.obj);
-			}).bind('rename.jstree', function(event, data) {
-				$.jstree._focused().hover_node($(data.rslt.obj));
-			}).bind('hover_node.jstree', function (event, data) {
-				$.jstree._focused().select_node($(data.rslt.obj), true);
-			});
+
+		    $.getJSON('/opml/11', function (data) {
+		        displayTree(data);
+		    });
+
+		    function displayTree(treeData) {
+		        $('#demo1').jstree({
+		            json_data: {
+		                data: treeData
+		            },
+		            plugins: ["themes", "json_data", "ui", "crrm", "hotkeys", "dnd", "contextmenu"],
+		            hotkeys: {
+		                tab: function () {
+		                    var selected = $.jstree._focused().get_selected();
+		                    var prev = $(selected).prev();
+		                    if (prev == null || prev == undefined)
+		                        return false;
+		                    $.jstree._focused().move_node($(selected), $(prev), 'last');
+		                    return false;
+
+		                },
+		                'shift+tab': function () {
+		                    var selected = $.jstree._focused().get_selected();
+		                    if ($(selected).parents('ul').length < 2)
+		                        return false;
+		                    $.jstree._focused().move_node($(selected), $(selected).parent().parent(), 'after');
+		                    return false;
+		                },
+		                del: function () {
+		                    if (confirm("Are you sure?"))
+		                        this.remove();
+		                },
+		                'return': function () {
+		                    $.jstree._focused().create(null, "after", { data: "Edit Here!!" }, null, false);
+		                    //alert('ba');
+		                }
+		            },
+		            themes: {
+		                theme: "default",
+		                dots: false,
+		                icons: false
+		            },
+		            contextmenu: {
+		                select_node: true,
+		                items: function ($node) {
+		                    return {
+		                        rss: {
+		                            label: "RSS",
+		                            action: function (obj) {
+		                                var val = window.prompt("URL", "http://");
+		                                if (val != null)
+		                                    $(obj).attr({ type: 'rss', url: val }).addClass('type-rss');
+		                            }
+		                        },
+		                        blogpost: {
+		                            label: "Blog Post",
+		                            action: function (obj) {
+		                                var val = window.prompt("URL", "http://");
+		                                if (val != null)
+		                                    $(obj).attr({ type: 'blogpost', url: val }).addClass('type-blog');
+		                            }
+		                        },
+		                        river: {
+		                            label: "River",
+		                            action: function (obj) {
+		                                var val = window.prompt("URL", "http://");
+		                                if (val != null)
+		                                    $(obj).attr({ type: 'river', url: val }).addClass('type-river');
+		                            }
+		                        },
+		                        include: {
+		                            label: "River",
+		                            action: function (obj) {
+		                                var val = window.prompt("URL", "http://");
+		                                if (val != null)
+		                                    $(obj).attr({ type: 'include', url: val }).addClass('type-opml');
+		                            }
+		                        }
+		                    }
+		                }
+		            }
+		        }).bind('create.jstree', function (event, data) {
+		            $.jstree._focused().select_node($(data.rslt.obj), true);
+		            $.jstree._focused().rename(data.rslt.obj);
+		        }).bind('rename.jstree', function (event, data) {
+		            $.jstree._focused().hover_node($(data.rslt.obj));
+		        }).bind('hover_node.jstree', function (event, data) {
+		            $.jstree._focused().select_node($(data.rslt.obj), true);
+		        });
+		    }
 		});
 		function saveJson() {
 			var obj = JSON.stringify($.jstree._focused().get_json(-1, ['type', 'url']));
