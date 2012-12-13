@@ -213,9 +213,8 @@
 		            $.jstree._focused().select_node($(data.rslt.obj), true);
 		        }).bind('dblclick.jstree', function (event) {
 		            var node = $(event.target).closest('li');
-		            //alert(node);
 		            $.jstree._focused().rename(node.data('jstree'));
-		            node.find('input').foucs(); // don't fix the misspelling, it's what makes it work!!!
+		            node.find('input').foucs(); // you have to crash it to work!!!
 		        });
 		    }
 		});
