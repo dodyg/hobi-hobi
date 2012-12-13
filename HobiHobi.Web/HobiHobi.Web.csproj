@@ -152,6 +152,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\IdentityController.cs" />
     <Compile Include="Controllers\ListController.cs" />
+    <Compile Include="Controllers\OpmlController.cs" />
     <Compile Include="Controllers\RavenController.cs" />
     <Compile Include="Controllers\RiverController.cs" />
     <Compile Include="Controllers\SiteController.cs" />
@@ -399,6 +400,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Opml\Root.opml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Opml\Index.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

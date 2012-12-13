@@ -7,10 +7,10 @@ namespace HobiHobi.Web.Startup
 {
     public static class RavenDB
     {
-
         public static void Init(out DocumentStore store)
         {
             store = new DocumentStore { ConnectionStringName = "RavenDB" };
+            
             store.Initialize();
             store.Conventions.DefaultQueryingConsistency = ConsistencyOptions.QueryYourWrites;
 
