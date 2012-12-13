@@ -6,7 +6,8 @@
 <html>
 	<head>
 		@*<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>*@
-        <script src="scripts/jquery-1.8.0.min.js"></script>
+        <link href="/site/css/@HobiHobi.Web.MvcApplication.CommonCssTag" rel="stylesheet" type="text/css" />
+        <script src="/site/js/@HobiHobi.Web.MvcApplication.CommonJsTag" type="text/javascript"></script>
 		<script type="text/javascript" src="/scripts/jquery.jstree.js"></script>
 		<script type="text/javascript" src="/scripts/jquery.hotkeys.js"></script>
         
@@ -19,9 +20,23 @@
 	</style>
 	</head>
 	<body>
-		<div id="demo1" class="demo">
-		</div>
-		<input type="button" value="Save" onclick="saveJson()" />
+        <div class="container">
+		    <div id="demo1" class="demo">
+		    </div>
+		    <input type="button" value="Save" onclick="saveJson()" />
+        </div>
+        <div id="modal-attributes-dialog" class="modal hide fade">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3>Attributes</h3>
+            </div>
+            <div id="modal-body" class="modal-body">
+                
+            </div>
+            <div class="modal-footer">
+                <a href="#" class="btn btn-primary">Close</a>
+            </div>
+        </div>
 	</body>
 	<script type="text/javascript">
 	    jQuery.fn.removeAttributes = function() {
@@ -136,9 +151,42 @@
 		                                    $(obj).attr({ type: 'include', url: val }).addClass('type-opml');
 		                            }
 		                        },
+		                        attribute: {
+		                            label: "Add Attribute",
+		                            action: function (obj) {
+		                                var val = window.prompt("Enter attribute", "name:value");
+		                                res = val.split(':');
+		                                if (res.length < 2) {
+		                                    alert('invalid value');
+		                                    return;
+		                                }
+		                                if (res[0].toLowerCase() == 'class' || res[0].toLocaleLowerCase() == 'id') {
+		                                    alert('invalid attribute name');
+		                                    return;
+		                                }
+		                                $(obj).attr(res[0], res[1]);
+		                            }
+		                        },
+		                        view: {
+		                            label: "View Attributes",
+		                            action: function (obj) {
+		                                //alert($(obj).children().first().attributes().length);
+		                                output = '';
+		                                $(obj).each(function () {
+		                                    output = jQuery.map(this.attributes, function (item) {
+		                                        if (item.name == 'class' || item.name == 'id') return '';
+		                                        return '<tr><td>' + item.name + '</td><td>' + item.value + '</td></tr>';
+		                                    });
+		                                });
+		                                output = '<table>' + output.join('') + '</table>';
+		                                alert(output);
+		                                $('#modal-body').empty().append(output);
+		                                $('#modal-attributes-dialog').modal();
+		                            }
+		                        },
 		                        clear: {
 		                            label: "Clear Attribures",
-		                            seperator_before: true,
+		                            separator_before: true,
 		                            action: function (obj) {
 		                                if (confirm("Are you sure?")) {
 		                                    $(obj).removeAttributes();
