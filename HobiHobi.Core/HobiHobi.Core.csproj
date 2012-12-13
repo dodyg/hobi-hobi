@@ -134,9 +134,12 @@
     <Compile Include="Framework\HtmlHelperExtensions.cs" />
     <Compile Include="Framework\HttpDoc.cs" />
     <Compile Include="Framework\HttpDocExtensions.cs" />
+    <Compile Include="Framework\Json\LowerCaseContractResolver.cs" />
+    <Compile Include="Framework\Json\TitleCaseContractResolver.cs" />
     <Compile Include="Framework\ModelPropertyError.cs" />
     <Compile Include="Framework\ModelPropertyErrors.cs" />
     <Compile Include="Identity\TransientAccount.cs" />
+    <Compile Include="OpmlEditor\EditorDocument.cs" />
     <Compile Include="OpmlEditor\EditorOutline.cs" />
     <Compile Include="SiteConstants.cs" />
     <Compile Include="Site\BrokenAttempt.cs" />

@@ -5,11 +5,11 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+		@*<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>*@
+        <script src="scripts/jquery-1.8.0.min.js"></script>
 		<script type="text/javascript" src="/scripts/jquery.jstree.js"></script>
 		<script type="text/javascript" src="/scripts/jquery.hotkeys.js"></script>
-        <script type="text/javascript" src="/scripts/json2.js"></script>
-
+        
 		<link rel="stylesheet" type="text/css" media="all" href="/content/opmlEditor.css">
 	<style>
 		.type-rss { background-color: orange !important; }
@@ -21,12 +21,45 @@
 	<body>
 		<div id="demo1" class="demo">
 		</div>
-		<input type="button" value="generate" onclick="saveJson()" />
+		<input type="button" value="Save" onclick="saveJson()" />
 	</body>
 	<script type="text/javascript">
-		$(function () {
+	    jQuery.fn.removeAttributes = function() {
+	        return this.each(function() {
+	            var attribute = $.map(this.attributes, function(item) {
+	                return item.name;
+	            });
+	            obj = $(this);
+	            $.each(attribute, function(i, item) {
+	                if(item != 'class' && item != 'id') obj.removeAttr(item);
+	            });
+	            obj.removeClass('type-rss type-blog type-river type-opml');
+	        });
+	    }
+	    function getQueryStrings() {
+	        var assoc = {};
+	        var decode = function (s) { return decodeURIComponent(s.replace(/\+/g, " ")); };
+	        var queryString = location.search.substring(1);
+	        var keyValues = queryString.split('&');
 
-		    $.getJSON('/opml/11', function (data) {
+	        for (var i in keyValues) {
+	            var key = keyValues[i].split('=');
+	            if (key.length > 1) {
+	                assoc[decode(key[0])] = decode(key[1]);
+	            }
+	        }
+	        return assoc;
+	    }
+
+	    function getOpmlId() {
+	        var params = getQueryStrings();
+	        var opmlId = params["id"];
+	        return opmlId;
+	    }
+
+		$(function () {
+		    
+		    $.getJSON('/opml/getdocument/' + getOpmlId(), function (data) {
 		        displayTree(data);
 		    });
 
@@ -96,11 +129,20 @@
 		                            }
 		                        },
 		                        include: {
-		                            label: "River",
+		                            label: "OPML",
 		                            action: function (obj) {
 		                                var val = window.prompt("URL", "http://");
 		                                if (val != null)
 		                                    $(obj).attr({ type: 'include', url: val }).addClass('type-opml');
+		                            }
+		                        },
+		                        clear: {
+		                            label: "Clear Attribures",
+		                            seperator_before: true,
+		                            action: function (obj) {
+		                                if (confirm("Are you sure?")) {
+		                                    $(obj).removeAttributes();
+		                                }
 		                            }
 		                        }
 		                    }
@@ -116,9 +158,17 @@
 		        });
 		    }
 		});
+
 		function saveJson() {
 			var obj = JSON.stringify($.jstree._focused().get_json(-1, ['type', 'url']));
-			alert(obj);
+
+			$.ajax('/opml/putdocument/' + getOpmlId(), {
+			    data: { data: obj },
+			    type: 'POST',
+			})
+                .done(function (payload) {
+                    alert('done');
+                });
 		}
 	</script>
 </html>
