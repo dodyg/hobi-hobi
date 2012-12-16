@@ -101,15 +101,33 @@ namespace HobiHobi.Core.Subscriptions
                         (this.DateModified.HasValue) ? new XElement("dateModified", this.DateModified.Value.ToString("R")) : null,
                         (!string.IsNullOrWhiteSpace(this.OwnerName))? new XElement("ownerName", this.OwnerName) : null,
                         (!string.IsNullOrWhiteSpace(this.OwnerEmail)) ? new XElement("ownerEmail", this.OwnerEmail) : null
-                        ),
-                    new XElement("body",
-                        from x in this.Outlines
-                        select new XElement("outline",
-                            from y in x.Attributes
-                            select new XAttribute(y.Key, y.Value)
-                        )));
+                        ));
+                      
+            var body = new XElement("body");
+            foreach(var x in this.Outlines)
+            {
+                XElement newOutline = new XElement("outline");
+                AddRecursiveChild(newOutline, x);
+                body.Add(newOutline);
+            }
+
+            root.Add(body);
 
             return root;
+        }
+
+        private void AddRecursiveChild(XElement element, Outline o){
+            
+            element.Add(from y in o.Attributes
+                        select new XAttribute(y.Key, y.Value));
+            
+            foreach(var oo in o.Outlines)
+            {
+                XElement newOutline = new XElement("outline");
+            
+                element.Add(newOutline);
+                AddRecursiveChild(newOutline, oo);
+            }
         }
     }
 }
