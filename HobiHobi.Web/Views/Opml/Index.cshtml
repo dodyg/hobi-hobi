@@ -21,9 +21,14 @@
 	</head>
 	<body>
         <div class="container">
+            <h1>OPML Editor</h1>
+            <a href="/opml/xml/@Request.QueryString["id"]"><img src="/Images/xmlIcon2.gif" /></a>
+            <br /><br />
+
 		    <div id="demo1" class="demo">
 		    </div>
-		    <input type="button" value="Save" onclick="saveJson()" />
+            <br />
+		    <input type="button" class="btn btn-primary" value="Save" onclick="saveJson()" />
         </div>
         <div id="modal-attributes-dialog" class="modal hide fade">
             <div class="modal-header">

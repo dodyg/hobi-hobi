@@ -187,6 +187,7 @@
     <Content Include="Images\retina_wood.png" />
     <Content Include="Images\rss-icon-128x128.gif" />
     <Content Include="Images\subtle_surface.png" />
+    <Content Include="Images\xmlIcon2.gif" />
     <Content Include="Scripts\angular.min.js" />
     <TypeScriptCompile Include="Scripts\App\blog.ts" />
     <Content Include="Scripts\App\blog.js">

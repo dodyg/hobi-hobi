@@ -38,6 +38,12 @@ namespace HobiHobi.Web.Controllers
             return View();
         }
 
+        public ActionResult New()
+        {
+            var id = Guid.NewGuid().ToString();
+            return Redirect("/opml?id=" + id);
+        }
+
         public ActionResult GetDocument(string id)
         {
             if (!id.IsNullOrWhiteSpace())
@@ -86,6 +92,25 @@ namespace HobiHobi.Web.Controllers
             this.RavenSession.SaveChanges();
 
             return HttpDoc<EmptyResult>.OK(new EmptyResult()).ToJson();
+        }
+
+        [HttpGet]
+        public ActionResult RenderXml(string id)
+        {
+            if (!id.IsNullOrWhiteSpace())
+            {
+                var doc = this.RavenSession.Load<EditorDocument>(id);
+
+                if (doc == null)
+                    return HttpNotFound();
+
+                var opml = doc.RenderToOpml();
+                var xml = opml.ToXML();
+
+                return Content(xml.ToString(), "text/xml");
+            }
+            else
+                return HttpNotFound();
         }
     }
 }

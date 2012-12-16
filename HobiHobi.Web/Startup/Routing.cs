@@ -111,6 +111,20 @@ namespace HobiHobi.Web.Startup
             );
 
             routes.MapRoute(
+                "RenderOpmlEditor", // Route name
+                "opml/xml/{id}", // URL with parameters
+                new { controller = "Opml", action = "RenderXml" }, // Parameter defaults
+                _rootNamespace
+            );
+
+            routes.MapRoute(
+                "NewOpmlEditor", // Route name
+                "opml/new", // URL with parameters
+                new { controller = "Opml", action = "New"}, // Parameter defaults
+                _rootNamespace
+            );
+
+            routes.MapRoute(
                 "OpmlEditor", // Route name
                 "opml/{id}", // URL with parameters
                 new { controller = "Opml", action = "Index", id = UrlParameter.Optional }, // Parameter defaults
