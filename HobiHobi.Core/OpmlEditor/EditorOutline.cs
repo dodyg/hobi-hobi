@@ -9,13 +9,13 @@ namespace HobiHobi.Core.OpmlEditor
     public class EditorOutline
     {
         public string Data { get; set; }
-        public Dictionary<string, string> Attrs { get; set; }
+        public Dictionary<string, string> Attr { get; set; }
         public Dictionary<string, string> Metadata { get; set; }
         public List<EditorOutline> Children { get; set; }
 
         public EditorOutline()
         {
-            Attrs = new Dictionary<string, string>();
+            Attr = new Dictionary<string, string>();
             Metadata = new Dictionary<string, string>();
             Children = new List<EditorOutline>();
         }

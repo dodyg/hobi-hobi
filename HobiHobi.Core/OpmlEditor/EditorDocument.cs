@@ -35,7 +35,7 @@ namespace HobiHobi.Core.OpmlEditor
             if (outline != null)
             {
                 ot.Attributes.Add("text", outline.Data);
-                foreach (var a in outline.Attrs)
+                foreach (var a in outline.Attr)
                 {
                     ot.Attributes.Add(a.Key, a.Value);
                 }
