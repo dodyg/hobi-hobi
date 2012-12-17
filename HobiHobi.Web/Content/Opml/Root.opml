@@ -46,18 +46,22 @@
 
 				<outline text="An outline that end  with * will open that particular RSS feed"/>
 
-				</outline>
+			</outline>
 
 			<outline text="If you long press to an ordinary outline, it will zoom into that outline include all the sub outlines beneath it"/>
 
 			<outline text=""/>
 
-			</outline>
+		</outline>
 
 		<outline text="News Rivers (English) ">
 
-			<outline text="East Village News" language="en" name="eastVillageNews" type="river" url="http://static.scripting.com/houston/rivers/eastVillageRiver3.js"/>
+			<outline text="Dave" type="river" name="dave" url="http://static.scripting.com/houston/rivers/iowaRiver3.js" language="en" />
+			<outline text="No Agenda" type="river" name="noagenda" url="http://s3.amazonaws.com/river.curry.com/rivers/radio2/River3.js" language="en" />
+			<outline text="Podcasts" type="river" name="podcastRiver" url="http://static.scripting.com/podcastriver/River3.js" language="en" />
+			<outline text="Movies" type="river" name="moviesRiver" url="http://static.scripting.com/houston/rivers/movies/River3.js" language="en" />
 
+			
 			<outline text="Celebrities" language="en" name="celebrities" type="river" url="http://hobieu.apphb.com/s/riverjs/celebrities"/>
 
 			<outline text="Scripting.Com Community" language="en" name="scriptingcomCommunity" type="river" url="http://static.scripting.com/houston/rivers/scripting/River3.js"/>
@@ -74,27 +78,49 @@
 
 				</outline>
 
+			<outline text="NYT" type="river" name="nyt" url="http://static.scripting.com/houston/rivers/nyt/River3.js" language="en" />
+			<outline text="Reuter's Markets" language="en" type="river" name="reutersMarket" url="http://hobieu.apphb.com/s/reuters-markets	" />
+	
+			<outline text="Magazines" language="en" type="river" name="magazines" url="http://hobieu.apphb.com/s/magazines">
+				<outline text="The Economist's Blogs" language="en" type="river" name="theEconomistBlogs" url="http://hobieu.apphb.com/s/the-economist-blogs" />
+				<outline text="The Atlantic's Blogs" language="en" type="river" name="theAtlanticBlogs" url="http://hobieu.apphb.com/s/the-atlantics-blogs" />
 			</outline>
+			
+			<outline text="Tech Meme" type="river" name="tech" url="http://static.scripting.com/houston/rivers/techmeme/River3.js" language="en">
+				<outline text="Apple" type="river" name="apple" url="http://static.scripting.com/houston/rivers/apple/River3.js" language="en" />
+			</outline>
+
+			<outline text="World" type="river" name="worldRiver" url="http://static.scripting.com/houston/rivers/international/River3.js" language="en">
+				<outline text="ASEAN Nations" type="river" name="asean" url="http://hobieu.apphb.com/s/riverjs/asean" language="en" />
+				<outline text="Southern Africa" type="river" name="asean" url="http://hobieu.apphb.com/s/riverjs/southern-africa" language="en" />
+				<outline text="Middle East" type="river" name="middleEast" url="http://hobieu.apphb.com/s/riverjs/middle-east" language="en" />				
+			</outline>
+
+			<outline text="Local">
+				<outline text="East Village News" language="en" name="eastVillageNews" type="river" url="http://static.scripting.com/houston/rivers/eastVillageRiver3.js"/>
+			</outline>
+		</outline>
+
 
 		<outline text="News Rivers (Italian)">
-
 			<outline text="Notizie Italia" language="it" name="notizieItalia" type="river" url="http://hobieu.apphb.com/s/riverjs/Italian"/>
-
-			</outline>
+		</outline>
 
 		<outline text="News Rivers (Arabic)">
-
 			<outline text="Egypt" language="ar" name="egypt" type="river" url="http://hobieu.apphb.com/s/riverjs/egypts-arabic-news"/>
+		</outline>
 
-			</outline>
-
+		<outline text="News Rivers (French)">
+			<outline text="Marocain Nouvelles" name="marocNouvelles" type="river" url="http://hobieu.apphb.com/s/marocain-nouvelles" />
+		</outline>	
+			
 		<outline text="Link Blogs ">
 
 			<outline text="Dave Winer" name="daveWiner" type="rss" url="http://links.scripting.com/rss.xml"/>
 
 			<outline text="Sugarcubes" type="rss" url="http://static.storyblogging.org/sugarcubes/admin/linkblog.xml"/>
 
-			</outline>
+		</outline>
 
 		<outline text="World Outlines">
 
@@ -102,7 +128,7 @@
 
 			<outline text="Dave Winer" name="daveWiner" type="include" url="http://scripting.com/toc.opml"/>
 
-			</outline>
+		</outline>
 
 		</body>
 
