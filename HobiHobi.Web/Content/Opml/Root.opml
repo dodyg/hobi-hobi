@@ -111,7 +111,7 @@
 		</outline>
 
 		<outline text="News Rivers (French)">
-			<outline text="Marocain Nouvelles" name="marocNouvelles" type="river" url="http://hobieu.apphb.com/s/marocain-nouvelles" />
+			<outline text="Marocain Nouvelles" name="marocNouvelles" type="river" url="http://hobieu.apphb.com/s/marocain-nouvelles" language="fr" />
 		</outline>	
 			
 		<outline text="Link Blogs ">
