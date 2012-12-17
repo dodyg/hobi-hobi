@@ -79,11 +79,11 @@
 				</outline>
 
 			<outline text="NYT" type="river" name="nyt" url="http://static.scripting.com/houston/rivers/nyt/River3.js" language="en" />
-			<outline text="Reuter's Markets" language="en" type="river" name="reutersMarket" url="http://hobieu.apphb.com/s/reuters-markets	" />
+			<outline text="Reuter's Markets" language="en" type="river" name="reutersMarket" url="http://hobieu.apphb.com/s/riverjs/reuters-markets	" />
 	
-			<outline text="Magazines" language="en" type="river" name="magazines" url="http://hobieu.apphb.com/s/magazines">
-				<outline text="The Economist's Blogs" language="en" type="river" name="theEconomistBlogs" url="http://hobieu.apphb.com/s/the-economist-blogs" />
-				<outline text="The Atlantic's Blogs" language="en" type="river" name="theAtlanticBlogs" url="http://hobieu.apphb.com/s/the-atlantics-blogs" />
+			<outline text="Magazines" language="en" type="river" name="magazines" url="http://hobieu.apphb.com/s/riverjs/magazines">
+				<outline text="The Economist's Blogs" language="en" type="river" name="theEconomistBlogs" url="http://hobieu.apphb.com/s/riverjs/the-economist-blogs" />
+				<outline text="The Atlantic's Blogs" language="en" type="river" name="theAtlanticBlogs" url="http://hobieu.apphb.com/s/riverjs/the-atlantics-blogs" />
 			</outline>
 			
 			<outline text="Tech Meme" type="river" name="tech" url="http://static.scripting.com/houston/rivers/techmeme/River3.js" language="en">
@@ -111,7 +111,7 @@
 		</outline>
 
 		<outline text="News Rivers (French)">
-			<outline text="Marocain Nouvelles" name="marocNouvelles" type="river" url="http://hobieu.apphb.com/s/marocain-nouvelles" language="fr" />
+			<outline text="Marocain Nouvelles" name="marocNouvelles" type="river" url="http://hobieu.apphb.com/s/riverjs/marocain-nouvelles" language="fr" />
 		</outline>	
 			
 		<outline text="Link Blogs ">
