@@ -66,17 +66,17 @@
 
 			<outline text="Scripting.Com Community" language="en" name="scriptingcomCommunity" type="river" url="http://static.scripting.com/houston/rivers/scripting/River3.js"/>
 
-			<outline text="Programming" language="en" name="programming" type="river" url="http://hobieu.apphb.com/s/riverjs/programming">
+			<outline text="Programming" language="en" name="programming" type="river" url="http://hobieu.apphb.com/s/riverjs/programming"/>
 
-				<outline text=".Net"/>
+			<outline text="Sports">
+			
+			<outline text="MLB" language="en" name="mlb" type="river" url="http://hobieu.apphb.com/s/riverjs/baseball-mlb"/>
+			<outline text="NHL" language="en" name="nhl" type="river" url="http://hobieu.apphb.com/s/riverjs/hockey-nhl"/>
 
-				<outline text="Python"/>
+			
+			</outline>
+			
 
-				<outline text="Go"/>
-
-				<outline text="Kotlin"/>
-
-				</outline>
 
 			<outline text="NYT" type="river" name="nyt" url="http://static.scripting.com/houston/rivers/nyt/River3.js" language="en" />
 			<outline text="Reuter's Markets" language="en" type="river" name="reutersMarket" url="http://hobieu.apphb.com/s/riverjs/reuters-markets	" />
