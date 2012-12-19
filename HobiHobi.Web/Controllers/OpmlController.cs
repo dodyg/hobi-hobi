@@ -8,12 +8,13 @@ using HobiHobi.Core.Framework;
 using Newtonsoft.Json.Serialization;
 using System.Globalization;
 using HobiHobi.Core.Framework.Json;
+using HobiHobi.Core.Subscriptions;
 
 namespace HobiHobi.Web.Controllers
 {
     public class OpmlController : RavenController
     {
-        public string ConvertToJson(List<EditorOutline> outlines)
+        public string ConvertToJson(EditorDocument outlines)
         {
             var jsonDoc = Newtonsoft.Json.JsonConvert.SerializeObject(outlines, Newtonsoft.Json.Formatting.Indented, new Newtonsoft.Json.JsonSerializerSettings
             {
@@ -54,16 +55,16 @@ namespace HobiHobi.Web.Controllers
                     doc = new EditorDocument
                     {
                         Id = id,
-                        Outlines = new List<EditorOutline>()
+                        Body = new List<EditorOutline>()
                         {
-                            new EditorOutline{
+                            new EditorOutline {
                                 Data = "Edit"
                             }
                         }
                     };
                 }
 
-                return Content(ConvertToJson(doc.Outlines), "application/json");
+                return Content(ConvertToJson(doc), "application/json");
             }
             else
                 return HttpNotFound();
@@ -72,7 +73,9 @@ namespace HobiHobi.Web.Controllers
         [HttpPost]
         public ActionResult PutDocument(string id, string data)
         {
-            var outlines = ConvertFromJson<List<EditorOutline>>(data);
+            if (data.IsNullOrWhiteSpace())
+                return HttpDoc<EmptyResult>.NotFound("Missing").ToJson();
+            var outlines = ConvertFromJson<EditorDocument>(data);
 
             if (outlines == null)
                 throw new ApplicationException("outlines cannot be null");
@@ -80,12 +83,13 @@ namespace HobiHobi.Web.Controllers
             var doc = this.RavenSession.Load<EditorDocument>(id);
             if (doc == null)
             {
-                doc = new EditorDocument{
-                    Id = id,
-                    Outlines = outlines
-                };
-            }else{
-                doc.Outlines = outlines;
+                doc = outlines;
+                doc.DateCreated = DateTime.UtcNow.ToString("R");
+                doc.DateModified = DateTime.UtcNow.ToString("R");
+            }
+            else
+            {
+                doc.FromDocument(outlines);
             }
 
             this.RavenSession.Store(doc);
@@ -111,6 +115,20 @@ namespace HobiHobi.Web.Controllers
             }
             else
                 return HttpNotFound();
+        }
+
+        [HttpPost]
+        public ActionResult UploadOpml(string id, HttpPostedFileBase file)
+        {
+            System.IO.StreamReader stream = new System.IO.StreamReader(file.InputStream);
+            string x = stream.ReadToEnd();
+            Opml opmlFile = new Opml();
+            opmlFile.LoadFromXML(x);
+            EditorDocument doc = new EditorDocument();
+            doc.FromOpml(id, opmlFile);
+            this.RavenSession.Store(doc);
+            this.RavenSession.SaveChanges();
+            return RedirectToAction("index", new { id = id });
         }
     }
 }
