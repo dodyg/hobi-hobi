@@ -129,7 +129,7 @@ namespace HobiHobi.Web.Controllers
             doc.FromOpml(id, opmlFile);
             this.RavenSession.Store(doc);
             this.RavenSession.SaveChanges();
-            return RedirectToAction("index", new { id = id });
+            return Redirect("/opml?id=" + id );
         }
     }
 }
