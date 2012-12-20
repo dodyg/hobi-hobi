@@ -71,16 +71,13 @@ namespace HobiHobi.Core.Subscriptions
                 WindowBottom = selectInt("windowBottom");
                 WindowRight = selectInt("windowRight");
 
-                var bodies = elements.Element("body").Descendants();
+                var bodies = elements.Element("body").Elements();
                 //todo: make it recursive
                 foreach (var b in bodies)
                 {
                     var o = new Outline();
-                    foreach (var att in b.Attributes())
-                    {
-                        o.Attributes[att.Name.ToString()] = att.Value;
-                    }
                     Outlines.Add(o);
+                    TraverseBody(b, o);
                 }
 
                 return Nothing.True(); //operation successful
@@ -88,6 +85,23 @@ namespace HobiHobi.Core.Subscriptions
             catch (Exception ex)
             {
                 return Nothing.False(ex);
+            }
+        }
+
+        private void TraverseBody(XElement outline, Outline ot)
+        {
+            if (outline != null)
+            {
+                foreach (var att in outline.Attributes())
+                {
+                    ot.Attributes[att.Name.ToString()] = att.Value;
+                }
+                foreach (var x in outline.Elements())
+                {
+                    var o = new Outline();
+                    ot.Outlines.Add(o);
+                    TraverseBody(x, o);
+                }
             }
         }
 
