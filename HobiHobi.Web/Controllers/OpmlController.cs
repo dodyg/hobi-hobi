@@ -83,8 +83,8 @@ namespace HobiHobi.Web.Controllers
             var doc = this.RavenSession.Load<EditorDocument>(id);
             if (doc == null)
             {
-                doc.Id = id;
                 doc = outlines;
+                doc.Id = id;
                 doc.DateCreated = DateTime.UtcNow.ToString("R");
                 doc.DateModified = DateTime.UtcNow.ToString("R");
             }
