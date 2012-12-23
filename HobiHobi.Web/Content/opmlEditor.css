@@ -74,8 +74,18 @@
 /* IE6 END */
 
 /* Page styling */
-.jstree-rename-input { width: 100% !important; }
+.jstree-rename-input { width: 600px !important; height: 300px !important; }
 #demo1 li {
 	font-size: 18px;
 	line-height: 22px;
+}
+
+#demo1 li a {
+    white-space: pre;
+    white-space: pre-wrap;
+    white-space: pre-line;
+    white-space: -pre-wrap;
+    white-space: -o-pre-wrap;
+    white-space: -moz-pre-wrap;
+    word-wrap: break-word;
 }
