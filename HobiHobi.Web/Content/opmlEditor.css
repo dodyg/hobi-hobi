@@ -74,7 +74,7 @@
 /* IE6 END */
 
 /* Page styling */
-input.jstree-rename-input { width: 100% !important; }
+.jstree-rename-input { width: 100% !important; }
 #demo1 li {
 	font-size: 18px;
 	line-height: 22px;
