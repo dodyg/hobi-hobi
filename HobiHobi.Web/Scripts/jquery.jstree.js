@@ -1270,9 +1270,10 @@
                         t = this.get_text(obj),
                         h1 = $("<div />", { css: { "position": "absolute", "top": "-200px", "left": (rtl ? "0px" : "-1000px"), "visibility": "hidden" } }).appendTo("body"),
                         h2 = obj.css("position", "relative").append(
-                        $("<input />", {
+                        $("<textarea />", {
                             "value": t,
                             "class": "jstree-rename-input",
+                            "multiline" : true,
                             // "size" : t.length,
                             "css": {
                                 "padding": "0",
