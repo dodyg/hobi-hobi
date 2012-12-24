@@ -81,6 +81,7 @@
 }
 
 #demo1 li a {
+    display: inline-table;
     white-space: pre;
     white-space: pre-wrap;
     white-space: pre-line;
