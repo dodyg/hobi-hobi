@@ -125,7 +125,6 @@
 			<outline text="Al Jazeera International" type="rss" url="http://www.aljazeera.com/Services/Rss/?PostingId=2007731105943979989" />
 			<outline text="BBC" type="rss" url="http://feeds.bbci.co.uk/news/rss.xml"/>
 			<outline text="CNN" type="rss" url="http://rss.cnn.com/rss/edition.rss" />
-			<outline text="Google News" type="rss" url="https://news.google.com/news/feeds?pz=1&cf=all&ned=us&hl=en&output=rss" />
 			<outline text="PR Newswire" type="rss" url="http://www.prnewswire.com/rss/all-news-releases-from-PR-newswire-news.rss" />
 			<outline text="NBC Top Headlines" type="rss" url="http://rss.msnbc.msn.com/id/3032091/device/rss/rss.xml" />
 			<outline text="Reuters" type="rss" url="http://feeds.reuters.com/reuters/topNews?format=xml" />
