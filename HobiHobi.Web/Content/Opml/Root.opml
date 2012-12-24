@@ -119,6 +119,21 @@
 
 		</outline>
 
+		<outline text="Wire Service">
+			<outline text="ABC Australia" type="rss" url="http://www.abc.net.au/news/feed/51120/rss.xml" />
+			<outline text="AP" type="rss" url="http://hosted2.ap.org/atom/APDEFAULT/3d281c11a96b4ad082fe88aa0db04305" />
+			<outline text="Al Jazeera International" type="rss" url="http://www.aljazeera.com/Services/Rss/?PostingId=2007731105943979989" />
+			<outline text="BBC" type="rss" url="http://feeds.bbci.co.uk/news/rss.xml"/>
+			<outline text="CNN" type="rss" url="http://rss.cnn.com/rss/edition.rss" />
+			<outline text="Google News" type="rss" url="https://news.google.com/news/feeds?pz=1&cf=all&ned=us&hl=en&output=rss" />
+			<outline text="PR Newswire" type="rss" url="http://www.prnewswire.com/rss/all-news-releases-from-PR-newswire-news.rss" />
+			<outline text="NBC Top Headlines" type="rss" url="http://rss.msnbc.msn.com/id/3032091/device/rss/rss.xml" />
+			<outline text="Reuters" type="rss" url="http://feeds.reuters.com/reuters/topNews?format=xml" />
+			<outline text="Russia Today" type="rss" url="http://rt.com/news/today/rss/" />
+			<outline text="The Atlantic Wire" type="rss" url="http://feeds.feedburner.com/TheAtlanticWire?format=xml" />
+			<outline text="Xinhua" type="rss" url="http://www.xinhuanet.com/english/rss/worldrss.xml" />
+			<outline text="WSJ Market" type="rss" url="http://online.wsj.com/xml/rss/3_7031.xml" />
+		</outline>
 		<outline text="Blogs ">
 			<outline text="Apple">
 				<outline text="Daring Fireball" name="daringFireball" type="rss" url="http://daringfireball.net/index.xml"/>
