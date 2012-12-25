@@ -127,7 +127,14 @@ namespace HobiHobi.Web.Startup
             routes.MapRoute(
                 "NewOpmlEditor", // Route name
                 "opml/new", // URL with parameters
-                new { controller = "Opml", action = "New"}, // Parameter defaults
+                new { controller = "Opml", action = "New" }, // Parameter defaults
+                _rootNamespace
+            );
+
+            routes.MapRoute(
+                "LatestOPML", // Route name
+                "opml/latest", // URL with parameters
+                new { controller = "Opml", action = "Latest" }, // Parameter defaults
                 _rootNamespace
             );
 

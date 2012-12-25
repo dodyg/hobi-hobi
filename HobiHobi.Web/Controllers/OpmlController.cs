@@ -139,5 +139,11 @@ namespace HobiHobi.Web.Controllers
         {
             return View();
         }
+
+        public ActionResult Latest()
+        {
+            var docs = this.RavenSession.Query<EditorDocument>().Where(x => x.IsPublic).OrderByDescending(x => x.DateCreated).Take(30).ToList();
+            return View(docs);
+        }
     }
 }

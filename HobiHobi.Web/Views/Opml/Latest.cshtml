@@ -1,0 +1,27 @@
+﻿@model List<HobiHobi.Core.OpmlEditor.EditorDocument>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+	<head>
+		@*<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>*@
+        <link href="/site/css/@HobiHobi.Web.MvcApplication.CommonCssTag" rel="stylesheet" type="text/css" />
+        <script src="/site/js/@HobiHobi.Web.MvcApplication.CommonJsTag" type="text/javascript"></script>
+	</head>
+	<body>
+        <div class="container">
+            <h1>Latest OPMLs</h1>
+            <div id="list">
+				@foreach(var opml in Model) {
+					<span>
+						@(opml.Title.IsNullOrWhiteSpace()? "No Title.." : opml.Title)
+						<a href="/opml/html/@opml.Id">Details</a>
+					</span>
+				}
+            </div>
+        </div>
+	</body>
+</html>
