@@ -9,6 +9,8 @@ using Newtonsoft.Json.Serialization;
 using System.Globalization;
 using HobiHobi.Core.Framework.Json;
 using HobiHobi.Core.Subscriptions;
+using HobiHobi.Core.Identity;
+using HobiHobi.Core.Utils;
 
 namespace HobiHobi.Web.Controllers
 {
@@ -49,8 +51,9 @@ namespace HobiHobi.Web.Controllers
         {
             if (!id.IsNullOrWhiteSpace())
             {
+                var edit = CookieMonster.GetFromCookie<TransientAccount>(Request.Cookies[TransientAccount.COOKIE_NAME]);
                 var doc = this.RavenSession.Load<EditorDocument>(id);
-                if (doc == null)
+                if (doc == null && !view)
                 {
                     doc = new EditorDocument
                     {
@@ -63,10 +66,10 @@ namespace HobiHobi.Web.Controllers
                         }
                     };
                 }
-                else if (!doc.IsPublic && view)
-                    return Content(null, "application/json");
-
-                return Content(ConvertToJson(doc), "application/json");
+                else if((edit.IsFound && edit.Item.IsOpmlFound(id)) || (doc.IsPublic && view))
+                    return Content(ConvertToJson(doc), "application/json");
+                
+                return Content(null, "application/json");
             }
             else
                 return HttpNotFound();
@@ -97,6 +100,19 @@ namespace HobiHobi.Web.Controllers
 
             this.RavenSession.Store(doc);
             this.RavenSession.SaveChanges();
+
+            var transient = CookieMonster.GetFromCookie<TransientAccount>(Request.Cookies[TransientAccount.COOKIE_NAME]);
+            if (!transient.IsFound)
+            {
+                var init = new TransientAccount();
+                init.OpmlGuids.Add(doc.Id);
+                Response.Cookies.Add(CookieMonster.SetCookie(init, TransientAccount.COOKIE_NAME));
+            }
+            else
+            {
+                transient.Item.OpmlGuids.Add(doc.Id);
+                Response.Cookies.Add(CookieMonster.SetCookie(transient.Item, TransientAccount.COOKIE_NAME));
+            }
 
             return HttpDoc<EmptyResult>.OK(new EmptyResult()).ToJson();
         }
