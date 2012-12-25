@@ -13,10 +13,10 @@
         
 		<link rel="stylesheet" type="text/css" media="all" href="/content/opmlEditor.css">
 	<style>
-		.type-rss, li[type=rss] a { background-color: orange !important; }
-		.type-blog, li[type=blogpost] a { background-color: grey !important; }
-		.type-river, li[type=river] a { background-color: blue !important; }
-		.type-opml, li[type=include] a { background-color: silver !important; }
+		li[type=rss] a { background-color: orange !important; }
+		li[type=blogpost] a { background-color: grey !important; }
+		li[type=river] a { background-color: blue !important; }
+		li[type=include] a { background-color: silver !important; }
 	</style>
 	</head>
 	<body>
@@ -29,7 +29,8 @@
 				<input type="text" id="title" placeholder="Title" /><br />
 				<input type="text" id="ownerName" placeholder="Owner Name" /><br />
 				<input type="text" id="ownerEmail" placeholder="Onwer Email" /><br />
-				<input type="text" id="ownerId" placeholder="Owner Url" />
+				<input type="text" id="ownerId" placeholder="Owner Url" /><br />
+				<input type="checkbox" id="isPublic" checked="checked" /> <span>Is Public?</span>
 			</div>
 		    <div id="demo1" class="demo">
 		    </div>
@@ -99,6 +100,7 @@
 		    	$('#ownerName').val(data.ownername);
 		    	$('#ownerEmail').val(data.owneremail);
 		    	$('#ownerId').val(data.ownerid);
+		    	if (data.ispublic) $('#isPublic').attr('checked', 'checked'); else $('#isPublic').removeAttr('checked');
 		    });
 
 		    function displayTree(treeData) {
@@ -152,7 +154,7 @@
 		                                    action: function (obj) {
 		                                        var val = window.prompt("URL", "http://");
 		                                        if (val != null)
-		                                            $(obj).attr({ type: 'rss', url: val }).children('a').addClass('type-rss');
+		                                            $(obj).attr({ type: 'rss', url: val });
 		                                    }
 		                                },
 		                                blogpost: {
@@ -160,7 +162,7 @@
 		                                    action: function (obj) {
 		                                        var val = window.prompt("URL", "http://");
 		                                        if (val != null)
-		                                            $(obj).attr({ type: 'blogpost', url: val }).children('a').addClass('type-blog');
+		                                            $(obj).attr({ type: 'blogpost', url: val });
 		                                    }
 		                                },
 		                                river: {
@@ -168,7 +170,7 @@
 		                                    action: function (obj) {
 		                                        var val = window.prompt("URL", "http://");
 		                                        if (val != null)
-		                                            $(obj).attr({ type: 'river', url: val }).children('a').addClass('type-river');
+		                                            $(obj).attr({ type: 'river', url: val });
 		                                    }
 		                                },
 		                                include: {
@@ -176,7 +178,7 @@
 		                                    action: function (obj) {
 		                                        var val = window.prompt("URL", "http://");
 		                                        if (val != null)
-		                                            $(obj).attr({ type: 'include', url: val }).children('a').addClass('type-opml');
+		                                            $(obj).attr({ type: 'include', url: val });
 		                                    }
 		                                }                           }
 		                        },

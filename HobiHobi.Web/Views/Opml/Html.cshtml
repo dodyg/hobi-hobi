@@ -1,0 +1,66 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+	<head>
+		@*<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>*@
+        <link href="/site/css/@HobiHobi.Web.MvcApplication.CommonCssTag" rel="stylesheet" type="text/css" />
+        <script src="/site/js/@HobiHobi.Web.MvcApplication.CommonJsTag" type="text/javascript"></script>
+		<script type="text/javascript" src="/scripts/jquery.jstree.js"></script>
+		<script type="text/javascript" src="/scripts/jquery.hotkeys.js"></script>
+        
+		<link rel="stylesheet" type="text/css" media="all" href="/content/opmlEditor.css">
+	<style>
+		li[type=rss] a { background-color: orange !important; }
+		li[type=blogpost] a { background-color: grey !important; }
+		li[type=river] a { background-color: blue !important; }
+		li[type=include] a { background-color: silver !important; }
+	</style>
+	</head>
+	<body>
+        <div class="container">
+            <h1>OPML Editor</h1>
+            <a href="/opml/xml/@Request.QueryString["id"]"><img src="/Images/xmlIcon2.gif" /></a>
+            <br /><br />
+			<div>
+				<label>Title: <span id="title"></span></label>
+				<label>Owner Name: <span id="ownerName"></span></label>
+				<label>Onwer Email: <span id="ownerEmail"></span></label>
+				<label>Owner Url: <span id="ownerId"></span></label>
+			</div>
+		    <div id="demo1" class="demo">
+		    </div>
+        </div>
+	</body>
+
+	<script type="text/javascript">
+	    $(function () {
+	    	var id = document.URL.match(/\/([^\/]*)$/g);
+	    	$.getJSON('/opml/getdocument/' + id, { view: true }, function (data) {
+	    		if (data == null)
+	    			return alert("Document Inaccessable");
+		    	displayTree(data.body);
+		    	$('#title').text(data.title);
+		    	$('#ownerName').text(data.ownername);
+		    	$('#ownerEmail').text(data.owneremail);
+		    	$('#ownerId').text(data.ownerid);
+		    });
+
+		    function displayTree(treeData) {
+		        $('#demo1').jstree({
+		            json_data: {
+		                data: treeData
+		            },
+		            plugins: ["themes", "json_data", "ui"],
+		            themes: {
+		                theme: "default",
+		                dots: false,
+		                icons: false
+		            }
+		        });
+		    }
+		});
+	</script>
+</html>

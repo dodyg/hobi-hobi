@@ -45,7 +45,7 @@ namespace HobiHobi.Web.Controllers
             return Redirect("/opml?id=" + id);
         }
 
-        public ActionResult GetDocument(string id)
+        public ActionResult GetDocument(string id, bool view = false)
         {
             if (!id.IsNullOrWhiteSpace())
             {
@@ -63,6 +63,8 @@ namespace HobiHobi.Web.Controllers
                         }
                     };
                 }
+                else if (!doc.IsPublic && view)
+                    return Content(null, "application/json");
 
                 return Content(ConvertToJson(doc), "application/json");
             }
@@ -130,6 +132,12 @@ namespace HobiHobi.Web.Controllers
             this.RavenSession.Store(doc);
             this.RavenSession.SaveChanges();
             return Redirect("/opml?id=" + id );
+        }
+
+        [HttpGet]
+        public ActionResult Html(string id)
+        {
+            return View();
         }
     }
 }

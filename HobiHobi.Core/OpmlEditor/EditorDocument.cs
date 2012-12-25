@@ -8,13 +8,15 @@ namespace HobiHobi.Core.OpmlEditor
 {
     public class EditorDocument
     {
-        public string Id { get; set; }
-        public string Title;
-        public string DateCreated;
-        public string DateModified;
-        public string OwnerName;
-        public string OwnerEmail;
-        public string OwnerId;
+        public string Id           { get; set; }
+        public string Title        { get; set; }
+        public string DateCreated  { get; set; }
+        public string DateModified { get; set; }
+        public string OwnerName    { get; set; }
+        public string OwnerEmail   { get; set; }
+        public string OwnerId      { get; set; }
+        public bool   IsPublic     { get; set; }
+        
         public List<EditorOutline> Body { get; set; }
 
         public Opml RenderToOpml()
