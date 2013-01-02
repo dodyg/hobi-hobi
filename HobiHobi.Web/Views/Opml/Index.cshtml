@@ -94,7 +94,11 @@
 				$(this).text($(this).text() == 'Show Head Data' ? 'Hide Head Data' : 'Show Head Data');
 				return false;
 			});
-		    $.getJSON('/opml/getdocument/' + getOpmlId(), function (data) {
+			$.getJSON('/opml/getdocument/' + getOpmlId(), function (data) {
+				if (data == null) {
+					alert("Cannot view this document");
+					return false;
+				}
 		    	displayTree(data.body);
 		    	$('#title').val(data.title);
 		    	$('#ownerName').val(data.ownername);

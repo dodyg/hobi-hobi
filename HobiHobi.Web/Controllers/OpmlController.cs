@@ -67,9 +67,9 @@ namespace HobiHobi.Web.Controllers
                     };
                 }
                 else if((edit.IsFound && edit.Item.IsOpmlFound(id)) || (doc.IsPublic && view))
-                    return Content(ConvertToJson(doc), "application/json");
+                    return Content(null, "application/json");
                 
-                return Content(null, "application/json");
+                return Content(ConvertToJson(doc), "application/json");
             }
             else
                 return HttpNotFound();
