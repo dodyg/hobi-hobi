@@ -66,10 +66,11 @@ namespace HobiHobi.Web.Controllers
                         }
                     };
                 }
-                else if((edit.IsFound && edit.Item.IsOpmlFound(id)) || (doc.IsPublic && view))
-                    return Content(null, "application/json");
+                else if((view && doc.IsPublic) || (!view && edit.IsFound && edit.Item.IsOpmlFound(id)))
+                    return Content(ConvertToJson(doc), "application/json");
                 
-                return Content(ConvertToJson(doc), "application/json");
+                return Content(null, "application/json");
+                
             }
             else
                 return HttpNotFound();
