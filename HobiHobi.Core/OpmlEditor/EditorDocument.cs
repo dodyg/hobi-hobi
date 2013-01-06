@@ -86,6 +86,7 @@ namespace HobiHobi.Core.OpmlEditor
             this.OwnerEmail = document.OwnerEmail;
             this.OwnerId = document.OwnerId;
             this.Body = document.Body;
+            this.IsPublic = document.IsPublic;
             this.DateModified = DateTime.UtcNow.ToString("R");
         }
 
