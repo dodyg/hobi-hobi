@@ -21,8 +21,8 @@
 	</head>
 	<body>
         <div class="container">
-            <h1>OPML Editor</h1>
-            <a href="/opml/xml/@Request.QueryString["id"]"><img src="/Images/xmlIcon2.gif" /></a>
+            <h1>OPML</h1>
+            <a href="#" id="xml"><img src="/Images/xmlIcon2.gif" /></a>
             <br /><br />
 			<div>
 				<label>Title: <span id="title"></span></label>
@@ -43,9 +43,11 @@
 	    			return alert("Document Inaccessable");
 		    	displayTree(data.body);
 		    	$('#title').text(data.title);
+		    	$('h1:first').html(data.title);
 		    	$('#ownerName').text(data.ownername);
 		    	$('#ownerEmail').text(data.owneremail);
 		    	$('#ownerId').text(data.ownerid);
+		    	$('#xml').attr('href', '/opml/xml/' + id);
 		    });
 
 		    function displayTree(treeData) {
