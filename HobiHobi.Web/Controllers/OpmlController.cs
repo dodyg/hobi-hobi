@@ -66,11 +66,10 @@ namespace HobiHobi.Web.Controllers
                         }
                     };
                 }
-                else if((view && doc.IsPublic) || (!view && edit.IsFound && edit.Item.IsOpmlFound(id)))
-                    return Content(ConvertToJson(doc), "application/json");
-                
-                return Content(null, "application/json");
-                
+                else if ((view && !doc.IsPublic) || (!view && (!edit.IsFound || !edit.Item.IsOpmlFound(id))))
+                    return Content(null, "application/json");
+
+                return Content(ConvertToJson(doc), "application/json");
             }
             else
                 return HttpNotFound();
@@ -148,7 +147,7 @@ namespace HobiHobi.Web.Controllers
             doc.FromOpml(id, opmlFile);
             this.RavenSession.Store(doc);
             this.RavenSession.SaveChanges();
-            return Redirect("/opml?id=" + id );
+            return Redirect("/opml?id=" + id);
         }
 
         [HttpGet]
