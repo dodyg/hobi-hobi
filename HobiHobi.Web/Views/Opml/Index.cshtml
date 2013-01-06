@@ -258,7 +258,7 @@
 				ownerName: $('#ownerName').val(),
 				ownerEmail: $('#ownerEmail').val(),
 				ownerId: $('#ownerId').val(),
-                isPublic: $('#isPublic').attr('checked') == "checked",
+                isPublic: $('#isPublic').attr('checked') != undefined,
 				body: $.jstree._focused().get_json(-1, ['type', 'url'])
 			});
 
