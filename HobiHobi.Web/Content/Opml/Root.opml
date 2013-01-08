@@ -88,6 +88,7 @@
 				<outline text="Magazine Collection" language="en" type="river" name="magazines" url="http://hobieu.apphb.com/s/riverjs/magazines"/>
 				<outline text="The Economist's Blogs" language="en" type="river" name="theEconomistBlogs" url="http://hobieu.apphb.com/s/riverjs/the-economist-blogs" />
 				<outline text="The Atlantic's Blogs" language="en" type="river" name="theAtlanticBlogs" url="http://hobieu.apphb.com/s/riverjs/the-atlantics-blogs" />
+				<outline text="Fair Observer" language="en" type="rss" name="fairObserver" url="http://www.fairobserver.com/fairobserver.xml" />
 			</outline>
 			
 			<outline text="Tech Meme" type="river" name="tech" url="http://static.scripting.com/houston/rivers/techmeme/River3.js" language="en"/>
