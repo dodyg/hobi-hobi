@@ -71,7 +71,7 @@
 			<outline text="Movies" type="river" name="moviesRiver" url="http://static.scripting.com/houston/rivers/movies/River3.js" language="en" />
 
 			<outline text="NYT" type="river" name="nyt" url="http://static.scripting.com/houston/rivers/nyt/River3.js" language="en" />
-			<outline text="Reuter's Markets" language="en" type="river" name="reutersMarket" url="http://hobieu.apphb.com/s/riverjs/reuters-markets	" />
+			<outline text="Reuter's Market News" language="en" type="river" name="reutersMarket" url="http://hobieu.apphb.com/s/riverjs/reuters-markets	" />
 			
 			<outline text="Celebrities" language="en" name="celebrities" type="river" url="http://hobieu.apphb.com/s/riverjs/celebrities"/>
 
@@ -154,7 +154,10 @@
 			<outline text="Marocain Nouvelles" name="marocNouvelles" type="river" url="http://hobieu.apphb.com/s/riverjs/marocain-nouvelles" language="fr" />
 		</outline>	
 			
+		<outline text="Russian">
+			<outline text="aif.ru" name="aifru" type="rss" url="http://www.aif.ru/rss/all.php" />
+			<outline text="sports.ru" name="sportrus" type="rss" url="http://www.sports.ru/rss/all_news.xml"/>
+		</outline>	
 		</body>
-
 	</opml>
 
