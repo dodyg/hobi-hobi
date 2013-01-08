@@ -101,7 +101,6 @@
 				<outline text="Middle East" type="river" name="middleEast" url="http://hobieu.apphb.com/s/riverjs/middle-east" language="en" />				
 			</outline>
 
-			
 			<outline text="Local">
 				<outline text="East Village News" language="en" name="eastVillageNews" type="river" url="http://static.scripting.com/houston/rivers/eastVillageRiver3.js"/>
 			</outline>
@@ -133,11 +132,8 @@
 			</outline>
 		
 			<outline text="World Outlines">
-
 				<outline text="Adam Curry" name="adamCurry" type="include" url="http://blog.curry.com/toc.opml"/>
-
 				<outline text="Dave Winer" name="daveWiner" type="include" url="http://scripting.com/toc.opml"/>
-
 			</outline>
 		</outline>
 			
@@ -155,7 +151,6 @@
 		</outline>	
 			
 		<outline text="Russian">
-			<outline text="aif.ru" name="aifru" type="rss" url="http://www.aif.ru/rss/all.php" />
 			<outline text="sports.ru" name="sportrus" type="rss" url="http://www.sports.ru/rss/all_news.xml"/>
 		</outline>	
 		</body>
