@@ -54,7 +54,16 @@
 
 		</outline>
 
-		<outline text="News Rivers (English) ">
+		<outline text="English">
+			<outline text="Podcasts">
+				<outline text="News Service (BBC, etc)" name="newsService" type="rss" url="http://hobieu.apphb.com/s/riverjs/news-service-podcasts"/>
+				<outline text="NPR">
+					<outline text="All Songs Considered" name="allSongsConsidered" type="rss" url="http://www.npr.org/rss/podcast.php?id=510019"/>
+					<outline text="Fresh Air" name="freshAir" type="rss" url="http://www.npr.org/rss/podcast.php?id=13"/>
+					<outline text="Planet Money" name="planetMoney" type="rss" url="http://www.npr.org/rss/podcast.php?id=510289"/>
+				</outline>
+				<outline text="Science Podcasts" name="sciencePodcasts" type="river" url="http://hobieu.apphb.com/s/riverjs/science-podcasts"/>
+			</outline>
 
 			<outline text="Dave" type="river" name="dave" url="http://static.scripting.com/houston/rivers/iowaRiver3.js" language="en" />
 			<outline text="No Agenda" type="river" name="noagenda" url="http://s3.amazonaws.com/river.curry.com/rivers/radio2/River3.js" language="en" />
@@ -81,9 +90,9 @@
 				<outline text="The Atlantic's Blogs" language="en" type="river" name="theAtlanticBlogs" url="http://hobieu.apphb.com/s/riverjs/the-atlantics-blogs" />
 			</outline>
 			
-			<outline text="Tech Meme" type="river" name="tech" url="http://static.scripting.com/houston/rivers/techmeme/River3.js" language="en">
-				<outline text="Apple" type="river" name="apple" url="http://static.scripting.com/houston/rivers/apple/River3.js" language="en" />
-			</outline>
+			<outline text="Tech Meme" type="river" name="tech" url="http://static.scripting.com/houston/rivers/techmeme/River3.js" language="en"/>
+			
+			<outline text="Apple" type="river" name="apple" url="http://static.scripting.com/houston/rivers/apple/River3.js" language="en" />
 
 			<outline text="Global">
 				<outline text="World" type="river" name="worldRiver" url="http://static.scripting.com/houston/rivers/international/River3.js" language="en"/>
@@ -96,65 +105,55 @@
 			<outline text="Local">
 				<outline text="East Village News" language="en" name="eastVillageNews" type="river" url="http://static.scripting.com/houston/rivers/eastVillageRiver3.js"/>
 			</outline>
+
+			<outline text="Wire Service">
+				<outline text="ABC Australia" type="rss" url="http://www.abc.net.au/news/feed/51120/rss.xml" />
+				<outline text="AP" type="rss" url="http://hosted2.ap.org/atom/APDEFAULT/3d281c11a96b4ad082fe88aa0db04305" />
+				<outline text="Al Jazeera International" type="rss" url="http://www.aljazeera.com/Services/Rss/?PostingId=2007731105943979989" />
+				<outline text="BBC" type="rss" url="http://feeds.bbci.co.uk/news/rss.xml"/>
+				<outline text="CNN" type="rss" url="http://rss.cnn.com/rss/edition.rss" />
+				<outline text="NBC Top Headlines" type="rss" url="http://rss.msnbc.msn.com/id/3032091/device/rss/rss.xml" />
+				<outline text="Reuters" type="rss" url="http://feeds.reuters.com/reuters/topNews?format=xml" />
+				<outline text="Russia Today" type="rss" url="http://rt.com/news/today/rss/" />
+				<outline text="The Atlantic Wire" type="rss" url="http://feeds.feedburner.com/TheAtlanticWire?format=xml" />
+				<outline text="Xinhua" type="rss" url="http://www.xinhuanet.com/english/rss/worldrss.xml" />
+				<outline text="WSJ Market" type="rss" url="http://online.wsj.com/xml/rss/3_7031.xml" />
+			</outline>
+
+			<outline text="Link Blogs ">
+				<outline text="Dave Winer" name="daveWiner" type="rss" url="http://links.scripting.com/rss.xml"/>
+
+				<outline text="Sugarcubes" type="rss" url="http://static.storyblogging.org/sugarcubes/admin/linkblog.xml"/>
+			</outline>
+
+			<outline text="Blogs">
+				<outline text="Apple">
+					<outline text="Daring Fireball" name="daringFireball" type="rss" url="http://daringfireball.net/index.xml"/>
+				</outline>
+			</outline>
+		
+			<outline text="World Outlines">
+
+				<outline text="Adam Curry" name="adamCurry" type="include" url="http://blog.curry.com/toc.opml"/>
+
+				<outline text="Dave Winer" name="daveWiner" type="include" url="http://scripting.com/toc.opml"/>
+
+			</outline>
 		</outline>
+			
 
-
-		<outline text="News Rivers (Italian)">
+		<outline text="Italian">
 			<outline text="Notizie Italia" language="it" name="notizieItalia" type="river" url="http://hobieu.apphb.com/s/riverjs/Italian"/>
 		</outline>
 
-		<outline text="News Rivers (Arabic)">
-			<outline text="Egypt" language="ar" name="egypt" type="river" url="http://hobieu.apphb.com/s/riverjs/egypts-arabic-news"/>
+		<outline text="Arabic">
+			<outline text="Egyptian News" language="ar" name="egypt" type="river" url="http://hobieu.apphb.com/s/riverjs/egypts-arabic-news"/>
 		</outline>
 
-		<outline text="News Rivers (French)">
+		<outline text="French">
 			<outline text="Marocain Nouvelles" name="marocNouvelles" type="river" url="http://hobieu.apphb.com/s/riverjs/marocain-nouvelles" language="fr" />
 		</outline>	
 			
-		<outline text="Link Blogs ">
-
-			<outline text="Dave Winer" name="daveWiner" type="rss" url="http://links.scripting.com/rss.xml"/>
-
-			<outline text="Sugarcubes" type="rss" url="http://static.storyblogging.org/sugarcubes/admin/linkblog.xml"/>
-
-		</outline>
-
-		<outline text="Wire Service">
-			<outline text="ABC Australia" type="rss" url="http://www.abc.net.au/news/feed/51120/rss.xml" />
-			<outline text="AP" type="rss" url="http://hosted2.ap.org/atom/APDEFAULT/3d281c11a96b4ad082fe88aa0db04305" />
-			<outline text="Al Jazeera International" type="rss" url="http://www.aljazeera.com/Services/Rss/?PostingId=2007731105943979989" />
-			<outline text="BBC" type="rss" url="http://feeds.bbci.co.uk/news/rss.xml"/>
-			<outline text="CNN" type="rss" url="http://rss.cnn.com/rss/edition.rss" />
-			<outline text="PR Newswire" type="rss" url="http://www.prnewswire.com/rss/all-news-releases-from-PR-newswire-news.rss" />
-			<outline text="NBC Top Headlines" type="rss" url="http://rss.msnbc.msn.com/id/3032091/device/rss/rss.xml" />
-			<outline text="Reuters" type="rss" url="http://feeds.reuters.com/reuters/topNews?format=xml" />
-			<outline text="Russia Today" type="rss" url="http://rt.com/news/today/rss/" />
-			<outline text="The Atlantic Wire" type="rss" url="http://feeds.feedburner.com/TheAtlanticWire?format=xml" />
-			<outline text="Xinhua" type="rss" url="http://www.xinhuanet.com/english/rss/worldrss.xml" />
-			<outline text="WSJ Market" type="rss" url="http://online.wsj.com/xml/rss/3_7031.xml" />
-		</outline>
-		<outline text="Blogs ">
-			<outline text="Apple">
-				<outline text="Daring Fireball" name="daringFireball" type="rss" url="http://daringfireball.net/index.xml"/>
-			</outline>
-		</outline>
-
-		<outline text="Podcasts">
-			<outline text="NPR">
-				<outline text="All Songs Considered" name="allSongsConsidered" type="rss" url="http://www.npr.org/rss/podcast.php?id=510019"/>
-				<outline text="Fresh Air" name="freshAir" type="rss" url="http://www.npr.org/rss/podcast.php?id=13"/>
-				<outline text="Planet Money" name="planetMoney" type="rss" url="http://www.npr.org/rss/podcast.php?id=510289"/>
-			</outline>
-		</outline>
-		
-		<outline text="World Outlines">
-
-			<outline text="Adam Curry" name="adamCurry" type="include" url="http://blog.curry.com/toc.opml"/>
-
-			<outline text="Dave Winer" name="daveWiner" type="include" url="http://scripting.com/toc.opml"/>
-
-		</outline>
-
 		</body>
 
 	</opml>
