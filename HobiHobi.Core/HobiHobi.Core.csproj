@@ -113,6 +113,7 @@
     <Compile Include="Blogging\BlogFeed.cs" />
     <Compile Include="Blogging\BlogPost.cs" />
     <Compile Include="BootStrap.cs" />
+    <Compile Include="Caching\CacheItem.cs" />
     <Compile Include="Caching\SyndicationFeedCache.cs" />
     <Compile Include="Caching\SyndicationRiverJsCache.cs" />
     <Compile Include="Drops\FeedImageDrop.cs" />

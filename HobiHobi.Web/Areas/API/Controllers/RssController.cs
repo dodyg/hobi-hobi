@@ -1,4 +1,5 @@
-﻿using HobiHobi.Core.Framework;
+﻿using HobiHobi.Core.Caching;
+using HobiHobi.Core.Framework;
 using HobiHobi.Core.Syndications;
 using System;
 using System.Collections.Generic;
@@ -18,15 +19,19 @@ namespace HobiHobi.Web.Areas.API.Controllers
         {
             try
             {
-                SyndicationFeed cachedFeed = this.HttpContext.Cache[url] as SyndicationFeed;
-                string etagCacheKey = url + "etag";
-                string cachedEtagValue = this.HttpContext.Cache[etagCacheKey] as String; 
+                var cacheKey = url;
+                var cachedFeed = this.HttpContext.Cache[cacheKey] as CacheItem<SyndicationFeed>;
+                string cachedEtagValue = String.Empty;
+                
+                if (cachedFeed != null && cachedFeed.ETags.ContainsKey(maxSize.ToString()))
+                    cachedEtagValue = cachedFeed.ETags[maxSize.ToString()]; 
+                
                 string cachedEtag = this.FormatEtag(cachedEtagValue);
-
                 string ifNoneMatch = this.GetEtag();
 
                 if (!ifNoneMatch.IsNullOrWhiteSpace() && ifNoneMatch == cachedEtag)
                 {
+                    return Content("MATCHES");
                     return new HttpStatusCodeResult(304, "Not Modified");
                 }
 
@@ -41,14 +46,17 @@ namespace HobiHobi.Web.Areas.API.Controllers
                     {
                         var syndicate = content.Item;
                         feed = Filter(syndicate, maxSize);
-                        //cache source for 6 hours
-                        HttpContext.Cache.Add(url, syndicate, null, Cache.NoAbsoluteExpiration, new TimeSpan(6, 0, 0), CacheItemPriority.Default, null);
-                        //cache the cachedEtag
+                        //cacheItem source for 6 hours
                         string newEtag = Guid.NewGuid().ToString();
-                        HttpContext.Cache.Add(etagCacheKey, newEtag , null, Cache.NoAbsoluteExpiration, new TimeSpan(6, 0, 0), CacheItemPriority.Default, null);
 
+                        var cacheItem = new CacheItem<SyndicationFeed>(syndicate);
+                        cacheItem.ETags.Add(maxSize.ToString(), newEtag);
+
+                        HttpContext.Cache.Add(cacheKey, cacheItem, null, Cache.NoAbsoluteExpiration, new TimeSpan(6, 0, 0), CacheItemPriority.Default, null);
+                        //cacheItem the cachedEtag
+                        
                         this.Response.Cache.SetCacheability(HttpCacheability.Public);
-                        Response.AppendHeader("Etag", newEtag);
+                        this.Response.Cache.SetETag(this.FormatEtag(newEtag));
                     }
                     else
                     {
@@ -57,13 +65,22 @@ namespace HobiHobi.Web.Areas.API.Controllers
                 }
                 else
                 {
-                    feed = Filter(cachedFeed, maxSize);
+                    this.Response.Cache.SetCacheability(HttpCacheability.Public);
+                     
+                    feed = Filter(cachedFeed.Item, maxSize);
                     if (!cachedEtagValue.IsNullOrWhiteSpace())
+                        this.Response.Cache.SetETag(this.FormatEtag(cachedEtagValue));
+                    else
                     {
-                        this.Response.Cache.SetCacheability(HttpCacheability.Public);
-                        Response.AppendHeader("Etag", cachedEtagValue);
+                        string newEtag = Guid.NewGuid().ToString();
+                        if (cachedFeed.ETags.ContainsKey(maxSize.ToString()))
+                            cachedFeed.ETags[maxSize.ToString()] = newEtag;
+                        else
+                            cachedFeed.ETags.Add(maxSize.ToString(), newEtag);
+
+                        HttpContext.Cache[cacheKey] = cachedFeed; //refresh the cached item with new etag values
+                        this.Response.Cache.SetETag(this.FormatEtag(newEtag));
                     }
-                    //no else statement here because if the cache data and cache data etag do not sync, then wait until the next refresh until they sync
                 }
 
                 var rssOutput = new StringBuilder();
