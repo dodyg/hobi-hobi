@@ -43,16 +43,14 @@ namespace HobiHobi.Web.Areas.API.Controllers
 
                     if (content.IsFound)
                     {
-                        var syndicate = content.Item;
-                        feed = Filter(syndicate, maxSize);
-                        //newCacheItem source for 6 hours
+                        feed = Filter(content.Item, maxSize);
                         string newEtag = Guid.NewGuid().ToString();
 
-                        var newCacheItem = new CacheItem<SyndicationFeed>(syndicate);
+                        var newCacheItem = new CacheItem<SyndicationFeed>(content.Item);
                         newCacheItem.ETags.Add(maxSize.ToString(), newEtag);
 
+                        //cache item for 6 hours
                         HttpContext.Cache.Add(cacheKey, newCacheItem, null, Cache.NoAbsoluteExpiration, new TimeSpan(6, 0, 0), CacheItemPriority.Default, null);
-                        //newCacheItem the cachedEtag
                         
                         this.Response.Cache.SetCacheability(HttpCacheability.Public);
                         this.Response.Cache.SetETag(this.FormatEtag(newEtag));
@@ -65,12 +63,7 @@ namespace HobiHobi.Web.Areas.API.Controllers
                 else
                 {
                     feed = Filter(cachedFeed.Item, maxSize);
-                    if (!cachedEtagValue.IsNullOrWhiteSpace())
-                    {
-                        this.Response.Cache.SetCacheability(HttpCacheability.Public);
-                        this.Response.Cache.SetETag(this.FormatEtag(cachedEtagValue));
-                    }
-                    else
+                    if (cachedEtagValue.IsNullOrWhiteSpace())
                     {
                         string newEtag = Guid.NewGuid().ToString();
                         if (cachedFeed.ETags.ContainsKey(maxSize.ToString()))
@@ -104,8 +97,42 @@ namespace HobiHobi.Web.Areas.API.Controllers
 
         public SyndicationFeed Filter(SyndicationFeed input, int maxSize)
         {
-            input.Items = input.Items.Take(maxSize);
-            return input;
+            if (maxSize < 0)
+                maxSize = 0;
+
+            //we have to bloody manually copy the object since nothing else works (tried binaryclone and json serialize/deserialize)
+            var output = new SyndicationFeed();
+            output.Title = input.Title;
+            output.Description = input.Description;
+            output.Language = input.Language;
+            output.LastUpdatedTime = input.LastUpdatedTime;
+            foreach (var l in input.Links)
+                output.Links.Add(l);
+
+            foreach (var c in input.Contributors)
+                output.Contributors.Add(c);
+
+            foreach (var x in input.ElementExtensions)
+                output.ElementExtensions.Add(x);
+
+            foreach (var c in input.Categories)
+                output.Categories.Add(c);
+
+            foreach (var a in input.Authors)
+                output.Authors.Add(a);
+
+            foreach (var a in input.AttributeExtensions)
+                output.AttributeExtensions.Add(a.Key, a.Value);
+
+            output.Copyright = input.Copyright;
+            output.BaseUri = input.BaseUri;
+            output.Generator = input.Generator;
+            output.Id = input.Id;
+            output.ImageUrl = input.ImageUrl;
+
+            output.Items = input.Items.Take(maxSize);
+
+            return output;
         }
     }
 }
