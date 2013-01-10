@@ -60,6 +60,16 @@ namespace HobiHobi.Core.Framework
             return UserInfo.GetFromContext(HttpContext.Current);
         }
 
+        public static string GetEtag(this Controller self)
+        {
+            return self.Request.Headers["If-None-Match"];
+        }
+
+        public static string FormatEtag(this Controller self, string etag)
+        {
+            return "\"" + etag + "\"";
+        }
+
         public static void SetLongExpirationCache(this Controller self)
         {
                 self.Response.Cache.SetCacheability(HttpCacheability.Public);

@@ -85,7 +85,7 @@ namespace HobiHobi.Web.Controllers
         }
 
         /// <summary>
-        /// There are three types of feed. Render as HTML or RSS or RSSJS
+        /// There are three types of cachedFeed. Render as HTML or RSS or RSSJS
         /// </summary>
         /// <param name="feedSlug"></param>
         /// <param name="type"></param>
