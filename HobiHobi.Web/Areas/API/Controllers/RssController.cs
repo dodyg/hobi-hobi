@@ -31,7 +31,6 @@ namespace HobiHobi.Web.Areas.API.Controllers
 
                 if (!ifNoneMatch.IsNullOrWhiteSpace() && ifNoneMatch == cachedEtag)
                 {
-                    return Content("MATCHES");
                     return new HttpStatusCodeResult(304, "Not Modified");
                 }
 
@@ -46,14 +45,14 @@ namespace HobiHobi.Web.Areas.API.Controllers
                     {
                         var syndicate = content.Item;
                         feed = Filter(syndicate, maxSize);
-                        //cacheItem source for 6 hours
+                        //newCacheItem source for 6 hours
                         string newEtag = Guid.NewGuid().ToString();
 
-                        var cacheItem = new CacheItem<SyndicationFeed>(syndicate);
-                        cacheItem.ETags.Add(maxSize.ToString(), newEtag);
+                        var newCacheItem = new CacheItem<SyndicationFeed>(syndicate);
+                        newCacheItem.ETags.Add(maxSize.ToString(), newEtag);
 
-                        HttpContext.Cache.Add(cacheKey, cacheItem, null, Cache.NoAbsoluteExpiration, new TimeSpan(6, 0, 0), CacheItemPriority.Default, null);
-                        //cacheItem the cachedEtag
+                        HttpContext.Cache.Add(cacheKey, newCacheItem, null, Cache.NoAbsoluteExpiration, new TimeSpan(6, 0, 0), CacheItemPriority.Default, null);
+                        //newCacheItem the cachedEtag
                         
                         this.Response.Cache.SetCacheability(HttpCacheability.Public);
                         this.Response.Cache.SetETag(this.FormatEtag(newEtag));
@@ -65,11 +64,12 @@ namespace HobiHobi.Web.Areas.API.Controllers
                 }
                 else
                 {
-                    this.Response.Cache.SetCacheability(HttpCacheability.Public);
-                     
                     feed = Filter(cachedFeed.Item, maxSize);
                     if (!cachedEtagValue.IsNullOrWhiteSpace())
+                    {
+                        this.Response.Cache.SetCacheability(HttpCacheability.Public);
                         this.Response.Cache.SetETag(this.FormatEtag(cachedEtagValue));
+                    }
                     else
                     {
                         string newEtag = Guid.NewGuid().ToString();
@@ -79,6 +79,7 @@ namespace HobiHobi.Web.Areas.API.Controllers
                             cachedFeed.ETags.Add(maxSize.ToString(), newEtag);
 
                         HttpContext.Cache[cacheKey] = cachedFeed; //refresh the cached item with new etag values
+                        this.Response.Cache.SetCacheability(HttpCacheability.Public);
                         this.Response.Cache.SetETag(this.FormatEtag(newEtag));
                     }
                 }
