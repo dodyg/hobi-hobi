@@ -127,9 +127,63 @@
 			</outline>
 
 			<outline text="Blogs">
+
+				<outline text="Auto Straddle" name="autoStraddle" type="rss" url="http://feeds.feedburner.com/Autostraddle?format=xml" />
+
+
+				<outline text="The Awl" name="theAwl" type="rss" url="http://feeds.feedburner.com/TheAwl?format=xml"/>
+				<outline text="Brain Pickings(Maria Popova)" name="brainPickings" type="rss" url="http://feeds.feedburner.com/brainpickings/rss?format=xml"/>
+				<outline text="Calculated Risk" name="calculatedRisk" type="rss" url="http://feeds.feedburner.com/CalculatedRisk" />
+				<outline text="Dave Winer" name="daveWiner" type="rss" url="http://www.scripting.com/rss.xml" />
+				<outline text="Felix Salmon" name="felixSalmon" type="rss" url="http://feeds.reuters.com/reuters/blogs/felix-salmon?format=xml" />
+				<outline text="Kottke" name="kottke" type="rss" url="http://feeds.kottke.org/main" />
+				<outline text="The American Scene" name="theAmericanScene" type="rss" url="http://theamericanscene.com/rss/?section=Main"/>
+				<outline text="Rough Type(Nicholas Carr)" name="roughType" type="rss" url="http://www.roughtype.com/?feed=rss2" />
+			
+				
 				<outline text="Apple">
 					<outline text="Daring Fireball" name="daringFireball" type="rss" url="http://daringfireball.net/index.xml"/>
 				</outline>
+
+				<outline text="UN Dispatch" name="unDispatch" type="rss" url="http://www.undispatch.com/feed/rss" />	
+				<outline text="Occupy Wall Street" name="occupyWallStreet" type="rss" url="http://occupywallst.org/rss/news/" />	
+				
+				<outline text="Environment">
+					<outline text="Australian Climate Madness" name="acm" type="rss" url="http://www.australianclimatemadness.com/feed/" />
+					<outline text="Climate Audit" name="climateAudit" type="rss" url="http://climateaudit.org/feed/" />
+					<outline text="Wattsupwiththat" name="wattsupwiththat" type="rss" url="http://wattsupwiththat.com/feed/" />	
+				</outline>
+
+				<outline text="Finance/Investment">
+					<outline text="Asymco" name="asymco" type="rss" url="http://feeds.feedburner.com/Asymco" />
+				</outline>
+
+				<outline text="Fashion">
+					<outline text="Cupcakes and Cashmere" name="cupcakeAndCashmere" type="rss" url="http://feeds.feedburner.com/CupcakesAndCashmere?format=xml" />
+				</outline>
+				
+				<outline text="Food">
+
+					<outline text="Adventure of Kitchen Ninja" name="akn" type="rss" url="http://yankee-kitchen-ninja.blogspot.com/feeds/posts/default
+" />
+					<outline text="Smitten Kitchen" name="smittenKitchet" type="rss" url="http://feeds.feedburner.com/smittenkitchen?format=xml" />	
+				</outline>
+
+				<outline text="Living">
+					<outline text="Down to Earth" name="downToEarth" type="rss" url="http://feeds.feedburner.com/blogspot/ZCHPL?format=xml" />
+					<outline text="Zen Habits" name="zenHabits" type="rss" url="http://feeds.feedburner.com/zenhabits?format=xml" />	
+				</outline>
+				<outline text="Latin America">
+					<outline text="Banana Skin Flipflops" name="bsf" type="rss" url="http://bananaskinflipflops.com/feed/" />
+				</outline>	
+
+				<outline text="Middle East">
+					<outline text="The Arabist" name="arabist" type="rss" url="http://feeds.feedburner.com/arabistdotnet" />
+					<outline text="Informed Comment(Juan Cole)" name="juanCole" type="rss" url="http://feeds.feedburner.com/juancole/ymbn?format=xml" />
+				</outline>		
+				<outline text="Sports">
+					<outline text="Bloody Elbow" name="bloodyElbow" type="rss" url="http://feeds.feedburner.com/sportsblogs/bloodyelbow?format=xml" />	
+				</outline>	
 			</outline>
 		
 			<outline text="World Outlines">
