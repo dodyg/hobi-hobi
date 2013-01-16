@@ -42,9 +42,9 @@
 
 				<outline text="An outline that ends with -&gt; sign will open a new browser if you long press it."/>
 
-				<outline text="An outline that ends with ~sign will retrieve a river of news"/>
+				<outline text="An outline that ends with ~ sign will retrieve a river of news"/>
 
-				<outline text="An outline that end  with * will open that particular RSS feed"/>
+				<outline text="An outline that end  with :: will open that particular RSS feed"/>
 
 			</outline>
 
@@ -64,48 +64,40 @@
 				</outline>
 				<outline text="Science Podcasts" name="sciencePodcasts" type="river" url="http://hobieu.apphb.com/s/riverjs/science-podcasts"/>
 			</outline>
-
-			<outline text="Dave" type="river" name="dave" url="http://static.scripting.com/houston/rivers/iowaRiver3.js" language="en" />
-			<outline text="No Agenda" type="river" name="noagenda" url="http://s3.amazonaws.com/river.curry.com/rivers/radio2/River3.js" language="en" />
-			<outline text="Podcasts" type="river" name="podcastRiver" url="http://static.scripting.com/podcastriver/River3.js" language="en" />
-			<outline text="Movies" type="river" name="moviesRiver" url="http://static.scripting.com/houston/rivers/movies/River3.js" language="en" />
-
-			<outline text="NYT" type="river" name="nyt" url="http://static.scripting.com/houston/rivers/nyt/River3.js" language="en" />
-			<outline text="Reuter's Market News" language="en" type="river" name="reutersMarket" url="http://hobieu.apphb.com/s/riverjs/reuters-markets	" />
-			
-			<outline text="Celebrities" language="en" name="celebrities" type="river" url="http://hobieu.apphb.com/s/riverjs/celebrities"/>
-
-			<outline text="Scripting.Com Community" language="en" name="scriptingcomCommunity" type="river" url="http://static.scripting.com/houston/rivers/scripting/River3.js"/>
-
-			<outline text="Programming" language="en" name="programming" type="river" url="http://hobieu.apphb.com/s/riverjs/programming"/>
-
-			<outline text="Sports">			
-				<outline text="MLB" language="en" name="mlb" type="river" url="http://hobieu.apphb.com/s/riverjs/baseball-mlb"/>
-				<outline text="NHL" language="en" name="nhl" type="river" url="http://hobieu.apphb.com/s/riverjs/hockey-nhl"/>
+			<outline text="Rivers">
+				<outline text="Apple" type="river" name="apple" url="http://static.scripting.com/houston/rivers/apple/River3.js" language="en" />
+				<outline text="Celebrities" language="en" name="celebrities" type="river" url="http://hobieu.apphb.com/s/riverjs/celebrities"/>
+				<outline text="Dave Winer" type="river" name="dave" url="http://static.scripting.com/houston/rivers/iowaRiver3.js" language="en
+				" />
+				<outline text="Global">
+					<outline text="ASEAN Nations" type="river" name="asean" url="http://hobieu.apphb.com/s/riverjs/asean" language="en" />
+					<outline text="Middle East" type="river" name="middleEast" url="http://hobieu.apphb.com/s/riverjs/middle-east" language="en" />	
+					<outline text="Southern Africa" type="river" name="asean" url="http://hobieu.apphb.com/s/riverjs/southern-africa" language="en" />
+					<outline text="World" type="river" name="worldRiver" url="http://static.scripting.com/houston/rivers/international/River3.js" language="en"/>
+				</outline>
+				<outline text="Local">
+					<outline text="East Village News" language="en" name="eastVillageNews" type="river" url="http://static.scripting.com/houston/rivers/eastVillageRiver3.js"/>
+				</outline>
+				<outline text="Magazines">
+					<outline text="Magazine Collection" language="en" type="river" name="magazines" url="http://hobieu.apphb.com/s/riverjs/magazines"/>
+					<outline text="The Economist's Blogs" language="en" type="river" name="theEconomistBlogs" url="http://hobieu.apphb.com/s/riverjs/the-economist-blogs" />
+					<outline text="The Atlantic's Blogs" language="en" type="river" name="theAtlanticBlogs" url="http://hobieu.apphb.com/s/riverjs/the-atlantics-blogs" />
+				</outline>
+				<outline text="Movies" type="river" name="moviesRiver" url="http://static.scripting.com/houston/rivers/movies/River3.js" language="en" />
+				<outline text="No Agenda" type="river" name="noagenda" url="http://s3.amazonaws.com/river.curry.com/rivers/radio2/River3.js" language="en" />
+				<outline text="NYT" type="river" name="nyt" url="http://static.scripting.com/houston/rivers/nyt/River3.js" language="en" />
+				<outline text="Programming" language="en" name="programming" type="river" url="http://hobieu.apphb.com/s/riverjs/programming"/>
+				<outline text="Podcasts" type="river" name="podcastRiver" url="http://static.scripting.com/podcastriver/River3.js" language="en" />
+				<outline text="Reuter's Market News" language="en" type="river" name="reutersMarket" url="http://hobieu.apphb.com/s/riverjs/reuters-markets	" />
+				<outline text="Scripting.Com Community" language="en" name="scriptingcomCommunity" type="river" url="http://static.scripting.com/houston/rivers/scripting/River3.js"/>
+				<outline text="Sports">			
+					<outline text="MLB" language="en" name="mlb" type="river" url="http://hobieu.apphb.com/s/riverjs/baseball-mlb"/>
+					<outline text="NHL" language="en" name="nhl" type="river" url="http://hobieu.apphb.com/s/riverjs/hockey-nhl"/>
+				</outline>
+				<outline text="Tech Meme" type="river" name="tech" url="http://static.scripting.com/houston/rivers/techmeme/River3.js" language="en"/>
 			</outline>
-			
-			<outline text="Magazines">
-				<outline text="Magazine Collection" language="en" type="river" name="magazines" url="http://hobieu.apphb.com/s/riverjs/magazines"/>
-				<outline text="The Economist's Blogs" language="en" type="river" name="theEconomistBlogs" url="http://hobieu.apphb.com/s/riverjs/the-economist-blogs" />
-				<outline text="The Atlantic's Blogs" language="en" type="river" name="theAtlanticBlogs" url="http://hobieu.apphb.com/s/riverjs/the-atlantics-blogs" />
-				<outline text="Fair Observer" language="en" type="rss" name="fairObserver" url="http://www.fairobserver.com/fairobserver.xml" />
-			</outline>
-			
-			<outline text="Tech Meme" type="river" name="tech" url="http://static.scripting.com/houston/rivers/techmeme/River3.js" language="en"/>
-			
-			<outline text="Apple" type="river" name="apple" url="http://static.scripting.com/houston/rivers/apple/River3.js" language="en" />
-
-			<outline text="Global">
-				<outline text="World" type="river" name="worldRiver" url="http://static.scripting.com/houston/rivers/international/River3.js" language="en"/>
-				<outline text="ASEAN Nations" type="river" name="asean" url="http://hobieu.apphb.com/s/riverjs/asean" language="en" />
-				<outline text="Southern Africa" type="river" name="asean" url="http://hobieu.apphb.com/s/riverjs/southern-africa" language="en" />
-				<outline text="Middle East" type="river" name="middleEast" url="http://hobieu.apphb.com/s/riverjs/middle-east" language="en" />				
-			</outline>
-
-			<outline text="Local">
-				<outline text="East Village News" language="en" name="eastVillageNews" type="river" url="http://static.scripting.com/houston/rivers/eastVillageRiver3.js"/>
-			</outline>
-
+		
+		
 			<outline text="Wire Service">
 				<outline text="ABC Australia" type="rss" url="http://www.abc.net.au/news/feed/51120/rss.xml" />
 				<outline text="AP" type="rss" url="http://hosted2.ap.org/atom/APDEFAULT/3d281c11a96b4ad082fe88aa0db04305" />
@@ -122,70 +114,57 @@
 
 			<outline text="Link Blogs ">
 				<outline text="Dave Winer" name="daveWiner" type="rss" url="http://links.scripting.com/rss.xml"/>
-
 				<outline text="Sugarcubes" type="rss" url="http://static.storyblogging.org/sugarcubes/admin/linkblog.xml"/>
 			</outline>
 
-			<outline text="Blogs">
 
-				<outline text="Auto Straddle" name="autoStraddle" type="rss" url="http://feeds.feedburner.com/Autostraddle?format=xml" />
-
-
-				<outline text="The Awl" name="theAwl" type="rss" url="http://feeds.feedburner.com/TheAwl?format=xml"/>
-				<outline text="Brain Pickings(Maria Popova)" name="brainPickings" type="rss" url="http://feeds.feedburner.com/brainpickings/rss?format=xml"/>
-				<outline text="Calculated Risk" name="calculatedRisk" type="rss" url="http://feeds.feedburner.com/CalculatedRisk" />
-				<outline text="Dave Winer" name="daveWiner" type="rss" url="http://www.scripting.com/rss.xml" />
-				<outline text="Felix Salmon" name="felixSalmon" type="rss" url="http://feeds.reuters.com/reuters/blogs/felix-salmon?format=xml" />
-				<outline text="Kottke" name="kottke" type="rss" url="http://feeds.kottke.org/main" />
-				<outline text="The American Scene" name="theAmericanScene" type="rss" url="http://theamericanscene.com/rss/?section=Main"/>
-				<outline text="Rough Type(Nicholas Carr)" name="roughType" type="rss" url="http://www.roughtype.com/?feed=rss2" />
-			
-				
-				<outline text="Apple">
-					<outline text="Daring Fireball" name="daringFireball" type="rss" url="http://daringfireball.net/index.xml"/>
-				</outline>
-
-				<outline text="UN Dispatch" name="unDispatch" type="rss" url="http://www.undispatch.com/feed/rss" />	
-				<outline text="Occupy Wall Street" name="occupyWallStreet" type="rss" url="http://occupywallst.org/rss/news/" />	
-				
-				<outline text="Environment">
-					<outline text="Australian Climate Madness" name="acm" type="rss" url="http://www.australianclimatemadness.com/feed/" />
-					<outline text="Climate Audit" name="climateAudit" type="rss" url="http://climateaudit.org/feed/" />
-					<outline text="Wattsupwiththat" name="wattsupwiththat" type="rss" url="http://wattsupwiththat.com/feed/" />	
-				</outline>
-
-				<outline text="Finance/Investment">
-					<outline text="Asymco" name="asymco" type="rss" url="http://feeds.feedburner.com/Asymco" />
-				</outline>
-
-				<outline text="Fashion">
-					<outline text="Cupcakes and Cashmere" name="cupcakeAndCashmere" type="rss" url="http://feeds.feedburner.com/CupcakesAndCashmere?format=xml" />
-				</outline>
-				
-				<outline text="Food">
-
-					<outline text="Adventure of Kitchen Ninja" name="akn" type="rss" url="http://yankee-kitchen-ninja.blogspot.com/feeds/posts/default
-" />
-					<outline text="Smitten Kitchen" name="smittenKitchet" type="rss" url="http://feeds.feedburner.com/smittenkitchen?format=xml" />	
-				</outline>
-
-				<outline text="Living">
-					<outline text="Down to Earth" name="downToEarth" type="rss" url="http://feeds.feedburner.com/blogspot/ZCHPL?format=xml" />
-					<outline text="Zen Habits" name="zenHabits" type="rss" url="http://feeds.feedburner.com/zenhabits?format=xml" />	
-				</outline>
-				<outline text="Latin America">
-					<outline text="Banana Skin Flipflops" name="bsf" type="rss" url="http://bananaskinflipflops.com/feed/" />
-				</outline>	
-
-				<outline text="Middle East">
-					<outline text="The Arabist" name="arabist" type="rss" url="http://feeds.feedburner.com/arabistdotnet" />
-					<outline text="Informed Comment(Juan Cole)" name="juanCole" type="rss" url="http://feeds.feedburner.com/juancole/ymbn?format=xml" />
-				</outline>		
-				<outline text="Sports">
-					<outline text="Bloody Elbow" name="bloodyElbow" type="rss" url="http://feeds.feedburner.com/sportsblogs/bloodyelbow?format=xml" />	
-				</outline>	
+			<outline text="Auto Straddle" name="autoStraddle" type="rss" url="http://feeds.feedburner.com/Autostraddle?format=xml" />
+			<outline text="The American Scene" name="theAmericanScene" type="rss" url="http://theamericanscene.com/rss/?section=Main"/>
+			<outline text="The Awl" name="theAwl" type="rss" url="http://feeds.feedburner.com/TheAwl?format=xml"/>
+			<outline text="Brain Pickings(Maria Popova)" name="brainPickings" type="rss" url="http://feeds.feedburner.com/brainpickings/rss?format=xml"/>
+			<outline text="Calculated Risk" name="calculatedRisk" type="rss" url="http://feeds.feedburner.com/CalculatedRisk" />
+			<outline text="Dave Winer" name="daveWiner" type="rss" url="http://www.scripting.com/rss.xml" />
+			<outline text="Daring Fireball" name="daringFireball" type="rss" url="http://daringfireball.net/index.xml"/>
+			<outline text="Environment">
+				<outline text="Australian Climate Madness" name="acm" type="rss" url="http://www.australianclimatemadness.com/feed/" />
+				<outline text="Climate Audit" name="climateAudit" type="rss" url="http://climateaudit.org/feed/" />
+				<outline text="Wattsupwiththat" name="wattsupwiththat" type="rss" url="http://wattsupwiththat.com/feed/" />	
 			</outline>
-		
+			<outline text="Fair Observer" language="en" type="rss" name="fairObserver" url="http://www.fairobserver.com/fairobserver.xml" />
+			<outline text="Fashion">
+				<outline text="Cupcakes and Cashmere" name="cupcakeAndCashmere" type="rss" url="http://feeds.feedburner.com/CupcakesAndCashmere?format=xml" />
+			</outline>
+			<outline text="Felix Salmon" name="felixSalmon" type="rss" url="http://feeds.reuters.com/reuters/blogs/felix-salmon?format=xml" />
+			<outline text="Finance/Investment">
+				<outline text="Asymco" name="asymco" type="rss" url="http://feeds.feedburner.com/Asymco" />
+			</outline>
+			<outline text="Food">
+				<outline text="Adventure of Kitchen Ninja" name="akn" type="rss" url="http://yankee-kitchen-ninja.blogspot.com/feeds/posts/default
+" />
+			</outline>
+			<outline text="Kottke" name="kottke" type="rss" url="http://feeds.kottke.org/main" />
+
+			<outline text="Latin America">
+				<outline text="Banana Skin Flipflops" name="bsf" type="rss" url="http://bananaskinflipflops.com/feed/" />
+			</outline>	
+
+			<outline text="Living">
+				<outline text="Down to Earth" name="downToEarth" type="rss" url="http://feeds.feedburner.com/blogspot/ZCHPL?format=xml" />
+				<outline text="Zen Habits" name="zenHabits" type="rss" url="http://feeds.feedburner.com/zenhabits?format=xml" />	
+			</outline>
+			<outline text="Middle East">
+				<outline text="The Arabist" name="arabist" type="rss" url="http://feeds.feedburner.com/arabistdotnet" />
+				<outline text="Informed Comment(Juan Cole)" name="juanCole" type="rss" url="http://feeds.feedburner.com/juancole/ymbn?format=xml" />
+			</outline>		
+			<outline text="Occupy Wall Street" name="occupyWallStreet" type="rss" url="http://occupywallst.org/rss/news/" />				
+			<outline text="Rough Type(Nicholas Carr)" name="roughType" type="rss" url="http://www.roughtype.com/?feed=rss2" />
+			<outline text="Sports">
+				<outline text="Bloody Elbow" name="bloodyElbow" type="rss" url="http://feeds.feedburner.com/sportsblogs/bloodyelbow?format=xml" />	
+			</outline>	
+
+			<outline text="UN Dispatch" name="unDispatch" type="rss" url="http://www.undispatch.com/feed/rss" />	
+			<outline text="UN Job List" name="unDispatch" type="rss" url="http://unjoblist.org/lists/organisation/newjobs/feed" />	
+					
 			<outline text="World Outlines">
 				<outline text="Adam Curry" name="adamCurry" type="include" url="http://blog.curry.com/toc.opml"/>
 				<outline text="Dave Winer" name="daveWiner" type="include" url="http://scripting.com/toc.opml"/>
