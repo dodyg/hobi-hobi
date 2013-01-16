@@ -62,30 +62,30 @@
 				<outline text="Freakonomics Radio" name="freakonomics" type="rss" url="http://feeds.feedburner.com/freakonomicsradio?format=xml"/>
 				<outline text="Music">
 					<outline text="All Songs Considered" name="allSongsConsidered" type="rss" url="http://hobieu.apphb.com/api/1/rss/slim/?maxSize=10&amp;url=http://www.npr.org/rss/podcast.php?id=510019"/>
-					<outline text="Alt.Latino" name="altLatino" type="rss" url="http://www.npr.org/rss/podcast/podcast_detail.php?siteId=131280157"/>
-					<outline text="KEXP's Music That Matters" name="kexpmtm" type="rss" url="http://feeds.kexp.org/kexp/songoftheday?format=xml"/>
+					<outline text="Alt.Latino" name="altLatino" type="rss" url="http://hobieu.apphb.com/api/1/rss/slim/?maxSize=10&amp;url=http://www.npr.org/rss/podcast.php?id=128227577"/>
+					<outline text="KEXP's Music That Matters" name="kexpmtm" type="rss" url="http://feeds.kexp.org/kexp/musicthatmatters?format=xml"/>
 					<outline text="KEXP's Song of the day" name="KEXPSongoftheday" type="rss" url="http://feeds.kexp.org/kexp/songoftheday?format=xml"/>
 					<outline text="Rockford College Radio" name="" type="rss" url="http://www.rockfordcollegeradio.com/category/anythinggoes/feed/"/>
 					<outline text="Sound Opinions" name="soundOpinions" type="rss" url="http://feeds.feedburner.com/TheSoundOpinionsPodcast?format=xml"/>
 					<outline text="Soundcheck" name="soundCheck" type="rss" url="http://feeds.feedburner.com/wnyc_soundcheck?format=xml"/>
 			
 					<outline text="Tacos and Chocolate Milk" name="tacosAndChocoMilk" type="rss" url="http://qn5.com/podcast/tacos_and_chocolate_milk.xml"/>
-					<outline text="Tiny Desk Concerts" name="tdc" type="rss" url="http://www.npr.org/rss/podcast.php?id=510292"/>
+					<outline text="Tiny Desk Concerts" name="tdc" type="rss" url="http://hobieu.apphb.com/api/1/rss/slim/?maxSize=10&amp;url=http://www.npr.org/rss/podcast.php?id=510292"/>
 					<outline text="ViewCharted" name="viewCharted" type="rss" url="http://feeds.feedburner.com/WhoChartedwithHowardKremer?format=xml"/>
 
 				</outline>
 				<outline text="NPR">
-					<outline text="Car Talk" name="carTalk" type="rss" url="http://www.npr.org/rss/podcast.php?id=510208"/>
+					<outline text="Car Talk" name="carTalk" type="rss" url="http://hobieu.apphb.com/api/1/rss/slim/?maxSize=10&amp;url=http://www.npr.org/rss/podcast.php?id=510208"/>
 					<outline text="Fresh Air" name="freshAir" type="rss" url="http://hobieu.apphb.com/api/1/rss/slim/?maxSize=10&amp;url=http://www.npr.org/rss/podcast.php?id=13"/>
 					<outline text="Planet Money" name="planetMoney" type="rss" url="http://hobieu.apphb.com/api/1/rss/slim/?maxSize=10&amp;url=http://www.npr.org/rss/podcast.php?id=510289"/>
-					<outline text="Sports with Frank Deford" name="sportsWithFrankDeford" type="rss" url="http://www.npr.org/rss/podcast.php?id=4499275"/>					
-					<outline text="Science Friday" name="scientFriday" type="rss" url="http://www.sciencefriday.com/audio/scifriaudio.xml"/>
+					<outline text="Sports with Frank Deford" name="sportsWithFrankDeford" type="rss" url="http://hobieu.apphb.com/api/1/rss/slim/?maxSize=10&amp;url=http://www.npr.org/rss/podcast.php?id=4499275"/>					
+					<outline text="Science Friday" name="scientFriday" type="rss" url="http://hobieu.apphb.com/api/1/rss/slim/?maxSize=10&amp;url=http://www.sciencefriday.com/audio/scifriaudio.xml"/>
 				</outline>
 				<outline text="Linux Outlaws" name="LinuxOutlaws" type="rss" url="http://feeds.feedburner.com/linuxoutlaws?format=xml"/>
 				<outline text="No Agenda" name="noAgendaPodcasts" type="rss" url="http://feed.nashownotes.com/rss.xml"/>
 				<outline text="RadioLab" name="radioLab" type="rss" url="http://feeds.wnyc.org/radiolab"/>
 				
-				<outline text="The Skeptics Guide to the Universe" name="skeptic" type="rss" url="http://www.theskepticsguide.org/feed/rss.aspx?feed=5x5"/>
+				<outline text="The Skeptics Guide to the Universe" name="skeptic" type="rss" url="http://www.theskepticsguide.org/feed/rss.aspx?feed=SGU"/>
 				<outline text="This American Life" name="tal" type="rss" url="http://feeds.feedburner.com/talpodcast?format=xml"/>
 				<outline text="World Architecture News" name="wan" type="rss" url="http://www.worldarchitecturenews.com/index.php?fuseaction=wanappln.podcastfeed"/>
 			</outline>
@@ -109,7 +109,7 @@
 					<outline text="The Atlantic's Blogs" language="en" type="river" name="theAtlanticBlogs" url="http://hobieu.apphb.com/s/riverjs/the-atlantics-blogs" />
 				</outline>
 				<outline text="Movies" type="river" name="moviesRiver" url="http://static.scripting.com/houston/rivers/movies/River3.js" language="en" />
-				<outline text="No Agenda" type="river" name="noagenda" url="http://s3.amazonaws.com/river.curry.com/rivers/radio2/River3.js" language="en" />
+				<outline text="No Agenda" type="river" name="noagenda" url="http://hobieu.apphb.com/api/1/rss/slim/?maxSize=10&amp;url=http://s3.amazonaws.com/river.curry.com/rivers/radio2/River3.js" language="en" />
 				<outline text="NYT" type="river" name="nyt" url="http://static.scripting.com/houston/rivers/nyt/River3.js" language="en" />
 				<outline text="Programming" language="en" name="programming" type="river" url="http://hobieu.apphb.com/s/riverjs/programming"/>
 				<outline text="Podcasts" type="river" name="podcastRiver" url="http://static.scripting.com/podcastriver/River3.js" language="en" />
