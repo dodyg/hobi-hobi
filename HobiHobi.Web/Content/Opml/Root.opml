@@ -96,8 +96,51 @@
 				</outline>
 				<outline text="Tech Meme" type="river" name="tech" url="http://static.scripting.com/houston/rivers/techmeme/River3.js" language="en"/>
 			</outline>
-		
-		
+			<outline text="Auto Straddle" name="autoStraddle" type="rss" url="http://feeds.feedburner.com/Autostraddle?format=xml" />
+			<outline text="The American Scene" name="theAmericanScene" type="rss" url="http://theamericanscene.com/rss/?section=Main"/>
+			<outline text="The Awl" name="theAwl" type="rss" url="http://feeds.feedburner.com/TheAwl?format=xml"/>
+			<outline text="Brain Pickings(Maria Popova)" name="brainPickings" type="rss" url="http://feeds.feedburner.com/brainpickings/rss?format=xml"/>
+			<outline text="Calculated Risk" name="calculatedRisk" type="rss" url="http://feeds.feedburner.com/CalculatedRisk" />
+			<outline text="Daring Fireball" name="daringFireball" type="rss" url="http://daringfireball.net/index.xml"/>
+			<outline text="Dave Winer" name="daveWiner" type="rss" url="http://www.scripting.com/rss.xml" />
+			<outline text="Environment">
+				<outline text="Australian Climate Madness" name="acm" type="rss" url="http://www.australianclimatemadness.com/feed/" />
+				<outline text="Climate Audit" name="climateAudit" type="rss" url="http://climateaudit.org/feed/" />
+				<outline text="Wattsupwiththat" name="wattsupwiththat" type="rss" url="http://wattsupwiththat.com/feed/" />	
+			</outline>
+			<outline text="Fair Observer" language="en" type="rss" name="fairObserver" url="http://www.fairobserver.com/fairobserver.xml" />
+			<outline text="Fashion">
+				<outline text="Cupcakes and Cashmere" name="cupcakeAndCashmere" type="rss" url="http://feeds.feedburner.com/CupcakesAndCashmere?format=xml" />
+			</outline>
+			<outline text="Finance/Investment">
+				<outline text="Asymco" name="asymco" type="rss" url="http://feeds.feedburner.com/Asymco" />
+				<outline text="Felix Salmon" name="felixSalmon" type="rss" url="http://feeds.reuters.com/reuters/blogs/felix-salmon?format=xml" />
+			</outline>
+			<outline text="Food">
+				<outline text="Adventure of Kitchen Ninja" name="akn" type="rss" url="http://yankee-kitchen-ninja.blogspot.com/feeds/posts/default
+" />
+			</outline>
+			<outline text="Kottke" name="kottke" type="rss" url="http://feeds.kottke.org/main" />
+			<outline text="Latin America">
+				<outline text="Banana Skin Flipflops" name="bsf" type="rss" url="http://bananaskinflipflops.com/feed/" />
+			</outline>	
+			<outline text="Link Blogs ">
+				<outline text="Dave Winer" name="daveWiner" type="rss" url="http://links.scripting.com/rss.xml"/>
+				<outline text="Sugarcubes" type="rss" url="http://static.storyblogging.org/sugarcubes/admin/linkblog.xml"/>
+			</outline>
+			<outline text="Living">
+				<outline text="Down to Earth" name="downToEarth" type="rss" url="http://feeds.feedburner.com/blogspot/ZCHPL?format=xml" />
+				<outline text="Zen Habits" name="zenHabits" type="rss" url="http://feeds.feedburner.com/zenhabits?format=xml" />	
+			</outline>
+			<outline text="Middle East">
+				<outline text="The Arabist" name="arabist" type="rss" url="http://feeds.feedburner.com/arabistdotnet" />
+				<outline text="Informed Comment(Juan Cole)" name="juanCole" type="rss" url="http://feeds.feedburner.com/juancole/ymbn?format=xml" />
+			</outline>		
+			<outline text="Occupy Wall Street" name="occupyWallStreet" type="rss" url="http://occupywallst.org/rss/news/" />				
+			<outline text="Rough Type(Nicholas Carr)" name="roughType" type="rss" url="http://www.roughtype.com/?feed=rss2" />
+				
+			<outline text="UN Dispatch" name="unDispatch" type="rss" url="http://www.undispatch.com/feed/rss" />	
+			<outline text="UN Job List" name="unDispatch" type="rss" url="http://unjoblist.org/lists/organisation/newjobs/feed" />	
 			<outline text="Wire Service">
 				<outline text="ABC Australia" type="rss" url="http://www.abc.net.au/news/feed/51120/rss.xml" />
 				<outline text="AP" type="rss" url="http://hosted2.ap.org/atom/APDEFAULT/3d281c11a96b4ad082fe88aa0db04305" />
@@ -111,60 +154,6 @@
 				<outline text="Xinhua" type="rss" url="http://www.xinhuanet.com/english/rss/worldrss.xml" />
 				<outline text="WSJ Market" type="rss" url="http://online.wsj.com/xml/rss/3_7031.xml" />
 			</outline>
-
-			<outline text="Link Blogs ">
-				<outline text="Dave Winer" name="daveWiner" type="rss" url="http://links.scripting.com/rss.xml"/>
-				<outline text="Sugarcubes" type="rss" url="http://static.storyblogging.org/sugarcubes/admin/linkblog.xml"/>
-			</outline>
-
-
-			<outline text="Auto Straddle" name="autoStraddle" type="rss" url="http://feeds.feedburner.com/Autostraddle?format=xml" />
-			<outline text="The American Scene" name="theAmericanScene" type="rss" url="http://theamericanscene.com/rss/?section=Main"/>
-			<outline text="The Awl" name="theAwl" type="rss" url="http://feeds.feedburner.com/TheAwl?format=xml"/>
-			<outline text="Brain Pickings(Maria Popova)" name="brainPickings" type="rss" url="http://feeds.feedburner.com/brainpickings/rss?format=xml"/>
-			<outline text="Calculated Risk" name="calculatedRisk" type="rss" url="http://feeds.feedburner.com/CalculatedRisk" />
-			<outline text="Dave Winer" name="daveWiner" type="rss" url="http://www.scripting.com/rss.xml" />
-			<outline text="Daring Fireball" name="daringFireball" type="rss" url="http://daringfireball.net/index.xml"/>
-			<outline text="Environment">
-				<outline text="Australian Climate Madness" name="acm" type="rss" url="http://www.australianclimatemadness.com/feed/" />
-				<outline text="Climate Audit" name="climateAudit" type="rss" url="http://climateaudit.org/feed/" />
-				<outline text="Wattsupwiththat" name="wattsupwiththat" type="rss" url="http://wattsupwiththat.com/feed/" />	
-			</outline>
-			<outline text="Fair Observer" language="en" type="rss" name="fairObserver" url="http://www.fairobserver.com/fairobserver.xml" />
-			<outline text="Fashion">
-				<outline text="Cupcakes and Cashmere" name="cupcakeAndCashmere" type="rss" url="http://feeds.feedburner.com/CupcakesAndCashmere?format=xml" />
-			</outline>
-			<outline text="Felix Salmon" name="felixSalmon" type="rss" url="http://feeds.reuters.com/reuters/blogs/felix-salmon?format=xml" />
-			<outline text="Finance/Investment">
-				<outline text="Asymco" name="asymco" type="rss" url="http://feeds.feedburner.com/Asymco" />
-			</outline>
-			<outline text="Food">
-				<outline text="Adventure of Kitchen Ninja" name="akn" type="rss" url="http://yankee-kitchen-ninja.blogspot.com/feeds/posts/default
-" />
-			</outline>
-			<outline text="Kottke" name="kottke" type="rss" url="http://feeds.kottke.org/main" />
-
-			<outline text="Latin America">
-				<outline text="Banana Skin Flipflops" name="bsf" type="rss" url="http://bananaskinflipflops.com/feed/" />
-			</outline>	
-
-			<outline text="Living">
-				<outline text="Down to Earth" name="downToEarth" type="rss" url="http://feeds.feedburner.com/blogspot/ZCHPL?format=xml" />
-				<outline text="Zen Habits" name="zenHabits" type="rss" url="http://feeds.feedburner.com/zenhabits?format=xml" />	
-			</outline>
-			<outline text="Middle East">
-				<outline text="The Arabist" name="arabist" type="rss" url="http://feeds.feedburner.com/arabistdotnet" />
-				<outline text="Informed Comment(Juan Cole)" name="juanCole" type="rss" url="http://feeds.feedburner.com/juancole/ymbn?format=xml" />
-			</outline>		
-			<outline text="Occupy Wall Street" name="occupyWallStreet" type="rss" url="http://occupywallst.org/rss/news/" />				
-			<outline text="Rough Type(Nicholas Carr)" name="roughType" type="rss" url="http://www.roughtype.com/?feed=rss2" />
-			<outline text="Sports">
-				<outline text="Bloody Elbow" name="bloodyElbow" type="rss" url="http://feeds.feedburner.com/sportsblogs/bloodyelbow?format=xml" />	
-			</outline>	
-
-			<outline text="UN Dispatch" name="unDispatch" type="rss" url="http://www.undispatch.com/feed/rss" />	
-			<outline text="UN Job List" name="unDispatch" type="rss" url="http://unjoblist.org/lists/organisation/newjobs/feed" />	
-					
 			<outline text="World Outlines">
 				<outline text="Adam Curry" name="adamCurry" type="include" url="http://blog.curry.com/toc.opml"/>
 				<outline text="Dave Winer" name="daveWiner" type="include" url="http://scripting.com/toc.opml"/>
