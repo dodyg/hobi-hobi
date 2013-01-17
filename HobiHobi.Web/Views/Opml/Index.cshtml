@@ -184,13 +184,22 @@
 		                                        if (val != null)
 		                                            $(obj).attr({ type: 'include', url: val });
 		                                    }
-		                                }                           }
+		                                },
+		                                include: {
+		                                    label: "Link",
+		                                    action: function (obj) {
+		                                        var val = window.prompt("URL", "http://");
+		                                        if (val != null)
+		                                            $(obj).attr({ type: 'link', url: val });
+		                                    }
+		                                }
+		                            }
 		                        },
 		                        attribute: {
 		                            label: "Add Attribute",
 		                            action: function (obj) {
-		                                var val = window.prompt("Enter attribute", "name:value");
-		                                res = val.split(':');
+		                                var val = window.prompt("Enter attribute", "name::value");
+		                                res = val.split('::');
 		                                if (res.length < 2) {
 		                                    alert('invalid value');
 		                                    return;
