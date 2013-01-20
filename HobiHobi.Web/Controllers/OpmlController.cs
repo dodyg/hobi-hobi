@@ -51,8 +51,9 @@ namespace HobiHobi.Web.Controllers
         {
             if (!id.IsNullOrWhiteSpace())
             {
-                var edit = CookieMonster.GetFromCookie<TransientAccount>(Request.Cookies[TransientAccount.COOKIE_NAME]);
                 var doc = this.RavenSession.Load<EditorDocument>(id);
+                
+                //new document
                 if (doc == null && !view)
                 {
                     doc = new EditorDocument
@@ -65,15 +66,21 @@ namespace HobiHobi.Web.Controllers
                             }
                         }
                     };
+
+                    return Content(ConvertToJson(doc), "application/json");
                 }
+                
+                //editing a document
+                var edit = CookieMonster.GetFromCookie<TransientAccount>(Request.Cookies[TransientAccount.COOKIE_NAME]);
+                var isUserAllowedToEdit = edit.IsFound && edit.Item.IsOpmlFound(id);
+                var isDocumentForPrivateOnly = view && !doc.IsPublic;
+
+                if (isDocumentForPrivateOnly)
+                    return Content(null, "application/json");
+                else if (!isUserAllowedToEdit)
+                    return Content(null, "application/json");
                 else
-                    if (!edit.IsFound || !edit.Item.IsOpmlFound(id))
-                        return Content(null, "application/json");
-                    else if (view && !doc.IsPublic)
-                        return Content(null, "application/json");
-
-
-                return Content(ConvertToJson(doc), "application/json");
+                    return Content(ConvertToJson(doc), "application/json");
             }
             else
                 return HttpNotFound();
