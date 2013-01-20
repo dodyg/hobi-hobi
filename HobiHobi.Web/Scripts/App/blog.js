@@ -10,7 +10,6 @@ var MessageType;
     MessageType._map[3] = "WARNING";
     MessageType.WARNING = 3;
 })(MessageType || (MessageType = {}));
-
 var UserMessage = (function () {
     function UserMessage(Message, Type) {
         this.Message = Message;

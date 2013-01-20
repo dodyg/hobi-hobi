@@ -153,6 +153,12 @@
 				<outline text="Dave Winer" name="daveWiner" type="rss" url="http://links.scripting.com/rss.xml"/>
 				<outline text="Sugarcubes" type="rss" url="http://static.storyblogging.org/sugarcubes/admin/linkblog.xml"/>
 			</outline>
+			<outline text="Literary">
+				<!--
+				<outline text="" name="" type="rss" url=""/>
+				-->
+				<outline text="Maud Newton" name="maudNewton" type="rss" url="http://maudnewton.com/blog/?feed=rss2"/>
+			</outline>
 			<outline text="Living">
 				<outline text="Down to Earth" name="downToEarth" type="rss" url="http://feeds.feedburner.com/blogspot/ZCHPL?format=xml" />
 				<outline text="Zen Habits" name="zenHabits" type="rss" url="http://feeds.feedburner.com/zenhabits?format=xml" />	

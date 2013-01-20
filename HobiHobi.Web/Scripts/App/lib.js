@@ -5,4 +5,3 @@ var common;
     }
     common.say = say;
 })(common || (common = {}));
-
