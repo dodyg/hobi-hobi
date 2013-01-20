@@ -75,12 +75,12 @@
 
 /* Page styling */
 .jstree-rename-input { width: 600px !important; height: 300px !important; }
-#demo1 li {
+#opmlDocument li {
 	font-size: 18px;
 	line-height: 22px;
 }
 
-#demo1 li a {
+#opmlDocument li a {
     display: inline-table;
     white-space: pre;
     white-space: pre-wrap;

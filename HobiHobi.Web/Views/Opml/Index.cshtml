@@ -1,13 +1,10 @@
-﻿@{
-    Layout = null;
+﻿
+@{
+    ViewBag.Title = "OPML Editor";
+    Layout = "~/Views/Shared/_Opml.cshtml";
 }
 
-<!DOCTYPE html>
-<html>
-	<head>
-		@*<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>*@
-        <link href="/site/css/@HobiHobi.Web.MvcApplication.CommonCssTag" rel="stylesheet" type="text/css" />
-        <script src="/site/js/@HobiHobi.Web.MvcApplication.CommonJsTag" type="text/javascript"></script>
+@section HeadInline{
 		<script type="text/javascript" src="/scripts/jquery.jstree.js"></script>
 		<script type="text/javascript" src="/scripts/jquery.hotkeys.js"></script>
         
@@ -18,42 +15,41 @@
 			li[type=river] a { background-color: blue !important; }
 			li[type=include] a { background-color: silver !important; }
 		</style>
-	</head>
-	<body>
-        <div class="container">
-            <h1>OPML Editor</h1>
-            <a href="/opml/xml/@Request.QueryString["id"]"><img src="/Images/xmlIcon2.gif" /></a>
-            <br /><br />
-			<a href="#" id="collapse">Show Head Data</a>
-			<div id="headData" style="display: none">
-				<input type="text" id="title" placeholder="Title" /><br />
-				<input type="text" id="ownerName" placeholder="Owner Name" /><br />
-				<input type="text" id="ownerEmail" placeholder="Onwer Email" /><br />
-				<input type="text" id="ownerId" placeholder="Owner Url" /><br />
-				<input type="checkbox" id="isPublic" checked="checked" /> <span>Is Public?</span>
-			</div>
-		    <div id="demo1" class="demo">
-		    </div>
-            <br />
-		    <input type="button" class="btn btn-primary" value="Save" onclick="saveJson()" />
-			<form action="/opml/UploadOpml/" id="uploadForm" method="post" enctype="multipart/form-data">
-				<input type="file" name="file" />
-				<input type="submit" value="Upload" />
-			</form>
-        </div>
-        <div id="modal-attributes-dialog" class="modal hide fade">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h3>Attributes</h3>
-            </div>
-            <div id="modal-body" class="modal-body">
+}
+
+<h1>OPML Editor</h1>
+<a href="/opml/xml/@Request.QueryString["id"]"><img src="/Images/xmlIcon2.gif" /></a>
+<br /><br />
+<a href="#" id="collapse">Show Head Data</a>
+<div id="headData" style="display: none">
+	<input type="text" id="title" placeholder="Title" /><br />
+	<input type="text" id="ownerName" placeholder="Owner Name" /><br />
+	<input type="text" id="ownerEmail" placeholder="Onwer Email" /><br />
+	<input type="text" id="ownerId" placeholder="Owner Url" /><br />
+	<input type="checkbox" id="isPublic" checked="checked" /> <span>Is Public?</span>
+</div>
+<div id="opmlDocument" class="demo">
+</div>
+<br />
+<input type="button" class="btn btn-primary" value="Save" onclick="saveJson()" />
+<form action="/opml/UploadOpml/" id="uploadForm" method="post" enctype="multipart/form-data">
+	<input type="file" name="file" />
+	<input type="submit" value="Upload" />
+</form>
+
+<div id="modal-attributes-dialog" class="modal hide fade">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h3>Attributes</h3>
+    </div>
+    <div id="modal-body" class="modal-body">
                 
-            </div>
-            <div class="modal-footer">
-                <a href="#" class="btn btn-primary" data-dismiss="modal">Close</a>
-            </div>
-        </div>
-	</body>
+    </div>
+    <div class="modal-footer">
+        <a href="#" class="btn btn-primary" data-dismiss="modal">Close</a>
+    </div>
+</div>
+
 	<script type="text/javascript">
 	    jQuery.fn.removeAttributes = function() {
 	        return this.each(function() {
@@ -108,7 +104,7 @@
 		    });
 
 		    function displayTree(treeData) {
-		        $('#demo1').jstree({
+		        $('#opmlDocument').jstree({
 		            json_data: {
 		                data: treeData
 		            },
@@ -135,7 +131,7 @@
 		                        this.remove();
 		                    var children = $.jstree._focused()._get_children(-1);
 		                    if (children.length == 0)
-		                        $.jstree._focused().create('#demo1 ul', "after", { data: "Edit Here!!" }, null, false);
+		                        $.jstree._focused().create('#opmlDocument ul', "after", { data: "Edit Here!!" }, null, false);
 		                },
 		                'return': function () {
 		                    $.jstree._focused().create(null, "after", { data: "Edit Here!!" }, null, false);
@@ -284,4 +280,3 @@
 		    $(elem).parent().parent().remove();
 		}
 	</script>
-</html>

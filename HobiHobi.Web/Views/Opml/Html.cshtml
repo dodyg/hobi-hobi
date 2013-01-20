@@ -1,13 +1,10 @@
-﻿@{
-    Layout = null;
+﻿
+@{
+    ViewBag.Title = "OPML Editor";
+    Layout = "~/Views/Shared/_Opml.cshtml";
 }
 
-<!DOCTYPE html>
-<html>
-	<head>
-		@*<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>*@
-        <link href="/site/css/@HobiHobi.Web.MvcApplication.CommonCssTag" rel="stylesheet" type="text/css" />
-        <script src="/site/js/@HobiHobi.Web.MvcApplication.CommonJsTag" type="text/javascript"></script>
+@section HeadInline{
 		<script type="text/javascript" src="/scripts/jquery.jstree.js"></script>
 		<script type="text/javascript" src="/scripts/jquery.hotkeys.js"></script>
         
@@ -18,51 +15,47 @@
 			li[type=river] a { background-color: blue !important; }
 			li[type=include] a { background-color: silver !important; }
 		</style>
-	</head>
-	<body>
-        <div class="container">
-            <h1>OPML</h1>
-            <a href="#" id="xml"><img src="/Images/xmlIcon2.gif" /></a>
-            <br /><br />
-			<div>
-				<label>Title: <span id="title"></span></label>
-				<label>Owner Name: <span id="ownerName"></span></label>
-				<label>Onwer Email: <span id="ownerEmail"></span></label>
-				<label>Owner Url: <span id="ownerId"></span></label>
-			</div>
-		    <div id="demo1" class="demo">
-		    </div>
-        </div>
-	</body>
+}
 
-	<script type="text/javascript">
-	    $(function () {
-	    	var id = document.URL.match(/\/([^\/]*)$/g);
-	    	$.getJSON('/opml/getdocument/' + id, { view: true }, function (data) {
-	    		if (data == null)
-	    			return alert("Document Inaccessable");
-		    	displayTree(data.body);
-		    	$('#title').text(data.title);
-		    	$('h1:first').html(data.title);
-		    	$('#ownerName').text(data.ownername);
-		    	$('#ownerEmail').text(data.owneremail);
-		    	$('#ownerId').text(data.ownerid);
-		    	$('#xml').attr('href', '/opml/xml/' + id);
-		    });
+<h1>OPML</h1>
+<a href="#" id="xml"><img src="/Images/xmlIcon2.gif" /></a>
+<br /><br />
+<div>
+	<label>Title: <span id="title"></span></label>
+	<label>Owner Name: <span id="ownerName"></span></label>
+	<label>Onwer Email: <span id="ownerEmail"></span></label>
+	<label>Owner Url: <span id="ownerId"></span></label>
+</div>
+<div id="opmlDocument" class="demo">
+</div>
 
-		    function displayTree(treeData) {
-		        $('#demo1').jstree({
-		            json_data: {
-		                data: treeData
-		            },
-		            plugins: ["themes", "json_data", "ui"],
-		            themes: {
-		                theme: "default",
-		                dots: false,
-		                icons: false
-		            }
-		        });
-		    }
+<script type="text/javascript">
+	$(function () {
+	    var id = document.URL.match(/\/([^\/]*)$/g);
+	    $.getJSON('/opml/getdocument/' + id, { view: true }, function (data) {
+	    	if (data == null)
+	    		return alert("Document Inaccessable");
+		    displayTree(data.body);
+		    $('#title').text(data.title);
+		    $('h1:first').html(data.title);
+		    $('#ownerName').text(data.ownername);
+		    $('#ownerEmail').text(data.owneremail);
+		    $('#ownerId').text(data.ownerid);
+		    $('#xml').attr('href', '/opml/xml/' + id);
 		});
-	</script>
-</html>
+
+		function displayTree(treeData) {
+		    $('#opmlDocument').jstree({
+		        json_data: {
+		            data: treeData
+		        },
+		        plugins: ["themes", "json_data", "ui"],
+		        themes: {
+		            theme: "default",
+		            dots: false,
+		            icons: false
+		        }
+		    });
+		}
+	});
+</script>
