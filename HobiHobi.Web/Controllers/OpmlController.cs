@@ -119,7 +119,7 @@ namespace HobiHobi.Web.Controllers
                 init.OpmlGuids.Add(doc.Id);
                 Response.Cookies.Add(CookieMonster.SetCookie(init, TransientAccount.COOKIE_NAME));
             }
-            else
+            else if (!transient.Item.IsOpmlFound(doc.Id))//if it's not already in the user account
             {
                 transient.Item.OpmlGuids.Add(doc.Id);
                 Response.Cookies.Add(CookieMonster.SetCookie(transient.Item, TransientAccount.COOKIE_NAME));
