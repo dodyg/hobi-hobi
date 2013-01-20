@@ -1,5 +1,6 @@
 ﻿using HobiHobi.Core.Framework;
 using HobiHobi.Core.Identity;
+using HobiHobi.Core.Utils;
 using HobiHobi.Core.ViewModels;
 using System;
 using System.Linq;
@@ -114,6 +115,28 @@ namespace HobiHobi.Web.Controllers
             FormsAuthentication.SignOut();
             this.FlashSuccess(Local.Identity.Logout.MsgLogout);
             return RedirectToAction("Index", "Home");
+        }
+
+        [HttpGet]
+        public ActionResult RinseAccount()
+        {
+            var transient = CookieMonster.GetFromCookie<TransientAccount>(Request.Cookies[TransientAccount.COOKIE_NAME]);
+            if (transient.IsFound)
+            {
+                var account = new TransientAccount();
+                account.RiverGuids.AddRange(transient.Item.RiverGuids.Distinct());
+                account.SyndicationGuids.AddRange(transient.Item.SyndicationGuids.Distinct());
+                account.BlogGuids.AddRange(transient.Item.BlogGuids.Distinct());
+                account.OpmlGuids.AddRange(transient.Item.OpmlGuids.Distinct());
+                account.DateCreated = transient.Item.DateCreated;
+                account.LastModified = DateTime.UtcNow;
+                Response.Cookies.Add(CookieMonster.SetCookie(account, TransientAccount.COOKIE_NAME));
+                return Content("Account has been rinsed");
+            }
+            else
+            {
+                return Content("There is no transient account to rinse");
+            }
         }
     }
 }
