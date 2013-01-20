@@ -12,7 +12,7 @@ namespace HobiHobi.Core.Identity
     public class TransientAccount
     {
         public const string COOKIE_NAME = "TransientAccountInfo";
- 
+
         public List<string> RiverGuids { get; set; }
         public List<string> SyndicationGuids { get; set; }
         public List<string> BlogGuids { get; set; }
@@ -48,6 +48,11 @@ namespace HobiHobi.Core.Identity
         public bool IsOpmlFound(string guid)
         {
             return OpmlGuids.Any(x => x == guid);
+        }
+
+        public void MarkUpdated()
+        {
+            LastModified = DateTime.UtcNow;
         }
     }
 }

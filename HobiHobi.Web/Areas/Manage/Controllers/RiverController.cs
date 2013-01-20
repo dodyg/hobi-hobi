@@ -181,11 +181,13 @@ namespace HobiHobi.Web.Areas.Manage.Controllers
             {
                 var init = new TransientAccount();
                 init.RiverGuids.Add(wall.Guid);
+                init.MarkUpdated();
                 Response.Cookies.Add(CookieMonster.SetCookie(init, TransientAccount.COOKIE_NAME));
             }
             else
             {
                 transient.Item.RiverGuids.Add(wall.Guid);
+                transient.Item.MarkUpdated();
                 Response.Cookies.Add(CookieMonster.SetCookie(transient.Item, TransientAccount.COOKIE_NAME));
             }
 

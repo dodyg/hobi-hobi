@@ -123,11 +123,13 @@ namespace HobiHobi.Web.Controllers
             {
                 var init = new TransientAccount();
                 init.OpmlGuids.Add(doc.Id);
+                init.MarkUpdated();
                 Response.Cookies.Add(CookieMonster.SetCookie(init, TransientAccount.COOKIE_NAME));
             }
             else if (!transient.Item.IsOpmlFound(doc.Id))//if it's not already in the user account
             {
                 transient.Item.OpmlGuids.Add(doc.Id);
+                transient.Item.MarkUpdated();
                 Response.Cookies.Add(CookieMonster.SetCookie(transient.Item, TransientAccount.COOKIE_NAME));
             }
 
@@ -156,12 +158,14 @@ namespace HobiHobi.Web.Controllers
         [HttpPost]
         public ActionResult UploadOpml(string id, HttpPostedFileBase file)
         {
-            System.IO.StreamReader stream = new System.IO.StreamReader(file.InputStream);
+            var stream = new System.IO.StreamReader(file.InputStream);
             string x = stream.ReadToEnd();
-            Opml opmlFile = new Opml();
+            var opmlFile = new Opml();
             opmlFile.LoadFromXML(x);
-            EditorDocument doc = new EditorDocument();
+            
+            var doc = new EditorDocument();
             doc.FromOpml(id, opmlFile);
+           
             this.RavenSession.Store(doc);
             this.RavenSession.SaveChanges();
             return Redirect("/opml?id=" + id);

@@ -37,11 +37,13 @@ namespace HobiHobi.Web.Controllers
                     {
                         var init = new TransientAccount();
                         init.SyndicationGuids.Add(list.Guid);
+                        init.MarkUpdated();
                         Response.Cookies.Add(CookieMonster.SetCookie(init, TransientAccount.COOKIE_NAME));
                     }
                     else //
                     {
                         edit.Item.SyndicationGuids.Add(list.Guid);
+                        edit.Item.MarkUpdated();
                         Response.Cookies.Add(CookieMonster.SetCookie(edit.Item, TransientAccount.COOKIE_NAME));
                     }
                 }

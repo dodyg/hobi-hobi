@@ -74,11 +74,13 @@ namespace HobiHobi.Web.Areas.Manage.Controllers
             {
                 var init = new TransientAccount();
                 init.BlogGuids.Add(blog.Guid);
+                init.MarkUpdated();
                 Response.Cookies.Add(CookieMonster.SetCookie(init, TransientAccount.COOKIE_NAME));
             }
             else
             {
                 transient.Item.BlogGuids.Add(blog.Guid);
+                transient.Item.MarkUpdated();
                 Response.Cookies.Add(CookieMonster.SetCookie(transient.Item, TransientAccount.COOKIE_NAME));
             }
 
