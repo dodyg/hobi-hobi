@@ -418,6 +418,9 @@
   <ItemGroup>
     <Content Include="Views\Opml\Latest.cshtml" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_Opml.cshtml" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
@@ -436,7 +439,7 @@
   </Target>
   <Target Name="TypeScriptCompile" BeforeTargets="Build" Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <Message Text="Compiling TypeScript files" />
-  <Exec Command="&quot;$(PROGRAMFILES)\Microsoft SDKs\TypeScript\0.8.1.1\tsc&quot; @(TypeScriptCompile ->'&quot;%(fullpath)&quot;', ' ')" />
+    <Exec Command="&quot;$(PROGRAMFILES)\Microsoft SDKs\TypeScript\0.8.1.1\tsc&quot; @(TypeScriptCompile ->'&quot;%(fullpath)&quot;', ' ')" />
   </Target>
   <ProjectExtensions>
     <VisualStudio>

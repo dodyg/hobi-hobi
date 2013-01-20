@@ -66,8 +66,12 @@ namespace HobiHobi.Web.Controllers
                         }
                     };
                 }
-                else if ((view && !doc.IsPublic) || (!view && (!edit.IsFound || !edit.Item.IsOpmlFound(id))))
-                    return Content(null, "application/json");
+                else
+                    if (!edit.IsFound || !edit.Item.IsOpmlFound(id))
+                        return Content(null, "application/json");
+                    else if (view && !doc.IsPublic)
+                        return Content(null, "application/json");
+
 
                 return Content(ConvertToJson(doc), "application/json");
             }
@@ -83,7 +87,7 @@ namespace HobiHobi.Web.Controllers
             var outlines = ConvertFromJson<EditorDocument>(data);
 
             if (outlines == null)
-                throw new ApplicationException("outlines cannot be null");
+                throw new ApplicationException("Outlines cannot be null");
 
             var doc = this.RavenSession.Load<EditorDocument>(id);
             if (doc == null)
