@@ -76,9 +76,15 @@ namespace HobiHobi.Web.Controllers
                 var isDocumentForPrivateOnly = view && !doc.IsPublic;
 
                 if (isDocumentForPrivateOnly)
+                {
+                    Response.AddHeader("x-error", "Document for private only");
                     return Content(null, "application/json");
+                }
                 else if (!isUserAllowedToEdit)
+                {
+                    Response.AddHeader("x-error", "User is not allowed to edit");
                     return Content(null, "application/json");
+                }
                 else
                     return Content(ConvertToJson(doc), "application/json");
             }
