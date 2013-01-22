@@ -131,6 +131,7 @@
 				<outline text="de zeen Magazine" name="deZeen" type="rss" url="http://feeds.feedburner.com/dezeen?format=xml"/>
 				<outline text="Eikongraphia" name="eikongraphia" type="rss" url="http://www.eikongraphia.com/?feed=rss2"/>
 			</outline>
+			<outline text="Ask The Pilot" name="askThePilot" type="rss" url="http://www.askthepilot.com/feed/"/>
 			<outline text="Auto Straddle" name="autoStraddle" type="rss" url="http://feeds.feedburner.com/Autostraddle?format=xml" />
 			<outline text="The American Scene" name="theAmericanScene" type="rss" url="http://theamericanscene.com/rss/?section=Main"/>
 			<outline text="The Awl" name="theAwl" type="rss" url="http://feeds.feedburner.com/TheAwl?format=xml"/>
@@ -189,6 +190,7 @@
 				<outline text="Rock, Paper, Shotgun" name="rockPaperShotgun" type="rss" url="http://feeds.feedburner.com/RockPaperShotgun?format=xml"/>
 				<outline text="Wonderland" name="wonderland" type="rss" url="http://feeds.feedburner.com/Wonderland"/>
 			</outline>
+			<outline text="Gaping Void" name="gapingVoid" type="rss" url="http://gapingvoid.com/feed/"/>
 			<outline text="IKEA Hackers" name="ikeaHacker" type="rss" url="http://feeds.feedburner.com/Ikeahacker"/>
 			<outline text="Kottke" name="kottke" type="rss" url="http://feeds.kottke.org/main" />
 			<outline text="Latin America">
@@ -199,9 +201,7 @@
 				<outline text="Sugarcubes" type="rss" url="http://static.storyblogging.org/sugarcubes/admin/linkblog.xml"/>
 			</outline>
 			<outline text="Literary">
-				<!--
-				<outline text="" name="" type="rss" url=""/>
-				-->
+				<outline text="Letters of Note" name="lettersOfNote" type="rss" url="http://feeds.feedburner.com/LettersOfNote?format=xml"/>
 				<outline text="Maud Newton" name="maudNewton" type="rss" url="http://maudnewton.com/blog/?feed=rss2"/>
 			</outline>
 			<outline text="Living">
@@ -217,7 +217,7 @@
 			</outline>
 			<outline text="Occupy Wall Street" name="occupyWallStreet" type="rss" url="http://occupywallst.org/rss/news/" />				
 			<outline text="Rough Type(Nicholas Carr)" name="roughType" type="rss" url="http://www.roughtype.com/?feed=rss2" />
-				
+			<outline text="Seth Godin" name="sethGodin" type="rss" url="http://feeds.feedburner.com/typepad/sethsmainblog"/>	
 			<outline text="UN Dispatch" name="unDispatch" type="rss" url="http://www.undispatch.com/feed/rss" />	
 			<outline text="UN Job List" name="unDispatch" type="rss" url="http://unjoblist.org/lists/organisation/newjobs/feed" />	
 			<outline text="Wire Service">
