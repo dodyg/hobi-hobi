@@ -44,8 +44,9 @@
 
 				<outline text="An outline that ends with ~ sign will retrieve a river of news"/>
 
-				<outline text="An outline that end  with :: will open that particular RSS feed"/>
+				<outline text="An outline that ends with :: will open that particular RSS feed"/>
 
+				<outline text="An outline that ends with * will open a browser" />
 			</outline>
 
 			<outline text="If you long press to an ordinary outline, it will zoom into that outline include all the sub outlines beneath it"/>
@@ -56,6 +57,7 @@
 
 		<outline text="English">
 			<outline text="Podcasts">
+				<outline text="BBC - From Our Own Correspondent" name="BBC-FOOC" type="rss" url="http://downloads.bbc.co.uk/podcasts/radio4/fooc/rss.xml"/>
 				<outline text="Comedy">
 					<outline text="Friday Night Comedy" name="fridayNightComedy" type="rss" url="http://downloads.bbc.co.uk/podcasts/radio4/fricomedy/rss.xml"/>
 				</outline>
@@ -128,6 +130,11 @@
 			<outline text="Calculated Risk" name="calculatedRisk" type="rss" url="http://feeds.feedburner.com/CalculatedRisk" />
 			<outline text="Daring Fireball" name="daringFireball" type="rss" url="http://daringfireball.net/index.xml"/>
 			<outline text="Dave Winer" name="daveWiner" type="rss" url="http://www.scripting.com/rss.xml" />
+			<outline text="Economics/Finance/Investment">
+				<outline text="Asymco" name="asymco" type="rss" url="http://feeds.feedburner.com/Asymco" />
+				<outline text="Deal Breaker" name="dealBreaker" type="rss" url="http://feeds.feedburner.com/dealbreaker?format=xml"/>
+				<outline text="Felix Salmon" name="felixSalmon" type="rss" url="http://feeds.reuters.com/reuters/blogs/felix-salmon?format=xml" />
+			</outline>
 			<outline text="Environment">
 				<outline text="Australian Climate Madness" name="acm" type="rss" url="http://www.australianclimatemadness.com/feed/" />
 				<outline text="Climate Audit" name="climateAudit" type="rss" url="http://climateaudit.org/feed/" />
@@ -137,13 +144,19 @@
 			<outline text="Fashion">
 				<outline text="Cupcakes and Cashmere" name="cupcakeAndCashmere" type="rss" url="http://feeds.feedburner.com/CupcakesAndCashmere?format=xml" />
 			</outline>
-			<outline text="Finance/Investment">
-				<outline text="Asymco" name="asymco" type="rss" url="http://feeds.feedburner.com/Asymco" />
-				<outline text="Felix Salmon" name="felixSalmon" type="rss" url="http://feeds.reuters.com/reuters/blogs/felix-salmon?format=xml" />
-			</outline>
 			<outline text="Food">
 				<outline text="Adventure of Kitchen Ninja" name="akn" type="rss" url="http://yankee-kitchen-ninja.blogspot.com/feeds/posts/default
 " />
+				<outline text="Pioneer Woman Cooks" name="pioneerWomanCooks" type="rss" url="http://feeds.feedburner.com/pwcooks?format=xml"/>
+				<outline text="Simply Recipes" name="simplyRecipes" type="rss" url="http://feeds.feedburner.com/elise/simplyrecipes"/>
+			</outline>
+			<outline text="Games">
+				<outline text="Game People" name="gamePeople" type="rss" url="http://feeds.feedburner.com/GamePeopleUK?format=xml"/>
+				<outline text="IGN.com" name="ignCom" type="rss" url="http://feeds.ign.com/ign/all?format=xml"/>
+				<outline text="Joystiq" name="joystiq" type="rss" url="http://www.joystiq.com/rss.xml"/>
+				<outline text="Kotaku" name="kotaku" type="rss" url="http://feeds.gawker.com/Kotaku/full"/>
+				<outline text="Rock, Paper, Shotgun" name="rockPaperShotgun" type="rss" url="http://feeds.feedburner.com/RockPaperShotgun?format=xml"/>
+				<outline text="Wonderland" name="wonderland" type="rss" url="http://feeds.feedburner.com/Wonderland"/>
 			</outline>
 			<outline text="Kottke" name="kottke" type="rss" url="http://feeds.kottke.org/main" />
 			<outline text="Latin America">
@@ -167,6 +180,9 @@
 				<outline text="The Arabist" name="arabist" type="rss" url="http://feeds.feedburner.com/arabistdotnet" />
 				<outline text="Informed Comment(Juan Cole)" name="juanCole" type="rss" url="http://feeds.feedburner.com/juancole/ymbn?format=xml" />
 			</outline>		
+			<outline text="Movies">
+				<outline text="The Hollywood Reporter" name="theHollywoodReporter" type="rss" url="http://feeds.feedburner.com/thr/news"/>
+			</outline>
 			<outline text="Occupy Wall Street" name="occupyWallStreet" type="rss" url="http://occupywallst.org/rss/news/" />				
 			<outline text="Rough Type(Nicholas Carr)" name="roughType" type="rss" url="http://www.roughtype.com/?feed=rss2" />
 				
@@ -201,6 +217,7 @@
 		</outline>
 
 		<outline text="French">
+			<outline text="Le Figaro" name="leFigaro" type="rss" url="http://rss.lefigaro.fr/lefigaro/laune?format=xml"/>
 			<outline text="Marocain Nouvelles" name="marocNouvelles" type="river" url="http://hobieu.apphb.com/s/riverjs/marocain-nouvelles" language="fr" />
 		</outline>	
 			
