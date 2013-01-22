@@ -124,18 +124,18 @@
 				<outline text="Tech Meme" type="river" name="tech" url="http://static.scripting.com/houston/rivers/techmeme/River3.js" language="en"/>
 			</outline>
 			<outline text="Architecture">
+				<outline text="The Architecture Blog" name="theArchitectureBlog" type="rss" url="http://architectureblog.tumblr.com/rss"/>
 				<outline text="BLD BLOG" name="blogBlog" type="rss" url="http://bldgblog.blogspot.co.uk/atom.xml"/>
 				<outline text="Contemporist" name="contemporist" type="rss" url="http://feeds.feedburner.com/contemporist?format=xml"/>
 				<outline text="Design Observer" name="designObserver" type="rss" url="http://feeds.feedburner.com/designobserver/main?format=xml"/>
 				<outline text="de zeen Magazine" name="deZeen" type="rss" url="http://feeds.feedburner.com/dezeen?format=xml"/>
 				<outline text="Eikongraphia" name="eikongraphia" type="rss" url="http://www.eikongraphia.com/?feed=rss2"/>
-				<outline text="The Architecture Blog" name="theArchitectureBlog" type="rss" url="http://architectureblog.tumblr.com/rss"/>
-
 			</outline>
 			<outline text="Auto Straddle" name="autoStraddle" type="rss" url="http://feeds.feedburner.com/Autostraddle?format=xml" />
 			<outline text="The American Scene" name="theAmericanScene" type="rss" url="http://theamericanscene.com/rss/?section=Main"/>
 			<outline text="The Awl" name="theAwl" type="rss" url="http://feeds.feedburner.com/TheAwl?format=xml"/>
 			<outline text="Brain Pickings(Maria Popova)" name="brainPickings" type="rss" url="http://feeds.feedburner.com/brainpickings/rss?format=xml"/>
+			<outline text="The Broke Ass Bride" name="theBrokeAssBride" type="rss" url="http://feeds.feedburner.com/TheBroke-AssBride?format=xml"/>
 			<outline text="Calculated Risk" name="calculatedRisk" type="rss" url="http://feeds.feedburner.com/CalculatedRisk" />
 			<outline text="Daring Fireball" name="daringFireball" type="rss" url="http://daringfireball.net/index.xml"/>
 			<outline text="Dave Winer" name="daveWiner" type="rss" url="http://www.scripting.com/rss.xml" />
@@ -144,6 +144,28 @@
 				<outline text="Deal Breaker" name="dealBreaker" type="rss" url="http://feeds.feedburner.com/dealbreaker?format=xml"/>
 				<outline text="Felix Salmon" name="felixSalmon" type="rss" url="http://feeds.reuters.com/reuters/blogs/felix-salmon?format=xml" />
 			</outline>
+				<outline text="The Economist Print Edition">
+					<outline text="Asia" type="rss" name="Asia" url="http://www.economist.com/rss/asia_rss.xml" />
+					<outline text="Books and arts" type="rss" name="Books-and-arts" url="http://www.economist.com/rss/books_and_arts_rss.xml" />
+					<outline text="Briefings" type="rss" name="Briefings" url="http://www.economist.com/rss/briefings_rss.xml" />
+					<outline text="Britain" type="rss" name="Britain" url="http://www.economist.com/rss/britain_rss.xml" />
+					<outline text="Business" type="rss" name="Business" url="http://www.economist.com/rss/business_rss.xml" />
+					<outline text="China" type="rss" name="China" url="http://www.economist.com/rss/china_rss.xml" />
+					<outline text="Europe" type="rss" name="Europe" url="http://www.economist.com/rss/europe_rss.xml" />
+					<outline text="Finance and economics" type="rss" name="Finance-and-economics" url="http://www.economist.com/rss/finance_and_economics_rss.xml" />
+					<outline text="Indicators" type="rss" name="Indicators" url="http://www.economist.com/rss/indicators_rss.xml" />
+					<outline text="International" type="rss" name="International" url="http://www.economist.com/rss/international_rss.xml" />
+					<outline text="Letters" type="rss" name="Letters" url="http://www.economist.com/rss/letters_rss.xml" />
+					<outline text="Leaders" type="rss" name="Leaders" url="http://www.economist.com/rss/leaders_rss.xml" />
+					<outline text="Middle East and Africa" type="rss" name="Middle-East-and-Africa" url="http://www.economist.com/rss/middle_east_and_africa_rss.xml" />
+					<outline text="Obituaries" type="rss" name="Obituaries" url="http://www.economist.com/rss/obituary_rss.xml" />
+					<outline text="Science and technology" type="rss" name="Science-and-technology" url="http://www.economist.com/rss/science_and_technology_rss.xml" />
+					<outline text="Special Reports" type="rss" name="Special-Reports" url="http://www.economist.com/rss/special_reports_rss.xml" />
+					<outline text="The Americas" type="rss" name="The-Americas" url="http://www.economist.com/rss/the_americas_rss.xml" />
+					<outline text="The world this week" type="rss" name="The-world-this-week" url="http://www.economist.
+						com/rss/the_world_this_week_rss.xml" />
+					<outline text="United States" type="rss" name="United-States" url="http://www.economist.com/rss/united_states_rss.xml" />
+				</outline>
 			<outline text="Environment">
 				<outline text="Australian Climate Madness" name="acm" type="rss" url="http://www.australianclimatemadness.com/feed/" />
 				<outline text="Climate Audit" name="climateAudit" type="rss" url="http://climateaudit.org/feed/" />
