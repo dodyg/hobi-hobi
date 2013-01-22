@@ -31,7 +31,7 @@
 		</head>
 
 	<body>
-
+		<outline text="Last Updated January 22, 2013"/>
 		<outline text="Help">
 
 			<outline text="This is an outline. You can expand each outline to see what's underneath it. "/>
@@ -123,6 +123,15 @@
 				</outline>
 				<outline text="Tech Meme" type="river" name="tech" url="http://static.scripting.com/houston/rivers/techmeme/River3.js" language="en"/>
 			</outline>
+			<outline text="Architecture">
+				<outline text="BLD BLOG" name="blogBlog" type="rss" url="http://bldgblog.blogspot.co.uk/atom.xml"/>
+				<outline text="Contemporist" name="contemporist" type="rss" url="http://feeds.feedburner.com/contemporist?format=xml"/>
+				<outline text="Design Observer" name="designObserver" type="rss" url="http://feeds.feedburner.com/designobserver/main?format=xml"/>
+				<outline text="de zeen Magazine" name="deZeen" type="rss" url="http://feeds.feedburner.com/dezeen?format=xml"/>
+				<outline text="Eikongraphia" name="eikongraphia" type="rss" url="http://www.eikongraphia.com/?feed=rss2"/>
+				<outline text="The Architecture Blog" name="theArchitectureBlog" type="rss" url="http://architectureblog.tumblr.com/rss"/>
+
+			</outline>
 			<outline text="Auto Straddle" name="autoStraddle" type="rss" url="http://feeds.feedburner.com/Autostraddle?format=xml" />
 			<outline text="The American Scene" name="theAmericanScene" type="rss" url="http://theamericanscene.com/rss/?section=Main"/>
 			<outline text="The Awl" name="theAwl" type="rss" url="http://feeds.feedburner.com/TheAwl?format=xml"/>
@@ -158,6 +167,7 @@
 				<outline text="Rock, Paper, Shotgun" name="rockPaperShotgun" type="rss" url="http://feeds.feedburner.com/RockPaperShotgun?format=xml"/>
 				<outline text="Wonderland" name="wonderland" type="rss" url="http://feeds.feedburner.com/Wonderland"/>
 			</outline>
+			<outline text="IKEA Hackers" name="ikeaHacker" type="rss" url="http://feeds.feedburner.com/Ikeahacker"/>
 			<outline text="Kottke" name="kottke" type="rss" url="http://feeds.kottke.org/main" />
 			<outline text="Latin America">
 				<outline text="Banana Skin Flipflops" name="bsf" type="rss" url="http://bananaskinflipflops.com/feed/" />
