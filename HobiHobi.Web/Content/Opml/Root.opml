@@ -203,6 +203,12 @@
 			<outline text="Literary">
 				<outline text="Letters of Note" name="lettersOfNote" type="rss" url="http://feeds.feedburner.com/LettersOfNote?format=xml"/>
 				<outline text="Maud Newton" name="maudNewton" type="rss" url="http://maudnewton.com/blog/?feed=rss2"/>
+				<outline text="The Millions" name="theMillions" type="rss" url="http://feeds.feedburner.com/themillionsblog/fedw"/>
+				<outline text="The Nervous Breakdown" name="theNervousBreakdown" type="rss" url="http://www.thenervousbreakdown.com/feed/"/>
+				<outline text="The Rumpus" name="theRumpus" type="rss" url="http://therumpus.net/feed/"/>
+				<outline text="Rob Around Books" name="robAroundBooks" type="rss" url="http://feeds.feedburner.com/Robaroundbooks?format=xml"/>
+				<outline text="The Second Pass" name="theSecondPass" type="rss" url="http://thesecondpass.com/?feed=rss2"/>
+				<outline text="We who are about to die" name="weWhoAreAboutToDie" type="rss" url="http://feeds.feedburner.com/WeWhoAreAboutToDie?format=xml"/>
 			</outline>
 			<outline text="Living">
 				<outline text="Down to Earth" name="downToEarth" type="rss" url="http://feeds.feedburner.com/blogspot/ZCHPL?format=xml" />
