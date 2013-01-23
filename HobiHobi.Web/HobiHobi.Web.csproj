@@ -142,6 +142,7 @@
     <Compile Include="Areas\API\Controllers\RssController.cs" />
     <Compile Include="Areas\API\Controllers\SiteController.cs" />
     <Compile Include="Areas\API\Controllers\SamplesController.cs" />
+    <Compile Include="Areas\API\Controllers\UpdatesController.cs" />
     <Compile Include="Areas\Manage\Controllers\BlogController.cs" />
     <Compile Include="Areas\Manage\Controllers\HomeController.cs" />
     <Compile Include="Areas\Manage\Controllers\IdentityController.cs" />
