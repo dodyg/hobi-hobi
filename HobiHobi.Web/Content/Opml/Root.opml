@@ -31,7 +31,7 @@
 		</head>
 
 	<body>
-		<outline text="Last Updated January 22, 2013"/>
+		<outline text="Last Updated January 23, 2013"/>
 		<outline text="Help">
 
 			<outline text="This is an outline. You can expand each outline to see what's underneath it. "/>
@@ -70,7 +70,6 @@
 					<outline text="Rockford College Radio" name="" type="rss" url="http://www.rockfordcollegeradio.com/category/anythinggoes/feed/"/>
 					<outline text="Sound Opinions" name="soundOpinions" type="rss" url="http://feeds.feedburner.com/TheSoundOpinionsPodcast?format=xml"/>
 					<outline text="Soundcheck" name="soundCheck" type="rss" url="http://feeds.feedburner.com/wnyc_soundcheck?format=xml"/>
-			
 					<outline text="Tacos and Chocolate Milk" name="tacosAndChocoMilk" type="rss" url="http://qn5.com/podcast/tacos_and_chocolate_milk.xml"/>
 					<outline text="Tiny Desk Concerts" name="tdc" type="rss" url="http://hobieu.apphb.com/api/1/rss/slim/?maxSize=10&amp;url=http://www.npr.org/rss/podcast.php?id=510292"/>
 					<outline text="ViewCharted" name="viewCharted" type="rss" url="http://feeds.feedburner.com/WhoChartedwithHowardKremer?format=xml"/>
@@ -222,10 +221,19 @@
 				<outline text="The Hollywood Reporter" name="theHollywoodReporter" type="rss" url="http://feeds.feedburner.com/thr/news"/>
 			</outline>
 			<outline text="Occupy Wall Street" name="occupyWallStreet" type="rss" url="http://occupywallst.org/rss/news/" />				
+			<outline text="Programming">
+				<outline text="Eric Lipper" name="ericLippert" type="rss" url="http://ericlippert.com/feed/"/>
+			</outline>
 			<outline text="Rough Type(Nicholas Carr)" name="roughType" type="rss" url="http://www.roughtype.com/?feed=rss2" />
 			<outline text="Seth Godin" name="sethGodin" type="rss" url="http://feeds.feedburner.com/typepad/sethsmainblog"/>	
+			<outline text="SthgNw" name="SthgNw" type="rss" url="http://www.sthgnw.com/feed.rss"/>
 			<outline text="UN Dispatch" name="unDispatch" type="rss" url="http://www.undispatch.com/feed/rss" />	
 			<outline text="UN Job List" name="unDispatch" type="rss" url="http://unjoblist.org/lists/organisation/newjobs/feed" />	
+			<outline text="US Politics">
+				<outline text="Ezra Klein Wonkblog" name="wonkblog" type="rss" url="http://feeds.washingtonpost.com/rss/rss_ezra-klein"/>
+				<outline text="Daily Kos" name="dailyKos" type="rss" url="http://feeds.dailykos.com/dailykos/index.xml"/>
+				<outline text="Talking Points Memo" name="tpm" type="rss" url="http://feeds.feedburner.com/tpm-news?format=xml"/>
+			</outline>
 			<outline text="Wire Service">
 				<outline text="ABC Australia" type="rss" url="http://www.abc.net.au/news/feed/51120/rss.xml" />
 				<outline text="AP" type="rss" url="http://hosted2.ap.org/atom/APDEFAULT/3d281c11a96b4ad082fe88aa0db04305" />
@@ -251,7 +259,31 @@
 		</outline>
 
 		<outline text="Arabic">
+			<outline text="Crime/Accident">
+				<outline text="Shorouk News - Accident" name="shoroukNewsAccident" type="rss" url="http://shorouknews.com/egypt/accidents/rss"/>
+				<outline text="Al Masry Al Youm - Crime" name="almasryyoumcrime" type="rss" url="http://www.almasryalyoum.com/rss_feed_term/223231/rss.xml"/>
+			</outline>
 			<outline text="Egyptian News" language="ar" name="egypt" type="river" url="http://hobieu.apphb.com/s/riverjs/egypts-arabic-news"/>
+			<outline text="Movies">
+				<outline text="El Cinema" name="El Cinema" type="rss" url="http://www.elcinema.com/rss/ar/news.xml"/>
+				<outline text="Shorouk News - Cinema" name="snewscinema" type="rss" url="http://shorouknews.com/art/cinema/rss"/>
+				<outline text="Filfan" name="filfanCinema" type="rss" url="http://www.filfan.com/Home/RssFeeds?sectionId=3"/>
+			</outline>
+			<outline text="Economy">
+				<outline text="Youm7 - Economy" name="youm7" type="rss" url="http://www1.youm7.com/neweconomicrss.asp"/>	
+				<outline text="Shorouk News - Bourse" name="snewsBourse" type="rss" url="http://shorouknews.com/Economy/bourse/rss"/>
+				<outline text="Shorouk News - Market" name="snewsMarket" type="rss" url="http://shorouknews.com/Economy/market/rss"/>
+				<outline text="Al Masry Al Youm - Economy" name="almasryoum" type="rss" url="http://www.almasryalyoum.com/rss_feed_term/7/rss.xml"/>
+			</outline>
+			<outline text="Opinion">
+				<outline text="Al Masry Al Youm - Columns" name="almasryyoumop" type="rss" url="http://www.almasryalyoum.com/rss_feed_opinion/opinion_article/rss.xml"/>
+				<outline text="Shorouk News - Columns" name="shroukNews" type="rss" url="http://shorouknews.com/columns/rss"/>
+				<outline text="Tahrir News - Columns" name="tahrirNews" type="rss" url="http://tahrirnews.com/columns/rss"/>
+			</outline>
+			<outline text="Technology">
+				<outline text="Shorouk News - Hardware" name="shnewshardware" type="rss" url="http://shorouknews.com/Sci-Tech/Hardware/rss"/>
+				<outline text="Shorouk News - Communication" name="shnewscomm" type="rss" url="http://shorouknews.com/Sci-Tech/Hardware/rss"/>
+			</outline>
 		</outline>
 
 		<outline text="French">
