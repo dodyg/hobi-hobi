@@ -22,7 +22,7 @@ namespace HobiHobi.Web.Areas.API.Controllers
             feed.Description = new TextSyndicationContent("This is the update feed for Android Rivers", TextSyndicationContentKind.Plaintext);
             feed.Title = new TextSyndicationContent("Android Rivers Update Feed", TextSyndicationContentKind.Plaintext);
             feed.Items = new SyndicationItem[]{
-                Update("Android Rivers 1.02 released", 1002, 
+                Update("Android Rivers 1.02 released", 102, 
                 @"
 - Fix sorting issue that is case insensitive
                  ",
