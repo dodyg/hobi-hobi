@@ -52,6 +52,7 @@ namespace HobiHobi.Web.Areas.API.Controllers
             item.Links.Add(SyndicationLink.CreateMediaEnclosureLink(freeDownloadUrl, "application/vnd.android.package-archive", 0));
             XNamespace xs = RSS_SOFTWARE_UPDATES_EXTENSION;
             item.ElementExtensions.Add(new XElement(xs + "version", version));
+            item.ElementExtensions.Add(new XElement(xs + "platform", "android"));
             return item;
         }
     }
