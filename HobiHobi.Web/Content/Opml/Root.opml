@@ -31,7 +31,7 @@
 		</head>
 
 	<body>
-		<outline text="Last Updated January 23, 2013"/>
+		<outline text="Last Updated January 24, 2013"/>
 		<outline text="Help">
 
 			<outline text="This is an outline. You can expand each outline to see what's underneath it. "/>
@@ -107,6 +107,7 @@
 				<outline text="Magazines">
 					<outline text="Magazine Collection" language="en" type="river" name="magazines" url="http://hobieu.apphb.com/s/riverjs/magazines"/>
 					<outline text="The Economist's Blogs" language="en" type="river" name="theEconomistBlogs" url="http://hobieu.apphb.com/s/riverjs/the-economist-blogs" />
+					<outline text="The Economist Print Edition" name="theeconomistprintedition" type="river" url="http://hobieu.apphb.com/s/riverjs/the-economist-print-edition"/>
 					<outline text="The Atlantic's Blogs" language="en" type="river" name="theAtlanticBlogs" url="http://hobieu.apphb.com/s/riverjs/the-atlantics-blogs" />
 				</outline>
 				<outline text="Movies" type="river" name="moviesRiver" url="http://static.scripting.com/houston/rivers/movies/River3.js" language="en" />
@@ -145,6 +146,7 @@
 				<outline text="Felix Salmon" name="felixSalmon" type="rss" url="http://feeds.reuters.com/reuters/blogs/felix-salmon?format=xml" />
 			</outline>
 				<outline text="The Economist Print Edition">
+
 					<outline text="Asia" type="rss" name="Asia" url="http://www.economist.com/rss/asia_rss.xml" />
 					<outline text="Books and arts" type="rss" name="Books-and-arts" url="http://www.economist.com/rss/books_and_arts_rss.xml" />
 					<outline text="Briefings" type="rss" name="Briefings" url="http://www.economist.com/rss/briefings_rss.xml" />
