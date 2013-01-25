@@ -31,7 +31,7 @@
 		</head>
 
 	<body>
-		<outline text="Last Updated January 24, 2013"/>
+		<outline text="Last Updated January 25, 2013"/>
 		<outline text="Help">
 
 			<outline text="This is an outline. You can expand each outline to see what's underneath it. "/>
@@ -65,6 +65,8 @@
 				<outline text="Music">
 					<outline text="All Songs Considered" name="allSongsConsidered" type="rss" url="http://hobieu.apphb.com/api/1/rss/slim/?maxSize=10&amp;url=http://www.npr.org/rss/podcast.php?id=510019"/>
 					<outline text="Alt.Latino" name="altLatino" type="rss" url="http://hobieu.apphb.com/api/1/rss/slim/?maxSize=10&amp;url=http://www.npr.org/rss/podcast.php?id=128227577"/>
+					<outline text="The Barbican Center" name="theBarbicanCenter" type="rss" url="http://hobieu.apphb.com/api/1/rss/slim/?maxSize=10&amp;url=http://www.barbican.org.uk/flash_video_content/music/ncmpodcast.xml"/>
+					<outline text="Liverpool Acoustic" name="liverpoolAcoustic" type="rss" url="http://feeds.feedburner.com/liverpoolacousticspotlight?format=xml"/>
 					<outline text="KEXP's Music That Matters" name="kexpmtm" type="rss" url="http://feeds.kexp.org/kexp/musicthatmatters?format=xml"/>
 					<outline text="KEXP's Song of the day" name="KEXPSongoftheday" type="rss" url="http://feeds.kexp.org/kexp/songoftheday?format=xml"/>
 					<outline text="Rockford College Radio" name="" type="rss" url="http://www.rockfordcollegeradio.com/category/anythinggoes/feed/"/>
@@ -84,9 +86,12 @@
 				</outline>
 				<outline text="Linux Outlaws" name="LinuxOutlaws" type="rss" url="http://feeds.feedburner.com/linuxoutlaws?format=xml"/>
 				<outline text="No Agenda" name="noAgendaPodcasts" type="rss" url="http://feed.nashownotes.com/rss.xml"/>
-				<outline text="RadioLab" name="radioLab" type="rss" url="http://feeds.wnyc.org/radiolab"/>
-				
-				<outline text="The Skeptics Guide to the Universe" name="skeptic" type="rss" url="http://www.theskepticsguide.org/feed/rss.aspx?feed=SGU"/>
+				<outline text="Science">
+					<outline text="The Naked Scientists" name="theNakedScientists" type="rss" url="http://www.thenakedscientists.com/naked_scientists_podcast.xml"/>
+					<outline text="RadioLab" name="radioLab" type="rss" url="http://feeds.wnyc.org/radiolab"/>
+					<outline text="The Skeptics Guide to the Universe" name="skeptic" type="rss" url="http://www.theskepticsguide.org/feed/rss.aspx?feed=SGU"/>
+				</outline>
+				<outline text="Stuff You Should Know" name="sysk" type="rss" url="http://www.stuffyoushouldknow.com/podcasts/feed/"/>
 				<outline text="This American Life" name="tal" type="rss" url="http://feeds.feedburner.com/talpodcast?format=xml"/>
 				<outline text="World Architecture News" name="wan" type="rss" url="http://www.worldarchitecturenews.com/index.php?fuseaction=wanappln.podcastfeed"/>
 			</outline>
