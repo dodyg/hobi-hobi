@@ -23,7 +23,7 @@ namespace HobiHobi.Core.Syndications
         /// <returns></returns>
         public List<FeedAndSource> DownloadAll(RssSubscription subscription)
         {
-            var feeds = new List<FeedAndSource>();
+            var feeds = new SynchronizedCollection<FeedAndSource>();
 
             var tasks = new List<Task>();
 
@@ -41,7 +41,7 @@ namespace HobiHobi.Core.Syndications
 
             Task.WaitAll(tasks.ToArray());
 
-            return feeds;
+            return feeds.ToList();
         }
 
         /// <summary>
