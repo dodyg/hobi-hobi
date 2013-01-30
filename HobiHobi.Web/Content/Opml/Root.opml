@@ -62,7 +62,7 @@
 			<outline text="E15.cz - zprávy z ekonomiky, byznysu a financí" name="E15" type="rss" url="http://www.e15.cz/rss/vse"/>
 			<outline text="Halonoviny" name="halonoviny" type="rss" url="http://www.halonoviny.cz/articles/newsfeed.rss"/>
 			<outline text="Ihned" name="ihned" type="rss" url="http://ihned.cz/?p=000000_rss"/>
-			<outline text="Novinky z ČTK" name="CTK" type="rss" url="http://www.ctk.cz/rss/novinky/"/>
+			<!--<outline text="Novinky z ČTK" name="CTK" type="rss" url="http://www.ctk.cz/rss/novinky/"/>-->
 			<outline text="Pravo" name="pravo" type="rss" url="http://www.pravo.cz/pravo-rss.php"/>
 			<outline text="Reflex" name="reflex" type="rss" url="http://www.reflex.cz/rss/1444"/>
 			<outline text="Respekt" name="respekt" type="rss" url="http://respekt.ihned.cz/?p=R00000_rss"/>
