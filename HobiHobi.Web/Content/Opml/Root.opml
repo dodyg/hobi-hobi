@@ -55,6 +55,20 @@
 
 		</outline>
 
+		<outline text="Czech">
+			<outline text="Aktuálně.cz - přehled" name="actualne.cz" type="rss" url="http://aktualne.centrum.cz/feeds/rss/?photo=1"/>
+			<outline text="Czech Free Press" name="czechFreePress" type="rss" url="http://www.czechfreepress.cz/hlavni-stranka/rss.html"/>
+			<outline text="Deník Referendum" name="Denik Referendum" type="rss" url="http://feeds.feedburner.com/DenikReferendum?format=xml"/>
+			<outline text="E15.cz - zprávy z ekonomiky, byznysu a financí" name="E15" type="rss" url="http://www.e15.cz/rss/vse"/>
+			<outline text="Halonoviny" name="halonoviny" type="rss" url="http://www.halonoviny.cz/articles/newsfeed.rss"/>
+			<outline text="Ihned" name="ihned" type="rss" url="http://ihned.cz/?p=000000_rss"/>
+			<outline text="Novinky z ČTK" name="CTK" type="rss" url="http://www.ctk.cz/rss/novinky/"/>
+			<outline text="Pravo" name="pravo" type="rss" url="http://www.pravo.cz/pravo-rss.php"/>
+			<outline text="Reflex" name="reflex" type="rss" url="http://www.reflex.cz/rss/1444"/>
+			<outline text="Respekt" name="respekt" type="rss" url="http://respekt.ihned.cz/?p=R00000_rss"/>
+			<outline text="Zprávy iDNES.cz - Přehled nejnovějších událostí z domova i ze světa" name="idnes" type="rss" url="http://idnes.cz.feedsportal.com/c/34387/f/625936/index.rss"/>
+		</outline>
+
 		<outline text="English">
 			<outline text="Podcasts">
 				<outline text="BBC - From Our Own Correspondent" name="BBC-FOOC" type="rss" url="http://downloads.bbc.co.uk/podcasts/radio4/fooc/rss.xml"/>
@@ -178,6 +192,7 @@
 			<outline text="Environment">
 				<outline text="Australian Climate Madness" name="acm" type="rss" url="http://www.australianclimatemadness.com/feed/" />
 				<outline text="Climate Audit" name="climateAudit" type="rss" url="http://climateaudit.org/feed/" />
+				<outline text="Grist" name="grist" type="rss" url="http://grist.org/feed/" xmlUrl="http://grist.org/feed/"/>
 				<outline text="Wattsupwiththat" name="wattsupwiththat" type="rss" url="http://wattsupwiththat.com/feed/" />	
 			</outline>
 			<outline text="Fair Observer" language="en" type="rss" name="fairObserver" url="http://www.fairobserver.com/fairobserver.xml" />
