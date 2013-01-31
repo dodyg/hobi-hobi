@@ -31,7 +31,7 @@
 		</head>
 
 	<body>
-		<outline text="Last Updated January 30, 2013"/>
+		<outline text="Last Updated January 31, 2013"/>
 		<outline text="Help">
 
 			<outline text="This is an outline. You can expand each outline to see what's underneath it. "/>
@@ -79,6 +79,7 @@
 				<outline text="Freakonomics Radio" name="freakonomics" type="rss" url="http://feeds.feedburner.com/freakonomicsradio?format=xml"/>
 				<outline text="The European Council on Foreign Relations" name="ecfr" type="rss" url="http://hobieu.apphb.com/api/1/rss/slim/?maxSize=10&amp;url=http://ecfr.podhoster.com/rss/2501/"/>
 				<outline text="Music">
+					<outline text="AMPEd New Music Weekly" name="ampedNewMusicWeekly" type="rss" url="http://feeds.feedburner.com/ampedmp3"/>
 					<outline text="All Songs Considered" name="allSongsConsidered" type="rss" url="http://hobieu.apphb.com/api/1/rss/slim/?maxSize=10&amp;url=http://www.npr.org/rss/podcast.php?id=510019"/>
 					<outline text="Alt.Latino" name="altLatino" type="rss" url="http://hobieu.apphb.com/api/1/rss/slim/?maxSize=10&amp;url=http://www.npr.org/rss/podcast.php?id=128227577"/>
 					<outline text="The Barbican Center" name="theBarbicanCenter" type="rss" url="http://hobieu.apphb.com/api/1/rss/slim/?maxSize=10&amp;url=http://www.barbican.org.uk/flash_video_content/music/ncmpodcast.xml"/>
@@ -238,6 +239,7 @@
 				<outline text="Zen Habits" name="zenHabits" type="rss" url="http://feeds.feedburner.com/zenhabits?format=xml" />	
 			</outline>
 			<outline text="Middle East">
+				<outline text="Al Monitor" name="alMonitor" type="rss" url="http://www.al-monitor.com/pulse/home/rssfeeds/full-rss/maincontent/Al-Monitor.rss"/>
 				<outline text="The Arabist" name="arabist" type="rss" url="http://feeds.feedburner.com/arabistdotnet" />
 				<outline text="Informed Comment(Juan Cole)" name="juanCole" type="rss" url="http://feeds.feedburner.com/juancole/ymbn?format=xml" />
 			</outline>		
@@ -246,6 +248,7 @@
 			</outline>
 			<outline text="Occupy Wall Street" name="occupyWallStreet" type="rss" url="http://occupywallst.org/rss/news/" />				
 			<outline text="Programming">
+				<outline text="Cédric Beust" name="cedricBeust" type="rss" url="http://beust.com/weblog/feed/"/>
 				<outline text="Eric Lipper" name="ericLippert" type="rss" url="http://ericlippert.com/feed/"/>
 			</outline>
 			<outline text="Rough Type(Nicholas Carr)" name="roughType" type="rss" url="http://www.roughtype.com/?feed=rss2" />
