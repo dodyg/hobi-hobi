@@ -31,7 +31,7 @@
 		</head>
 
 	<body>
-		<outline text="Last Updated January 31, 2013"/>
+		<outline text="Last Updated February 4, 2013"/>
 		<outline text="Help">
 
 			<outline text="This is an outline. You can expand each outline to see what's underneath it. "/>
@@ -211,7 +211,9 @@
 				<outline text="IGN.com" name="ignCom" type="rss" url="http://feeds.ign.com/ign/all?format=xml"/>
 				<outline text="Joystiq" name="joystiq" type="rss" url="http://www.joystiq.com/rss.xml"/>
 				<outline text="Kotaku" name="kotaku" type="rss" url="http://feeds.gawker.com/Kotaku/full"/>
+				<outline text="Polygon" name="polygon" type="rss" url="http://www.polygon.com/rss/index.xml"/>
 				<outline text="Rock, Paper, Shotgun" name="rockPaperShotgun" type="rss" url="http://feeds.feedburner.com/RockPaperShotgun?format=xml"/>
+				<outline text="Space Sector" name="spaceSector" type="rss" url="http://feeds.feedburner.com/SpaceStrategyGamesWhatNext?format=xml"/>
 				<outline text="Wonderland" name="wonderland" type="rss" url="http://feeds.feedburner.com/Wonderland"/>
 			</outline>
 			<outline text="Gaping Void" name="gapingVoid" type="rss" url="http://gapingvoid.com/feed/"/>
