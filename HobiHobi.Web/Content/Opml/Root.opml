@@ -320,7 +320,7 @@
 
 		<outline text="French">
 			<outline text="Le Figaro" name="leFigaro" type="rss" url="http://rss.lefigaro.fr/lefigaro/laune?format=xml"/>
-			<outline text="Marocain Nouvelles" name="marocNouvelles" type="river" url="http://hobieu.apphb.com/s/riverjs/marocain-nouvelles" language="fr" />
+			<outline text="Nouvelles Marocaine" name="marocNouvelles" type="river" url="http://hobieu.apphb.com/s/riverjs/marocain-nouvelles" language="fr" />
 		</outline>	
 			
 		<outline text="Russian">

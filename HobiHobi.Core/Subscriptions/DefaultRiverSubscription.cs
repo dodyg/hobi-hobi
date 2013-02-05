@@ -98,7 +98,7 @@ namespace HobiHobi.Core.Subscriptions
 
             river.Items.Add(new RiverSubscriptionItem
             {
-                Text = "Marocain Nouvelles",
+                Text = "Nouvelles Marocaine",
                 Name = "marocainNovelles",
                 Language = "fr",
                 JSONPUri = new Uri("http://hobieu.apphb.com/s/riverjs/marocain-nouvelles")
