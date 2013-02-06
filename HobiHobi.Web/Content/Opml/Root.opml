@@ -269,8 +269,10 @@
 			<outline text="Seth Godin" name="sethGodin" type="rss" url="http://feeds.feedburner.com/typepad/sethsmainblog"/>	
 			<outline text="SthgNw" name="SthgNw" type="rss" url="http://www.sthgnw.com/feed.rss"/>
 			<outline text="Time Magazine" name="time" type="rss" url="http://feeds.feedburner.com/time/topstories?format=xml"/>
+			<outline text="UN Blogs" name="UNBlogs" type="rss" url="http://blogs.un.org/feed/"/>
 			<outline text="UN Dispatch" name="unDispatch" type="rss" url="http://www.undispatch.com/feed/rss" />	
 			<outline text="UN Job List" name="unDispatch" type="rss" url="http://unjoblist.org/lists/organisation/newjobs/feed" />	
+			<outline text="UN Tumblr" name="unTumblr" type="rss" url="http://united-nations.tumblr.com/rss"/>
 			<outline text="US Politics">
 				<outline text="Ezra Klein Wonkblog" name="wonkblog" type="rss" url="http://feeds.washingtonpost.com/rss/rss_ezra-klein"/>
 				<outline text="Daily Kos" name="dailyKos" type="rss" url="http://feeds.dailykos.com/dailykos/index.xml"/>
