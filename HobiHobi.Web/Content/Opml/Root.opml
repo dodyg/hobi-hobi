@@ -144,6 +144,7 @@
 					<outline text="NHL" language="en" name="nhl" type="river" url="http://hobieu.apphb.com/s/riverjs/hockey-nhl"/>
 				</outline>
 				<outline text="Tech Meme" type="river" name="tech" url="http://static.scripting.com/houston/rivers/techmeme/River3.js" language="en"/>
+				<outline text="World Bank" name="wb" type="river" url="http://hobieu.apphb.com/s/riverjs/world-bank"/>
 			</outline>
 			<outline text="Architecture">
 				<outline text="The Architecture Blog" name="theArchitectureBlog" type="rss" url="http://architectureblog.tumblr.com/rss"/>
