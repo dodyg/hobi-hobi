@@ -31,7 +31,7 @@
 		</head>
 
 	<body>
-		<outline text="Last Updated February 4, 2013"/>
+		<outline text="Last Updated February 6, 2013"/>
 		<outline text="Help">
 
 			<outline text="This is an outline. You can expand each outline to see what's underneath it. "/>
@@ -217,6 +217,13 @@
 				<outline text="Wonderland" name="wonderland" type="rss" url="http://feeds.feedburner.com/Wonderland"/>
 			</outline>
 			<outline text="Gaping Void" name="gapingVoid" type="rss" url="http://gapingvoid.com/feed/"/>
+			<outline text="Human Rights">
+				<outline text="Human Rights Watch - Africa" name="hrwAfrica" type="rss" url="http://www.hrw.org/rss/taxonomy/7"/>
+				<outline text="Human Rights Watch - Americas" name="hrwAfrica" type="rss" url="http://www.hrw.org/rss/taxonomy/8"/>
+				<outline text="Human Rights Watch - Asia" name="hrwAfrica" type="rss" url="http://www.hrw.org/rss/taxonomy/9"/>
+				<outline text="Human Rights Watch - Europe/Central Asia" name="hrwAfrica" type="rss" url="http://www.hrw.org/rss/taxonomy/10"/>
+			</outline>
+
 			<outline text="IKEA Hackers" name="ikeaHacker" type="rss" url="http://feeds.feedburner.com/Ikeahacker"/>
 			<outline text="Kottke" name="kottke" type="rss" url="http://feeds.kottke.org/main" />
 			<outline text="Latin America">
@@ -254,8 +261,11 @@
 				<outline text="Eric Lipper" name="ericLippert" type="rss" url="http://ericlippert.com/feed/"/>
 			</outline>
 			<outline text="Rough Type(Nicholas Carr)" name="roughType" type="rss" url="http://www.roughtype.com/?feed=rss2" />
-			<outline text="Science Blogs - Life Science" name="scienceBlogsLifeScience" type="rss" url="http://scienceblogs.com/channel/life-science/feed/"/>
-			<outline text="Science Blog - Physical Science" name="scienceBlogsPhysicalScience" type="rss" url="http://scienceblogs.com/channel/physical-science/feed/"/>
+			<outline text="Science">
+				<outline text="Retraction Watch" name="retractionWatch" type="rss" url="http://retractionwatch.wordpress.com/feed/"/>
+				<outline text="Science Blogs - Life Science" name="scienceBlogsLifeScience" type="rss" url="http://scienceblogs.com/channel/life-science/feed/"/>
+				<outline text="Science Blog - Physical Science" name="scienceBlogsPhysicalScience" type="rss" url="http://scienceblogs.com/channel/physical-science/feed/"/>
+			</outline>
 			<outline text="Seth Godin" name="sethGodin" type="rss" url="http://feeds.feedburner.com/typepad/sethsmainblog"/>	
 			<outline text="SthgNw" name="SthgNw" type="rss" url="http://www.sthgnw.com/feed.rss"/>
 			<outline text="Time Magazine" name="time" type="rss" url="http://feeds.feedburner.com/time/topstories?format=xml"/>
