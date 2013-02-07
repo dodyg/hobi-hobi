@@ -26,10 +26,10 @@ namespace HobiHobi.Core.Subscriptions
 
             river.Items.Add(new RiverSubscriptionItem
             {
-                Text = "The Economist Print Edition",
-                Name = "theeconomistprintedition",
+                Text = "The Economist's Blogs",
+                Name = "theEconomistBlogs",
                 Language = "en",
-                JSONPUri = new Uri("http://hobieu.apphb.com/s/riverjs/the-economist-print-edition")
+                JSONPUri = new Uri("http://hobieu.apphb.com/s/riverjs/the-economist-blogs")
             });
 
             river.Items.Add(new RiverSubscriptionItem
