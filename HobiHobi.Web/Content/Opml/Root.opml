@@ -31,7 +31,7 @@
 		</head>
 
 	<body>
-		<outline text="Last Updated February 6, 2013"/>
+		<outline text="Last Updated February 9, 2013"/>
 		<outline text="Help">
 
 			<outline text="This is an outline. You can expand each outline to see what's underneath it. "/>
@@ -71,6 +71,12 @@
 
 		<outline text="English">
 			<outline text="Podcasts">
+				<outline text="Bloomberg">
+					<outline text="Bloomberg Featured Podcasts" name="bloombergFeatured" type="rss" url="http://www.bloomberg.com/feed/podcast/featured.xml"/>
+					<outline text="Bloomberg on the Economy" name="bloombergOnTheEconomy" type="rss" url="http://www.bloomberg.com/feed/podcast/on-the-economy.xml"/>
+					<outline text="Bloomberg Markets" name="bloombergMarkets" type="rss" url="http://www.bloomberg.com/tvradio/podcast/cat_markets.xml"/>
+					<outline text="Bloomberg Surveillance" name="bloombergSurveillance" type="rss" url="http://www.bloomberg.com/feed/podcast/surveillance.xml"/>
+				</outline>
 				<outline text="BBC - From Our Own Correspondent" name="BBC-FOOC" type="rss" url="http://downloads.bbc.co.uk/podcasts/radio4/fooc/rss.xml"/>
 				<outline text="Comedy">
 					<outline text="Friday Night Comedy" name="fridayNightComedy" type="rss" url="http://downloads.bbc.co.uk/podcasts/radio4/fricomedy/rss.xml"/>
@@ -160,14 +166,16 @@
 			<outline text="The Awl" name="theAwl" type="rss" url="http://feeds.feedburner.com/TheAwl?format=xml"/>
 			<outline text="Brain Pickings(Maria Popova)" name="brainPickings" type="rss" url="http://feeds.feedburner.com/brainpickings/rss?format=xml"/>
 			<outline text="The Broke Ass Bride" name="theBrokeAssBride" type="rss" url="http://feeds.feedburner.com/TheBroke-AssBride?format=xml"/>
-			<outline text="Calculated Risk" name="calculatedRisk" type="rss" url="http://feeds.feedburner.com/CalculatedRisk" />
-			<outline text="Daring Fireball" name="daringFireball" type="rss" url="http://daringfireball.net/index.xml"/>
-			<outline text="Dave Winer" name="daveWiner" type="rss" url="http://www.scripting.com/rss.xml" />
-			<outline text="Economics/Finance/Investment">
-				<outline text="Asymco" name="asymco" type="rss" url="http://feeds.feedburner.com/Asymco" />
+			<outline text="Business/Economics/Finance/Investment">
+				<outline text="Asymco" name="asymco" type="rss" url="http://feeds.feedburner.com/Asymco?format=xml" />
+				<outline text="BBC News - Business" name="bbcBusiness" type="rss" url="http://feeds.bbci.co.uk/news/business/rss.xml"/>
 				<outline text="Deal Breaker" name="dealBreaker" type="rss" url="http://feeds.feedburner.com/dealbreaker?format=xml"/>
 				<outline text="Felix Salmon" name="felixSalmon" type="rss" url="http://feeds.reuters.com/reuters/blogs/felix-salmon?format=xml" />
 			</outline>
+			<outline text="Calculated Risk" name="calculatedRisk" type="rss" url="http://feeds.feedburner.com/CalculatedRisk" />
+			<outline text="Daring Fireball" name="daringFireball" type="rss" url="http://daringfireball.net/index.xml"/>
+			<outline text="Dave Winer" name="daveWiner" type="rss" url="http://www.scripting.com/rss.xml" />
+			
 				<outline text="The Economist Print Edition">
 
 					<outline text="Asia" type="rss" name="Asia" url="http://www.economist.com/rss/asia_rss.xml" />
