@@ -74,7 +74,7 @@ namespace HobiHobi.Core.Subscriptions
 
             river.Items.Add(new RiverSubscriptionItem
             {
-                Text = "Dave Winer",
+                Text = "From the inventor of RSS",
                 Name = "dave",
                 Language = "en",
                 JSONPUri = new Uri("http://static.scripting.com/houston/rivers/iowaRiver3.js")
