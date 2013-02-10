@@ -31,7 +31,7 @@
 		</head>
 
 	<body>
-		<outline text="Last Updated February 9, 2013"/>
+		<outline text="Last Updated February 10, 2013"/>
 		<outline text="Help">
 
 			<outline text="This is an outline. You can expand each outline to see what's underneath it. "/>
@@ -50,8 +50,6 @@
 			</outline>
 
 			<outline text="If you long press to an ordinary outline, it will zoom into that outline include all the sub outlines beneath it"/>
-
-			<outline text=""/>
 
 		</outline>
 
@@ -72,6 +70,7 @@
 		<outline text="English">
 			<outline text="Podcasts">
 				<outline text="Bloomberg">
+					<outline text="Bloomberg All Podcasts" name="bloombergAllPodcasts" type="rss" url="http://www.bloomberg.com/feed/podcast/allpodcasts.xml"/>
 					<outline text="Bloomberg Featured Podcasts" name="bloombergFeatured" type="rss" url="http://www.bloomberg.com/feed/podcast/featured.xml"/>
 					<outline text="Bloomberg on the Economy" name="bloombergOnTheEconomy" type="rss" url="http://www.bloomberg.com/feed/podcast/on-the-economy.xml"/>
 					<outline text="Bloomberg Markets" name="bloombergMarkets" type="rss" url="http://www.bloomberg.com/tvradio/podcast/cat_markets.xml"/>
@@ -80,8 +79,10 @@
 				<outline text="BBC - From Our Own Correspondent" name="BBC-FOOC" type="rss" url="http://downloads.bbc.co.uk/podcasts/radio4/fooc/rss.xml"/>
 				<outline text="Comedy">
 					<outline text="Friday Night Comedy" name="fridayNightComedy" type="rss" url="http://downloads.bbc.co.uk/podcasts/radio4/fricomedy/rss.xml"/>
+					<outline text="Nobody likes onions" name="nobodyLikesOnions" type="rss" url="http://feeds.feedburner.com/nlo"/>
 				</outline>
-
+				<outline text="Daily Aero-News Network" name="ann" type="rss" url="http://www.aero-news.net/podcasts/rsspodcasttoday.xml"/>
+				<outline text="Filmspotting" name="filmspotting" type="rss" url="http://feeds.feedburner.com/Cinecast"/>
 				<outline text="Freakonomics Radio" name="freakonomics" type="rss" url="http://feeds.feedburner.com/freakonomicsradio?format=xml"/>
 				<outline text="The European Council on Foreign Relations" name="ecfr" type="rss" url="http://hobieu.apphb.com/api/1/rss/slim/?maxSize=10&amp;url=http://ecfr.podhoster.com/rss/2501/"/>
 				<outline text="Music">
@@ -147,6 +148,7 @@
 				<outline text="Scripting.Com Community" language="en" name="scriptingcomCommunity" type="river" url="http://static.scripting.com/houston/rivers/scripting/River3.js"/>
 				<outline text="Sports">			
 					<outline text="MLB" language="en" name="mlb" type="river" url="http://hobieu.apphb.com/s/riverjs/baseball-mlb"/>
+					<outline text="NCAA" name="ncass" type="rss" url="http://hobieu.apphb.com/s/riverjs/basketball-ncaa"/>
 					<outline text="NHL" language="en" name="nhl" type="river" url="http://hobieu.apphb.com/s/riverjs/hockey-nhl"/>
 				</outline>
 				<outline text="Tech Meme" type="river" name="tech" url="http://static.scripting.com/houston/rivers/techmeme/River3.js" language="en"/>
@@ -170,6 +172,7 @@
 				<outline text="Asymco" name="asymco" type="rss" url="http://feeds.feedburner.com/Asymco?format=xml" />
 				<outline text="BBC News - Business" name="bbcBusiness" type="rss" url="http://feeds.bbci.co.uk/news/business/rss.xml"/>
 				<outline text="Deal Breaker" name="dealBreaker" type="rss" url="http://feeds.feedburner.com/dealbreaker?format=xml"/>
+				<outline text="The Economic Times" name="theEconomicTimes" type="rss" url="http://economictimes.indiatimes.com/rssfeeds/12872390.cms"/>
 				<outline text="Felix Salmon" name="felixSalmon" type="rss" url="http://feeds.reuters.com/reuters/blogs/felix-salmon?format=xml" />
 			</outline>
 			<outline text="Calculated Risk" name="calculatedRisk" type="rss" url="http://feeds.feedburner.com/CalculatedRisk" />
@@ -340,7 +343,11 @@
 		</outline>
 
 		<outline text="French">
+			<outline text="LEXPRESS" name="lexpress" type="rss" url="http://www.lexpress.fr/rss/alaune.xml"/>
 			<outline text="Le Figaro" name="leFigaro" type="rss" url="http://rss.lefigaro.fr/lefigaro/laune?format=xml"/>
+			<outline text="Le Monde" name="leMonde" type="rss" url="http://rss.lemonde.fr/c/205/f/3050/index.rss"/>
+			<outline text="Le Nouvel Observateur" name="LenouvelObservateur" type="rss" url="http://rss.nouvelobs.com/c/32262/fe.ed/tempsreel.nouvelobs.com/rss.xml"/>
+			<outline text="Libération" name="liberation" type="rss" url="http://liberation.fr.feedsportal.com/c/32268/fe.ed/rss.liberation.fr/rss/9/"/>
 			<outline text="Nouvelles Marocaine" name="marocNouvelles" type="river" url="http://hobieu.apphb.com/s/riverjs/marocain-nouvelles" language="fr" />
 		</outline>	
 			
