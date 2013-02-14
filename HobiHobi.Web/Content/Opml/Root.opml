@@ -18,7 +18,12 @@
 		</head>
 
 	<body>
-		<outline text="Last Updated February 12, 2013"/>
+		<outline text="Last Updated February 14, 2013">
+			<outline text="East Africa" name="eastAfrica" type="rss" url="http://hobieu.apphb.com/s/riverjs/east-africa"/>
+			<outline text="North Africa" name="northAfrica" type="rss" url="http://hobieu.apphb.com/s/riverjs/north-africa"/>
+			<outline text="Southern Africa" type="river" name="asean" url="http://hobieu.apphb.com/s/riverjs/southern-africa" language="en" />
+			<outline text="West Africa" name="westAfrica" type="rss" url="http://hobieu.apphb.com/s/riverjs/west-africa" language="en" />		
+		</outline>
 		<outline text="Help">
 
 			<outline text="This is an outline. You can expand each outline to see what's underneath it. "/>
@@ -113,8 +118,11 @@
 				" />
 				<outline text="Global">
 					<outline text="ASEAN Nations" type="river" name="asean" url="http://hobieu.apphb.com/s/riverjs/asean" language="en" />
+					<outline text="East Africa" name="eastAfrica" type="rss" url="http://hobieu.apphb.com/s/riverjs/east-africa"/>
 					<outline text="Middle East" type="river" name="middleEast" url="http://hobieu.apphb.com/s/riverjs/middle-east" language="en" />	
+					<outline text="North Africa" name="northAfrica" type="rss" url="http://hobieu.apphb.com/s/riverjs/north-africa"/>
 					<outline text="Southern Africa" type="river" name="asean" url="http://hobieu.apphb.com/s/riverjs/southern-africa" language="en" />
+					<outline text="West Africa" name="westAfrica" type="rss" url="http://hobieu.apphb.com/s/riverjs/west-africa"/>
 					<outline text="World" type="river" name="worldRiver" url="http://static.scripting.com/houston/rivers/international/River3.js" language="en"/>
 				</outline>
 				<outline text="Local">
@@ -133,7 +141,8 @@
 				<outline text="Podcasts" type="river" name="podcastRiver" url="http://static.scripting.com/podcastriver/River3.js" language="en" />
 				<outline text="Reuter's Market News" language="en" type="river" name="reutersMarket" url="http://hobieu.apphb.com/s/riverjs/reuters-markets	" />
 				<outline text="Scripting.Com Community" language="en" name="scriptingcomCommunity" type="river" url="http://static.scripting.com/houston/rivers/scripting/River3.js"/>
-				<outline text="Sports">			
+				<outline text="Sports">		
+					<outline text="African Football" name="africanFootbal" type="rss" url="http://hobieu.apphb.com/s/riverjs/african-football"/>	
 					<outline text="MLB" language="en" name="mlb" type="river" url="http://hobieu.apphb.com/s/riverjs/baseball-mlb"/>
 					<outline text="NCAA" name="ncass" type="rss" url="http://hobieu.apphb.com/s/riverjs/basketball-ncaa"/>
 					<outline text="NHL" language="en" name="nhl" type="river" url="http://hobieu.apphb.com/s/riverjs/hockey-nhl"/>
