@@ -18,11 +18,8 @@
 		</head>
 
 	<body>
-		<outline text="Last Updated February 14, 2013">
-			<outline text="East Africa" name="eastAfrica" type="river" url="http://hobieu.apphb.com/s/riverjs/east-africa"/>
-			<outline text="North Africa" name="northAfrica" type="river" url="http://hobieu.apphb.com/s/riverjs/north-africa"/>
-			<outline text="Southern Africa" type="river" name="southernAFrica" url="http://hobieu.apphb.com/s/riverjs/southern-africa" language="en" />
-			<outline text="West Africa" name="westAfrica" type="river" url="http://hobieu.apphb.com/s/riverjs/west-africa" language="en" />		
+		<outline text="Last Updated February 17, 2013">
+			<outline text="Vatican Insider" name="vaticanInsider" type="rss" url="http://vaticaninsider.lastampa.it/en/rss-feed/"/>	
 		</outline>
 		<outline text="Help">
 
@@ -312,6 +309,7 @@
 				<outline text="Xinhua" type="rss" url="http://www.xinhuanet.com/english/rss/worldrss.xml" />
 				<outline text="WSJ Market" type="rss" url="http://online.wsj.com/xml/rss/3_7031.xml" />
 			</outline>
+			<outline text="Vatican Insider" name="vaticanInsider" type="rss" url="http://vaticaninsider.lastampa.it/en/rss-feed/"/>
 			<outline text="World Outlines">
 				<outline text="Adam Curry" name="adamCurry" type="include" url="http://blog.curry.com/toc.opml"/>
 				<outline text="Dave Winer" name="daveWiner" type="include" url="http://scripting.com/toc.opml"/>
