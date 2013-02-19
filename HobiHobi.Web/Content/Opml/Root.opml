@@ -18,8 +18,9 @@
 		</head>
 
 	<body>
-		<outline text="Last Updated February 17, 2013">
-			<outline text="Vatican Insider" name="vaticanInsider" type="rss" url="http://vaticaninsider.lastampa.it/en/rss-feed/"/>	
+		<outline text="Last Updated February 19, 2013">
+			<outline text="Venture Beat" name="ventureBeat" type="rss" url="http://feeds.venturebeat.com/Venturebeat?format=xml"/>
+			<outline text="Latino Review" name="latinoReview" type="rss" url="http://latino-review.com/feed/"/>
 		</outline>
 		<outline text="Help">
 
@@ -234,6 +235,7 @@
 			<outline text="Latin America">
 				<outline text="Banana Skin Flipflops" name="bsf" type="rss" url="http://bananaskinflipflops.com/feed/" />
 			</outline>	
+			<outline text="Latino Review" name="latinoReview" type="rss" url="http://latino-review.com/feed/"/>
 			<outline text="Link Blogs ">
 				<outline text="Dave Winer" name="daveWiner" type="rss" url="http://links.scripting.com/rss.xml"/>
 				<outline text="Sugarcubes" type="rss" url="http://static.storyblogging.org/sugarcubes/admin/linkblog.xml"/>
@@ -310,6 +312,7 @@
 				<outline text="WSJ Market" type="rss" url="http://online.wsj.com/xml/rss/3_7031.xml" />
 			</outline>
 			<outline text="Vatican Insider" name="vaticanInsider" type="rss" url="http://vaticaninsider.lastampa.it/en/rss-feed/"/>
+			<outline text="Venture Beat" name="ventureBeat" type="rss" url="http://feeds.venturebeat.com/Venturebeat?format=xml"/>
 			<outline text="World Outlines">
 				<outline text="Adam Curry" name="adamCurry" type="include" url="http://blog.curry.com/toc.opml"/>
 				<outline text="Dave Winer" name="daveWiner" type="include" url="http://scripting.com/toc.opml"/>
