@@ -18,11 +18,8 @@
 		</head>
 
 	<body>
-		<outline text="Last Updated February 20, 2013">
-				<outline text="Rolling Stone - Movie" name="rs-movie" type="rss" url="http://www.rollingstone.com/siteServices/rss/movieNewsAndFeature"/>
-				<outline text="Rolling Stone Blogs" name="rs-blogs" type="rss" url="http://www.rollingstone.com/siteServices/rss/allBlogs"/>
-				<outline text="Indie Rock Cafe" name="indieRockCafe" type="rss" url="http://www.indierockcafe.com/feed/"/>
-				<outline text="Rolling Stone - Music" name="rs-music" type="rss" url="http://www.rollingstone.com/siteServices/rss/musicNewsAndFeature"/>
+		<outline text="Last Updated February 23, 2013">
+			<outline text="Bertrand Meyer" name="bertrandMeyer" type="rss" url="http://feeds.feedburner.com/BertrandMeyer?format=xml"/>
 		</outline>
 		<outline text="Help">
 
@@ -273,6 +270,7 @@
 			<outline text="Programming">
 				<outline text="Cédric Beust" name="cedricBeust" type="rss" url="http://beust.com/weblog/feed/"/>
 				<outline text="Eric Lipper" name="ericLippert" type="rss" url="http://ericlippert.com/feed/"/>
+				<outline text="Bertrand Meyer" name="bertrandMeyer" type="rss" url="http://feeds.feedburner.com/BertrandMeyer?format=xml"/>
 			</outline>
 			<outline text="Rough Type(Nicholas Carr)" name="roughType" type="rss" url="http://www.roughtype.com/?feed=rss2" />
 			<outline text="Rolling Stone Blogs" name="rs-blogs" type="rss" url="http://www.rollingstone.com/siteServices/rss/allBlogs"/>
