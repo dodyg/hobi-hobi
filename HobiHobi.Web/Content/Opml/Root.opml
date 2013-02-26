@@ -18,8 +18,11 @@
 		</head>
 
 	<body>
-		<outline text="Last Updated February 23, 2013">
-			<outline text="Bertrand Meyer" name="bertrandMeyer" type="rss" url="http://feeds.feedburner.com/BertrandMeyer?format=xml"/>
+		<outline text="Last Updated February 26, 2013">
+			<outline text="ITV" name="itv" type="rss" url="http://www.itv.com/news/index.rss"/>
+			<outline text="Pacific Standard" name="psmag" type="rss" url="http://feeds.feedburner.com/miller-mccune/main_feed?format=xml"/>
+			<outline text="UK - The Telegraph" name="theTelegraph" type="rss" url="http://www.telegraph.co.uk/news/worldnews/rss"/>
+			<outline text="Hong Kong - South Morning China Post" name="smcp" type="rss" url="http://www.scmp.com/rss/91/feed"/>
 		</outline>
 		<outline text="Help">
 
@@ -170,6 +173,10 @@
 			</outline>
 			<outline text="Calculated Risk" name="calculatedRisk" type="rss" url="http://feeds.feedburner.com/CalculatedRisk" />
 			<outline text="Daring Fireball" name="daringFireball" type="rss" url="http://daringfireball.net/index.xml"/>
+			<outline text="Daily Newspaper">
+				<outline text="HongKong - South Morning China Post" name="smcp" type="rss" url="http://www.scmp.com/rss/91/feed"/>
+				<outline text="UK - The Telegraph" name="theTelegraph" type="rss" url="http://www.telegraph.co.uk/news/worldnews/rss"/>
+			</outline>
 			<outline text="Dave Winer" name="daveWiner" type="rss" url="http://www.scripting.com/rss.xml" />
 			
 				<outline text="The Economist Print Edition">
@@ -267,6 +274,7 @@
 				<outline text="Rolling Stone - Music" name="rs-music" type="rss" url="http://www.rollingstone.com/siteServices/rss/musicNewsAndFeature"/>
 			</outline>
 			<outline text="Occupy Wall Street" name="occupyWallStreet" type="rss" url="http://occupywallst.org/rss/news/" />				
+			<outline text="Pacific Standard" name="psmag" type="rss" url="http://feeds.feedburner.com/miller-mccune/main_feed?format=xml"/>
 			<outline text="Programming">
 				<outline text="Cédric Beust" name="cedricBeust" type="rss" url="http://beust.com/weblog/feed/"/>
 				<outline text="Eric Lipper" name="ericLippert" type="rss" url="http://ericlippert.com/feed/"/>
@@ -310,6 +318,7 @@
 				<outline text="Al Jazeera International" type="rss" url="http://www.aljazeera.com/Services/Rss/?PostingId=2007731105943979989" />
 				<outline text="BBC" type="rss" url="http://feeds.bbci.co.uk/news/rss.xml"/>
 				<outline text="CNN" type="rss" url="http://rss.cnn.com/rss/edition.rss" />
+				<outline text="ITV" name="itv" type="rss" url="http://www.itv.com/news/index.rss"/>
 				<outline text="NBC Top Headlines" type="rss" url="http://rss.msnbc.msn.com/id/3032091/device/rss/rss.xml" />
 				<outline text="Reuters" type="rss" url="http://feeds.reuters.com/reuters/topNews?format=xml" />
 				<outline text="Russia Today" type="rss" url="http://rt.com/news/today/rss/" />
