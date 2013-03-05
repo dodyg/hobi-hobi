@@ -20,6 +20,7 @@
 	<body>
 		<outline text="Last Updated March 5th, 2013">
 			<outline text="Folklore - tales from Original Macintosh" name="folklore" type="rss" url="http://www.folklore.org/folklore.xml"/>
+			<outline text="Global Voices Online" name="gvo" type="rss" url="http://globalvoicesonline.org/feed/"/>
 		</outline>
 		<outline text="Help">
 
@@ -226,6 +227,7 @@
 				<outline text="Wonderland" name="wonderland" type="rss" url="http://feeds.feedburner.com/Wonderland"/>
 			</outline>
 			<outline text="Gaping Void" name="gapingVoid" type="rss" url="http://gapingvoid.com/feed/"/>
+			<outline text="Global Voices Online" name="gvo" type="rss" url="http://globalvoicesonline.org/feed/"/>
 			<outline text="Human Rights">
 				<outline text="Human Rights Watch - Africa" name="hrwAfrica" type="rss" url="http://www.hrw.org/rss/taxonomy/7"/>
 				<outline text="Human Rights Watch - Americas" name="hrwAfrica" type="rss" url="http://www.hrw.org/rss/taxonomy/8"/>
@@ -337,6 +339,7 @@
 		</outline>
 
 		<outline text="Indonesian">
+			<outline text="Blog Tempo" name="BlogTempo" type="rss" url="http://blog.tempointeraktif.com/feed/"/>
 			<outline text="Forum Web Anak Bandung" name="fowab" type="rss" url="http://fowab.org/feed/"/>	
 			<outline text="Jawa Pos (JPNN)" name="jpnn" type="rss" url="http://www.jpnn.com/index.php?mib=rss"/>
 			<outline text="Kompas" name="kompas" type="rss" url="http://www.kompas.com/getrss/all"/>	
