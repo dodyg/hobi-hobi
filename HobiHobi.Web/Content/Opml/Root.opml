@@ -337,7 +337,9 @@
 		</outline>
 
 		<outline text="Indonesian">
-			<outline text="Forum Web Anak Bandung" name="fowab" type="rss" url="http://fowab.org/feed/"/>		
+			<outline text="Forum Web Anak Bandung" name="fowab" type="rss" url="http://fowab.org/feed/"/>	
+			<outline text="Jawa Pos (JPNN)" name="jpnn" type="rss" url="http://www.jpnn.com/index.php?mib=rss"/>
+			<outline text="Kompas" name="kompas" type="rss" url="http://www.kompas.com/getrss/all"/>	
 		</outline>
 
 		<outline text="Arabic">
