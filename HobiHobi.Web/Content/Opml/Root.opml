@@ -18,11 +18,8 @@
 		</head>
 
 	<body>
-		<outline text="Last Updated February 26, 2013">
-			<outline text="ITV" name="itv" type="rss" url="http://www.itv.com/news/index.rss"/>
-			<outline text="Pacific Standard" name="psmag" type="rss" url="http://feeds.feedburner.com/miller-mccune/main_feed?format=xml"/>
-			<outline text="UK - The Telegraph" name="theTelegraph" type="rss" url="http://www.telegraph.co.uk/news/worldnews/rss"/>
-			<outline text="Hong Kong - South Morning China Post" name="smcp" type="rss" url="http://www.scmp.com/rss/91/feed"/>
+		<outline text="Last Updated March 5th, 2013">
+			<outline text="Folklore - tales from Original Macintosh" name="folklore" type="rss" url="http://www.folklore.org/folklore.xml"/>
 		</outline>
 		<outline text="Help">
 
@@ -337,6 +334,10 @@
 
 		<outline text="Italian">
 			<outline text="Notizie Italia" language="it" name="notizieItalia" type="river" url="http://hobieu.apphb.com/s/riverjs/Italian"/>
+		</outline>
+
+		<outline text="Indonesian">
+			<outline text="Forum Web Anak Bandung" name="fowab" type="rss" url="http://fowab.org/feed/"/>		
 		</outline>
 
 		<outline text="Arabic">
