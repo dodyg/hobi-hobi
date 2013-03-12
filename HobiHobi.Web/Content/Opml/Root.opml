@@ -18,9 +18,8 @@
 		</head>
 
 	<body>
-		<outline text="Last Updated March 5th, 2013">
-			<outline text="Folklore - tales from Original Macintosh" name="folklore" type="rss" url="http://www.folklore.org/folklore.xml"/>
-			<outline text="Global Voices Online" name="gvo" type="rss" url="http://globalvoicesonline.org/feed/"/>
+		<outline text="Last Updated March 12th, 2013">
+			<outline text="Your Middle East" name="YME" type="rss" url="http://www.yourmiddleeast.com/getRSS.php?section=news"/>
 		</outline>
 		<outline text="Help">
 
@@ -154,7 +153,6 @@
 				<outline text="Contemporist" name="contemporist" type="rss" url="http://feeds.feedburner.com/contemporist?format=xml"/>
 				<outline text="Design Observer" name="designObserver" type="rss" url="http://feeds.feedburner.com/designobserver/main?format=xml"/>
 				<outline text="de zeen Magazine" name="deZeen" type="rss" url="http://feeds.feedburner.com/dezeen?format=xml"/>
-				<outline text="Eikongraphia" name="eikongraphia" type="rss" url="http://www.eikongraphia.com/?feed=rss2"/>
 			</outline>
 			<outline text="Ask The Pilot" name="askThePilot" type="rss" url="http://www.askthepilot.com/feed/"/>
 			<outline text="Auto Straddle" name="autoStraddle" type="rss" url="http://feeds.feedburner.com/Autostraddle?format=xml" />
@@ -240,7 +238,6 @@
 			<outline text="Latin America">
 				<outline text="Banana Skin Flipflops" name="bsf" type="rss" url="http://bananaskinflipflops.com/feed/" />
 			</outline>	
-			<outline text="Latino Review" name="latinoReview" type="rss" url="http://latino-review.com/feed/"/>
 			<outline text="Link Blogs ">
 				<outline text="Dave Winer" name="daveWiner" type="rss" url="http://links.scripting.com/rss.xml"/>
 				<outline text="Sugarcubes" type="rss" url="http://static.storyblogging.org/sugarcubes/admin/linkblog.xml"/>
@@ -263,8 +260,10 @@
 				<outline text="Al Monitor" name="alMonitor" type="rss" url="http://www.al-monitor.com/pulse/home/rssfeeds/full-rss/maincontent/Al-Monitor.rss"/>
 				<outline text="The Arabist" name="arabist" type="rss" url="http://feeds.feedburner.com/arabistdotnet" />
 				<outline text="Informed Comment(Juan Cole)" name="juanCole" type="rss" url="http://feeds.feedburner.com/juancole/ymbn?format=xml" />
+				<outline text="Your Middle East" name="YME" type="rss" url="http://www.yourmiddleeast.com/getRSS.php?section=news"/>
 			</outline>		
 			<outline text="Movies">
+				<outline text="Latino Review" name="latinoReview" type="rss" url="http://latino-review.com/feed/"/>
 				<outline text="Rolling Stone - Movie" name="rs-movie" type="rss" url="http://www.rollingstone.com/siteServices/rss/movieNewsAndFeature"/>
 				<outline text="The Hollywood Reporter" name="theHollywoodReporter" type="rss" url="http://feeds.feedburner.com/thr/news"/>
 			</outline>
@@ -300,7 +299,7 @@
 				<outline text="BBC - Horce Racing" name="bbcHorseRacing" type="rss" url="http://newsrss.bbc.co.uk/rss/sportonline_uk_edition/other_sports/horse_racing/rss.xml"/>
 				<outline text="BBC - Cycling" name="bbcCycling" type="rss" url="http://newsrss.bbc.co.uk/rss/sportonline_uk_edition/other_sports/cycling/rss.xml"/>
 			</outline>	
-			<outline text="SthgNw" name="SthgNw" type="rss" url="http://www.sthgnw.com/feed.rss"/>
+			<outline text="SthgNw" name="SthgNw" type="rss" url="http://www.sthgnw.com/feed"/>
 			<outline text="Time Magazine" name="time" type="rss" url="http://feeds.feedburner.com/time/topstories?format=xml"/>
 			<outline text="UN Blogs" name="UNBlogs" type="rss" url="http://blogs.un.org/feed/"/>
 			<outline text="UN Dispatch" name="unDispatch" type="rss" url="http://www.undispatch.com/feed/rss" />	
