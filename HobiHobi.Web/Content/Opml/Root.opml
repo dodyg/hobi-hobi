@@ -18,8 +18,8 @@
 		</head>
 
 	<body>
-		<outline text="Last Updated March 12th, 2013">
-			<outline text="Your Middle East" name="YME" type="rss" url="http://www.yourmiddleeast.com/getRSS.php?section=news"/>
+		<outline text="Last Updated March 17th, 2013">
+			<outline text="Indoalaysia" name="indoalaysia" type="rss" url="http://blogs.cornell.edu/indolaysia/feed/"/>
 		</outline>
 		<outline text="Help">
 
@@ -234,6 +234,7 @@
 			</outline>
 
 			<outline text="IKEA Hackers" name="ikeaHacker" type="rss" url="http://feeds.feedburner.com/Ikeahacker"/>
+			<outline text="Indoalaysia" name="indoalaysia" type="rss" url="http://blogs.cornell.edu/indolaysia/feed/"/>
 			<outline text="Kottke" name="kottke" type="rss" url="http://feeds.kottke.org/main" />
 			<outline text="Latin America">
 				<outline text="Banana Skin Flipflops" name="bsf" type="rss" url="http://bananaskinflipflops.com/feed/" />
