@@ -279,6 +279,7 @@
 				<outline text="Eric Lipper" name="ericLippert" type="rss" url="http://ericlippert.com/feed/"/>
 				<outline text="Bertrand Meyer" name="bertrandMeyer" type="rss" url="http://feeds.feedburner.com/BertrandMeyer?format=xml"/>
 			</outline>
+			<outline title="Planet Debian" type="rss" url="http://planet.debian.org/rss20.xml"/>
 			<outline text="Rough Type(Nicholas Carr)" name="roughType" type="rss" url="http://www.roughtype.com/?feed=rss2" />
 			<outline text="Rolling Stone Blogs" name="rs-blogs" type="rss" url="http://www.rollingstone.com/siteServices/rss/allBlogs"/>
 			<outline text="Science">
@@ -385,6 +386,21 @@
 		<outline text="Russian">
 			<outline text="sports.ru" name="sportrus" type="rss" url="http://www.sports.ru/rss/all_news.xml"/>
 		</outline>	
+
+		<outline text="German">
+			<outline title="annalist" type="rss" url="http://annalist.noblogs.org/feed/"/>
+			<outline title="ak - analyse & kritik" type="rss" url="http://akweb.de/rss.xml"/>
+			<outline title="Aus dem Rechenzentrum" type="rss" url="http://blog.jonaspasche.com/feed/"/>
+			<outline title="de.indymedia.org openposting" type="rss" url="http://de.indymedia.org/RSS/openposting.xml"/>
+			<outline title="der Freitag" type="rss" url="http://freitag.de/RSS"/>
+			<outline title="Der Schockwellenreiter" type="rss" url="http://schockwellenreiter.de/feed/rss.xml"/>
+			<outline title="Fefes Blog" type="rss" url="http://blog.fefe.de/rss.xml"/>
+			<outline title="netzpolitik.org" type="rss" url="https://netzpolitik.org/feed/"/>
+			<outline title="neues deutschland" type="rss" url="http://neuesdeutschland.de/rss/neues-deutschland.xml"/>
+			<outline title="The European - Neuste Beitraege" type="rss" url="http://theeuropean.de/start.rss"/>
+			<outline title="taz.de - Start" type="rss" url="http://taz.de/rss.xml"/>
+			<outline title="Telepolis - Newsfeed" type="rss" url="http://www.heise.de/tp/news-atom.xml"/>
+		</outline>
 		</body>
 	</opml>
 
