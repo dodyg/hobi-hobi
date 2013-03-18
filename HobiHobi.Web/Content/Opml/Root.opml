@@ -388,14 +388,15 @@
 		</outline>	
 
 		<outline text="German">
+			<outline text="annalist" name="adnnalist" type="rss" url="http://annalist.noblogs.org/feed/"/>
 			<outline text="ak - analyse und kritik" name="ak" type="rss" url="http://akweb.de/rss.xml"/>
 			<outline text="Aus dem Rechenzentrum" name="aus" type="rss" url="http://blog.jonaspasche.com/feed/"/>
-			<outline text="de.indymedia.org openposting" name="indymedia" type="rss" url="http://de.indymedia.org/RSS/openposting.xml"/>
 			<outline text="der Freitag" type="rss" name="derFreitag" url="http://freitag.de/RSS"/>
 			<outline text="Der Schockwellenreiter" name="derScho" type="rss" url="http://schockwellenreiter.de/feed/rss.xml"/>
 			<outline text="Fefes Blog" type="rss" name="FefesBlog" url="http://blog.fefe.de/rss.xml"/>
 			<outline text="netzpolitik.org" name="netzpolitiks" type="rss" url="https://netzpolitik.org/feed/"/>
 			<outline text="neues deutschland" name="nueuDeus" type="rss" url="http://neuesdeutschland.de/rss/neues-deutschland.xml"/>
+			<outline text="Spiegel" name="spiegel" type="rss" url="http://www.spiegel.de/schlagzeilen/tops/index.rss"/>
 			<outline text="The European - Neuste Beitraege" name="Nuets" type="rss" url="http://theeuropean.de/start.rss"/>
 			<outline text="taz.de - Start" name="taz" type="rss" url="http://taz.de/rss.xml"/>
 			<outline text="Telepolis - Newsfeed" name="telepolis" type="rss" url="http://www.heise.de/tp/news-atom.xml"/>
