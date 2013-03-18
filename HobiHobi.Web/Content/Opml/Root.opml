@@ -388,8 +388,8 @@
 		</outline>	
 
 		<outline text="German">
-			<outline text="annalist" name="annalist" type="rss" url="http://annalist.noblogs.org/feed/"/>
-			<outline text="ak - analyse & kritik" name="ak" type="rss" url="http://akweb.de/rss.xml"/>
+			<outline text="annalist" name="adnnalist" type="rss" url="http://annalist.noblogs.org/feed/"/>
+			<outline text="ak - analyse and kritik" name="ak" type="rss" url="http://akweb.de/rss.xml"/>
 			<outline text="Aus dem Rechenzentrum" name="aus" type="rss" url="http://blog.jonaspasche.com/feed/"/>
 			<outline text="de.indymedia.org openposting" name="indymedia" type="rss" url="http://de.indymedia.org/RSS/openposting.xml"/>
 			<outline text="der Freitag" type="rss" name="derFreitag" url="http://freitag.de/RSS"/>
