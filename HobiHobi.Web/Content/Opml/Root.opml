@@ -18,8 +18,9 @@
 		</head>
 
 	<body>
-		<outline text="Last Updated March 17th, 2013">
-			<outline text="Indoalaysia" name="indoalaysia" type="rss" url="http://blogs.cornell.edu/indolaysia/feed/"/>
+		<outline text="Last Updated March 19th, 2013">
+			<outline text="Brad DeLong" name="bradDelong" type="rss" url="http://delong.typepad.com/sdj/rss.xml"/>
+			<outline text="Idle Words" name="idleWords" type="rss" url="http://idlewords.com/index.xml"/>
 		</outline>
 		<outline text="Help">
 
@@ -159,6 +160,7 @@
 			<outline text="The American Scene" name="theAmericanScene" type="rss" url="http://theamericanscene.com/rss/?section=Main"/>
 			<outline text="The Awl" name="theAwl" type="rss" url="http://feeds.feedburner.com/TheAwl?format=xml"/>
 			<outline text="Brain Pickings(Maria Popova)" name="brainPickings" type="rss" url="http://feeds.feedburner.com/brainpickings/rss?format=xml"/>
+			<outline text="Brad DeLong" name="bradDelong" type="rss" url="http://delong.typepad.com/sdj/rss.xml"/>
 			<outline text="The Broke Ass Bride" name="theBrokeAssBride" type="rss" url="http://feeds.feedburner.com/TheBroke-AssBride?format=xml"/>
 			<outline text="Business/Economics/Finance/Investment">
 				<outline text="Asymco" name="asymco" type="rss" url="http://feeds.feedburner.com/Asymco?format=xml" />
@@ -232,7 +234,7 @@
 				<outline text="Human Rights Watch - Asia" name="hrwAfrica" type="rss" url="http://www.hrw.org/rss/taxonomy/9"/>
 				<outline text="Human Rights Watch - Europe/Central Asia" name="hrwAfrica" type="rss" url="http://www.hrw.org/rss/taxonomy/10"/>
 			</outline>
-
+			<outline text="Idle Words" name="idleWords" type="rss" url="http://idlewords.com/index.xml"/>
 			<outline text="IKEA Hackers" name="ikeaHacker" type="rss" url="http://feeds.feedburner.com/Ikeahacker"/>
 			<outline text="Indoalaysia" name="indoalaysia" type="rss" url="http://blogs.cornell.edu/indolaysia/feed/"/>
 			<outline text="Kottke" name="kottke" type="rss" url="http://feeds.kottke.org/main" />
