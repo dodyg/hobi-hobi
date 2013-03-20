@@ -18,9 +18,12 @@
 		</head>
 
 	<body>
-		<outline text="Last Updated March 19th, 2013">
-			<outline text="Brad DeLong" name="bradDelong" type="rss" url="http://delong.typepad.com/sdj/rss.xml"/>
-			<outline text="Idle Words" name="idleWords" type="rss" url="http://idlewords.com/index.xml"/>
+		<outline text="Last Updated March 20th, 2013">
+			<outline text="Economist's View" name="economistsview" type="rss" url="http://feeds.feedburner.com/EconomistsView"/>
+			<outline text="Internet Storm Center Threat" name="interntStormCenter" type="rss" url="https://isc.sans.edu/podcast.xml"/>
+			<outline text="CDC Featured Podcasts" name="cds" type="rss" url="http://hobieu.apphb.com/api/1/rss/slim/?maxSize=10&amp;url=http://www2c.cdc.gov/podcasts/createrss.asp?t=a&amp;c=3"/>
+			<outline text="Comedy Bang Bang" name="comedyBangBang" type="rss" url="http://hobieu.apphb.com/api/1/rss/slim/?maxSize=10&amp;url=http://feeds.feedburner.com/comedydeathrayradio?format=xml"/>
+			<outline text="Savage Love" name="savageLove" type="rss" url="http://hobieu.apphb.com/api/1/rss/slim/?maxSize=10&amp;url=http://savagelove.savagelovecast.libsynpro.com/rss"/>
 		</outline>
 		<outline text="Help">
 
@@ -67,7 +70,9 @@
 					<outline text="Bloomberg Surveillance" name="bloombergSurveillance" type="rss" url="http://www.bloomberg.com/feed/podcast/surveillance.xml"/>
 				</outline>
 				<outline text="BBC - From Our Own Correspondent" name="BBC-FOOC" type="rss" url="http://downloads.bbc.co.uk/podcasts/radio4/fooc/rss.xml"/>
+				<outline text="CDC Featured Podcasts" name="cds" type="rss" url="http://hobieu.apphb.com/api/1/rss/slim/?maxSize=10&amp;url=http://www2c.cdc.gov/podcasts/createrss.asp?t=a&amp;c=3"/>
 				<outline text="Comedy">
+					<outline text="Comedy Bang Bang" name="comedyBangBang" type="rss" url="http://hobieu.apphb.com/api/1/rss/slim/?maxSize=10&amp;url=http://feeds.feedburner.com/comedydeathrayradio?format=xml"/>
 					<outline text="Friday Night Comedy" name="fridayNightComedy" type="rss" url="http://downloads.bbc.co.uk/podcasts/radio4/fricomedy/rss.xml"/>
 					<outline text="Nobody likes onions" name="nobodyLikesOnions" type="rss" url="http://feeds.feedburner.com/nlo"/>
 				</outline>
@@ -75,6 +80,7 @@
 				<outline text="Filmspotting" name="filmspotting" type="rss" url="http://feeds.feedburner.com/Cinecast"/>
 				<outline text="Freakonomics Radio" name="freakonomics" type="rss" url="http://feeds.feedburner.com/freakonomicsradio?format=xml"/>
 				<outline text="The European Council on Foreign Relations" name="ecfr" type="rss" url="http://hobieu.apphb.com/api/1/rss/slim/?maxSize=10&amp;url=http://ecfr.podhoster.com/rss/2501/"/>
+				<outline text="Internet Storm Center Threat" name="interntStormCenter" type="rss" url="https://isc.sans.edu/podcast.xml"/>
 				<outline text="Music">
 					<outline text="AMPEd New Music Weekly" name="ampedNewMusicWeekly" type="rss" url="http://feeds.feedburner.com/ampedmp3"/>
 					<outline text="All Songs Considered" name="allSongsConsidered" type="rss" url="http://hobieu.apphb.com/api/1/rss/slim/?maxSize=10&amp;url=http://www.npr.org/rss/podcast.php?id=510019"/>
@@ -100,6 +106,7 @@
 				</outline>
 				<outline text="Linux Outlaws" name="LinuxOutlaws" type="rss" url="http://feeds.feedburner.com/linuxoutlaws?format=xml"/>
 				<outline text="No Agenda" name="noAgendaPodcasts" type="rss" url="http://feed.nashownotes.com/rss.xml"/>
+				<outline text="Savage Love" name="savageLove" type="rss" url="http://hobieu.apphb.com/api/1/rss/slim/?maxSize=10&amp;url=http://savagelove.savagelovecast.libsynpro.com/rss"/>
 				<outline text="Science">
 					<outline text="The Naked Scientists" name="theNakedScientists" type="rss" url="http://www.thenakedscientists.com/naked_scientists_podcast.xml"/>
 					<outline text="RadioLab" name="radioLab" type="rss" url="http://feeds.wnyc.org/radiolab"/>
@@ -166,6 +173,7 @@
 				<outline text="Asymco" name="asymco" type="rss" url="http://feeds.feedburner.com/Asymco?format=xml" />
 				<outline text="BBC News - Business" name="bbcBusiness" type="rss" url="http://feeds.bbci.co.uk/news/business/rss.xml"/>
 				<outline text="Deal Breaker" name="dealBreaker" type="rss" url="http://feeds.feedburner.com/dealbreaker?format=xml"/>
+				<outline text="Economist's View" name="economistsview" type="rss" url="http://feeds.feedburner.com/EconomistsView"/>
 				<outline text="The Economic Times" name="theEconomicTimes" type="rss" url="http://economictimes.indiatimes.com/rssfeeds/12872390.cms"/>
 				<outline text="Felix Salmon" name="felixSalmon" type="rss" url="http://feeds.reuters.com/reuters/blogs/felix-salmon?format=xml" />
 			</outline>
