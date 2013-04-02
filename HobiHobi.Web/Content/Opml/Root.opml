@@ -18,12 +18,8 @@
 		</head>
 
 	<body>
-		<outline text="Last Updated March 20th, 2013">
-			<outline text="Economist's View" name="economistsview" type="rss" url="http://feeds.feedburner.com/EconomistsView"/>
-			<outline text="Internet Storm Center Threat" name="interntStormCenter" type="rss" url="https://isc.sans.edu/podcast.xml"/>
-			<outline text="CDC Featured Podcasts" name="cds" type="rss" url="http://hobieu.apphb.com/api/1/rss/slim/?maxSize=10&amp;url=http://www2c.cdc.gov/podcasts/createrss.asp?t=a&amp;c=3"/>
-			<outline text="Comedy Bang Bang" name="comedyBangBang" type="rss" url="http://hobieu.apphb.com/api/1/rss/slim/?maxSize=10&amp;url=http://feeds.feedburner.com/comedydeathrayradio?format=xml"/>
-			<outline text="Savage Love" name="savageLove" type="rss" url="http://hobieu.apphb.com/api/1/rss/slim/?maxSize=10&amp;url=http://savagelove.savagelovecast.libsynpro.com/rss"/>
+		<outline text="Last Updated April 2, 2013">
+			<outline text="MetaFilter" name="metafilter" type="rss" url="http://feeds.feedburner.com/Metafilter"/>
 		</outline>
 		<outline text="Help">
 
@@ -176,6 +172,7 @@
 				<outline text="Economist's View" name="economistsview" type="rss" url="http://feeds.feedburner.com/EconomistsView"/>
 				<outline text="The Economic Times" name="theEconomicTimes" type="rss" url="http://economictimes.indiatimes.com/rssfeeds/12872390.cms"/>
 				<outline text="Felix Salmon" name="felixSalmon" type="rss" url="http://feeds.reuters.com/reuters/blogs/felix-salmon?format=xml" />
+				<outline text="Priceonomics" name="priceonomics" type="rss" url="http://blog.priceonomics.com/rss"/<name />
 			</outline>
 			<outline text="Calculated Risk" name="calculatedRisk" type="rss" url="http://feeds.feedburner.com/CalculatedRisk" />
 			<outline text="Daring Fireball" name="daringFireball" type="rss" url="http://daringfireball.net/index.xml"/>
@@ -267,6 +264,7 @@
 				<outline text="Down to Earth" name="downToEarth" type="rss" url="http://feeds.feedburner.com/blogspot/ZCHPL?format=xml" />
 				<outline text="Zen Habits" name="zenHabits" type="rss" url="http://feeds.feedburner.com/zenhabits?format=xml" />	
 			</outline>
+			<outline text="MetaFilter" name="metafilter" type="rss" url="http://feeds.feedburner.com/Metafilter"/>
 			<outline text="Middle East">
 				<outline text="Al Monitor" name="alMonitor" type="rss" url="http://www.al-monitor.com/pulse/home/rssfeeds/full-rss/maincontent/Al-Monitor.rss"/>
 				<outline text="The Arabist" name="arabist" type="rss" url="http://feeds.feedburner.com/arabistdotnet" />
