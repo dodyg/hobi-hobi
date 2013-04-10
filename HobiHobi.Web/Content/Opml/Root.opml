@@ -21,6 +21,7 @@
 		<outline text="Last Updated April 10, 2013">
 			<outline text="Quartz" name="qz" type="rss" url="http://qz.com/feed/"/>
 			<outline text="US State Dept. Travel Warning" name="ustravelwarning" type="rss" url="http://feeds.travel.state.gov/ca/travelwarnings-alerts?format=xml"/>
+			<outline text="Travel Warnings" type="river" name="travel-warnings" url="http://hobieu.apphb.com/s/travel-warnings" language="en" />
 		</outline>
 		<outline text="Help">
 
@@ -149,6 +150,7 @@
 					<outline text="NCAA" name="ncass" type="river" url="http://hobieu.apphb.com/s/riverjs/basketball-ncaa"/>
 					<outline text="NHL" language="en" name="nhl" type="river" url="http://hobieu.apphb.com/s/riverjs/hockey-nhl"/>
 				</outline>
+				<outline text="Travel Warnings" type="river" name="travel-warnings" url="http://hobieu.apphb.com/s/travel-warnings" language="en" />
 				<outline text="Tech Meme" type="river" name="tech" url="http://static.scripting.com/houston/rivers/techmeme/River3.js" language="en"/>
 				<outline text="World Bank" name="wb" type="river" url="http://hobieu.apphb.com/s/riverjs/world-bank"/>
 			</outline>
