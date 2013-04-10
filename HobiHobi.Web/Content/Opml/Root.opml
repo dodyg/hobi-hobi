@@ -18,8 +18,8 @@
 		</head>
 
 	<body>
-		<outline text="Last Updated April 2, 2013">
-			<outline text="MetaFilter" name="metafilter" type="rss" url="http://feeds.feedburner.com/Metafilter"/>
+		<outline text="Last Updated April 10, 2013">
+			<outline text="Quartz" name="qz" type="rss" url="http://qz.com/feed/"/>
 		</outline>
 		<outline text="Help">
 
@@ -288,6 +288,7 @@
 				<outline text="Bertrand Meyer" name="bertrandMeyer" type="rss" url="http://feeds.feedburner.com/BertrandMeyer?format=xml"/>
 			</outline>
 			<outline text="Planet Debian" type="rss" name="planetDebian" url="http://planet.debian.org/rss20.xml"/>
+			<outline text="Quartz" name="qz" type="rss" url="http://qz.com/feed/"/>
 			<outline text="Rough Type(Nicholas Carr)" name="roughType" type="rss" url="http://www.roughtype.com/?feed=rss2" />
 			<outline text="Rolling Stone Blogs" name="rs-blogs" type="rss" url="http://www.rollingstone.com/siteServices/rss/allBlogs"/>
 			<outline text="Science">
