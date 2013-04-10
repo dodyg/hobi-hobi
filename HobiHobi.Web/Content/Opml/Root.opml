@@ -21,7 +21,7 @@
 		<outline text="Last Updated April 10, 2013">
 			<outline text="Quartz" name="qz" type="rss" url="http://qz.com/feed/"/>
 			<outline text="US State Dept. Travel Warning" name="ustravelwarning" type="rss" url="http://feeds.travel.state.gov/ca/travelwarnings-alerts?format=xml"/>
-			<outline text="Travel Warnings" type="river" name="travel-warnings" url="http://hobieu.apphb.com/s/travel-warnings" language="en" />
+			<outline text="Travel Warnings" type="river" name="travel-warnings" url="http://hobieu.apphb.com/s/riverjs/travel-warnings" language="en" />
 		</outline>
 		<outline text="Help">
 
@@ -316,7 +316,7 @@
 			<outline text="SthgNw" name="SthgNw" type="rss" url="http://www.sthgnw.com/feed"/>
 			<outline text="Time Magazine" name="time" type="rss" url="http://feeds.feedburner.com/time/topstories?format=xml"/>
 			<outline text="Travel">
-				<outline text="US State Dept. Travel Warning" name="ustravelwarning" type="rss" url="http://feeds.travel.state.gov/ca/travelwarnings-alerts?format=xml"/>
+				<outline text="Travel Warnings" type="river" name="travel-warnings" url="http://hobieu.apphb.com/s/riverjs/travel-warnings" language="en" />
 			</outline>
 			<outline text="UN Blogs" name="UNBlogs" type="rss" url="http://blogs.un.org/feed/"/>
 			<outline text="UN Dispatch" name="unDispatch" type="rss" url="http://www.undispatch.com/feed/rss" />	
