@@ -176,7 +176,7 @@
 				<outline text="Economist's View" name="economistsview" type="rss" url="http://feeds.feedburner.com/EconomistsView"/>
 				<outline text="The Economic Times" name="theEconomicTimes" type="rss" url="http://economictimes.indiatimes.com/rssfeeds/12872390.cms"/>
 				<outline text="Felix Salmon" name="felixSalmon" type="rss" url="http://feeds.reuters.com/reuters/blogs/felix-salmon?format=xml" />
-				<outline text="Priceonomics" name="priceonomics" type="rss" url="http://blog.priceonomics.com/rss"/<name />
+				<outline text="Priceonomics" name="priceonomics" type="rss" url="http://blog.priceonomics.com/rss" />
 			</outline>
 			<outline text="Calculated Risk" name="calculatedRisk" type="rss" url="http://feeds.feedburner.com/CalculatedRisk" />
 			<outline text="Daring Fireball" name="daringFireball" type="rss" url="http://daringfireball.net/index.xml"/>
