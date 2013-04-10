@@ -19,6 +19,7 @@
 
 	<body>
 		<outline text="Last Updated April 10, 2013">
+			<outline text="Atlas Obscura" name="atlas-obscura" type="rss" url="http://www.atlasobscura.com/feeds/places"/>
 			<outline text="Global Post" name="globalPost" type="rss" url="www.globalpost.com/feed/dispatch/18797"/>
 			<outline text="Travel Warnings" type="river" name="travel-warnings" url="http://hobieu.apphb.com/s/riverjs/travel-warnings" language="en" />
 			<outline text="US State Dept. Travel Warning" name="ustravelwarning" type="rss" url="http://feeds.travel.state.gov/ca/travelwarnings-alerts?format=xml"/>
@@ -317,6 +318,7 @@
 			<outline text="SthgNw" name="SthgNw" type="rss" url="http://www.sthgnw.com/feed"/>
 			<outline text="Time Magazine" name="time" type="rss" url="http://feeds.feedburner.com/time/topstories?format=xml"/>
 			<outline text="Travel">
+				<outline text="Atlas Obscura" name="atlas-obscura" type="rss" url="http://www.atlasobscura.com/feeds/places"/>
 				<outline text="Travel Warnings" type="river" name="travel-warnings" url="http://hobieu.apphb.com/s/riverjs/travel-warnings" language="en" />
 			</outline>
 			<outline text="UN Blogs" name="UNBlogs" type="rss" url="http://blogs.un.org/feed/"/>
