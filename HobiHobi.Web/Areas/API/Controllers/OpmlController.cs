@@ -22,8 +22,11 @@ namespace HobiHobi.Web.Areas.API.Controllers
             //If there's a specific request to disable caching, handle it
             //This is useful in the process of validating to make sure remotely stored OPML file is edited properly
             if (Request.QueryString["disable-cache"].Exists())
+            {
+                HttpContext.Cache.Remove(cacheKey);
                 opml = null;
-
+            }
+            
             if (opml == null)
             {
                 try
