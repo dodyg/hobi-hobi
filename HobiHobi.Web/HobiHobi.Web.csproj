@@ -195,12 +195,8 @@
     <Content Include="Scripts\App\blog.js">
       <DependentUpon>blog.ts</DependentUpon>
     </Content>
-    <TypeScriptCompile Include="Scripts\App\jquery.d.ts" />
     <Content Include="Scripts\App\blog.min.js">
       <DependentUpon>blog.ts</DependentUpon>
-    </Content>
-    <Content Include="Scripts\App\jquery.d.js">
-      <DependentUpon>jquery.d.ts</DependentUpon>
     </Content>
     <TypeScriptCompile Include="Scripts\App\lib.ts" />
     <Content Include="Scripts\App\lib.js">
@@ -440,7 +436,7 @@
   </Target>
   <Target Name="TypeScriptCompile" BeforeTargets="Build" Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <Message Text="Compiling TypeScript files" />
-    <Exec Command="&quot;$(PROGRAMFILES)\Microsoft SDKs\TypeScript\0.8.1.1\tsc&quot; @(TypeScriptCompile ->'&quot;%(fullpath)&quot;', ' ')" />
+    <Exec Command="&quot;$(PROGRAMFILES)\Microsoft SDKs\TypeScript\tsc&quot; @(TypeScriptCompile ->'&quot;%(fullpath)&quot;', ' ')" />
   </Target>
   <ProjectExtensions>
     <VisualStudio>
