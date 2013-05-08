@@ -32,16 +32,7 @@ namespace HobiHobi.Web.Areas.API.Controllers
                 try
                 {
                     var remoteOpmlFile = new Uri(System.Configuration.ConfigurationManager.AppSettings["Source.RootOpmlUrl"]);
-
-                    var client = new RestClient(Texts.FromUriHost(remoteOpmlFile));
-
-                    var request = new RestRequest(remoteOpmlFile.PathAndQuery, method: Method.GET);
-                    request.AddHeader("Accept", "*/*");
-                    request.RequestFormat = DataFormat.Xml;
-
-                    var response = client.Execute(request);
-                    opml = response.Content;
-
+                    opml = DownloadOpmlDocument(remoteOpmlFile);
                     HttpContext.Cache.Add(cacheKey, opml, null, DateTime.Now.AddHours(12), Cache.NoSlidingExpiration, CacheItemPriority.High, null);  
                 }
                 catch
@@ -51,6 +42,53 @@ namespace HobiHobi.Web.Areas.API.Controllers
                 }
             }
             
+            this.Compress();
+            return Content(opml, mime);
+        }
+
+        private string DownloadOpmlDocument(Uri remoteOpmlFile)
+        {
+            var client = new RestClient(Texts.FromUriHost(remoteOpmlFile));
+
+            var request = new RestRequest(remoteOpmlFile.PathAndQuery, method: Method.GET);
+            request.AddHeader("Accept", "*/*");
+            request.RequestFormat = DataFormat.Xml;
+
+            var response = client.Execute(request);
+            return response.Content;
+
+        }
+
+        public ActionResult AndroidRiversHelp()
+        {
+            var cacheKey = "RemoteOpmlAndroidRiversHelp";
+
+            var opml = HttpContext.Cache[cacheKey] as String;
+            var mime = "text/xml";
+
+            //If there's a specific request to disable caching, handle it
+            //This is useful in the process of validating to make sure remotely stored OPML file is edited properly
+            if (Request.QueryString["disable-cache"].Exists())
+            {
+                HttpContext.Cache.Remove(cacheKey);
+                opml = null;
+            }
+
+            if (opml == null)
+            {
+                try
+                {
+                    var remoteOpmlFile = new Uri(System.Configuration.ConfigurationManager.AppSettings["Source.AndroidRiversHelpUrl"]);
+                    opml = DownloadOpmlDocument(remoteOpmlFile);
+                    HttpContext.Cache.Add(cacheKey, opml, null, DateTime.Now.AddHours(12), Cache.NoSlidingExpiration, CacheItemPriority.High, null);
+                }
+                catch
+                {
+                    opml = "Error in retrieving opml document";
+                    mime = "text/plain";
+                }
+            }
+
             this.Compress();
             return Content(opml, mime);
         }
