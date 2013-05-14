@@ -1,6 +1,8 @@
 ﻿using HobiHobi.Core.Caching;
 using HobiHobi.Core.Framework;
 using HobiHobi.Core.Syndications;
+using HobiHobi.Core.Utils;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +17,120 @@ namespace HobiHobi.Web.Areas.API.Controllers
 {
     public class RssController : Controller
     {
+        public ActionResult RssJs(string url)
+        {
+            try
+            {
+                var cacheKey = "conversion_" + url;
+                var cachedFeed = this.HttpContext.Cache[cacheKey] as CacheItem<RssJs>;
+
+                RssJs feed;
+
+                if (cachedFeed == null)
+                {
+                    var fetcher = new SyndicationFetcher();
+                    var content = fetcher.Fetch(new Uri(url));
+
+                    if (content.IsFound)
+                    {
+                        feed = ConvertToRssJs(content.Item);
+                        //todo: implement ETAG
+                        //cache item for 6 hours
+                        HttpContext.Cache.Add(cacheKey, feed, null, Cache.NoAbsoluteExpiration, new TimeSpan(6, 0, 0), CacheItemPriority.Default, null);
+                    }
+                    else
+                    {
+                        return HttpNotFound();
+                    }
+                }
+                else
+                {
+                    feed = cachedFeed.Item;
+                    //todo implement ETAG
+                }
+
+                var json = JsonConvert.SerializeObject(feed, JsonSettings.Get());
+                var jsonP = "onGetRss(" + json + ")";
+
+                this.Compress();
+                return Content(jsonP, "application/javascript");
+            }
+            catch (Exception ex)
+            {
+                return HttpDoc<EmptyHttpReponse>.PreconditionFailed(ex.Message).ToJson();
+            }
+        }
+
+        private RssJs ConvertToRssJs(SyndicationFeed feed)
+        {
+            var alink = feed.Links.FirstOrDefault();
+
+            var alternativeLink = "";
+
+            if (alink != null)
+                alternativeLink = alink.Uri.ToString();
+
+            var ttl = 30;
+
+            var rss = new RssJs
+            {
+                Rss = new RssJs.RssRoot{
+                    Channel = new RssJs.RssRoot.RssChannel
+                    {
+                        Title = feed.Title.Text,
+                        Description = feed.Description.Text,
+                        Link = alternativeLink,
+                        LastBuildDate = feed.LastUpdatedTime.ToString("R"),
+                        PubDate = feed.LastUpdatedTime.ToString("R"),
+                        Ttl = ttl,
+                        Generator = feed.Generator,
+                        Language = feed.Language,
+                        Copyright = (feed.Copyright != null) ? feed.Copyright.Text : null,
+                        Items = feed.Items.Select( x =>
+                            {
+                                var description = "";
+                                if (x.Summary != null && x.Summary.Text.Exists())
+                                    description = x.Summary.Text;
+                                else if (x.Content != null)
+                                {
+                                    switch(x.Content.Type)
+                                    {
+                                        case "html" :
+                                        case "text" :
+                                        case "xhtml":
+                                            description = (x.Content as TextSyndicationContent).Text;
+                                            break;
+                                        default: break;
+                                    }
+                                }
+
+                                var item = new RssJs.RssRoot.RssChannel.RssItem
+                                {
+                                    Description = description,
+                                    PubDate = x.PublishDate.ToString("R")
+                                };
+
+                                if (x.Id.Exists())
+                                    item.Guid = x.Id;
+
+                                if (!x.Title.Text.IsNullOrWhiteSpace())
+                                    item.Title = x.Title.Text;
+
+                                var link = x.Links.FirstOrDefault();
+
+                                if (link != null && link.Uri != null)
+                                    item.Link = link.Uri.ToString();
+
+                                return item;
+                            }
+                        ).ToList()
+                    }
+                }
+            };
+
+            return rss;
+        }
+
         public ActionResult Slim(string url, int maxSize)
         {
             try
