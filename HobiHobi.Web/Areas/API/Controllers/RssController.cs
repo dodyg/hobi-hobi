@@ -36,7 +36,7 @@ namespace HobiHobi.Web.Areas.API.Controllers
                         feed = ConvertToRssJs(content.Item);
                         //todo: implement ETAG
                         //cache item for 6 hours
-                        HttpContext.Cache.Add(cacheKey, feed, null, Cache.NoAbsoluteExpiration, new TimeSpan(6, 0, 0), CacheItemPriority.Default, null);
+                        HttpContext.Cache.Add(cacheKey, feed, null, Cache.NoAbsoluteExpiration, new TimeSpan(0, 5, 0), CacheItemPriority.Default, null);
                     }
                     else
                     {
