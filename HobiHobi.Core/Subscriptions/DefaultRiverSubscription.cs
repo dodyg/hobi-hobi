@@ -21,7 +21,7 @@ namespace HobiHobi.Core.Subscriptions
                 Text = "New York Times",
                 Name = "nyt",
                 Language = "en",
-                JSONPUri = new Uri("http://static.scripting.com/river3/nytRiver.js")
+                JSONPUri = new Uri("http://static.scripting.com/river3/rivers/nytRiver.js")
             });
 
             river.Items.Add(new RiverSubscriptionItem
@@ -45,7 +45,7 @@ namespace HobiHobi.Core.Subscriptions
                 Text = "Movies",
                 Name = "moviesRiver",
                 Language = "en",
-                JSONPUri = new Uri("http://static.scripting.com/river3/movies.js")
+                JSONPUri = new Uri("http://static.scripting.com/river3/rivers/movies.js")
             });
 
             river.Items.Add(new RiverSubscriptionItem
@@ -61,7 +61,7 @@ namespace HobiHobi.Core.Subscriptions
                 Text = "Technology",
                 Name = "tech",
                 Language = "en",
-                JSONPUri = new Uri("http://static.scripting.com/river3/tech.js")
+                JSONPUri = new Uri("http://static.scripting.com/river3/rivers/tech.js")
             });
 
             river.Items.Add(new RiverSubscriptionItem
@@ -74,10 +74,10 @@ namespace HobiHobi.Core.Subscriptions
 
             river.Items.Add(new RiverSubscriptionItem
             {
-                Text = "From the inventor of RSS",
+                Text = "Dave Winer",
                 Name = "dave",
                 Language = "en",
-                JSONPUri = new Uri("http://static.scripting.com/river3/iowa.js")
+                JSONPUri = new Uri("http://static.scripting.com/river3/rivers/iowa.js")
             });
 
             river.Items.Add(new RiverSubscriptionItem
@@ -93,7 +93,7 @@ namespace HobiHobi.Core.Subscriptions
                 Text = "Podcasts",
                 Name = "podcastRiver",
                 Language = "en",
-                JSONPUri = new Uri("http://static.scripting.com/river3/podcasts.js")
+                JSONPUri = new Uri("http://static.scripting.com/river3/rivers/podcasts.js")
             });
 
             river.Items.Add(new RiverSubscriptionItem
